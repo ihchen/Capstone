@@ -13,6 +13,9 @@ var notes1 = ["C", "D", "E", "F", "G", "A", "B"];
 notes1 = transpose(notes1, 2);
 for (i = 0; i < notes1.length; i++) {
   document.write(notes1[i]);
+  if (i < notes1.length - 1) {
+    document.write(", ");
+  }
 }
 </script>
 
