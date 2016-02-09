@@ -1,4 +1,4 @@
-scale,major,=C =D =E =F =G =A =B =C
-scale,minor,=C =D _E =F =G _A _B =C
-chord,major,=C =E =G
-chord,minor,=C _E =G
+scale,major,C D E F G A B C
+scale,minor,C D _E F G _A _B C
+chord,major,C E G
+chord,minor,C _E G
