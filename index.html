@@ -2,67 +2,8 @@
 <html>
 <body>
 
-<p>Click the buttons to play or pause the audio.</p>
+<h1> EAR TRAINING PROGRAM </h1>
 
-<button onclick="playAudio()" type="button">Play Audio</button>
-<button onclick="pauseAudio()" type="button">Pause Audio</button> 
-
-<script>
-var x = new Audio();
-var s1 = document.createElement("source");
-s1.type = "audio/wav";
-s1.src = "audio/piano/piano60.wav";
-x.appendChild(s1);
-
-var y = new Audio();
-var s2 = document.createElement("source");
-s2.type = "audio/wav";
-s2.src = "audio/piano/piano63.wav";
-y.appendChild(s2);
- 
-var z = new Audio();
-var s3 = document.createElement("source");
-s3.type = "audio/wav";
-s3.src = "audio/piano/piano67.wav";
-z.appendChild(s3);
-
-var a = new Audio();
-var s4 = document.createElement("source");
-s4.type = "audio/wav";
-s4.src = "audio/piano/piano70.wav";
-a.appendChild(s4);
-
-var b = new Audio();
-var s5 = document.createElement("source");
-s5.type = "audio/wav";
-s5.src = "audio/piano/piano75.wav";
-b.appendChild(s5);
-
-var c = new Audio();
-var s6 = document.createElement("source");
-s6.type = "audio/wav";
-s6.src = "audio/piano/piano79.wav";
-c.appendChild(s6);
-
-function playAudio() { 
-	x.currentTime = 0;
-	y.currentTime = 0;
-	z.currentTime = 0;
-	a.currentTime = 0;
-	b.currentTime = 0;
-	c.currentTime = 0;
-    x.play(); y.play(); z.play(); a.play(); b.play(); c.play();
-}
-
-function pauseAudio() { 
-    x.pause(); 
-    y.pause();
-    z.pause();
-    a.pause();
-    b.pause();
-    c.pause();
-}
 </script>
-
 </body>
 </html>
