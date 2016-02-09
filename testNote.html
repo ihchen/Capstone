@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Testing Note.js</h1>
+
+<script src = "Note.js"> </script>
+<script>
+// a test script for the Note.js class
+// start with a C major scale
+var notes1 = ["C", "D", "E", "F", "G", "A", "B"];
+// shift notes to D major
+notes1 = transpose(notes1, 2);
+for (i = 0; i < notes1.length; i++) {
+  document.write(notes1[i]);
+}
+</script>
+
+</body>
+</html>
