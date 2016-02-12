@@ -2,17 +2,23 @@
  * Music Snippet Object:
  * Determines what files to be played and how to play them given ABC notes
  */
-function MusicSnippet(abc) {
-	//Variables
-	const bpm = 80; //Beats per minute
-	bps = bpm/60; 	//Beats per second
+function MusicSnippet(abc, type) {
+	/* Variables */
+	const CHORD = "chord";
+	const SCALE = "scale";
+	const INTERVAL = "interval";
+
+	const BPM = 80; //Beats per minute
+	bps = BPM/60; 	//Beats per second
 
 	midi = [];		//Store notes as midi numbers
 	files = [];		//Store file paths to corresponding files
 	sounds = [];	//Howl objects of files
-	timeouts = [];	//Timeout objects to keep track of when playing broken
-	broken
+	// timeouts = [];	//Timeout objects to keep track of when playing broken
 
+	/*
+	 * Set up audio
+	 */
 	//Get midi numbers of given notes
 	for(i = 0; i < abc.length; i++) {
 		midi.push(noteToFileNum[abc[i]]);
@@ -32,15 +38,13 @@ function MusicSnippet(abc) {
 	 * Plays the note at the given index in the array
 	 */
 	this.playNote = function(i) {
-		stop();
 		sounds[i].play();
 	}
 
 	/*
 	 * Plays all notes at the same time
 	 */
-	this.playBlock = function() {
-		stop();
+	this.playBlock = function(arg) {
 		for(i = 0; i < midi.length; i++) {
 			sounds[i].play();
 		}
@@ -50,12 +54,11 @@ function MusicSnippet(abc) {
 	 * Plays all notes in sequence with timing based on bpm
 	 */
 	this.playBroken = function() {
-		stop();
 		//Play first note instantly
-		timeouts.push(setTimeout(function() {
+		setTimeout(function() {
 			playNote(0);
 			playBrokenHelp(1);		//Play rest of notes
-		}, 0));
+		}, 0);
 	}
 
 	/*
@@ -63,21 +66,19 @@ function MusicSnippet(abc) {
 	 */
 	function playBrokenHelp(note) {
 		if(note < midi.length) {
-			timeouts.push(setTimeout(function() {
+			setTimeout(function() {
 				playNote(note);
 				playBrokenHelp(note+1);
-			}, (1/bps)*1000)); //How many seconds per note given the bpm
+			}, (1/bps)*1000); //How many seconds per note given the bpm
 		}
 	}
 
 	/*
-	 * Play Chord
+	 * Plays the chord broken, then blocked
 	 */
 	this.playChord = function() {
 		playBroken();
-		timeouts.push(setTimeout(function() {
-			playBlock();
-		}, (sounds.length/bps)*1000 + (1/bps)*2000));
+		setTimeout(this.playBlock, (sounds.length/bps)*1000 + (1/bps)*1000);
 	}
 
 	/* 

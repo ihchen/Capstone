@@ -26,22 +26,11 @@
 
 <script>
 	var snippet = new MusicSnippet(["C4", "E4", "G4", "D5", "Fx5"]);
+	// var snippet = new MusicSnippet(["C4"]);
 
 	function playSingleNote(note) {
 		snippet.playNote(note);
 	}
-
-	var notesArray = [
-			"audio/piano/piano60.wav",
-			"audio/piano/piano64.wav",
-			"audio/piano/piano67.wav",
-			"audio/piano/piano74.wav",
-			"audio/piano/piano78.wav",
-			];
-
-	// function playNote(note) {
-	// 	new Howl({urls: [note]}).play();
-	// }
 
 	function playNote(note) {
 		snippet.playNote(note);
@@ -58,22 +47,6 @@
 	function playBoth() {
 		snippet.playChord();
 	}
-
-	// function playChord() {
-	// 	var note1 = new Howl({urls: [notesArray[0]]});
-	// 	var note2 = new Howl({urls: [notesArray[1]]});
-	// 	var note3 = new Howl({urls: [notesArray[2]]});
-	// 	var note4 = new Howl({urls: [notesArray[3]]});
-	// 	var note5 = new Howl({urls: [notesArray[4]]});
-	// 	note1.play(); note2.play(); note3.play(); note4.play(); note5.play();
-	// }
-	
-	// function playBroken() {
-	// 	setTimeout(function(){ playNote(notesArray[1]) }, 1000);
-	// 	setTimeout(function(){ playNote(notesArray[2]) }, 2000);
-	// 	setTimeout(function(){ playNote(notesArray[3]) }, 3000);
-	// 	setTimeout(function(){ playNote(notesArray[4]) }, 4000);
-	// }
 </script>
 </body>
 </html>
