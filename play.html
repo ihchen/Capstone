@@ -2,15 +2,18 @@
 <html>
 <header>
 	<script language="javascript" src="howler/howler.js"></script>
+	<script language="javascript" src="scripts/MusicSnippet.js"></script>
+	<script language="javascript" src="scripts/noteToFileNum.js"></script>
 </header>
+
 <body>
 	<h3> Cadd9#11 </h3>
 	<p> Play individual notes </p>
-	<button onclick="playNote(notesArray[0])">Play Note 1</button>
-	<button onclick="playNote(notesArray[1])">Play Note 2</button>
-	<button onclick="playNote(notesArray[2])">Play Note 3</button>
-	<button onclick="playNote(notesArray[3])">Play Note 4</button>
-	<button onclick="playNote(notesArray[4])">Play Note 5</button>
+	<button onclick="playNote(0)">Play Note 1</button>
+	<button onclick="playNote(1)">Play Note 2</button>
+	<button onclick="playNote(2)">Play Note 3</button>
+	<button onclick="playNote(3)">Play Note 4</button>
+	<button onclick="playNote(4)">Play Note 5</button>
 
 	<p> Play Chord </p>
 	<button onclick="playChord()">Play Chord</button>
@@ -18,8 +21,16 @@
 	<p> Play Broken Chord </p>
 	<button onclick="playBroken()">Play Broken</button>
 
+	<p> Play Both </p>
+	<button onclick="playBoth()">Play Both</button>
 
 <script>
+	var snippet = new MusicSnippet(["C4", "E4", "G4", "D5", "Fx5"]);
+
+	function playSingleNote(note) {
+		snippet.playNote(note);
+	}
+
 	var notesArray = [
 			"audio/piano/piano60.wav",
 			"audio/piano/piano64.wav",
@@ -28,26 +39,41 @@
 			"audio/piano/piano78.wav",
 			];
 
+	// function playNote(note) {
+	// 	new Howl({urls: [note]}).play();
+	// }
+
 	function playNote(note) {
-		new Howl({urls: [note]}).play();
+		snippet.playNote(note);
 	}
 
 	function playChord() {
-		var note1 = new Howl({urls: [notesArray[0]]});
-		var note2 = new Howl({urls: [notesArray[1]]});
-		var note3 = new Howl({urls: [notesArray[2]]});
-		var note4 = new Howl({urls: [notesArray[3]]});
-		var note5 = new Howl({urls: [notesArray[4]]});
-		note1.play(); note2.play(); note3.play(); note4.play(); note5.play();
+		snippet.playBlock();
 	}
-	
+
 	function playBroken() {
-		setTimeout(function(){ playNote(notesArray[0]) }, 0);
-		setTimeout(function(){ playNote(notesArray[1]) }, 1000);
-		setTimeout(function(){ playNote(notesArray[2]) }, 2000);
-		setTimeout(function(){ playNote(notesArray[3]) }, 3000);
-		setTimeout(function(){ playNote(notesArray[4]) }, 4000);
+		snippet.playBroken();
 	}
+
+	function playBoth() {
+		snippet.playChord();
+	}
+
+	// function playChord() {
+	// 	var note1 = new Howl({urls: [notesArray[0]]});
+	// 	var note2 = new Howl({urls: [notesArray[1]]});
+	// 	var note3 = new Howl({urls: [notesArray[2]]});
+	// 	var note4 = new Howl({urls: [notesArray[3]]});
+	// 	var note5 = new Howl({urls: [notesArray[4]]});
+	// 	note1.play(); note2.play(); note3.play(); note4.play(); note5.play();
+	// }
+	
+	// function playBroken() {
+	// 	setTimeout(function(){ playNote(notesArray[1]) }, 1000);
+	// 	setTimeout(function(){ playNote(notesArray[2]) }, 2000);
+	// 	setTimeout(function(){ playNote(notesArray[3]) }, 3000);
+	// 	setTimeout(function(){ playNote(notesArray[4]) }, 4000);
+	// }
 </script>
 </body>
 </html>
