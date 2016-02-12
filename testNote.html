@@ -4,19 +4,66 @@
 
 <h1>Testing Note.js</h1>
 
-<script src = "Note.js"> </script>
+<script src = "scripts/Note.js"> </script>
 <script>
 // a test script for the Note.js class
 // start with a C major scale
-var notes1 = ["C", "D", "E", "F", "G", "A", "B"];
+var notes1 = ["C", "D", "E", "F", "G", "A", "B", "C"];
 // shift notes to D major
 notes1 = transpose(notes1, 2);
+document.write("transpose C major scale to D:<br>");
+
 for (i = 0; i < notes1.length; i++) {
   document.write(notes1[i]);
   if (i < notes1.length - 1) {
     document.write(", ");
   }
 }
+// Descending D major scale
+document.write("<br><br>Reverse D major scale:<br>");
+notes1 = reverseDirection(notes1);
+for (i = 0; i < notes1.length; i++) {
+  document.write(notes1[i]);
+  if (i < notes1.length - 1) {
+    document.write(", ");
+  }
+}
+
+// Inversions
+var chord = ["C", "E", "G", "Bb"];
+document.write("<br><br>setInversion of CMm7 to 4/3:<br>");
+setInversion(chord, 2);
+//2nd Inversion C dominant 7
+for (i = 0; i < chord.length; i++) {
+  document.write(chord[i]);
+  if (i < chord.length - 1) {
+    document.write(", ");
+  }
+}
+
+// Calculate an interval in half steps
+document.write("<br><br>calcInterval:<br>");
+var interval1 = calcInterval("C", "G");
+document.write("C to G is " + interval1);
+
+// Calculate the span in half steps
+var notes2 = ["C", "G"];
+document.write("<br><br>calcSpan:<br>");
+var span1 = calcSpan(notes2);
+document.write("C to G is " + span1);
+
+// Calculate span in half steps with multiple notes
+var notes3 = ["C", "G", "C"];
+document.write("<br><br>calcSpan:<br>");
+var span2 = calcSpan(notes3);
+document.write("C to G to C is " + span2);
+
+// Calculate span in half steps with multiple notes
+var notes3 = ["C", "C", "E"];
+document.write("<br><br>calcSpan:<br>");
+var span2 = calcSpan(notes3);
+document.write("C to C to E is " + span2);
+
 </script>
 
 </body>
