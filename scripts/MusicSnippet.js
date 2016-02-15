@@ -14,7 +14,7 @@ function MusicSnippet(abc, type) {
 	midi = [];		//Store notes as midi numbers
 	files = [];		//Store file paths to corresponding files
 	sounds = [];	//Howl objects of files
-	// timeouts = [];	//Timeout objects to keep track of when playing broken
+	timeouts = [];	//Timeout objects to keep track of when playing broken
 
 	/*
 	 * Set up audio
@@ -38,6 +38,10 @@ function MusicSnippet(abc, type) {
 	 * Plays the note at the given index in the array
 	 */
 	this.playNote = function(i) {
+		//Don't let notes bleed if playing a scale
+		if(type == SCALE) {
+			stop();
+		}
 		sounds[i].play();
 	}
 
@@ -54,11 +58,12 @@ function MusicSnippet(abc, type) {
 	 * Plays all notes in sequence with timing based on bpm
 	 */
 	this.playBroken = function() {
+		clear();
 		//Play first note instantly
-		setTimeout(function() {
+		timeouts.push(setTimeout(function() {
 			playNote(0);
 			playBrokenHelp(1);		//Play rest of notes
-		}, 0);
+		}, 0));
 	}
 
 	/*
@@ -66,10 +71,10 @@ function MusicSnippet(abc, type) {
 	 */
 	function playBrokenHelp(note) {
 		if(note < midi.length) {
-			setTimeout(function() {
+			timeouts.push(setTimeout(function() {
 				playNote(note);
 				playBrokenHelp(note+1);
-			}, (1/bps)*1000); //How many seconds per note given the bpm
+			}, (1/bps)*1000)); //How many seconds per note given the bpm
 		}
 	}
 
@@ -99,6 +104,12 @@ function MusicSnippet(abc, type) {
 		for(i = 0; i < midi.length; i++) {
 			sounds[i].stop();
 		}
+	}
+
+	/*
+	 * Clears all timeouts
+	 */
+	function clear() {
 		var initLength = timeouts.length;
 		for(i = 0; i < initLength; i++) {
 			clearTimeout(timeouts[timeouts.length-1]);
