@@ -1,4 +1,5 @@
 // functions to turn basic chord/scale specs into arrays of notes in ABC notation
+// requires Note.js for transpose() and NOTES[]
 
 // returns a scale of the given type in the given key
 function makeScale(scaleType, key) {
@@ -18,8 +19,10 @@ function makeScale(scaleType, key) {
 
 
 	// transpose
+	scale = transpose(scale, findShift(key));
 
 	// return assembled scale
+	return scale;
 }
 
 // returns a chord of the given type in the given key
@@ -37,12 +40,27 @@ function makeChord(chordType, key) {
 			chord = fields[2];
 		};
 	};
+
+
 	// transpose
+	chord = transpose(chord, findShift(key));
 
 	// return assembled scale
+	return chord;
 }
 
 // returns an interval... maybe?
 function makeInterval() {
 	// I don't know what to do here
+}
+
+// silly little function for finding number of fifths from C for transpose()
+function findShift(note) {
+	for (var i = 0; i < NOTES.length; i++) {
+		if (NOTES[i] == note) {
+			break;
+		}
+	}
+
+	return i-15 // 15 is the index of "C"
 }
