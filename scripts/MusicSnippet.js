@@ -4,45 +4,23 @@
  */
 function MusicSnippet(abc, type) {
 	/* Variables */
+	var numNotes = abc.length;
+	var sounds = loadFiles(abc);	//Load appropriate sound files as Howl objects
+
 	const CHORD = "chord";
 	const SCALE = "scale";
 	const INTERVAL = "interval";
 
-	const BPM = 80; //Beats per minute
-	var bps = BPM/60; 	//Beats per second
+	const BPM = 80; 				//Beats per minute
+	var bps = BPM/60; 				//Beats per second
 
-	var numNotes = abc.length;
-
-	var midi = [];		//Store notes as midi numbers
-	var files = [];		//Store file paths to corresponding files
-	var sounds = [];	//Howl objects of files
-	var timeouts = [];	//Timeout objects to keep track of when playing broken
-
-	/*
-	 * Set up audio
-	 */
-	//Get midi numbers of given notes
-	for(i = 0; i < abc.length; i++) {
-		midi.push(noteToFileNum[abc[i]]);
-	}
-
-	//Convert midi numbers to their corresponding file names
-	var files = convMidiToFile(midi);
-
-	//Load sound files
-	for(i = 0; i < midi.length; i++) {
-		sounds.push(new Howl({
-			urls : [files[i]],
-			onload : function() { console.log("sound file has loaded")}
-		}));
-	}
-	/* Done setting up Audio */
+	var timeouts = [];				//Timeout objects to keep track of when playing broken
 	
 	/*
 	 * Plays the note at the given index in the array
 	 */
 	this.playNote = function(i) {
-		// stop();
+		stop();
 		clear();
 		sounds[i].play();
 	}
@@ -61,7 +39,7 @@ function MusicSnippet(abc, type) {
 	this.playBlock = function(arg) {
 		stop();
 		clear();
-		for(i = 0; i < midi.length; i++) {
+		for(i = 0; i < numNotes; i++) {
 			sounds[i].play();
 		}
 	}
@@ -83,12 +61,16 @@ function MusicSnippet(abc, type) {
 	 * Recursive helper for playBroken();
 	 */
 	function playBrokenHelp(note) {
-		if(note < midi.length) {
+		if(note < numNotes) {
 			timeouts.push(setTimeout(function() {
 				playNote(note);
 				playBrokenHelp(note+1);
 			}, (1/bps)*1000)); //How many seconds per note given the bpm
 		}
+	}
+
+	this.playBroken2 = function() {
+
 	}
 
 	/*
@@ -99,22 +81,11 @@ function MusicSnippet(abc, type) {
 		timeouts.push(setTimeout(this.playBlock, (sounds.length/bps)*1000 + (1/bps)*1000));
 	}
 
-	/* 
- 	 * Converts midi numbers to their corresponding file names
- 	 */
-	function convMidiToFile(midi) {
-		var files = [];
-		for(i = 0; i < midi.length; i++) {
-			files.push("audio/piano/piano"+midi[i]+".wav");
-		}
-		return files;
-	}
-
 	/*
 	 * Stops all sound immediately
 	 */
 	function stop() {
-		for(i = 0; i < midi.length; i++) {
+		for(i = 0; i < numNotes; i++) {
 			sounds[i].stop();
 		}
 	}
@@ -128,5 +99,43 @@ function MusicSnippet(abc, type) {
 			clearTimeout(timeouts[timeouts.length-1]);
 			timeouts.pop();
 		}
+	}
+
+	/*
+	 * Takes the ABC notation and converts them into Howl objects with the appropriate
+	 * sound files.
+	 */
+	function loadFiles(abc) {
+		var midi = [];		//Store notes as midi numbers
+		var files = [];		//Store file paths to corresponding files
+		var sounds = [];	//Howl objects of files
+
+		//Get midi numbers of given notes
+		for(i = 0; i < numNotes; i++) {
+			midi.push(noteToFileNum[abc[i]]);
+		}
+
+		//Convert midi numbers to their corresponding file names
+		files = convMidiToFile(midi);
+
+		//Load sound files
+		for(i = 0; i < numNotes; i++) {
+			sounds.push(new Howl({
+				urls : [files[i]],
+				onload : function() { console.log("sound file has loaded")}
+			}));
+		}
+		return sounds;
+	}
+
+	/* 
+ 	 * Converts midi numbers to their corresponding file names
+ 	 */
+	function convMidiToFile(midi) {
+		var files = [];
+		for(i = 0; i < numNotes; i++) {
+			files.push("audio/piano/piano"+midi[i]+".wav");
+		}
+		return files;
 	}
 }
