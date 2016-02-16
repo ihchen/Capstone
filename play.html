@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <header>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
 	<script language="javascript" src="howler/howler.js"></script>
 	<script language="javascript" src="scripts/MusicSnippet.js"></script>
 	<script language="javascript" src="scripts/noteToFileNum.js"></script>
@@ -9,44 +11,51 @@
 <body>
 	<h3> Cadd9#11 </h3>
 	<p> Play individual notes </p>
-	<button onclick="playNote(0)">Play Note 1</button>
-	<button onclick="playNote(1)">Play Note 2</button>
-	<button onclick="playNote(2)">Play Note 3</button>
-	<button onclick="playNote(3)">Play Note 4</button>
-	<button onclick="playNote(4)">Play Note 5</button>
+	<button onclick="snippet.playNote(0)">Play Note 1</button>
+	<button onclick="snippet.playNote(1)">Play Note 2</button>
+	<button onclick="snippet.playNote(2)">Play Note 3</button>
+	<button onclick="snippet.playNote(3)">Play Note 4</button>
+	<button onclick="snippet.playNote(4)">Play Note 5</button>
 
 	<p> Play Chord </p>
-	<button onclick="playChord()">Play Chord</button>
+	<button onclick="snippet.playBlock()">Play Chord</button>
 
 	<p> Play Broken Chord </p>
-	<button onclick="playBroken()">Play Broken</button>
+	<button onclick="snippet.playBroken()">Play Broken</button>
 
 	<p> Play Both </p>
-	<button onclick="playBoth()">Play Both</button>
+	<button onclick="snippet.playChord()">Play Both</button>
+
+	<h3> C Major Scale </h3>
+	<p> Play individual notes </p>
+	<button onclick="snippet2.playNote(0)">Play Note 1</button>
+	<button onclick="snippet2.playNote(1)">Play Note 2</button>
+	<button onclick="snippet2.playNote(2)">Play Note 3</button>
+	<button onclick="snippet2.playNote(3)">Play Note 4</button>
+	<button onclick="snippet2.playNote(4)">Play Note 5</button>
+	<button onclick="snippet2.playNote(5)">Play Note 6</button>
+	<button onclick="snippet2.playNote(6)">Play Note 7</button>
+	<button onclick="snippet2.playNote(7)">Play Note 8</button>
+
+	<p> Play Chord </p>
+	<button onclick="snippet2.playBlock()">Play Chord</button>
+
+	<p> Play Broken Chord </p>
+	<button onclick="snippet2.playBroken()">Play Broken</button>
+
+	<p> Play Both </p>
+	<button onclick="snippet2.playChord()">Play Both</button>
 
 <script>
-	var snippet = new MusicSnippet(["C4", "E4", "G4", "D5", "Fx5"]);
-	// var snippet = new MusicSnippet(["C4"]);
+	var snippet = new MusicSnippet(
+		["C4", "E4", "G4", "D5", "Fx5"],
+		"chord"
+		);
 
-	function playSingleNote(note) {
-		snippet.playNote(note);
-	}
-
-	function playNote(note) {
-		snippet.playNote(note);
-	}
-
-	function playChord() {
-		snippet.playBlock();
-	}
-
-	function playBroken() {
-		snippet.playBroken();
-	}
-
-	function playBoth() {
-		snippet.playChord();
-	}
+	var snippet2 = new MusicSnippet(
+		["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"],
+		"scale"
+		);
 </script>
 </body>
 </html>
