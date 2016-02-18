@@ -35,7 +35,7 @@
 		?>
 	</select>
 	<br>
-	<button type="button">
+	<button type="button" action="">
 		play sound
 	</button>
 </form>
