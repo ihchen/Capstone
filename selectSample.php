@@ -21,22 +21,17 @@
 <form>
 	<select name="type">
 		<?php
-			for ($i=0; $i < count($types); $i++) { 
-				echo "<option value='$types[i]'>$types[i]</option>\n";
+			foreach ($types as $type) { 
+				echo "<option value='$type'>$type</option>\n";
 			}
 		?>
 	</select>
 	</select>
 	<select name="key">
 		<?php
-
 			foreach ($keys as $note) {
 				echo "<option value='$note'>$note</option>\n";
 			}
-
-			// for ($i=0; $i < count($keys); $i++) { 
-				// echo "<option value='$keys[i]'>$keys[i]</option>\n";
-			// }
 		?>
 	</select>
 </form>
