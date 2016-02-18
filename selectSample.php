@@ -8,11 +8,11 @@
 	$datacsv = fopen("scripts/data.csv", r) or die("Unable to open data.csv!");
 	// parse
 	$types = array();
-	$keys = array("C","D","E");
+	$keys = array("B#/C","C#/Db","D","D#/Eb","E/Fb","F","F#/Gb","G","G#/Ab","A","A#/Bb","B/Cb");
 
 	while (!feof($datacsv)) {
 		$data_entry = str_getcsv(fgets($datacsv));
-		array_push($types, $data_entry[1]+" "+$data_entry[0]);
+		array_push($types, "$data_entry[1] $data_entry[0]");
 	}
 
 	fclose($datacsv);
@@ -22,7 +22,7 @@
 	<select name="type">
 		<?php
 			foreach ($types as $type) { 
-				echo "<option value='$type'>$type</option>\n";
+				echo "<option value='$type'>$type</option>";
 			}
 		?>
 	</select>
@@ -30,7 +30,7 @@
 	<select name="key">
 		<?php
 			foreach ($keys as $note) {
-				echo "<option value='$note'>$note</option>\n";
+				echo "<option value='$note'>$note</option>";
 			}
 		?>
 	</select>
