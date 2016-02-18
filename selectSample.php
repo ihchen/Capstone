@@ -29,9 +29,14 @@
 	</select>
 	<select name="key">
 		<?php
-			for ($i=0; $i < count($keys); $i++) { 
-				echo "<option value='$keys[i]'>$keys[i]</option>\n";
+
+			foreach ($keys as $note) {
+				echo "<option value='$note'>$note</option>\n";
 			}
+
+			// for ($i=0; $i < count($keys); $i++) { 
+				// echo "<option value='$keys[i]'>$keys[i]</option>\n";
+			// }
 		?>
 	</select>
 </form>
