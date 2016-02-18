@@ -26,7 +26,7 @@
 			}
 		?>
 	</select>
-	</select>
+	<br>
 	<select name="key">
 		<?php
 			foreach ($keys as $note) {
@@ -34,4 +34,8 @@
 			}
 		?>
 	</select>
+	<br>
+	<button type="button">
+		play sound
+	</button>
 </form>
