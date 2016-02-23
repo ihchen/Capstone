@@ -5,7 +5,7 @@
 function makeThing(type, quality, key) {
 	// read data.csv
 	var data = new XMLHttpRequest();
-	data.open("GET", "data.csv");
+	data.open("GET", "/scripts/data.csv");
 	data.send();
 	// get scale instructions
 	var thing;

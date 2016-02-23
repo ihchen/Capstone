@@ -36,7 +36,7 @@
 		?>
 	</select>
 	<br>
-	<button type="button" action="playSample()">
+	<button type="button" onclick="playSample()">
 		Play Selected Sample
 	</button>
 </form>
