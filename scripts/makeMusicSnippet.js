@@ -79,7 +79,8 @@ function makeInterval() {
 
 // silly little function for finding number of fifths from C for transpose()
 function findShift(note) {
-	for (var i = 0; i < NOTES.length; i++) {
+	var i;
+	for (i = 0; i < NOTES.length; i++) {
 		if (NOTES[i] == note) {
 			break;
 		}

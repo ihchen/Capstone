@@ -44,10 +44,14 @@
 <script type="text/javascript">
 	function playSample() {
 		// get stuff out of the form
-		var selectedTypeAndQuality = document.getElementById("type").value.split(" ");
+		var selectedTypeAndQuality = document.getElementById("type").value.split(" "); // type is at 1, quality is at 0, as arranged by the php script
 		var selectedKey = document.getElementById("key").value.split("/");
+		console.log(selectedTypeAndQuality);
+		console.log(selectedKey);
 		// turn it into the note string
 		var sampleText = makeThing(selectedTypeAndQuality[1], selectedTypeAndQuality[0], selectedKey[0].replace("#", "x"));
+		sampleText = setOctave(sampleText);
+		console.log(sampleText);
 		// play it
 		var samplePlayable = new MusicSnippet(sampleText, selectedTypeAndQuality[1]);
 		samplePlayable.play();
