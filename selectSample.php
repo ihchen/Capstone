@@ -47,9 +47,9 @@
 		var selectedTypeAndQuality = document.getElementById("type").value.split(" ");
 		var selectedKey = document.getElementById("key").value.split("/");
 		// turn it into the note string
-		var sampleText = makeThing(selectedTypeAndQuality[0], selectedTypeAndQuality[1], selectedKey[0].replace("#", "x"));
+		var sampleText = makeThing(selectedTypeAndQuality[1], selectedTypeAndQuality[0], selectedKey[0].replace("#", "x"));
 		// play it
-		var samplePlayable = new MusicSnippet(sampleText, selectedTypeAndQuality[0]);
+		var samplePlayable = new MusicSnippet(sampleText, selectedTypeAndQuality[1]);
 		samplePlayable.play();
 	}
 </script>

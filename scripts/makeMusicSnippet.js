@@ -5,18 +5,17 @@
 function makeThing(type, quality, key) {
 	// read data.csv
 	var data = new XMLHttpRequest();
-	data.open("GET", "/scripts/data.csv");
+	data.open("GET", "scripts/data.csv", false);
 	data.send();
 	// get scale instructions
 	var thing;
 	var lines = data.response.split("\n");
-	for (var i = lines.length - 1; i >= 0; i--) {
+	for (var i = 0; i <lines.length; i++) {
 		var fields = lines[i].split(","); // fields = a line of the csv
 		if (fields[0]== type && fields[1]==quality) {
 			thing = fields[2].split(" "); // thing = the notes in an array
 		};
 	};
-
 
 	// transpose
 	scale = transpose(thing, findShift(key));
