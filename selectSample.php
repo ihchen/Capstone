@@ -2,6 +2,7 @@
 <script type="text/javascript" src="scripts/makeMusicSnippet.js"></script>
 <script type="text/javascript" src="scripts/noteToFileNum.js"></script>
 <script type="text/javascript" src="scripts/MusicSnippet.js"></script>
+<script type="text/javascript" src="howler/howler.js"></script>
 
 <?php
 	// load scripts/data.csv
@@ -46,7 +47,7 @@
 		var selectedTypeAndQuality = document.getElementById("type").value.split(" ");
 		var selectedKey = document.getElementById("key").value.split("/");
 		// turn it into the note string
-		var sampleText = makeThing(selectedTypeAndQuality[0], selectedTypeAndQuality[1], selectedKey[0]);
+		var sampleText = makeThing(selectedTypeAndQuality[0], selectedTypeAndQuality[1], selectedKey[0].replace("#", "x"));
 		// play it
 		var samplePlayable = new MusicSnippet(sampleText, selectedTypeAndQuality[0]);
 		samplePlayable.play();
