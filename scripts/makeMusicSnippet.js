@@ -18,7 +18,8 @@ function makeThing(type, quality, key) {
 	};
 
 	// transpose
-	scale = transpose(thing, findShift(key));
+	console.log("transposing " + thing + " into " + key + " by shifting " + findShift(key));
+	thing = transpose(thing, findShift(key));
 
 	// return assembled scale
 	return thing;
