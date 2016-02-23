@@ -1,0 +1,12 @@
+html {
+	height: 100%;
+	background: rgb(54, 179, 222);  /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* Standard syntax */
+	/*background: -webkit-radial-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* Safari 5.1 to 6.0 */*/
+	/*background: -o-radial-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* For Opera 11.6 to 12.0 */*/
+	/*background: -moz-radial-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* For Firefox 3.6 to 15 */*/
+	/*background: radial-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* Standard syntax */*/
+}
