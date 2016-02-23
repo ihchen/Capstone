@@ -19,7 +19,7 @@
 ?>
 
 <form>
-	<select name="type">
+	<select id="type">
 		<?php
 			foreach ($types as $type) { 
 				echo "<option value='$type'>$type</option>";
@@ -27,7 +27,7 @@
 		?>
 	</select>
 	<br>
-	<select name="key">
+	<select id="key">
 		<?php
 			foreach ($keys as $note) {
 				echo "<option value='$note'>$note</option>";
@@ -35,7 +35,20 @@
 		?>
 	</select>
 	<br>
-	<button type="button" action="">
-		play sound
+	<button type="button" action="playSample()">
+		Play Selected Sample
 	</button>
 </form>
+
+<script type="text/javascript">
+	function playSample() {
+		// get stuff out of the form
+		var selectedTypeAndQuality = document.getElementById("type").value.split(" ");
+		var selectedKey = document.getElementById("key").value.split("/");
+		// turn it into the note string
+		var sampleText = makeThing(selectedTypeAndQuality[0], selectedTypeAndQuality[1], selectedKey[0]);
+		// play it
+		var samplePlayable = new MusicSnippet(sampleText, selectedTypeAndQuality[0]);
+		samplePlayable.play();
+	}
+</script>
