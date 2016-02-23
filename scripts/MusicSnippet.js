@@ -1,4 +1,4 @@
-/* 
+/*
  * Music Snippet Object:
  * Determines what files to be played and how to play them given ABC notes
  */
@@ -15,20 +15,35 @@ function MusicSnippet(abc, type) {
 	var bps = BPM/60; 				//Beats per second
 
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
-	
+
+	/* 
+	 * Main play method
+	 */
+	this.play = function() {
+		stop();
+		clear();
+		//Play arpegiated and then play block
+		if(type == CHORD) {
+			playBroken();
+			timeouts.push(setTimeout(playBlock, (sounds.length/bps)*1000 + (1/bps)*1000));
+		}
+		//Play broken
+		if(type == SCALE) {
+			playBroken();
+		}
+		//Play broken
+		if(type == INTERVAL) {
+			playBroken();
+		}
+	}
+
 	/*
 	 * Plays the note at the given index in the array
 	 */
-	this.playNote = function(i) {
-		stop();
-		clear();
-		sounds[i].play();
-	}
-
 	function playNote(i) {
 		//Don't let notes bleed if playing a scale
 		if(type == SCALE) {
-			stop();
+			sounds[i].play('front');
 		}
 		sounds[i].play();
 	}
@@ -36,9 +51,7 @@ function MusicSnippet(abc, type) {
 	/*
 	 * Plays all notes at the same time
 	 */
-	this.playBlock = function(arg) {
-		stop();
-		clear();
+	function playBlock(arg) {
 		for(i = 0; i < numNotes; i++) {
 			sounds[i].play();
 		}
@@ -47,9 +60,7 @@ function MusicSnippet(abc, type) {
 	/*
 	 * Plays all notes in sequence with timing based on bpm
 	 */
-	this.playBroken = function() {
-		stop();
-		clear();
+	function playBroken() {
 		//Play first note instantly
 		timeouts.push(setTimeout(function() {
 			playNote(0);
@@ -67,18 +78,6 @@ function MusicSnippet(abc, type) {
 				playBrokenHelp(note+1);
 			}, (1/bps)*1000)); //How many seconds per note given the bpm
 		}
-	}
-
-	this.playBroken2 = function() {
-
-	}
-
-	/*
-	 * Plays the chord broken, then blocked
-	 */
-	this.playChord = function() {
-		this.playBroken();
-		timeouts.push(setTimeout(this.playBlock, (sounds.length/bps)*1000 + (1/bps)*1000));
 	}
 
 	/*
@@ -121,8 +120,7 @@ function MusicSnippet(abc, type) {
 		//Load sound files
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
-				urls : [files[i]],
-				onload : function() { console.log("sound file has loaded")}
+				urls : [files[i]]
 			}));
 		}
 		return sounds;
