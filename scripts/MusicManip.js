@@ -208,6 +208,6 @@ const lowestOctave = 3;
 function genRandomNum(numPlaces) {
   // 3 is the lowest octave in which a note collection may begin,
   // and numPlaces provides a range. This method will return a
-  // random number from lowestOctave to (numPlaces - 1) inclusive.
+  // random number from [lowestOctave, numPlaces).
   return Math.floor((Math.random() * (numPlaces)) + lowestOctave);
 }

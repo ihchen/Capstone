@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <body>
 
 <h1>Testing MusicManip.js</h1>
@@ -25,6 +27,19 @@ notes1 = reverseDirection(notes1);
 for (i = 0; i < notes1.length; i++) {
   document.write(notes1[i]);
   if (i < notes1.length - 1) {
+    document.write(", ");
+  }
+}
+
+var dflat = ["C", "D", "E", "F", "G", "A", "B", "C"];
+// shift notes to Db major
+dflat = transpose(dflat, -5);
+document.write("<br><br>transpose C major scale to Db:<br>");
+dflat = setOctave(dflat);
+
+for (i = 0; i < dflat.length; i++) {
+  document.write(dflat[i]);
+  if (i < dflat.length - 1) {
     document.write(", ");
   }
 }
