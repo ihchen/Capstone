@@ -7,6 +7,8 @@
 	<script src="scripts/MusicSnippet.js"></script>
 	<script src="scripts/noteToFileNum.js"></script>
 	<script src="scripts/Note.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="scripts/style.css">
 </header>
 
 <body>
@@ -15,19 +17,19 @@
 		<button onclick="snippet.play()">Play</button><br><br>
 		<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
 		<div id="revealed" style="display:none;">
-			<p id="answer">hello</p>
-			<button onclick="snippet.generate()">Next Question</button>
+			<p id="answer"></p>
+			<button onclick="nextQuestion()">Next Question</button>
 		</div>
 	</center>
 
 <script>
-	// var snippet = new MusicSnippet(
-	// 	["C", "E", "G", "D", "Fx"],
-	// 	"chord",
-	// 	"add9#11"
-	// 	);
-
 	var snippet = new MusicSnippet(
+		["C", "E", "G", "D", "Fx"],
+		"chord",
+		"add9#11"
+		);
+
+	var s2 = new MusicSnippet(
 		["C", "D", "E", "F", "G", "A", "B", "C"],
 		"scale",
 		"major"
@@ -35,9 +37,20 @@
 
 	document.getElementById("answer").innerHTML = snippet.answer();
 
+	function nextQuestion() {
+		snippet.generate();
+		hide();
+	}
+
 	function reveal() {
 		document.getElementById("revealbutt").style.display = "none";
 		document.getElementById("revealed").style.display = "block";
+	}
+
+	function hide() {
+		document.getElementById("revealbutt").style.display = "block";
+		document.getElementById("revealed").style.display = "none";
+		document.getElementById("answer").innerHTML = snippet.answer();
 	}
 </script>
 </body>

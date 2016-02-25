@@ -24,3 +24,9 @@ a.btn.btn-info {
 .collapse {
 	margin-left:40px;
 }
+
+button {
+	font-size:1em;
+	width:200px;
+	height:50px;
+}
