@@ -2,11 +2,8 @@
  * Music Snippet Object:
  * Determines what files to be played and how to play them given ABC notes
  */
-function MusicSnippet(abc, type) {
-	/* Variables */
-	var numNotes = abc.length;
-	var sounds = loadFiles(abc);	//Load appropriate sound files as Howl objects
-
+function MusicSnippet(abc, type1, type2) {
+	/* Constants */
 	const CHORD = "chord";
 	const SCALE = "scale";
 	const INTERVAL = "interval";
@@ -14,6 +11,13 @@ function MusicSnippet(abc, type) {
 	const BPM = 80; 				//Beats per minute
 	var bps = BPM/60; 				//Beats per second
 
+	/* Variables */
+	var baseNotes = abc;			//Store the base notes to transpose from
+	var type1 = type1;				//Chord, scale, or interval
+	var type2 = type2;				//Answer
+	var numNotes = abc.length;		//Number of notes
+
+	var tempSounds = [];
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 
 	/* 
@@ -23,18 +27,34 @@ function MusicSnippet(abc, type) {
 		stop();
 		clear();
 		//Play arpegiated and then play block
-		if(type == CHORD) {
+		if(type1 == CHORD) {
 			playBroken();
 			timeouts.push(setTimeout(playBlock, (sounds.length/bps)*1000 + (1/bps)*1000));
 		}
 		//Play broken
-		if(type == SCALE) {
+		if(type1 == SCALE) {
 			playBroken();
 		}
 		//Play broken
-		if(type == INTERVAL) {
+		if(type1 == INTERVAL) {
 			playBroken();
 		}
+	}
+
+	/*
+	 * Loads files based on a random key
+	 */
+	this.generate = function() {
+		var randKey = Math.floor(Math.random()*15)-7;	//Get Random key between -7 and 7
+		var tempNotes = setNotes(randKey);		//Array of transposed keys
+		tempSounds = loadFiles(tempNotes);		//Load the corresponding files
+	}
+
+	/*
+	 * Tranposes the given notes up 'key' sharps or flats
+	 */
+	function setNotes(key) {
+		transpose(abc, key);
 	}
 
 	/*
@@ -43,9 +63,9 @@ function MusicSnippet(abc, type) {
 	function playNote(i) {
 		//Don't let notes bleed if playing a scale
 		if(type == SCALE) {
-			sounds[i].play('front');
+			tempSounds[i].play('front');
 		}
-		sounds[i].play();
+		tempSounds[i].play();
 	}
 
 	/*
@@ -53,7 +73,7 @@ function MusicSnippet(abc, type) {
 	 */
 	function playBlock(arg) {
 		for(i = 0; i < numNotes; i++) {
-			sounds[i].play();
+			tempSounds[i].play();
 		}
 	}
 
@@ -85,7 +105,7 @@ function MusicSnippet(abc, type) {
 	 */
 	function stop() {
 		for(i = 0; i < numNotes; i++) {
-			sounds[i].stop();
+			tempSounds[i].stop();
 		}
 	}
 
