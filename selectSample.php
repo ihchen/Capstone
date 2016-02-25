@@ -1,32 +1,59 @@
+<script type="text/javascript" src="scripts/Note.js"></script>
+<script type="text/javascript" src="scripts/makeMusicSnippet.js"></script>
+<script type="text/javascript" src="scripts/noteToFileNum.js"></script>
+<script type="text/javascript" src="scripts/MusicSnippet.js"></script>
+<script type="text/javascript" src="howler/howler.js"></script>
+
 <?php
 	// load scripts/data.csv
 	$datacsv = fopen("scripts/data.csv", r) or die("Unable to open data.csv!");
 	// parse
 	$types = array();
-	$keys = array("C","D","E");
+	$keys = array("B#/C","C#/Db","D","D#/Eb","E/Fb","F","F#/Gb","G","G#/Ab","A","A#/Bb","B/Cb");
 
 	while (!feof($datacsv)) {
 		$data_entry = str_getcsv(fgets($datacsv));
-		array_push($types, $data_entry[1]+" "+$data_entry[0]);
+		array_push($types, "$data_entry[1] $data_entry[0]");
 	}
 
 	fclose($datacsv);
 ?>
 
 <form>
-	<select name="type">
+	<select id="type">
 		<?php
-			for ($i=0; $i < count($types); $i++) { 
-				echo "<option value='$types[i]'>$types[i]</option>\n";
+			foreach ($types as $type) { 
+				echo "<option value='$type'>$type</option>";
 			}
 		?>
 	</select>
-	</select>
-	<select name="key">
+	<br>
+	<select id="key">
 		<?php
-			for ($i=0; $i < count($keys); $i++) { 
-				echo "<option value='$keys[i]'>$keys[i]</option>\n";
+			foreach ($keys as $note) {
+				echo "<option value='$note'>$note</option>";
 			}
 		?>
 	</select>
+	<br>
+	<button type="button" onclick="playSample()">
+		Play Selected Sample
+	</button>
 </form>
+
+<script type="text/javascript">
+	function playSample() {
+		// get stuff out of the form
+		var selectedTypeAndQuality = document.getElementById("type").value.split(" "); // type is at 1, quality is at 0, as arranged by the php script
+		var selectedKey = document.getElementById("key").value.split("/");
+		console.log(selectedTypeAndQuality);
+		console.log(selectedKey);
+		// turn it into the note string
+		var sampleText = makeThing(selectedTypeAndQuality[1], selectedTypeAndQuality[0], selectedKey[0].replace("#", "x"));
+		sampleText = setOctave(sampleText);
+		console.log(sampleText);
+		// play it
+		var samplePlayable = new MusicSnippet(sampleText, selectedTypeAndQuality[1]);
+		samplePlayable.play();
+	}
+</script>

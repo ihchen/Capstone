@@ -1,12 +1,9 @@
-/* 
+/*
  * Music Snippet Object:
  * Determines what files to be played and how to play them given ABC notes
  */
-function MusicSnippet(abc, type) {
-	/* Variables */
-	var numNotes = abc.length;
-	var sounds = loadFiles(abc);	//Load appropriate sound files as Howl objects
-
+function MusicSnippet(abc, type1, type2) {
+	/* Constants */
 	const CHORD = "chord";
 	const SCALE = "scale";
 	const INTERVAL = "interval";
@@ -14,42 +11,76 @@ function MusicSnippet(abc, type) {
 	const BPM = 80; 				//Beats per minute
 	var bps = BPM/60; 				//Beats per second
 
+	/* Variables */
+	var baseNotes = abc;			//Store the base notes to transpose from
+	var type1 = type1;				//Chord, scale, or interval
+	var type2 = type2;				//Answer
+	var numNotes = abc.length;		//Number of notes
+
+	var tempSounds = [];
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
-	
+
+	/* 
+	 * Main play method
+	 */
+	this.play = function() {
+		stop();
+		clear();
+		//Play arpegiated and then play block
+		if(type1 == CHORD) {
+			playBroken();
+			timeouts.push(setTimeout(playBlock, (sounds.length/bps)*1000 + (1/bps)*1000));
+		}
+		//Play broken
+		if(type1 == SCALE) {
+			playBroken();
+		}
+		//Play broken
+		if(type1 == INTERVAL) {
+			playBroken();
+		}
+	}
+
+	/*
+	 * Loads files based on a random key
+	 */
+	this.generate = function() {
+		var randKey = Math.floor(Math.random()*15)-7;	//Get Random key between -7 and 7
+		var tempNotes = setNotes(randKey);		//Array of transposed keys
+		tempSounds = loadFiles(tempNotes);		//Load the corresponding files
+	}
+
+	/*
+	 * Tranposes the given notes up 'key' sharps or flats
+	 */
+	function setNotes(key) {
+		transpose(abc, key);
+	}
+
 	/*
 	 * Plays the note at the given index in the array
 	 */
-	this.playNote = function(i) {
-		stop();
-		clear();
-		sounds[i].play();
-	}
-
 	function playNote(i) {
 		//Don't let notes bleed if playing a scale
 		if(type == SCALE) {
-			stop();
+			tempSounds[i].play('front');
 		}
-		sounds[i].play();
+		tempSounds[i].play();
 	}
 
 	/*
 	 * Plays all notes at the same time
 	 */
-	this.playBlock = function(arg) {
-		stop();
-		clear();
+	function playBlock(arg) {
 		for(i = 0; i < numNotes; i++) {
-			sounds[i].play();
+			tempSounds[i].play();
 		}
 	}
 
 	/*
 	 * Plays all notes in sequence with timing based on bpm
 	 */
-	this.playBroken = function() {
-		stop();
-		clear();
+	function playBroken() {
 		//Play first note instantly
 		timeouts.push(setTimeout(function() {
 			playNote(0);
@@ -69,24 +100,12 @@ function MusicSnippet(abc, type) {
 		}
 	}
 
-	this.playBroken2 = function() {
-
-	}
-
-	/*
-	 * Plays the chord broken, then blocked
-	 */
-	this.playChord = function() {
-		this.playBroken();
-		timeouts.push(setTimeout(this.playBlock, (sounds.length/bps)*1000 + (1/bps)*1000));
-	}
-
 	/*
 	 * Stops all sound immediately
 	 */
 	function stop() {
 		for(i = 0; i < numNotes; i++) {
-			sounds[i].stop();
+			tempSounds[i].stop();
 		}
 	}
 
@@ -121,8 +140,7 @@ function MusicSnippet(abc, type) {
 		//Load sound files
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
-				urls : [files[i]],
-				onload : function() { console.log("sound file has loaded")}
+				urls : [files[i]]
 			}));
 		}
 		return sounds;
