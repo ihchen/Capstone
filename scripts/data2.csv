@@ -1,0 +1,6 @@
+scale,major,C D E F G A B C
+scale,minor,A B C D E F G A
+chord,major,C E G
+chord,minor,A C E
+interval,M3,C E
+interval,m3,A C
