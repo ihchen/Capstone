@@ -24,16 +24,4 @@ function QuestionGenerator(list) {
   this.getNextQuestion = function() {
     return musicSnippets[Math.floor(Math.random() * musicSnippets.length)];
   }
-
-  /*
-   * Picks a random sonority from the user's list of selected
-   * sonorities. When called, sets the answer for this question.
-   * Also initializes type.
-   */
-  function selectRandomSonority(sonorities) {
-    var i = Math.floor(Math.random() * sonorities.length);
-    type = sonorities[i].type1;
-    return sonorities[i].type2;
-  }
-
 }
