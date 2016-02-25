@@ -17,7 +17,7 @@ function MusicSnippet(abc, type1, type2) {
 	var type2 = type2;				//Answer
 	var numNotes = abc.length;		//Number of notes
 
-	var tempSounds = [];
+	var tempSounds = generateTransposition();	//Generate initial sounds
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 
 	/* 
@@ -29,7 +29,7 @@ function MusicSnippet(abc, type1, type2) {
 		//Play arpegiated and then play block
 		if(type1 == CHORD) {
 			playBroken();
-			timeouts.push(setTimeout(playBlock, (sounds.length/bps)*1000 + (1/bps)*1000));
+			timeouts.push(setTimeout(playBlock, (numNotes/bps)*1000 + (1/bps)*1000));
 		}
 		//Play broken
 		if(type1 == SCALE) {
@@ -45,16 +45,24 @@ function MusicSnippet(abc, type1, type2) {
 	 * Loads files based on a random key
 	 */
 	this.generate = function() {
-		var randKey = Math.floor(Math.random()*15)-7;	//Get Random key between -7 and 7
-		var tempNotes = setNotes(randKey);		//Array of transposed keys
-		tempSounds = loadFiles(tempNotes);		//Load the corresponding files
+		tempSounds = generateTransposition();
 	}
 
 	/*
-	 * Tranposes the given notes up 'key' sharps or flats
+	 * Load files based on random key and return Howl array
 	 */
-	function setNotes(key) {
-		transpose(abc, key);
+	function generateTransposition() {
+		var randKey = Math.floor(Math.random()*15)-7;	//Get Random key between -7 and 7
+		var tempNotes = setNotes(randKey);		//Array of transposed keys
+		tempNotes = setOctave(tempNotes);
+		return loadFiles(tempNotes);			//Load the corresponding files
+	}
+
+	/*
+	 * Tranposes the given notes up 'shift' sharps or flats
+	 */
+	function setNotes(shift) {
+		return transpose(baseNotes, shift);
 	}
 
 	/*
@@ -62,8 +70,9 @@ function MusicSnippet(abc, type1, type2) {
 	 */
 	function playNote(i) {
 		//Don't let notes bleed if playing a scale
-		if(type == SCALE) {
-			tempSounds[i].play('front');
+		if(type1 == SCALE) {
+			stop();
+			tempSounds[i].play();
 		}
 		tempSounds[i].play();
 	}
@@ -124,14 +133,14 @@ function MusicSnippet(abc, type1, type2) {
 	 * Takes the ABC notation and converts them into Howl objects with the appropriate
 	 * sound files.
 	 */
-	function loadFiles(abc) {
+	function loadFiles(notes) {
 		var midi = [];		//Store notes as midi numbers
 		var files = [];		//Store file paths to corresponding files
 		var sounds = [];	//Howl objects of files
 
 		//Get midi numbers of given notes
 		for(i = 0; i < numNotes; i++) {
-			midi.push(noteToFileNum[abc[i]]);
+			midi.push(noteToFileNum[notes[i]]);
 		}
 
 		//Convert midi numbers to their corresponding file names

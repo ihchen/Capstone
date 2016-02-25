@@ -3,39 +3,29 @@
 <header>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
-	<script language="javascript" src="howler/howler.js"></script>
-	<script language="javascript" src="scripts/MusicSnippet.js"></script>
-	<script language="javascript" src="scripts/noteToFileNum.js"></script>
+	<script src="howler/howler.js"></script>
+	<script src="scripts/MusicSnippet.js"></script>
+	<script src="scripts/noteToFileNum.js"></script>
+	<script src="scripts/Note.js"></script>
 </header>
 
 <body>
 	<h3> Sound </h3>
 	<p> Play individual notes </p>
 	<button onclick="snippet.play()">Play</button>
-<!-- 	<button onclick="snippet.playNote(0)">Play Note 1</button>
-	<button onclick="snippet.playNote(1)">Play Note 2</button>
-	<button onclick="snippet.playNote(2)">Play Note 3</button>
-	<button onclick="snippet.playNote(3)">Play Note 4</button>
-	<button onclick="snippet.playNote(4)">Play Note 5</button>
-
-	<p> Play Chord </p>
-	<button onclick="snippet.playBlock()">Play Chord</button>
-
-	<p> Play Broken Chord </p>
-	<button onclick="snippet.playBroken()">Play Broken</button>
-
-	<p> Play Both </p>
-	<button onclick="snippet.playChord()">Play Both</button> -->
+	<button onclick="snippet.generate()">Next Question</button>
 
 <script>
-	var snippet = new MusicSnippet(
-		["C4", "E4", "G4", "D5", "Fx5"],
-		"chord"
-		);
+	// var snippet = new MusicSnippet(
+	// 	["C", "E", "G", "D", "Fx"],
+	// 	"chord",
+	// 	"add9#11"
+	// 	);
 
-	var snippet2 = new MusicSnippet(
-		["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"],
-		"scale"
+	var snippet = new MusicSnippet(
+		["C", "D", "E", "F", "G", "A", "B", "C"],
+		"scale",
+		"major"
 		);
 </script>
 </body>
