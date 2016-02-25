@@ -1,27 +1,28 @@
 /*
- * Script that generates a random chord, scale, or interval
- * based on various parameters. MusicSnippet will query a
- * Question object for the sonority.
+ * Script that generates a random question. Parameter should
+ * be a list of integers that refer to indeces in the CSV file
+ * over which the user would like to be tested.
  */
-function Question(sonorities) {
-  // The String answer
-  var answer = selectRandomSonority(sonorities);
-  var type;
+function QuestionGenerator(list) {
 
-  // The array of notes
-  var sonority = transposeSonority();
+  // The array of questions
+  var musicSnippets = makeMusicSnippets(list);
 
-  this.getSonority() {
-    return sonority;
+  function makeMusicSnippets(array) {
+    var ms = [];
+    for (var i = 0; i < array.length; i++) {
+      ms.push(new MusicSnippet(data[list[i]][2], data[list[i]][0]), data[list[i]][1]);
+    }
+    return ms;
   }
 
-  this.getAnswer() {
-    return answer;
+  /*
+   *
+   */
+  this.getNextQuestion() {
+    return musicSnippets[Math.floor(Math.random() * musicSnippets.length)];
   }
 
-  this.getType() {
-    return type;
-  }
 
   /*
    * Picks a random sonority from the user's list of selected
@@ -33,24 +34,5 @@ function Question(sonorities) {
     type = sonorities[i].type1;
     return sonorities[i].type2;
   }
-
-  /*
-   * Uses the sonority ID to find the note collection in the
-   * CSV file. Then, transpose it randomly.
-   */
-  function transposeSonority() {
-    var notes = getNoteCollection(type, answer);
-    notes = transpose(notes, genRandomShift());
-    return notes;
-  }
-
-  /*
-   * Generate a random number by which to shift the key.
-   * (-7, 7) inclusive.
-   */
-  function genRandomShift() {
-    return Math.floor((Math.random() * (15)) - 7);
-  }
-
 
 }
