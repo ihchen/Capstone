@@ -11,18 +11,19 @@ function QuestionGenerator(list) {
   function makeMusicSnippets(array) {
     var ms = [];
     for (var i = 0; i < array.length; i++) {
-      ms.push(new MusicSnippet(data[list[i]][2], data[list[i]][0]), data[list[i]][1]);
+      console.log(data[list[i]][0] + " " + data[list[i]][1]);
+      ms.push(new MusicSnippet(data[list[i]][2], data[list[i]][0],
+        data[list[i]][1]));
     }
     return ms;
   }
 
   /*
-   *
+   * Picks a random MusicSnippet from the array.
    */
-  this.getNextQuestion() {
+  this.getNextQuestion = function() {
     return musicSnippets[Math.floor(Math.random() * musicSnippets.length)];
   }
-
 
   /*
    * Picks a random sonority from the user's list of selected

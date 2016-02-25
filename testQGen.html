@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<body>
+<h1>testing QuestionGenerator.js</h1>
+
+<script src = "scripts/MusicManip.js"></script>
+<script src = "scripts/ParseCSV.js"></script>
+<script src = "scripts/MusicSnippet.js"></script>
+<script src = "scripts/QuestionGenerator.js"></script>
+<script src = "scripts/noteToFileNum.js"></script>
+<script src = "howler/howler.js"></script>
+
+<script>
+var a = [0, 3];
+var qGen = new QuestionGenerator(a);
+var musicSnippet = qGen.getNextQuestion();
+document.write(musicSnippet.answer());
+document.write("<br>");
+//document.write(musicSnippet.answer());
+</script>
+
+</body>
+</html>
