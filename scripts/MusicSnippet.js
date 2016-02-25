@@ -49,6 +49,13 @@ function MusicSnippet(abc, type1, type2) {
 	}
 
 	/*
+	 * Return the answer
+	 */
+	this.answer = function() {
+		return type2+" "+type1;
+	}
+
+	/*
 	 * Load files based on random key and return Howl array
 	 */
 	function generateTransposition() {
