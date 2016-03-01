@@ -15,26 +15,23 @@
 
 	// Make an integer array to hold selected types of things to be tested on
 	var chosen = [];
-
-	<?php
-	// convert post vars into javascript
-	foreach ($_POST as $key => $value) {
-		echo "console.log($key);";
-		if ($key == "scaleUP" ||
-			$key == "scaleDOWN" ||
-
-			$key == "root" ||
-			$key == "first" ||
-			$key == "second" ||
-			$key == "third" ||
-
-			$key == "intervalUP" ||
-			$key == "intervalDOWN") {
-			echo "config.$key = true;";
-		}
-		else {
-			echo "chosen.push($key);";
-		}
-	}
-	?>
 </script>
+
+<?php
+// convert post vars into javascript
+foreach ($_POST as $key => $value) {
+	if ($key == "scaleUP" ||
+		$key == "scaleDOWN" ||
+		$key == "root" ||
+		$key == "first" ||
+		$key == "second" ||
+		$key == "third" ||
+		$key == "intervalUP" ||
+		$key == "intervalDOWN") {
+		echo "<script type="text/javascript">config.$key = true;</script>";
+	}
+	else {
+		echo "<script type="text/javascript">chosen.push($key);</script>";
+	}
+}
+?>
