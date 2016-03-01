@@ -11,11 +11,21 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+	<!-- CSV Parsing script -->
+	<script src="ParseCSV.js"></script>
+
 	<!-- Overall CSS -->
 	<link rel="stylesheet" type="text/css" href="scripts/style.css">
 </head>
-<body>
 
+<script>
+	function collapse(id) {
+		console.log("CHECKED "+id);
+		window.location=document.getElementById(id).href;
+	}
+</script>
+
+<body>
 <center>
 	<h1> UPS EAR TRAINING PROGRAM </h1>
 </center>
@@ -24,8 +34,8 @@
 <div style="display:inline-block; text-align:left;">
 <form action="play.html">
 	<!-- Chords -->
-	<a href="#chords" class="btn btn-info" data-toggle="collapse">+</a>
-	<input type="checkbox" class="type1">Chord<br>
+	<a id="1" href="#chords" class="btn btn-info" data-toggle="collapse">
+	<input type="checkbox" class="type1">Chord</a><br/>
 		<div id="chords" class="collapse">
 			<input type="checkbox" class="type2">Chord1<br>
 			<input type="checkbox" class="type2">Chord2<br>
