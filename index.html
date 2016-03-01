@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script> $('.collapse').collapse();</script>
 
 	<!-- CSV Parsing script -->
 	<script src="ParseCSV.js"></script>
@@ -19,10 +20,7 @@
 </head>
 
 <script>
-	function collapse(id) {
-		console.log("CHECKED "+id);
-		window.location=document.getElementById(id).href;
-	}
+	
 </script>
 
 <body>
@@ -34,41 +32,42 @@
 <div style="display:inline-block; text-align:left;">
 <form action="play.html">
 	<!-- Chords -->
-	<a id="1" href="#chords" class="btn btn-info" data-toggle="collapse">
-	<input type="checkbox" class="type1">Chord</a><br/>
-		<div id="chords" class="collapse">
-			<input type="checkbox" class="type2">Chord1<br>
-			<input type="checkbox" class="type2">Chord2<br>
-			<input type="checkbox" class="type2">Chord3<br>
-			<input type="checkbox" class="type2">Chord4<br>
-			<input type="checkbox" class="type2">Chord5<br>
+    <label data-toggle="collapse" data-target="#collapseChords">
+		<input type="checkbox" class="type1">Chord
+	</label><br/>
+        <div id="collapseChords" class="panel-collapse collapse">
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord1<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord2<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord3<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord4<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord5<br/>
 		</div>
 	<!-- Scales -->
-	<a href="#scales" class="btn btn-info" data-toggle="collapse">+</a>
-	<input type="checkbox" class="type1">Scale<br>
-		<div id="scales" class="collapse">
-			<input type="checkbox" class="type2">Scale1<br>
-			<input type="checkbox" class="type2">Scale2<br>
-			<input type="checkbox" class="type2">Scale3<br>
-			<input type="checkbox" class="type2">Scale4<br>
-			<input type="checkbox" class="type2">Scale5<br>
+    <label data-toggle="collapse" data-target="#collapseScales">
+		<input type="checkbox" class="type1">Scale
+	</label><br/>
+        <div id="collapseScales" class="panel-collapse collapse">
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale1<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale2<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale3<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale4<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale5<br/>
 		</div>
 	<!-- Intervals -->
-	<a href="#intervals" class="btn btn-info" data-toggle="collapse">+</a>
-	<input type="checkbox" class="type1">Interval<br>
-		<div id="intervals" class="collapse">
-			<input type="checkbox" class="type2">Interval1<br>
-			<input type="checkbox" class="type2">Interval2<br>
-			<input type="checkbox" class="type2">Interval3<br>
-			<input type="checkbox" class="type2">Interval4<br>
-			<input type="checkbox" class="type2">Interval5<br>
+    <label data-toggle="collapse" data-target="#collapseIntervals">
+		<input type="checkbox" class="type1">Interval
+	</label><br/>
+        <div id="collapseIntervals" class="panel-collapse collapse">
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval1<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval2<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval3<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval4<br/>
+			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval5<br/>
 		</div>
 	<input type="submit" value="Start Training">
 </form>
 </div>
 </div>
 </center>
-
-</script>
 </body>
 </html>
