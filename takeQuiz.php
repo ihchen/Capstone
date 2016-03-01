@@ -1,9 +1,6 @@
-<?php
-	// convert post vars into javascript
-	echo "<script type='text/javascript'>";
-
+<script type="text/javascript">
 	// Make config object
-	echo "var config = {
+	var config = {
 		scaleUP:false, 
 		scaleDOWN:false, 
 		
@@ -13,12 +10,16 @@
 		third:false, 
 		
 		intervalUP:false, 
-		intervalDOWN:false};";
-	
-	// Make an integer array in JavaScript
-	echo "var chosen = [];";
+		intervalDOWN:false
+	};
 
+	// Make an integer array to hold selected types of things to be tested on
+	var chosen = [];
+
+	<?php
+	// convert post vars into javascript
 	foreach ($_POST as $key => $value) {
+		echo "console.log($key);";
 		if ($key == "scaleUP" ||
 			$key == "scaleDOWN" ||
 
@@ -35,6 +36,5 @@
 			echo "chosen.push($key);";
 		}
 	}
-
-	echo "</script>";
-?>
+	?>
+</script>
