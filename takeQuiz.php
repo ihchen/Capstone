@@ -34,23 +34,7 @@
 		}
 	}
 	?>
-</script>
 
-<?php
-// convert post vars into javascript
-foreach ($_POST as $key => $value) {
-	if ($key == "scaleUP" ||
-		$key == "scaleDOWN" ||
-		$key == "root" ||
-		$key == "first" ||
-		$key == "second" ||
-		$key == "third" ||
-		$key == "intervalUP" ||
-		$key == "intervalDOWN") {
-		echo "<script type='text/javascript'>config.$key = true;</script>";
-	}
-	else {
-		echo "<script type='text/javascript'>chosen.push($key);</script>";
-	}
-}
-?>
+	console.log(config);
+	console.log(chosen);
+</script>
