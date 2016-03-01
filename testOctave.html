@@ -22,9 +22,13 @@
   csharp = transpose(cmaj, 7);
   document.write("<br><br>transpose C major scale to C#:<br>");
   csharp = setOctave(csharp);
-  document.write(csharp);
+  //document.write(csharp);
 
-  for (var i = -7; i < 15; i++) {
+  for (var i = -14; i < 15; i++) {
+    notesarray = transpose(cmaj, i);
+    notesarray = setOctave(notesarray);
+    document.write("<br>" + notesarray);
+
 
   }
   </script>
