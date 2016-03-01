@@ -158,47 +158,61 @@ function setOctave(notes) {
     return null;
   }
 
+
   // Let's pick one of those places at random.
   var octave = genRandomNum(numPlaces);
   var octavizedNotes = [];
+  var notename = notes[0].charAt(0);
+  console.log(notes);
+
   for (var i = 0; i < notes.length; i++) {
-    if (i > 0) {
-      if (passedC(notes[i - 1], notes[i])) {
-        // If we have just passed C between here and the previous
-        // note, then we need to increment the octave.
-        octave++;
-      }
+    while (notes[i].charAt(0) != notename) {
+      notename = String.fromCharCode(notename.charCodeAt(0) + 1);
+      console.log(notename);
+      if (notename == "H") notename = "A";
+      //document.write(notename);
+      if (notename == "C") octave++;
+
     }
     // Concat octave onto the note name!
     octavizedNotes.push(notes[i] + octave);
   }
 
+
   return octavizedNotes;
 }
 
-/*
- * Checks to see if a C was passed between two notes.
- * This includes Cbb, C, Cx, and Cxx
- */
-function passedC(note1, note2) {
-
-  // We need a special case if the first note IS C.
-  if (note1.charAt(0) == 'C' || calcInterval(note1, NOTES[C]) == 0) {
-    // We literally just changed the octave, so don't do it again!
-    return false;
-  }
-  // Likewise, if the second note is some kind of C
-  else if (note2.charAt(0) == 'C') {
-    // We have reached C! Time to increment the octave!
-    return true;
-  }
-  // Otherwise, check the distance to the next note.
-  else if (calcInterval(note1, NOTES[C]) <= calcInterval(note1, note2)) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// /*
+//  * Checks to see if a C was passed between two notes.
+//  * This includes Cbb, C, Cx, and Cxx
+//  */
+// function passedC(note1, note2) {
+//   console.log(note1 + " to C is " + calcInterval(note1, NOTES[C]));
+//   console.log(note1 + " to " + note2 + " is " + calcInterval(note1, note2));
+//
+//   // We need a special case if the first note IS C.
+//   if (note1.charAt(0) == 'C' || calcInterval(note1, NOTES[C]) == 0) {
+//     console.log("case1");
+//     // We literally just changed the octave, so don't do it again!
+//     return false;
+//   }
+//   // Likewise, if the second note is some kind of C
+//   else if (note2.charAt(0) == 'C') {
+//     console.log("case2");
+//     // We have reached C! Time to increment the octave!
+//     return true;
+//   }
+//   // Otherwise, check the distance to the next note.
+//   else if (calcInterval(note1, NOTES[C]) < calcInterval(note1, note2)) {
+//     console.log(note1 + " to C is " + calcInterval(note1, NOTES[C]));
+//     console.log(note1 + " to " + note2 + " is " + calcInterval(note1, note2));
+//     console.log("case3");
+//     return true;
+//   } else {
+//     console.log("case4");
+//     return false;
+//   }
+// }
 
 /*
  * Generate a random number for the octave in which a note

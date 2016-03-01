@@ -33,28 +33,17 @@ for (i = 0; i < notes1.length; i++) {
 
 var dflat = ["C", "D", "E", "F", "G", "A", "B", "C"];
 // shift notes to Db major
-dflat = transpose(dflat, -5);
+dflat = transpose(dflat, 7);
 document.write("<br><br>transpose C major scale to Db:<br>");
 dflat = setOctave(dflat);
-
-for (i = 0; i < dflat.length; i++) {
-  document.write(dflat[i]);
-  if (i < dflat.length - 1) {
-    document.write(", ");
-  }
-}
+document.write(dflat);
 
 // Inversions
 var chord = ["C", "E", "G", "Bb"];
 document.write("<br><br>setInversion of CMm7 to 4/3:<br>");
 setInversion(chord, 2);
 //2nd Inversion C dominant 7
-for (i = 0; i < chord.length; i++) {
-  document.write(chord[i]);
-  if (i < chord.length - 1) {
-    document.write(", ");
-  }
-}
+document.write(chord);
 
 // Calculate an interval in half steps
 document.write("<br><br>calcInterval:");
