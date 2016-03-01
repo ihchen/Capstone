@@ -15,7 +15,7 @@ file.send();
 var lines = file.response.split("\n");
 
 // process each line
-for (var i = 0; i < lines.length; i++) {
+for (var i = 1; i < lines.length; i++) { // ignore first line
 	if (lines[i] != "") { // if not an empty line
 		var tmp = lines[i].split(","); // split line
 		tmp[2] = tmp[2].split(" "); // change list of notes from string into array of strings

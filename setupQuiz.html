@@ -42,5 +42,17 @@
 	}
 
 	// after that, add inversion/direction options
+	{
+		var div = document.getElementById("scales");
+		div.innerHTML = div.innerHTML + "<input type='checkbox' name='scaleUP'>Play Scales Ascending<input type='checkbox' name='scaleDOWN'>Play Scales Descending<br>";
+	}
+	{
+		var div = document.getElementById("chord");
+		div.innerHTML = div.innerHTML + "<input type='checkbox' name='root'>Root Position <input type='checkbox' name='first'>First Inversions <input type='checkbox' name='second'>Second Inversions <input type='checkbox' name='third'>Third Inversions<br>";
+	}
+	{
+		var div = document.getElementById("intervals");
+		div.innerHTML = div.innerHTML + "<input type='checkbox' name='intervalUP'>Ascending Intervals<input type='checkbox' name='intervalDOWN'>Descending Intervals<br>";
+	}
 	
 </script>

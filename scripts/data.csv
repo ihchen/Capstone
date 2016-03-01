@@ -1,4 +1,7 @@
+type (required),quality (required),note names - minimize sharps and flats(?) (required),test (optional), category (optional)
 scale,major,C D E F G A B C
 scale,minor,C D Eb F G Ab Bb C
 chord,major,C E G
 chord,minor,C Eb G
+interval,M3,C E
+interval,P5,C G
