@@ -32,7 +32,7 @@
 			echo "config.$key = true;";
 		}
 		else {
-			echo "chosen.push("+$key+");";
+			echo "chosen.push($key);";
 		}
 	}
 
