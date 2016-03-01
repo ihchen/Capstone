@@ -15,18 +15,13 @@ body {
 	background-color:transparent;
 }
 
-a.btn.btn-info {
-	width:20px;
-	height:20px;
-	padding:0px;
-}
-
 .collapse {
 	margin-left:40px;
 }
 
 button {
 	font-size:1em;
-	width:200px;
+	max-width: 200px;
+	width:90%;
 	height:50px;
 }

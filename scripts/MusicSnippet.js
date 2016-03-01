@@ -2,13 +2,13 @@
  * Music Snippet Object:
  * Determines what files to be played and how to play them given ABC notes
  */
-function MusicSnippet(abc, type1, type2) {
+function MusicSnippet(type1, type2, abc) {
 	/* Constants */
 	const CHORD = "chord";
 	const SCALE = "scale";
 	const INTERVAL = "interval";
 
-	const BPM = 80; 				//Beats per minute
+	const BPM = 120; 				//Beats per minute
 	var bps = BPM/60; 				//Beats per second
 
 	/* Variables */
@@ -45,6 +45,8 @@ function MusicSnippet(abc, type1, type2) {
 	 * Loads files based on a random key
 	 */
 	this.generate = function() {
+		clear();
+		stop();
 		tempSounds = generateTransposition();
 	}
 
@@ -56,12 +58,22 @@ function MusicSnippet(abc, type1, type2) {
 	}
 
 	/*
+	 * Stops all sound in the current snippet
+	 */
+	this.stop = function() {
+		clear();
+		stop();
+	}
+
+	/*
 	 * Load files based on random key and return Howl array
 	 */
 	function generateTransposition() {
-		var randKey = Math.floor(Math.random()*15)-7;	//Get Random key between -7 and 7
+		// var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
+		var randKey = -5;
 		var tempNotes = setNotes(randKey);		//Array of transposed keys
 		tempNotes = setOctave(tempNotes);
+		console.log(tempNotes);
 		return loadFiles(tempNotes);			//Load the corresponding files
 	}
 

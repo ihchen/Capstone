@@ -7,6 +7,8 @@
 	<script src="scripts/MusicSnippet.js"></script>
 	<script src="scripts/noteToFileNum.js"></script>
 	<script src="scripts/MusicManip.js"></script>
+	<script src="scripts/QuestionGenerator.js"></script>
+	<script src="scripts/ParseCSV.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="scripts/style.css">
 </header>
@@ -23,21 +25,15 @@
 	</center>
 
 <script>
-	var snippet = new MusicSnippet(
-		["C", "E", "G", "D", "Fx"],
-		"chord",
-		"add9#11"
-		);
+	var intlist = [3];
 
-	var s2 = new MusicSnippet(
-		["C", "D", "E", "F", "G", "A", "B", "C"],
-		"scale",
-		"major"
-		);
+	var qg = new QuestionGenerator(intlist);
+	var snippet = qg.getNextQuestion();
 
 	document.getElementById("answer").innerHTML = snippet.answer();
 
 	function nextQuestion() {
+		snippet = qg.getNextQuestion();
 		snippet.generate();
 		hide();
 	}
