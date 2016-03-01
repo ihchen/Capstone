@@ -5,24 +5,8 @@
 <body>
   <script src = "scripts/MusicManip.js"> </script>
   <script>
-  var a = "A";
-  var toReturn = String.fromCharCode(a.charCodeAt(0) + 1);
-  document.write(toReturn);
-  if (a == "A") document.write("true");
 
   var cmaj = ["C", "D", "E", "F", "G", "A", "B", "C"];
-  // document.write("<br>" + cmaj[5].charAt(0));
-  // document.write("<br>" + a.charAt(0));
-  // if (cmaj[5].charAt(0) == a) {
-  //   document.write("true!");
-  // } else {
-  //   document.write("wtf!");
-  // }
-  // shift notes to Db major
-  csharp = transpose(cmaj, 7);
-  document.write("<br><br>transpose C major scale to C#:<br>");
-  csharp = setOctave(csharp);
-  //document.write(csharp);
 
   for (var i = -14; i < 15; i++) {
     notesarray = transpose(cmaj, i);
