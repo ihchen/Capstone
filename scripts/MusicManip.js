@@ -131,22 +131,14 @@ const NUM_NOTES = 35;
  */
 function setOctave(notes) {
 
-
-  // The lowest note available for playback is C3
-  const lowestNote = ordinal("C");
   // The distance from C (the lowest note available) to the
   // first note of the note collection.
-  var span = calcInterval(NOTES[lowestNote], notes[0]);
 
 
   // Incorporate the total span of the note collection.
-  span += calcSpan(notes);
+  var span = calcSpan(notes);
 
-  // var numPlaces = 1;
-  // while (span <= NUM_NOTES/numPlaces && numPlaces < 5) {
-  //   numPlaces++;
-  // }
-
+  // The number of octaves available for playback
   const NUM_OCTAVES = 3;
   var numPlaces = 0;
   while (span <= NUM_NOTES/(numPlaces + 1)
