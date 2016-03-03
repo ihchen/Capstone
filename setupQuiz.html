@@ -27,32 +27,32 @@
 		if (data[i][0] == "scale") { // if it's a scale
 			var div = document.getElementById("scales");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "'>" + data[i][1] + " " + data[i][0] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
 		}
 		else if (data[i][0] == "chord") { // if it's a chord
 			var div = document.getElementById("chords");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "'>" + data[i][1] + " " + data[i][0] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
 		}
 		else if (data[i][0] == "interval") { // if it's an interval
 			var div = document.getElementById("intervals");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "'>" + data[i][1] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + "<br>";
 		}
 	}
 
 	// after that, add inversion/direction options
 	{
 		var div = document.getElementById("scales");
-		div.innerHTML = div.innerHTML + "<input type='checkbox' name='scaleUP'>Play Scales Ascending<input type='checkbox' name='scaleDOWN'>Play Scales Descending<br>";
+		div.innerHTML = div.innerHTML + "<input type='checkbox' name='scaleUP' value='opt'>Play Scales Ascending<input type='checkbox' name='scaleDOWN' value='opt'>Play Scales Descending<br>";
 	}
 	{
 		var div = document.getElementById("chords");
-		div.innerHTML = div.innerHTML + "<input type='checkbox' name='root'>Root Position <input type='checkbox' name='first'>First Inversions <input type='checkbox' name='second'>Second Inversions <input type='checkbox' name='third'>Third Inversions<br>";
+		div.innerHTML = div.innerHTML + "<input type='checkbox' name='root' value='opt'>Root Position <input type='checkbox' name='first' value='opt'>First Inversions <input type='checkbox' name='second' value='opt'>Second Inversions <input type='checkbox' name='third' value='opt'>Third Inversions<br>";
 	}
 	{
 		var div = document.getElementById("intervals");
-		div.innerHTML = div.innerHTML + "<input type='checkbox' name='intervalUP'>Ascending Intervals<input type='checkbox' name='intervalDOWN'>Descending Intervals<br>";
+		div.innerHTML = div.innerHTML + "<input type='checkbox' name='intervalUP' value='opt'>Ascending Intervals<input type='checkbox' name='intervalDOWN' value='opt'>Descending Intervals<br>";
 	}
 	
 </script>
