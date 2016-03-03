@@ -6,23 +6,22 @@
 	<meta name="authors" content="Wesley Stedman, Kaylene Barber, Imanuel Chen">
 	<meta name="description" content="Ear Training Program">
 	
-	<!-- Collapsible List -->
+	<!-- Bootstrap -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script> $('.collapse').collapse();</script>
 
 	<!-- CSV Parsing script -->
-	<script src="ParseCSV.js"></script>
+	<script src="scripts/ParseCSV.js"></script>
 
 	<!-- Overall CSS -->
 	<link rel="stylesheet" type="text/css" href="scripts/style.css">
+
+	<script>
+		/* Activate Collapsible list */
+		$('.collapse').collapse();
+	</script>	
 </head>
-
-<script>
-	
-</script>
-
 <body>
 <center>
 	<h1> UPS EAR TRAINING PROGRAM </h1>
@@ -32,42 +31,54 @@
 <div style="display:inline-block; text-align:left;">
 <form action="play.html">
 	<!-- Chords -->
-    <label data-toggle="collapse" data-target="#collapseChords">
+    <label data-toggle="collapse" data-target="#chords">
 		<input type="checkbox" class="type1">Chord
 	</label><br/>
-        <div id="collapseChords" class="panel-collapse collapse">
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord1<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord2<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord3<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord4<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Chord5<br/>
+        <div id="chords" class="panel-collapse collapse">
+
 		</div>
 	<!-- Scales -->
-    <label data-toggle="collapse" data-target="#collapseScales">
+    <label data-toggle="collapse" data-target="#scales">
 		<input type="checkbox" class="type1">Scale
 	</label><br/>
-        <div id="collapseScales" class="panel-collapse collapse">
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale1<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale2<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale3<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale4<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Scale5<br/>
+        <div id="scales" class="panel-collapse collapse">
+
 		</div>
 	<!-- Intervals -->
-    <label data-toggle="collapse" data-target="#collapseIntervals">
+    <label data-toggle="collapse" data-target="#intervals">
 		<input type="checkbox" class="type1">Interval
 	</label><br/>
-        <div id="collapseIntervals" class="panel-collapse collapse">
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval1<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval2<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval3<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval4<br/>
-			&nbsp&nbsp&nbsp&nbsp&nbsp<input type="checkbox" class="type2">Interval5<br/>
+        <div id="intervals" class="panel-collapse collapse">
+
 		</div>
 	<input type="submit" value="Start Training">
 </form>
 </div>
 </div>
 </center>
+
+<script>
+	
+
+	/* Parse CSV file to generate selections */
+	for (var i = 0; i < data.length; i++) {
+		if (data[i][0] == "scale") { // if it's a scale
+			var div = document.getElementById("scales");
+			// add a checkbox input
+			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
+		}
+		else if (data[i][0] == "chord") { // if it's a chord
+			var div = document.getElementById("chords");
+			// add a checkbox input
+			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
+		}
+		else if (data[i][0] == "interval") { // if it's an interval
+			var div = document.getElementById("intervals");
+			// add a checkbox input
+			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + "<br>";
+		}
+	}
+</script>
+
 </body>
 </html>
