@@ -131,23 +131,48 @@ const NUM_NOTES = 35;
  */
 function setOctave(notes) {
 
-  var span = calcSpan(notes);
+  var C = 15;
+  var span = calcInterval(NOTES[C], notes[0]);
+  document.write("<br><br>span = " + span);
+
+  span += calcSpan(notes);
+  document.write("<br>span = " + span);
 
   // The number of octaves available for playback
-  const NUM_OCTAVES = 3;
+  // const NUM_OCTAVES = 3;
   var numPlaces = 0;
-  while (span <= NUM_NOTES/(numPlaces + 1)
-              && numPlaces < NUM_OCTAVES) {
-    numPlaces++;
-  }
+  // while (span <= NUM_NOTES/(numPlaces + 1)
+  //             && numPlaces < NUM_OCTAVES) {
+  //   numPlaces++;
+  // }
 
-  if (numPlaces == 0) {
+  if (span - 12  < 0) {
+    // This note collection fits under an octave
+    numPlaces = 3;
+  } else if (span - 24 < 0) {
+    // Fits under two octaves
+    numPlaces = 2;
+  } else if (span - 36 < 0){
+    // Fits under three octaves
+    numPlaces = 1;
+  } else {
     // This note collection will not fit.
     console.log("Warning: This note collection either has too "
       + "large a span, or the span is large with too high of"
       + " a starting note. Please check your inputs!")
     return null;
   }
+
+  //document.write("<br><br>span = " + span);
+  document.write("<br>numPlaces = " + numPlaces);
+
+  // if (numPlaces == 0) {
+  //   // This note collection will not fit.
+  //   console.log("Warning: This note collection either has too "
+  //     + "large a span, or the span is large with too high of"
+  //     + " a starting note. Please check your inputs!")
+  //   return null;
+  // }
 
   /*
    * Go up one note name.
