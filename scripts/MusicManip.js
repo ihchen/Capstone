@@ -131,11 +131,6 @@ const NUM_NOTES = 35;
  */
 function setOctave(notes) {
 
-  // The distance from C (the lowest note available) to the
-  // first note of the note collection.
-
-
-  // Incorporate the total span of the note collection.
   var span = calcSpan(notes);
 
   // The number of octaves available for playback
@@ -145,13 +140,6 @@ function setOctave(notes) {
               && numPlaces < NUM_OCTAVES) {
     numPlaces++;
   }
-
-
-
-  // This note collection will fit in (numPlaces - 1) places.
-  // Decrement to reflect that.
-  //numPlaces--;
-  document.write("<br><br>numPlaces = " + numPlaces);
 
   if (numPlaces == 0) {
     // This note collection will not fit.
