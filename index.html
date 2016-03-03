@@ -29,7 +29,7 @@
 
 <div style="text-align:center;">
 <div style="display:inline-block; text-align:left;">
-<form action="play.html">
+<form action="takeQuiz.php" method="post">
 	<!-- Chords -->
     <label data-toggle="collapse" data-target="#chords">
 		<input type="checkbox" class="type1">Chord
@@ -58,14 +58,12 @@
 </center>
 
 <script>
-	
-
 	/* Parse CSV file to generate selections */
 	for (var i = 0; i < data.length; i++) {
 		if (data[i][0] == "scale") { // if it's a scale
 			var div = document.getElementById("scales");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' class='chords' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
 		}
 		else if (data[i][0] == "chord") { // if it's a chord
 			var div = document.getElementById("chords");
@@ -79,6 +77,5 @@
 		}
 	}
 </script>
-
 </body>
 </html>
