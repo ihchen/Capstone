@@ -139,13 +139,22 @@ function setOctave(notes) {
   // first note of the note collection.
   var span = calcInterval(NOTES[C], notes[0]);
 
+
   // Incorporate the total span of the note collection.
   span += calcSpan(notes);
 
-  var numPlaces = 1;
-  while (span <= NUM_NOTES/numPlaces && numPlaces <=5) {
+  // var numPlaces = 1;
+  // while (span <= NUM_NOTES/numPlaces && numPlaces < 5) {
+  //   numPlaces++;
+  // }
+
+  var numPlaces = 0;
+  do {
     numPlaces++;
-  }
+  } while (span <= NUM_NOTES/numPlaces && numPlaces < 5);
+
+
+
   // This note collection will fit in (numPlaces - 1) places.
   // Decrement to reflect that.
   numPlaces--;
@@ -158,46 +167,31 @@ function setOctave(notes) {
     return null;
   }
 
+  /*
+   * Go up one note name.
+   */
+  function increment(noteName) {
+    noteName = String.fromCharCode(noteName.charCodeAt(0) + 1);
+    if (noteName == "H") noteName = "A";
+    return noteName
+  }
+
   // Let's pick one of those places at random.
   var octave = genRandomNum(numPlaces);
   var octavizedNotes = [];
+  var notename = notes[0].charAt(0);
+
   for (var i = 0; i < notes.length; i++) {
-    if (i > 0) {
-      if (passedC(notes[i - 1], notes[i])) {
-        // If we have just passed C between here and the previous
-        // note, then we need to increment the octave.
-        octave++;
-      }
+    while (notes[i].charAt(0) != notename) {
+      notename = increment(notename);
+      if (notename == "C") octave++;
+
     }
     // Concat octave onto the note name!
     octavizedNotes.push(notes[i] + octave);
   }
 
   return octavizedNotes;
-}
-
-/*
- * Checks to see if a C was passed between two notes.
- * This includes Cbb, C, Cx, and Cxx
- */
-function passedC(note1, note2) {
-
-  // We need a special case if the first note IS C.
-  if (note1.charAt(0) == 'C' || calcInterval(note1, NOTES[C]) == 0) {
-    // We literally just changed the octave, so don't do it again!
-    return false;
-  }
-  // Likewise, if the second note is some kind of C
-  else if (note2.charAt(0) == 'C') {
-    // We have reached C! Time to increment the octave!
-    return true;
-  }
-  // Otherwise, check the distance to the next note.
-  else if (calcInterval(note1, NOTES[C]) <= calcInterval(note1, note2)) {
-    return true;
-  } else {
-    return false;
-  }
 }
 
 /*
