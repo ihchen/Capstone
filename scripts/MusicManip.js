@@ -133,10 +133,10 @@ function setOctave(notes) {
 
   var C = 15;
   var span = calcInterval(NOTES[C], notes[0]);
-  document.write("<br><br>span = " + span);
+  //document.write("<br><br>span = " + span);
 
   span += calcSpan(notes);
-  document.write("<br>span = " + span);
+  //document.write("<br>span = " + span);
 
   // The number of octaves available for playback
   // const NUM_OCTAVES = 3;
@@ -164,7 +164,7 @@ function setOctave(notes) {
   }
 
   //document.write("<br><br>span = " + span);
-  document.write("<br>numPlaces = " + numPlaces);
+  //document.write("<br>numPlaces = " + numPlaces);
 
   // if (numPlaces == 0) {
   //   // This note collection will not fit.
