@@ -47,8 +47,8 @@
 	?>
 
 	<script type="text/javascript">
-		console.log(config);
-		console.log(chosen);
+		// console.log(config);
+		// console.log(chosen);
 	</script>
 </head>
 

@@ -75,7 +75,7 @@ function MusicSnippet(type1, type2, abc) {
 		// console.log(tempNotes);
 		return loadFiles(tempNotes);			//Load the corresponding files
 	}
-
+	
 	/*
 	 * Tranposes the given notes up 'shift' sharps or flats
 	 */
@@ -90,7 +90,6 @@ function MusicSnippet(type1, type2, abc) {
 		//Don't let notes bleed if playing a scale
 		if(type1 == SCALE) {
 			stop();
-			tempSounds[i].play();
 		}
 		tempSounds[i].play();
 	}
