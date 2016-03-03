@@ -20,42 +20,56 @@
 	<script>
 		/* Activate Collapsible list */
 		$('.collapse').collapse();
+
+		/* Check type2 boxes when type1 boxes are checked */
+		function checkBoxes(type1class, type2class) {
+			var mainbox = document.getElementById(type1class);
+			var subboxes = document.getElementsByClassName(type2class);
+			for(var i = 0; i < subboxes.length; i++) {
+				if(mainbox.checked) {
+					subboxes[i].checked = true;
+				}
+				else {
+					subboxes[i].checked = false;
+				}
+			}
+		}
 	</script>	
 </head>
+
 <body>
 <center>
-	<h1> UPS EAR TRAINING PROGRAM </h1>
+	<h1> UPS Ear Training </h1>
 </center>
 
-<div style="text-align:center;">
-<div style="display:inline-block; text-align:left;">
-<form action="takeQuiz.php" method="post">
-	<!-- Chords -->
-    <label data-toggle="collapse" data-target="#chords">
-		<input type="checkbox" class="type1">Chord
-	</label><br/>
-        <div id="chords" class="panel-collapse collapse">
+<div style="padding-left:45%">
+	<form action="takeQuiz.php" method="post">
+		<!-- Chords -->
+	    <label data-toggle="collapse" data-target="#chords">
+			<input type="checkbox" id="type1chord" class="type1" onclick="checkBoxes('type1chord','type2chord')">Chord
+		</label><br/>
+	        <div id="chords" class="panel-collapse collapse">
+	        	<!-- Generated Checkboxes go here -->
+			</div>
 
-		</div>
-	<!-- Scales -->
-    <label data-toggle="collapse" data-target="#scales">
-		<input type="checkbox" class="type1">Scale
-	</label><br/>
-        <div id="scales" class="panel-collapse collapse">
+		<!-- Scales -->
+	    <label data-toggle="collapse" data-target="#scales">
+			<input type="checkbox" id="type1scale" class="type1" onclick="checkBoxes('type1scale','type2scale')">Scale
+		</label><br/>
+	        <div id="scales" class="panel-collapse collapse">
+	        	<!-- Generated Checkboxes go here -->
+			</div>
 
-		</div>
-	<!-- Intervals -->
-    <label data-toggle="collapse" data-target="#intervals">
-		<input type="checkbox" class="type1">Interval
-	</label><br/>
-        <div id="intervals" class="panel-collapse collapse">
-
-		</div>
-	<input type="submit" value="Start Training">
-</form>
+		<!-- Intervals -->
+	    <label data-toggle="collapse" data-target="#intervals">
+			<input type="checkbox" id="type1interval" class="type1" onclick="checkBoxes('type1interval','type2interval')">Interval
+		</label><br/>
+	        <div id="intervals" class="panel-collapse collapse">
+	        	<!-- Generated Checkboxes go here -->
+			</div>
+		<input type="submit" value="Start Training">
+	</form>
 </div>
-</div>
-</center>
 
 <script>
 	/* Parse CSV file to generate selections */
@@ -63,17 +77,17 @@
 		if (data[i][0] == "scale") { // if it's a scale
 			var div = document.getElementById("scales");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' class='chords' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2scale' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
 		}
 		else if (data[i][0] == "chord") { // if it's a chord
 			var div = document.getElementById("chords");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2chord' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
 		}
 		else if (data[i][0] == "interval") { // if it's an interval
 			var div = document.getElementById("intervals");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2interval' name='" + i + "' value='num'>" + data[i][1] + "<br>";
 		}
 	}
 </script>
