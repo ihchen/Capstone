@@ -122,10 +122,6 @@ function calcSpan(notes) {
 // C3 to B5.
 const NUM_NOTES = 35;
 
-// The lowest note available for playback is C3, and its
-// ordinal in the circle of fifths is 15.
-const C = 15;
-
 /*
  * Sets an octave appropriate for the given span of notes.
  * Does so by appending a number to the end of each String.
@@ -135,9 +131,12 @@ const C = 15;
  */
 function setOctave(notes) {
 
+
+  // The lowest note available for playback is C3
+  const lowestNote = ordinal("C");
   // The distance from C (the lowest note available) to the
   // first note of the note collection.
-  var span = calcInterval(NOTES[C], notes[0]);
+  var span = calcInterval(NOTES[lowestNote], notes[0]);
 
 
   // Incorporate the total span of the note collection.
@@ -148,16 +147,19 @@ function setOctave(notes) {
   //   numPlaces++;
   // }
 
+  const NUM_OCTAVES = 3;
   var numPlaces = 0;
-  do {
+  while (span <= NUM_NOTES/(numPlaces + 1)
+              && numPlaces < NUM_OCTAVES) {
     numPlaces++;
-  } while (span <= NUM_NOTES/numPlaces && numPlaces < 5);
+  }
 
 
 
   // This note collection will fit in (numPlaces - 1) places.
   // Decrement to reflect that.
-  numPlaces--;
+  //numPlaces--;
+  document.write("<br><br>numPlaces = " + numPlaces);
 
   if (numPlaces == 0) {
     // This note collection will not fit.
@@ -176,6 +178,18 @@ function setOctave(notes) {
     return noteName
   }
 
+  /*
+   * Generate a random number for the octave in which a note
+   * collection may begin.
+   */
+  function genRandomNum(numPlaces) {
+    const lowestOctave = 3;
+    // 3 is the lowest octave in which a note collection may begin,
+    // and numPlaces provides a range. This method will return a
+    // random number from [lowestOctave, numPlaces).
+    return Math.floor((Math.random() * (numPlaces)) + lowestOctave);
+  }
+
   // Let's pick one of those places at random.
   var octave = genRandomNum(numPlaces);
   var octavizedNotes = [];
@@ -192,16 +206,4 @@ function setOctave(notes) {
   }
 
   return octavizedNotes;
-}
-
-/*
- * Generate a random number for the octave in which a note
- * collection may begin.
- */
-const lowestOctave = 3;
-function genRandomNum(numPlaces) {
-  // 3 is the lowest octave in which a note collection may begin,
-  // and numPlaces provides a range. This method will return a
-  // random number from [lowestOctave, numPlaces).
-  return Math.floor((Math.random() * (numPlaces)) + lowestOctave);
 }
