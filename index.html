@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="authors" content="Wesley Stedman, Kaylene Barber, Imanuel Chen">
 	<meta name="description" content="Ear Training Program">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -42,33 +43,42 @@
 	<h1> UPS Ear Training </h1>
 </center>
 
-<div style="padding-left:45%">
-	<form action="takeQuiz.php" method="post">
-		<!-- Chords -->
+<div style="text-align:center">
+<div style="display:inline-block; text-align:left">
+<form action="takeQuiz.php" method="post">
+	<input type="submit" value="Start Training"><br/>
+
+	<!-- Chords -->
+	<div class="columns">
 	    <label data-toggle="collapse" data-target="#chords">
 			<input type="checkbox" id="type1chord" class="type1" onclick="checkBoxes('type1chord','type2chord')">Chord
 		</label><br/>
 	        <div id="chords" class="panel-collapse collapse">
 	        	<!-- Generated Checkboxes go here -->
 			</div>
+	</div>
 
-		<!-- Scales -->
+	<!-- Scales -->
+	<div class="columns">
 	    <label data-toggle="collapse" data-target="#scales">
 			<input type="checkbox" id="type1scale" class="type1" onclick="checkBoxes('type1scale','type2scale')">Scale
 		</label><br/>
 	        <div id="scales" class="panel-collapse collapse">
 	        	<!-- Generated Checkboxes go here -->
 			</div>
+	</div>
 
-		<!-- Intervals -->
+	<!-- Intervals -->
+	<div class="columns">
 	    <label data-toggle="collapse" data-target="#intervals">
 			<input type="checkbox" id="type1interval" class="type1" onclick="checkBoxes('type1interval','type2interval')">Interval
 		</label><br/>
 	        <div id="intervals" class="panel-collapse collapse">
 	        	<!-- Generated Checkboxes go here -->
 			</div>
-		<input type="submit" value="Start Training">
-	</form>
+	</div>
+</form>
+</div>
 </div>
 
 <script>

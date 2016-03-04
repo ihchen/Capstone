@@ -8,15 +8,33 @@ html {
 	/*background: -webkit-radial-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* Safari 5.1 to 6.0 */*/
 	/*background: -o-radial-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* For Opera 11.6 to 12.0 */*/
 	/*background: -moz-radial-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* For Firefox 3.6 to 15 */*/
-	/*background: radial-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* Standard syntax */*/
+	/*background: radial-gradient(rgb(54, 179, 222), rgb(150,255,255)); /* Standard syntax */
 }
 
 body {
 	background-color:transparent;
 }
 
+* {
+	box-sizing:border-box;
+}
+
+/*#form {
+	display: inline-block;
+	text-align:left;
+}
+
+.columns {
+	width: 100%;
+}*/
+
+/*@media only screen and (min-width: 768px) {
+	.columns {width: 33%; float:left;}
+}*/
+
 .panel-collapse {
 	padding-left:20px;
+	text-align:left;
 }
 
 button {

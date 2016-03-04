@@ -8,7 +8,7 @@ var data = [];
 
 // get csv from the server
 var file = new XMLHttpRequest();
-file.open("GET", "scripts/data.csv", false);
+file.open("GET", "scripts/data2.csv", false);
 file.send();
 
 // break response into lines
