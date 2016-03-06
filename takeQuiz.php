@@ -78,9 +78,11 @@
 	document.getElementById("answer").innerHTML = snippet.answer();
 
 	function nextQuestion() {
-		snippet = qg.getNextQuestion();
 		hide();
+		snippet.stopSound();
+		snippet = qg.getNextQuestion();
 		snippet.generate();
+		document.getElementById("answer").innerHTML = snippet.answer();
 	}
 
 	function reveal() {
@@ -93,7 +95,6 @@
 		document.getElementById("loading").style.display = "block";
 		document.getElementById("revealbutt").style.display = "block";
 		document.getElementById("revealed").style.display = "none";
-		document.getElementById("answer").innerHTML = snippet.answer();
 	}
 </script>
 </body>
