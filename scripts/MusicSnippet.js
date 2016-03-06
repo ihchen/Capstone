@@ -24,7 +24,11 @@ function MusicSnippet(type1, type2, abc) {
 	 * Main play method
 	 */
 	this.play = function() {
-		console.log("Calling play(): "+tempSounds.urls());
+		var urls = [];
+		for(var i = 0; i < tempSounds.length; i++) {
+			urls.push(tempSounds[i].urls());
+		}
+		console.log("Calling play(): "+urls);
 		stop();
 		clear();
 		//Play arpegiated and then play block
