@@ -46,9 +46,6 @@ function MusicSnippet(type1, type2, abc) {
 	 * Loads files based on a random key
 	 */
 	this.generate = function() {
-		stop();
-		clear();
-		stop();
 		tempSounds = generateTransposition();
 	}
 
@@ -62,9 +59,9 @@ function MusicSnippet(type1, type2, abc) {
 	/*
 	 * Stops all sound in the current snippet
 	 */
-	this.stop = function() {
-		clear();
+	this.stopSound = function() {
 		stop();
+		clear();
 	}
 
 	/*

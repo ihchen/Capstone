@@ -24,7 +24,7 @@ function QuestionGenerator(list) {
    * Picks a random MusicSnippet from the array.
    */
   this.getNextQuestion = function() {
-    musicSnippets[currSnippet].stop();
+    musicSnippets[currSnippet].stopSound();
     currSnippet = Math.floor(Math.random() * musicSnippets.length);
     return musicSnippets[currSnippet];
   }
