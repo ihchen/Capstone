@@ -8,7 +8,7 @@ function MusicSnippet(type1, type2, abc) {
 	const SCALE = "scale";
 	const INTERVAL = "interval";
 
-	const BPM = 120; 				//Beats per minute
+	const BPM = 80; 				//Beats per minute
 	var bps = BPM/60; 				//Beats per second
 
 	/* Variables */
@@ -24,6 +24,7 @@ function MusicSnippet(type1, type2, abc) {
 	 * Main play method
 	 */
 	this.play = function() {
+		console.log("Calling play(): "+tempSounds);
 		stop();
 		clear();
 		//Play arpegiated and then play block
