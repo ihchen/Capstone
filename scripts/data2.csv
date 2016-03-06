@@ -21,8 +21,8 @@ chord,major,C E G,triads
 chord,minor,A C E,triads
 chord,diminished,B D F,triads
 chord,augmented,C E Gx,triads
-chord,Rite of Spring,Eb G Bb E Fx A C D,20th century
-chord,Petrushka,C E Fx G Ax Cx,20th century
+chord,Rite of Spring,F A C Fx Gx B D E,20th century
+chord,Petrushka,F A B C Dx Fx,20th century
 chord,Mystic,C Fx Bb E A D,20th century
 chord,Farben,C Gx B E A,20th century
 chord,Split-third,A C E A Cx E,20th century
