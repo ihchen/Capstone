@@ -67,17 +67,6 @@ function MusicSnippet(type1, type2, abc) {
 	}
 
 	/*
-	 * Waits for sound to load and returns true when it does
-	 */
-	this.loading = function() {
-		while(true) {
-			if(numLoaded == numNotes) {
-				return true;
-			}
-		}
-	}
-
-	/*
 	 * Load files based on random key and return Howl array
 	 */
 	function generateTransposition() {
@@ -182,7 +171,14 @@ function MusicSnippet(type1, type2, abc) {
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
 				urls : [files[i]],
-				onload: function() {numLoaded++;},
+				onload: function() {
+					numLoaded++;
+					if(numLoaded == numNotes) {
+						document.getElementById("loading").style.display = "none";
+						document.getElementById("allbuttons").style.display = "block";
+						numLoaded = 0;
+					}
+					},
 				onloaderror : function() {console.log(type2+" "+type1+" "+i+" loading error")}
 			}));
 		}
