@@ -72,7 +72,6 @@ function MusicSnippet(type1, type2, abc) {
 		var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
 		var tempNotes = setNotes(randKey);		//Array of transposed keys
 		tempNotes = setOctave(tempNotes);
-		console.log(tempNotes);
 		return loadFiles(tempNotes);			//Load the corresponding files
 	}
 	
