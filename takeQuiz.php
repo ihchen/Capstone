@@ -56,6 +56,7 @@
 <script>
 	var qg = new QuestionGenerator(chosen);
 	var snippet = qg.getNextQuestion();
+	snippet.generate();
 </script>
 
 	<center>
