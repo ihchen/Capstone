@@ -46,6 +46,7 @@ function MusicSnippet(type1, type2, abc) {
 	 * Loads files based on a random key
 	 */
 	this.generate = function() {
+		stop();
 		clear();
 		stop();
 		tempSounds = generateTransposition();

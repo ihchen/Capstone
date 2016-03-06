@@ -94,8 +94,6 @@
 		document.getElementById("revealed").style.display = "none";
 		document.getElementById("answer").innerHTML = snippet.answer();
 	}
-
-	console.log("Does it get down here?");
 </script>
 </body>
 </html>
