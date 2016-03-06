@@ -158,6 +158,10 @@ function MusicSnippet(type1, type2, abc) {
 		//Get midi numbers of given notes
 		for(i = 0; i < numNotes; i++) {
 			midi.push(noteToFileNum[notes[i]]);
+			//Error checking
+			if(midi[i] == undefined) {
+				console.log("Error: Check notationg for "+type2+" "+type1);
+			}
 		}
 
 		//Convert midi numbers to their corresponding file names
