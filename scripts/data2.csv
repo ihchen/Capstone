@@ -22,7 +22,7 @@ chord,minor,A C E,triads
 chord,diminished,B D F,triads
 chord,augmented,C E Gx,triads
 chord,Rite of Spring,Eb G Bb E Fx A C D,20th century
-chord,Petrushka,B D F F# A C,20th century
+chord,Petrushka,C E Fx G Ax Cx,20th century
 chord,Mystic,C Fx Bb E A D,20th century
 chord,Farben,C Gx B E A,20th century
 chord,Split-third,A C E A Cx E,20th century
@@ -32,7 +32,7 @@ chord,Major 9 (#5),C E Gx B D,jazz
 chord,minor-Major 9,C Eb G B D,jazz
 chord,7 (sharp 9),C E G Bb Eb,jazz
 chord,7 (flat 9),C E G Bb Db,jazz
-chord,7 (sharp 9/flat 5),C E Gx Bb Ee,jazz
+chord,7 (sharp 9/flat 5),C E Gb Bb Dx,jazz
 chord,7 (flat 9/sharp 5),C E Gx Bb Db,jazz
 chord,MM7,C E G B,7th
 chord,Mm7,G B D C,7th
