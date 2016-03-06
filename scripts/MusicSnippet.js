@@ -17,18 +17,13 @@ function MusicSnippet(type1, type2, abc) {
 	var type2 = type2;				//Answer
 	var numNotes = abc.length;		//Number of notes
 
-	var tempSounds = generateTransposition();	//Generate initial sounds
+	var tempSounds = []];			//Holds current sound
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 
 	/* 
 	 * Main play method
 	 */
 	this.play = function() {
-		var urls = [];
-		for(var i = 0; i < tempSounds.length; i++) {
-			urls.push(tempSounds[i].urls());
-		}
-		console.log("Calling play(): "+urls);
 		stop();
 		clear();
 		//Play arpegiated and then play block
@@ -164,7 +159,7 @@ function MusicSnippet(type1, type2, abc) {
 			midi.push(noteToFileNum[notes[i]]);
 			//Error checking
 			if(midi[i] == undefined) {
-				console.log("Error: Check notationg for "+type2+" "+type1);
+				console.log("Error: Check notation for "+type2+" "+type1);
 			}
 		}
 
@@ -175,11 +170,9 @@ function MusicSnippet(type1, type2, abc) {
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
 				urls : [files[i]],
-				onload : function() {console.log(type2+" "+type1+" loaded");},
 				onloaderror : function() {console.log(type2+" "+type1+" "+i+" loading error")}
 			}));
 		}
-		console.log(notes);
 		return sounds;
 	}
 
