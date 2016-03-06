@@ -17,7 +17,7 @@ function MusicSnippet(type1, type2, abc) {
 	var type2 = type2;				//Answer
 	var numNotes = abc.length;		//Number of notes
 
-	var tempSounds = []];			//Holds current sound
+	var tempSounds = [];			//Holds current sound
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 
 	/* 
