@@ -91,7 +91,6 @@
 	}
 
 	function hide() {
-		console.log("reveal");
 		document.getElementById("loading").style.display = "block";
 		document.getElementById("revealbutt").style.display = "block";
 		document.getElementById("revealed").style.display = "none";

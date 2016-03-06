@@ -7,8 +7,6 @@ function QuestionGenerator(list) {
 
   // The array of questions
   var musicSnippets = makeMusicSnippets(list);
-  //Keep track of the current snippet playing
-  var currSnippet = 0;
 
   function makeMusicSnippets(array) {
     var ms = [];
@@ -24,7 +22,6 @@ function QuestionGenerator(list) {
    * Picks a random MusicSnippet from the array.
    */
   this.getNextQuestion = function() {
-    musicSnippets[currSnippet].stopSound();
     currSnippet = Math.floor(Math.random() * musicSnippets.length);
     return musicSnippets[currSnippet];
   }

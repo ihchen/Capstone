@@ -172,7 +172,6 @@ function MusicSnippet(type1, type2, abc) {
 				onload: function() {
 					numLoaded++;
 					if(numLoaded == numNotes) {
-						console.log("hide");
 						document.getElementById("loading").style.display = "none";
 						document.getElementById("allbuttons").style.display = "block";
 						numLoaded = 0;
