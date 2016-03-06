@@ -61,15 +61,25 @@
 
 	<center>
 		<h2> Sound </h2>
-		<button onclick="snippet.play()">Play</button><br><br>
-		<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
-		<div id="revealed" style="display:none;">
-			<p id="answer"></p>
-			<button onclick="nextQuestion()">Next Question</button>
+		<div id="loading">
+			Loading...
+		</div>
+		<div id="allbuttons" style="display:none;">
+			<button onclick="snippet.play()">Play</button><br><br>
+			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
+			<div id="revealed" style="display:none;">
+				<p id="answer"></p>
+				<button onclick="nextQuestion()">Next Question</button>
+			</div>
 		</div>
 	</center>
 
 <script>
+	if(snippet.loading == true) {
+		document.getElementById("loading").style.display = "none";
+		document.getElementById("allbuttons").style.display = "block";
+	}
+
 	document.getElementById("answer").innerHTML = snippet.answer();
 
 	function nextQuestion() {

@@ -18,6 +18,7 @@ function MusicSnippet(type1, type2, abc) {
 	var numNotes = abc.length;		//Number of notes
 
 	var tempSounds = [];			//Holds current sound
+	var numLoaded = 0;				//Number of loaded files
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 
 	/* 
@@ -63,6 +64,17 @@ function MusicSnippet(type1, type2, abc) {
 	this.stop = function() {
 		clear();
 		stop();
+	}
+
+	/*
+	 * Waits for sound to load and returns true when it does
+	 */
+	this.loading = function() {
+		while(true) {
+			if(numLoaded == numNotes) {
+				return true;
+			}
+		}
 	}
 
 	/*
@@ -170,6 +182,7 @@ function MusicSnippet(type1, type2, abc) {
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
 				urls : [files[i]],
+				onload: function() {numLoaded++;},
 				onloaderror : function() {console.log(type2+" "+type1+" "+i+" loading error")}
 			}));
 		}
