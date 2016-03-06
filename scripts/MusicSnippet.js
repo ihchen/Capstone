@@ -24,7 +24,7 @@ function MusicSnippet(type1, type2, abc) {
 	 * Main play method
 	 */
 	this.play = function() {
-		console.log("Calling play(): "+tempSounds);
+		console.log("Calling play(): "+tempSounds.urls());
 		stop();
 		clear();
 		//Play arpegiated and then play block
@@ -171,7 +171,8 @@ function MusicSnippet(type1, type2, abc) {
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
 				urls : [files[i]],
-				onload : function() {console.log(type2+" "+type1+" loaded");}
+				onload : function() {console.log(type2+" "+type1+" loaded");},
+				onloaderror : function() {console.log(type2+" "+type1+" "+i+" loading error")}
 			}));
 		}
 		console.log(notes);
