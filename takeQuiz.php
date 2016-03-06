@@ -61,10 +61,10 @@
 
 	<center>
 		<h2> Sound </h2>
-		<div id="loading">
+		<div id="loading"><!-- Needs to have id "loading" -->
 			Loading...
 		</div>
-		<div id="allbuttons" style="display:none;">
+		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
 			<button onclick="snippet.play()">Play</button><br><br>
 			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
 			<div id="revealed" style="display:none;">
@@ -89,6 +89,7 @@
 	}
 
 	function hide() {
+		document.getElementById("loading").style.display = "block";
 		document.getElementById("revealbutt").style.display = "block";
 		document.getElementById("revealed").style.display = "none";
 		document.getElementById("answer").innerHTML = snippet.answer();
