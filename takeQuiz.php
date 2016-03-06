@@ -53,6 +53,11 @@
 </head>
 
 <body>
+<script>
+	var qg = new QuestionGenerator(chosen);
+	var snippet = qg.getNextQuestion();
+</script>
+
 	<center>
 		<h2> Sound </h2>
 		<button onclick="snippet.play()">Play</button><br><br>
@@ -64,9 +69,6 @@
 	</center>
 
 <script>
-	var qg = new QuestionGenerator(chosen);
-	var snippet = qg.getNextQuestion();
-
 	document.getElementById("answer").innerHTML = snippet.answer();
 
 	function nextQuestion() {
