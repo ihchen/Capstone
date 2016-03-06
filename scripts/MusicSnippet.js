@@ -174,6 +174,7 @@ function MusicSnippet(type1, type2, abc) {
 				onload : function() {console.log(type2+" "+type1+" loaded");}
 			}));
 		}
+		console.log(notes);
 		return sounds;
 	}
 
