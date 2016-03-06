@@ -43,16 +43,16 @@
 	<h1> UPS Ear Training </h1>
 </center>
 
-<div style="text-align:center">
+<div style="padding-left:45%">
 <div style="display:inline-block; text-align:left">
 <form action="takeQuiz.php" method="post">
 	<input type="submit" value="Start Training"><br/>
 
 	<!-- Chords -->
 	<div class="columns">
-	    <label data-toggle="collapse" data-target="#chords">
-			<input type="checkbox" id="type1chord" class="type1" onclick="checkBoxes('type1chord','type2chord')">Chord
-		</label><br/>
+	    <!-- <label data-toggle="collapse" data-target="#chords"> -->
+			<input type="checkbox" id="type1chord" class="type1" onclick="checkBoxes('type1chord','type2chord')"><a href="#chords" data-toggle="collapse">Chord</a><br/>
+		<!-- </label><br/> -->
 	        <div id="chords" class="panel-collapse collapse">
 	        	<!-- Generated Checkboxes go here -->
 			</div>
@@ -60,9 +60,9 @@
 
 	<!-- Scales -->
 	<div class="columns">
-	    <label data-toggle="collapse" data-target="#scales">
-			<input type="checkbox" id="type1scale" class="type1" onclick="checkBoxes('type1scale','type2scale')">Scale
-		</label><br/>
+	    <!-- <label data-toggle="collapse" data-target="#scales"> -->
+			<input type="checkbox" id="type1scale" class="type1" onclick="checkBoxes('type1scale','type2scale')"><a href="#scales" data-toggle="collapse">Scale</a><br/>
+		<!-- </label><br/> -->
 	        <div id="scales" class="panel-collapse collapse">
 	        	<!-- Generated Checkboxes go here -->
 			</div>
@@ -70,9 +70,9 @@
 
 	<!-- Intervals -->
 	<div class="columns">
-	    <label data-toggle="collapse" data-target="#intervals">
-			<input type="checkbox" id="type1interval" class="type1" onclick="checkBoxes('type1interval','type2interval')">Interval
-		</label><br/>
+	    <!-- <label data-toggle="collapse" data-target="#intervals"> -->
+			<input type="checkbox" id="type1interval" class="type1" onclick="checkBoxes('type1interval','type2interval')"><a href="#intervals" data-toggle="collapse">Interval</a><br/>
+		<!-- </label><br/> -->
 	        <div id="intervals" class="panel-collapse collapse">
 	        	<!-- Generated Checkboxes go here -->
 			</div>
