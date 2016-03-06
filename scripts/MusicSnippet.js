@@ -129,7 +129,7 @@ function MusicSnippet(type1, type2, abc) {
 	 * Stops all sound immediately
 	 */
 	function stop() {
-		for(i = 0; i < numNotes; i++) {
+		for(i = 0; i < tempSounds.length; i++) {
 			tempSounds[i].stop();
 		}
 	}
