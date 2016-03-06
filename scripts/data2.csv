@@ -4,7 +4,7 @@ scale,harmonic minor,A B C D E F Gx A,test1,altered
 scale,melodic minor,A B C D E Fx Gx A,test1,altered
 scale,locrian,B C D E F G A B,test1,diatonic
 scale,dorian,D E F G A B C D,test1,diatonic
-scale,phrygian,E F G A B c d e,test1,diatonic
+scale,phrygian,E F G A B C D E,test1,diatonic
 scale,lydian,F G A B C D E F,test1,diatonic
 scale,mixolydian,G A B C D E F G,test1,diatonic
 scale,anhemitonic pentatonic,C D F G A C D F,test1,pentatonic
@@ -14,7 +14,7 @@ scale,octatonic,C D Eb F Gb Ab A B,test2,non-diatonic
 scale,hexatonic,C Db E F Gx A C Db,final,non-diatonic
 scale,sharp 4-flat 7,C D E Fx G A Bb C,final,altered
 scale,bebop major,C D E F G A Bb B,test2,altered
-scale,diminished-whole tone,C Dd Eb Fb Gb Ab Bb C,test2,non-diatonic
+scale,diminished-whole tone,B C D Eb F G A B,test2,non-diatonic
 scale,fifth mode melodic minor,G A B C D Eb F G,test2,altered
 scale,phrygian-dorian,D Eb F G A B C D,final,altered
 chord,major,C E G,triads
