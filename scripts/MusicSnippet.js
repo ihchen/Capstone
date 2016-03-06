@@ -169,7 +169,8 @@ function MusicSnippet(type1, type2, abc) {
 		//Load sound files
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
-				urls : [files[i]]
+				urls : [files[i]],
+				onload : function() {console.log(type2+" "+type1+" loaded");}
 			}));
 		}
 		return sounds;
