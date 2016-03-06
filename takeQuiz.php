@@ -79,8 +79,8 @@
 
 	function nextQuestion() {
 		snippet = qg.getNextQuestion();
-		snippet.generate();
 		hide();
+		snippet.generate();
 	}
 
 	function reveal() {
