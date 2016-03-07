@@ -44,41 +44,38 @@
 </center>
 
 <div style="padding-left:45%">
-<div style="display:inline-block; text-align:left">
+<!-- <div style="display:inline-block; text-align:left"> -->
 <form action="takeQuiz.php" method="post">
 	<input type="submit" value="Start Training"><br/>
 
-	<!-- Chords -->
-	<div class="columns">
-	    <!-- <label data-toggle="collapse" data-target="#chords"> -->
-			<input type="checkbox" id="type1chord" class="type1" onclick="checkBoxes('type1chord','type2chord')"><a href="#chords" data-toggle="collapse">Chord</a><br/>
-		<!-- </label><br/> -->
+	<div>
+		<!-- Type1 Checkboxes -->
+		<div id="type1">
+			<input type="checkbox" id="type1chord" onclick="checkBoxes('type1chord','type2chord')"><a href="#chords" data-toggle="collapse" data-parent="#myGroup">Chord</a><br/>
+			<input type="checkbox" id="type1scale" onclick="checkBoxes('type1scale','type2scale')"><a href="#scales" data-toggle="collapse" data-parent="#myGroup">Scale</a><br/>
+			<input type="checkbox" id="type1interval" onclick="checkBoxes('type1interval','type2interval')"><a href="#intervals" data-toggle="collapse" data-parent ="#myGroup">Interval</a><br/>
+		</div>
+
+		<!-- Type2 Checkboxes -->
+		<div id="type2">
+			<!-- Chords -->
 	        <div id="chords" class="panel-collapse collapse">
 	        	<!-- Generated Checkboxes go here -->
 			</div>
-	</div>
 
-	<!-- Scales -->
-	<div class="columns">
-	    <!-- <label data-toggle="collapse" data-target="#scales"> -->
-			<input type="checkbox" id="type1scale" class="type1" onclick="checkBoxes('type1scale','type2scale')"><a href="#scales" data-toggle="collapse">Scale</a><br/>
-		<!-- </label><br/> -->
+			<!-- Scales -->
 	        <div id="scales" class="panel-collapse collapse">
 	        	<!-- Generated Checkboxes go here -->
 			</div>
-	</div>
 
-	<!-- Intervals -->
-	<div class="columns">
-	    <!-- <label data-toggle="collapse" data-target="#intervals"> -->
-			<input type="checkbox" id="type1interval" class="type1" onclick="checkBoxes('type1interval','type2interval')"><a href="#intervals" data-toggle="collapse">Interval</a><br/>
-		<!-- </label><br/> -->
+			<!-- Intervals -->
 	        <div id="intervals" class="panel-collapse collapse">
 	        	<!-- Generated Checkboxes go here -->
 			</div>
+		</div>
 	</div>
 </form>
-</div>
+<!-- </div> -->
 </div>
 
 <script>

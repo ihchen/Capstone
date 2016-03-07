@@ -19,19 +19,6 @@ body {
 	box-sizing:border-box;
 }
 
-/*#form {
-	display: inline-block;
-	text-align:left;
-}
-
-.columns {
-	width: 100%;
-}*/
-
-/*@media only screen and (min-width: 768px) {
-	.columns {width: 33%; float:left;}
-}*/
-
 .panel-collapse {
 	padding-left:20px;
 	text-align:left;
@@ -41,6 +28,14 @@ a {
 	color:black;
 	text-decoration:none;
 	font-weight:bold;
+}
+
+#type1 {
+	float: left;
+}
+
+#type2 {
+	float: left;
 }
 
 button {
