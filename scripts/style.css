@@ -25,10 +25,10 @@ body {
 }
 
 #checkboxcontainer {
-	padding-left:30%;
+	padding-left:10%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 500px) {
 	#checkboxcontainer {
 		padding-left:45%;
 	}
