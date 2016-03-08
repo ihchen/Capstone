@@ -1,0 +1,997 @@
+{
+    "project": {},
+    "files": {
+        "howler/howler.js": {
+            "name": "howler/howler.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/MusicSnippet.js": {
+            "name": "scripts/MusicSnippet.js",
+            "modules": {},
+            "classes": {
+                "MusicSnippet": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/ParseCSV.js": {
+            "name": "scripts/ParseCSV.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/QuestionGenerator.js": {
+            "name": "scripts/QuestionGenerator.js",
+            "modules": {},
+            "classes": {
+                "QuestionGenerator": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/noteToFileNum.js": {
+            "name": "scripts/noteToFileNum.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "MusicSnippet": {
+            "name": "MusicSnippet",
+            "shortname": "MusicSnippet",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "scripts/MusicSnippet.js",
+            "line": 1,
+            "description": "Determines how to play the given notes based on their type and quality, then loads\nthe corresponding audio files and plays them.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "type",
+                    "description": "Type of the sonority",
+                    "type": "String"
+                },
+                {
+                    "name": "quality",
+                    "description": "Quality of the sonority",
+                    "type": "String"
+                },
+                {
+                    "name": "notes",
+                    "description": "Array of notes",
+                    "type": "String Array"
+                }
+            ]
+        },
+        "QuestionGenerator": {
+            "name": "QuestionGenerator",
+            "shortname": "QuestionGenerator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "scripts/QuestionGenerator.js",
+            "line": 1,
+            "description": "Script that generates a random question. Parameter should\nbe a list of integers that refer to indeces in the CSV file\nover which the user would like to be tested.",
+            "is_constructor": 1
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "howler/howler.js",
+            "line": 62,
+            "description": "Get/set the global volume for all sounds.",
+            "params": [
+                {
+                    "name": "vol",
+                    "description": "Volume from 0.0 to 1.0.",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "Returns self or current volume.",
+                "type": "Howler/Float"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 97,
+            "description": "Mute all sounds.",
+            "return": {
+                "description": "",
+                "type": "Howler"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 107,
+            "description": "Unmute all sounds.",
+            "return": {
+                "description": "",
+                "type": "Howler"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 117,
+            "description": "Handle muting and unmuting globally.",
+            "params": [
+                {
+                    "name": "muted",
+                    "description": "Is muted or not.",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 140,
+            "description": "Check for codec support.",
+            "params": [
+                {
+                    "name": "ext",
+                    "description": "Audio file extension.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 149,
+            "description": "iOS will only allow audio to be played after a user interaction.\nAttempt to automatically unlock audio on the first user interaction.\nConcept from: http://paulbakaus.com/tutorials/html5/web-audio-on-ios/",
+            "return": {
+                "description": "",
+                "type": "Howler"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 277,
+            "description": "Load an audio file.",
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 379,
+            "description": "Get/set the URLs to be pulled from to play in this source.",
+            "params": [
+                {
+                    "name": "urls",
+                    "description": "Arry of URLs to load from",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "Returns self or the current URLs",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 399,
+            "description": "Play a sound from the current time (0 by default).",
+            "params": [
+                {
+                    "name": "sprite",
+                    "description": "(optional) Plays from the specified position in the sound sprite definition.",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "(optional) Returns the unique playback id for this sound instance.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 547,
+            "description": "Pause playback and save the current position.",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 593,
+            "description": "Stop playback and reset to start.",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 639,
+            "description": "Mute this sound.",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 668,
+            "description": "Unmute this sound.",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 697,
+            "description": "Get/set volume of this sound.",
+            "params": [
+                {
+                    "name": "vol",
+                    "description": "Volume from 0.0 to 1.0.",
+                    "type": "Float"
+                },
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Returns self or current volume.",
+                "type": "Howl/Float"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 736,
+            "description": "Get/set whether to loop the sound.",
+            "params": [
+                {
+                    "name": "loop",
+                    "description": "To loop or not to loop, that is the question.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns self or current looping value.",
+                "type": "Howl/Boolean"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 753,
+            "description": "Get/set sound sprite definition.",
+            "params": [
+                {
+                    "name": "sprite",
+                    "description": "Example: {spriteName: [offset, duration, loop]}",
+                    "type": "Object"
+                },
+                {
+                    "name": "offset",
+                    "description": "Where to begin playback in milliseconds",
+                    "type": "Integer"
+                },
+                {
+                    "name": "duration",
+                    "description": "How long to play in milliseconds",
+                    "type": "Integer"
+                },
+                {
+                    "name": "loop",
+                    "description": "(optional) Set true to loop this sprite",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns current sprite sheet or self.",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 773,
+            "description": "Get/set the position of playback.",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "The position to move current playback to.",
+                    "type": "Float"
+                },
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Returns self or current playback position.",
+                "type": "Howl/Float"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 817,
+            "description": "Get/set the 3D position of the audio source.\nThe most common usage is to set the 'x' position\nto affect the left/right ear panning. Setting any value higher than\n1.0 will begin to decrease the volume of the sound as it moves further away.\nNOTE: This only works with Web Audio API, HTML5 Audio playback\nwill not be affected.",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "The x-position of the playback from -1000.0 to 1000.0",
+                    "type": "Float"
+                },
+                {
+                    "name": "y",
+                    "description": "The y-position of the playback from -1000.0 to 1000.0",
+                    "type": "Float"
+                },
+                {
+                    "name": "z",
+                    "description": "The z-position of the playback from -1000.0 to 1000.0",
+                    "type": "Float"
+                },
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Returns self or the current 3D position: [x, y, z]",
+                "type": "Howl/Array"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 862,
+            "description": "Fade a currently playing sound between two volumes.",
+            "params": [
+                {
+                    "name": "from",
+                    "description": "The volume to fade from (0.0 to 1.0).",
+                    "type": "Number"
+                },
+                {
+                    "name": "to",
+                    "description": "The volume to fade to (0.0 to 1.0).",
+                    "type": "Number"
+                },
+                {
+                    "name": "len",
+                    "description": "Time in milliseconds to fade.",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "(optional) Fired when the fade is complete.",
+                    "type": "Function"
+                },
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 907,
+            "description": "[DEPRECATED] Fade in the current sound.",
+            "params": [
+                {
+                    "name": "to",
+                    "description": "Volume to fade to (0.0 to 1.0).",
+                    "type": "Float"
+                },
+                {
+                    "name": "len",
+                    "description": "Time in milliseconds to fade.",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 918,
+            "description": "[DEPRECATED] Fade out the current sound and pause when finished.",
+            "params": [
+                {
+                    "name": "to",
+                    "description": "Volume to fade to (0.0 to 1.0).",
+                    "type": "Float"
+                },
+                {
+                    "name": "len",
+                    "description": "Time in milliseconds to fade.",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 938,
+            "description": "Get an audio node by ID.",
+            "return": {
+                "description": "Audio node.",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 957,
+            "description": "Get the first active audio node.",
+            "return": {
+                "description": "Audio node.",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 979,
+            "description": "Get the first inactive audio node.\nIf there is none, create a new one and add it to the pool.",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "Function to call when the audio node is ready.",
+                    "type": "Function"
+                }
+            ],
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1024,
+            "description": "If there are more than 5 inactive audio nodes in the pool, clear out the rest.",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1057,
+            "description": "Clear 'onend' timeout before it ends.",
+            "params": [
+                {
+                    "name": "soundId",
+                    "description": "The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1080,
+            "description": "Setup the gain node and panner for a Web Audio instance.",
+            "return": {
+                "description": "The new audio node.",
+                "type": "Object"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1106,
+            "description": "Call/set custom events.",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event type.",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "Function to call.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1131,
+            "description": "Remove a custom event.",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event type.",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "Listener to remove.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Howl"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1156,
+            "description": "Unload and destroy the current Howl object.\nThis will immediately stop all play instances attached to this sound.",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1202,
+            "description": "Buffer a sound from URL (or from cache) and decode to audio source (Web Audio API).",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The Howl object for the sound to load.",
+                    "type": "Object"
+                },
+                {
+                    "name": "url",
+                    "description": "The path to the sound file.",
+                    "type": "String"
+                }
+            ],
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1254,
+            "description": "Decode audio data from an array buffer.",
+            "params": [
+                {
+                    "name": "arraybuffer",
+                    "description": "The audio data.",
+                    "type": "ArrayBuffer"
+                },
+                {
+                    "name": "obj",
+                    "description": "The Howl object for the sound to load.",
+                    "type": "Object"
+                },
+                {
+                    "name": "url",
+                    "description": "The path to the sound file.",
+                    "type": "String"
+                }
+            ],
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1276,
+            "description": "Finishes loading the Web Audio API sound and fires the loaded event",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The Howl object for the sound to load.",
+                    "type": "Object"
+                },
+                {
+                    "name": "buffer",
+                    "description": "The decoded buffer sound source.",
+                    "type": "Objecct"
+                }
+            ],
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1301,
+            "description": "Load the sound back into the buffer source.",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The sound to load.",
+                    "type": "Object"
+                },
+                {
+                    "name": "loop",
+                    "description": "Loop boolean, pos, and duration.",
+                    "type": "Array"
+                },
+                {
+                    "name": "id",
+                    "description": "(optional) The play instance ID.",
+                    "type": "String"
+                }
+            ],
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1325,
+            "description": "Add support for AMD (Asynchronous Module Definition) libraries such as require.js.",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "howler/howler.js",
+            "line": 1337,
+            "description": "Add support for CommonJS libraries such as browserify.",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 30,
+            "description": "Plays the loaded files:\n - Chords are played broken then blocked\n - Scales are played broken\n - Intervals are played broken",
+            "itemtype": "method",
+            "name": "play",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 56,
+            "description": "Randomly transposes the notes given from the CSV file and gives them a random octave.\nThen loads the corresponding audio files.",
+            "itemtype": "method",
+            "name": "generate",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 66,
+            "description": "Returns the type and quality",
+            "itemtype": "method",
+            "name": "answer",
+            "return": {
+                "description": "quality + type",
+                "type": "String"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 76,
+            "description": "Stops all sound",
+            "itemtype": "method",
+            "name": "stopSound",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 86,
+            "description": "Transposes and sets octave of the notes from the CSV file randomly, then loads the\ncorresponding files",
+            "itemtype": "method",
+            "name": "generateTransposition",
+            "return": {
+                "description": "An array of Howl objects that have the loaded audio files",
+                "type": "Howl Array"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 101,
+            "description": "Tranposes the notes from the CSV file a given number of sharps or flats",
+            "itemtype": "method",
+            "name": "setNotes",
+            "params": [
+                {
+                    "name": "shift",
+                    "description": "How much to transpose the notes by",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "Array of the notes after transposition",
+                "type": "String Array"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 113,
+            "description": "Plays the note at the given index in the loaded files array",
+            "itemtype": "method",
+            "name": "playNote",
+            "params": [
+                {
+                    "name": "i",
+                    "description": "Index of the note to be played",
+                    "type": "Integer"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 128,
+            "description": "Plays all notes at the same time",
+            "itemtype": "method",
+            "name": "playBlock",
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/ParseCSV.js",
+            "line": 1,
+            "description": "This script loads the content of data.csv into a global variable, 'data'.",
+            "class": "QuestionGenerator"
+        },
+        {
+            "file": "scripts/ParseCSV.js",
+            "line": 6,
+            "description": "A 2D array containing the contents of the csv file",
+            "itemtype": "property",
+            "name": "",
+            "type": "Array",
+            "class": "QuestionGenerator"
+        },
+        {
+            "file": "scripts/QuestionGenerator.js",
+            "line": 23,
+            "description": "Picks a random MusicSnippet from the array.",
+            "itemtype": "method",
+            "name": "getNextQuestion",
+            "return": {
+                "description": "random MusicSnippet",
+                "type": "MusicSnippet"
+            },
+            "class": "QuestionGenerator"
+        },
+        {
+            "file": "scripts/noteToFileNum.js",
+            "line": 1,
+            "description": "Associative array (object) for converting note names to audio file numbers",
+            "itemtype": "property",
+            "name": "",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nGet/set the global volume for all sounds.",
+            "line": " howler/howler.js:62"
+        },
+        {
+            "message": "Missing item type\nMute all sounds.",
+            "line": " howler/howler.js:97"
+        },
+        {
+            "message": "Missing item type\nUnmute all sounds.",
+            "line": " howler/howler.js:107"
+        },
+        {
+            "message": "Missing item type\nHandle muting and unmuting globally.",
+            "line": " howler/howler.js:117"
+        },
+        {
+            "message": "Missing item type\nCheck for codec support.",
+            "line": " howler/howler.js:140"
+        },
+        {
+            "message": "Missing item type\niOS will only allow audio to be played after a user interaction.\nAttempt to automatically unlock audio on the first user interaction.\nConcept from: http://paulbakaus.com/tutorials/html5/web-audio-on-ios/",
+            "line": " howler/howler.js:149"
+        },
+        {
+            "message": "Missing item type\nLoad an audio file.",
+            "line": " howler/howler.js:277"
+        },
+        {
+            "message": "Missing item type\nGet/set the URLs to be pulled from to play in this source.",
+            "line": " howler/howler.js:379"
+        },
+        {
+            "message": "Missing item type\nPlay a sound from the current time (0 by default).",
+            "line": " howler/howler.js:399"
+        },
+        {
+            "message": "Missing item type\nPause playback and save the current position.",
+            "line": " howler/howler.js:547"
+        },
+        {
+            "message": "Missing item type\nStop playback and reset to start.",
+            "line": " howler/howler.js:593"
+        },
+        {
+            "message": "Missing item type\nMute this sound.",
+            "line": " howler/howler.js:639"
+        },
+        {
+            "message": "Missing item type\nUnmute this sound.",
+            "line": " howler/howler.js:668"
+        },
+        {
+            "message": "Missing item type\nGet/set volume of this sound.",
+            "line": " howler/howler.js:697"
+        },
+        {
+            "message": "Missing item type\nGet/set whether to loop the sound.",
+            "line": " howler/howler.js:736"
+        },
+        {
+            "message": "Missing item type\nGet/set sound sprite definition.",
+            "line": " howler/howler.js:753"
+        },
+        {
+            "message": "Missing item type\nGet/set the position of playback.",
+            "line": " howler/howler.js:773"
+        },
+        {
+            "message": "Missing item type\nGet/set the 3D position of the audio source.\nThe most common usage is to set the 'x' position\nto affect the left/right ear panning. Setting any value higher than\n1.0 will begin to decrease the volume of the sound as it moves further away.\nNOTE: This only works with Web Audio API, HTML5 Audio playback\nwill not be affected.",
+            "line": " howler/howler.js:817"
+        },
+        {
+            "message": "Missing item type\nFade a currently playing sound between two volumes.",
+            "line": " howler/howler.js:862"
+        },
+        {
+            "message": "Missing item type\n[DEPRECATED] Fade in the current sound.",
+            "line": " howler/howler.js:907"
+        },
+        {
+            "message": "Missing item type\n[DEPRECATED] Fade out the current sound and pause when finished.",
+            "line": " howler/howler.js:918"
+        },
+        {
+            "message": "Missing item type\nGet an audio node by ID.",
+            "line": " howler/howler.js:938"
+        },
+        {
+            "message": "Missing item type\nGet the first active audio node.",
+            "line": " howler/howler.js:957"
+        },
+        {
+            "message": "Missing item type\nGet the first inactive audio node.\nIf there is none, create a new one and add it to the pool.",
+            "line": " howler/howler.js:979"
+        },
+        {
+            "message": "Missing item type\nIf there are more than 5 inactive audio nodes in the pool, clear out the rest.",
+            "line": " howler/howler.js:1024"
+        },
+        {
+            "message": "Missing item type\nClear 'onend' timeout before it ends.",
+            "line": " howler/howler.js:1057"
+        },
+        {
+            "message": "Missing item type\nSetup the gain node and panner for a Web Audio instance.",
+            "line": " howler/howler.js:1080"
+        },
+        {
+            "message": "Missing item type\nCall/set custom events.",
+            "line": " howler/howler.js:1106"
+        },
+        {
+            "message": "Missing item type\nRemove a custom event.",
+            "line": " howler/howler.js:1131"
+        },
+        {
+            "message": "Missing item type\nUnload and destroy the current Howl object.\nThis will immediately stop all play instances attached to this sound.",
+            "line": " howler/howler.js:1156"
+        },
+        {
+            "message": "Missing item type\nBuffer a sound from URL (or from cache) and decode to audio source (Web Audio API).",
+            "line": " howler/howler.js:1202"
+        },
+        {
+            "message": "Missing item type\nDecode audio data from an array buffer.",
+            "line": " howler/howler.js:1254"
+        },
+        {
+            "message": "Missing item type\nFinishes loading the Web Audio API sound and fires the loaded event",
+            "line": " howler/howler.js:1276"
+        },
+        {
+            "message": "Missing item type\nLoad the sound back into the buffer source.",
+            "line": " howler/howler.js:1301"
+        },
+        {
+            "message": "Missing item type\nAdd support for AMD (Asynchronous Module Definition) libraries such as require.js.",
+            "line": " howler/howler.js:1325"
+        },
+        {
+            "message": "Missing item type\nAdd support for CommonJS libraries such as browserify.",
+            "line": " howler/howler.js:1337"
+        },
+        {
+            "message": "Missing item type\nThis script loads the content of data.csv into a global variable, 'data'.",
+            "line": " scripts/ParseCSV.js:1"
+        }
+    ]
+}
