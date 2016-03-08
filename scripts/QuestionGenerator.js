@@ -22,6 +22,7 @@ function QuestionGenerator(list) {
 
   /**
    * Picks a random MusicSnippet from the array.
+   * @method getNextQuestion
    * @return {MusicSnippet} random MusicSnippet
    */
   this.getNextQuestion = function() {
