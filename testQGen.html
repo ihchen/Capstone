@@ -12,9 +12,11 @@
 <script src = "howler/howler.js"></script>
 
 <script>
-var a = [0, 3];
-var qGen = new QuestionGenerator(a);
+
+var userSelection = [0, 3];
+var qGen = new QuestionGenerator(userSelection);
 var musicSnippet = qGen.getNextQuestion();
+
 document.write(musicSnippet.answer());
 document.write("<br>");
 document.write(musicSnippet.answer());

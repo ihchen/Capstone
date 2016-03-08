@@ -10,6 +10,13 @@ function QuestionGenerator(list) {
   // The array of questions
   var musicSnippets = makeMusicSnippets(list);
 
+  /**
+   * Builds an array of MusicSnippets
+   * @method makeMusicSnippets
+   * @private
+   * @param {Integer[]} indices
+   * @return {MusicSnippet[]} array of MusicSnippets
+   */
   function makeMusicSnippets(array) {
     var ms = [];
     for (var i = 0; i < array.length; i++) {
