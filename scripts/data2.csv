@@ -17,35 +17,35 @@ scale,bebop major,C D E F G A Bb B,test2,altered
 scale,diminished-whole tone,B C D Eb F G A B,test2,non-diatonic
 scale,fifth mode melodic minor,G A B C D Eb F G,test2,altered
 scale,phrygian-dorian,D Eb F G A B C D,final,altered
-chord,major,C E G,triads
-chord,minor,A C E,triads
-chord,diminished,B D F,triads
-chord,augmented,C E Gx,triads
-chord,Rite of Spring,F A C Fx Gx B D E,20th century
-chord,Petrushka,F A B C Dx Fx,20th century
-chord,Mystic,C Fx Bb E A D,20th century
-chord,Farben,C Gx B E A,20th century
-chord,Split-third,A C E A Cx E,20th century
-chord,major 6/9,C E G A D,jazz
-chord,minor 6/9,A C E Fx B,jazz
-chord,Major 9 (#5),C E Gx B D,jazz
-chord,minor-Major 9,C Eb G B D,jazz
-chord,7 (sharp 9),C E G Bb Eb,jazz
-chord,7 (flat 9),C E G Bb Db,jazz
-chord,7 (sharp 9/flat 5),C E Gb Bb Dx,jazz
-chord,7 (flat 9/sharp 5),C E Gx Bb Db,jazz
-chord,MM7,C E G B,7th
-chord,Mm7,G B D C,7th
-chord,mm7,A C E G,7th
-chord,dm7,B D F A,7th
-chord,dd7,B D F Ab,7th
-interval,m2,B C
-interval,M2,C D
-interval,m3,A C
-interval,M3,C E
-interval,p4,C F
-interval,p5,C G
-interval,m6,A F
-interval,M6,C A
-interval,m7,A G
-interval,M7,C B
+chord,major,C E G,test1,triads
+chord,minor,A C E,test1,triads
+chord,diminished,B D F,test1,triads
+chord,augmented,C E Gx,test1,triads
+chord,Rite of Spring,F A C F Gx B D E,final,20th century
+chord,Petrushka,F A B C Dx Fx,final,20th century
+chord,Mystic,F B Eb A D G,final,20th century
+chord,Farben,C Gx B E A,final,20th century
+chord,split-third,A C E A Cx E,final,20th century
+chord,major 6/9,C E G A D,test2,jazz
+chord,minor 6/9,A C E Fx B,test2,jazz
+chord,major 9 (#5),C E Gx B D,test2,jazz
+chord,minor-Major 9,C Eb G B D,test2,jazz
+chord,7 (sharp 9),C E G Bb Eb,test2,jazz
+chord,7 (flat 9),C E G Bb Db,test2,jazz
+chord,7 (sharp 9/flat 5),C E Gb Bb Dx,test2,jazz
+chord,7 (flat 9/sharp 5),C E Gx Bb Db,test2,jazz
+chord,MM7,C E G B,test1,7th
+chord,Mm7,G B D C,test1,7th
+chord,mm7,A C E G,test1,7th
+chord,dm7,B D F A,test1,7th
+chord,dd7,B D F Ab,test1,7th
+interval,m2,B C,,non-compound
+interval,M2,C D,,non-compound
+interval,m3,A C,,non-compound
+interval,M3,C E,,non-compound
+interval,p4,C F,,non-compound
+interval,p5,C G,,non-compound
+interval,m6,A F,,non-compound
+interval,M6,C A,,non-compound
+interval,m7,A G,,non-compound
+interval,M7,C B,,non-compound
