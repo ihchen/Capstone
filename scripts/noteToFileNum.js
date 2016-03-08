@@ -1,4 +1,7 @@
-// associative array (object) for converting note names to audio file numbers
+/**
+ * Associative array (object) for converting note names to audio file numbers
+ * @property
+ */
 const noteToFileNum = {
 	Bx2  : "48",
 	Bxx2 : "49",

@@ -1,4 +1,4 @@
-type (required),quality (required),note names - minimize sharps and flats(?) (required),test (optional), category (optional)
+//type (required),quality (required),note names - minimize sharps and flats(?) (required),test (optional), category (optional)
 scale,major,C D E F G A B C
 scale,minor,A B C D E F G A
 chord,major,C E G
