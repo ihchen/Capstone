@@ -55,11 +55,8 @@
 <body>
 <script>
 	var qg = new QuestionGenerator(chosen);
-	console.log("here1");
 	var snippet = qg.getNextQuestion();
-	console.log("here2");
 	snippet.generate();
-	console.log("here3");
 </script>
 
 	<center>
