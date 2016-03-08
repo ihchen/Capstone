@@ -1,7 +1,9 @@
-/*
+/**
  * Script that generates a random question. Parameter should
  * be a list of integers that refer to indeces in the CSV file
  * over which the user would like to be tested.
+ * @class QuestionGenerator
+ * @constructor
  */
 function QuestionGenerator(list) {
 
@@ -18,8 +20,10 @@ function QuestionGenerator(list) {
     return ms;
   }
 
-  /*
+  /**
    * Picks a random MusicSnippet from the array.
+   * @method getNextQuestion
+   * @return {MusicSnippet} random MusicSnippet
    */
   this.getNextQuestion = function() {
     currSnippet = Math.floor(Math.random() * musicSnippets.length);
