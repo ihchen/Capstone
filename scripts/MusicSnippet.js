@@ -1,8 +1,14 @@
-/*
- * Music Snippet Object:
- * Determines what files to be played and how to play them given ABC notes
+/**
+ * Determines how to play the given notes based on their type and quality, then loads
+ * the corresponding audio files and plays them.
+ * 
+ * @class MusicSnippet
+ * @constructor
+ * @param {String} type Type of the sonority
+ * @param {String} quality Quality of the sonority
+ * @param {String Array} notes Array of notes
  */
-function MusicSnippet(type1, type2, abc) {
+function MusicSnippet(type, quality, notes) {
 	/* Constants */
 	const CHORD = "chord";
 	const SCALE = "scale";
@@ -12,60 +18,78 @@ function MusicSnippet(type1, type2, abc) {
 	var bps = BPM/60; 				//Beats per second
 
 	/* Variables */
-	var baseNotes = abc;			//Store the base notes to transpose from
-	var type1 = type1;				//Chord, scale, or interval
-	var type2 = type2;				//Answer
-	var numNotes = abc.length;		//Number of notes
+	var baseNotes = notes;			//Store the base notes to transpose from
+	var type = type;				//Chord, scale, or interval
+	var quality = quality;				//Answer
+	var numNotes = notes.length;		//Number of notes
 
 	var tempSounds = [];			//Holds current sound
 	var numLoaded = 0;				//Number of loaded files
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 
-	/* 
-	 * Main play method
+	/**
+	 * Plays the loaded files:
+	 *  - Chords are played broken then blocked
+	 *  - Scales are played broken
+	 *  - Intervals are played broken
+	 *
+	 * @method play
 	 */
 	this.play = function() {
 		stop();
 		clear();
 		//Play arpegiated and then play block
-		if(type1 == CHORD) {
+		if(type == CHORD) {
 			playBroken();
 			timeouts.push(setTimeout(playBlock, (numNotes/bps)*1000 + (1/bps)*1000));
 		}
 		//Play broken
-		if(type1 == SCALE) {
+		if(type == SCALE) {
 			playBroken();
 		}
 		//Play broken
-		if(type1 == INTERVAL) {
+		if(type == INTERVAL) {
 			playBroken();
 		}
 	}
 
-	/*
-	 * Loads files based on a random key
+	/**
+	 * Randomly transposes the notes given from the CSV file and gives them a random octave.
+	 * Then loads the corresponding audio files.
+	 * 
+	 * @method generate
 	 */
 	this.generate = function() {
 		tempSounds = generateTransposition();
 	}
 
-	/*
-	 * Return the answer
+	/**
+	 * Returns the type and quality
+	 *
+	 * @method answer
+	 * @return {String} quality + type
 	 */
 	this.answer = function() {
-		return type2+" "+type1;
+		return quality+" "+type;
 	}
 
-	/*
-	 * Stops all sound in the current snippet
+	/**
+	 * Stops all sound
+	 *
+	 * @method stopSound
 	 */
 	this.stopSound = function() {
 		stop();
 		clear();
 	}
 
-	/*
-	 * Load files based on random key and return Howl array
+	/**
+	 * Transposes and sets octave of the notes from the CSV file randomly, then loads the
+	 * corresponding files
+	 *
+	 * @method generateTransposition
+	 * @return {Howl Array} An array of Howl objects that have the loaded audio files
+	 * @private
 	 */
 	function generateTransposition() {
 		var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
@@ -74,28 +98,40 @@ function MusicSnippet(type1, type2, abc) {
 		return loadFiles(tempNotes);			//Load the corresponding files
 	}
 	
-	/*
-	 * Tranposes the given notes up 'shift' sharps or flats
+	/**
+	 * Tranposes the notes from the CSV file a given number of sharps or flats
+	 * 
+	 * @method setNotes
+	 * @param {Integer} shift How much to transpose the notes by
+	 * @return {String Array} Array of the notes after transposition
+	 * @private
 	 */
 	function setNotes(shift) {
 		return transpose(baseNotes, shift);
 	}
 
-	/*
-	 * Plays the note at the given index in the array
+	/**
+	 * Plays the note at the given index in the loaded files array
+	 * 
+	 * @method playNote
+	 * @param {Integer} i Index of the note to be played
+	 * @private
 	 */
 	function playNote(i) {
 		//Don't let notes bleed if playing a scale
-		if(type1 == SCALE) {
+		if(type == SCALE) {
 			stop();
 		}
 		tempSounds[i].play();
 	}
 
-	/*
+	/**
 	 * Plays all notes at the same time
+	 *
+	 * @method playBlock
+	 * @private
 	 */
-	function playBlock(arg) {
+	function playBlock() {
 		for(i = 0; i < numNotes; i++) {
 			tempSounds[i].play();
 		}
@@ -103,6 +139,9 @@ function MusicSnippet(type1, type2, abc) {
 
 	/*
 	 * Plays all notes in sequence with timing based on bpm
+	 *
+	 * @method playBroken
+	 * @private
 	 */
 	function playBroken() {
 		//Play first note instantly
@@ -113,7 +152,11 @@ function MusicSnippet(type1, type2, abc) {
 	}
 
 	/*
-	 * Recursive helper for playBroken();
+	 * Recursive helper for playBroken()
+	 *
+	 * @method playBrokenHelp
+	 * @param {Integer} note An index representing the note to be played
+	 * @private
 	 */
 	function playBrokenHelp(note) {
 		if(note < numNotes) {
@@ -126,6 +169,9 @@ function MusicSnippet(type1, type2, abc) {
 
 	/*
 	 * Stops all sound immediately
+	 * 
+	 * @method stop
+	 * @private
 	 */
 	function stop() {
 		for(i = 0; i < tempSounds.length; i++) {
@@ -134,7 +180,10 @@ function MusicSnippet(type1, type2, abc) {
 	}
 
 	/*
-	 * Clears all timeouts
+	 * Clears all timeouts (delayed sounds)
+	 * 
+	 * @method clear
+	 * @private
 	 */
 	function clear() {
 		var initLength = timeouts.length;
@@ -145,8 +194,13 @@ function MusicSnippet(type1, type2, abc) {
 	}
 
 	/*
-	 * Takes the ABC notation and converts them into Howl objects with the appropriate
+	 * Takes the notes and converts them into Howl objects with the appropriate
 	 * sound files.
+	 * 
+	 * @method loadFiles
+	 * @param {String Array} notes Array of notes to be loaded
+	 * @return {Howl Array} Array of Howl objects containing the corresponding audio files
+	 * @private
 	 */
 	function loadFiles(notes) {
 		var midi = [];		//Store notes as midi numbers
@@ -158,7 +212,7 @@ function MusicSnippet(type1, type2, abc) {
 			midi.push(noteToFileNum[notes[i]]);
 			//Error checking
 			if(midi[i] == undefined) {
-				console.log("Error: Check notation for "+type2+" "+type1);
+				console.log("Error: Check notation for "+quality+" "+type);
 			}
 		}
 
@@ -177,7 +231,7 @@ function MusicSnippet(type1, type2, abc) {
 						numLoaded = 0;
 					}
 				},
-				onloaderror : function() {console.log(type2+" "+type1+" "+i+" loading error")}
+				onloaderror : function() {console.log(quality+" "+type+" "+i+" loading error")}
 			}));
 		}
 		return sounds;
@@ -185,6 +239,11 @@ function MusicSnippet(type1, type2, abc) {
 
 	/* 
  	 * Converts midi numbers to their corresponding file names
+ 	 * 
+ 	 * @method convMidiToFile
+ 	 * @param {Integer Array} midi Array of midi numbers to be converted into files
+ 	 * @return {String Array} Array of strings containing the proper file paths to the audio files
+ 	 * @private
  	 */
 	function convMidiToFile(midi) {
 		var files = [];

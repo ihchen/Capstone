@@ -35,7 +35,9 @@ a {
 }
 
 #type2 {
-	float: left;
+    background-color : transparent;
+    display : inline;
+    float: left;
 }
 
 button {
