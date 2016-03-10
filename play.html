@@ -10,10 +10,36 @@
 	<script src="scripts/QuestionGenerator.js"></script>
 	<script src="scripts/ParseCSV.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="scripts/style.css">
+	<style>
+		ul {
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    background-color: transparent;
+		}
+
+		li {
+		    float: left;
+		}
+
+		li a {
+		    display: block;
+		    color: black;
+		    text-align: center;
+		    padding: 14px 16px;
+		    text-decoration: none;
+		}
+		</style>
+
+	<link rel="stylesheet" type="text/css" href="style/style.css">
 </header>
 
 <body>
+<ul>
+  <li><a href="/">Home</a></li>
+</ul>
+
 	<center>
 		<h2> Sound </h2>
 		<button onclick="snippet.play()">Play</button><br><br>
