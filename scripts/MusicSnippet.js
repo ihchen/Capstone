@@ -9,7 +9,7 @@
  * @param {String} category Category of the sonority
  * @param {String Array} notes Array of notes
  */
-function MusicSnippet(type, quality, category, notes) {
+function MusicSnippet(type, quality, notes, category="") {
 	/* Constants */
 	const CHORD = "chord";
 	const SCALE = "scale";
