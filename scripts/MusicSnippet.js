@@ -9,7 +9,7 @@
  * @param {String} category Category of the sonority
  * @param {String Array} notes Array of notes
  */
-function MusicSnippet(type, quality, notes, category="") {
+function MusicSnippet(type, quality, notes, category) {
 	/* Constants */
 	const CHORD = "chord";
 	const SCALE = "scale";
@@ -45,11 +45,11 @@ function MusicSnippet(type, quality, notes, category="") {
 		//Play arpegiated and then play block
 		if(type == CHORD) {
 			if(category == TWENTIETH || category == JAZZ) {
-				playBlock();
+				this.playBlock();
 			}
 			else {
 				playBroken();
-				timeouts.push(setTimeout(playBlock, (numNotes/bps)*1000 + (1/bps)*1000));
+				timeouts.push(setTimeout(this.playBlock, (numNotes/bps)*1000 + (1/bps)*1000));
 			}
 		}
 		//Play broken
