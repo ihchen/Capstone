@@ -37,23 +37,8 @@ function ordinal(note) {
 function transpose(notes, shift) {
   var transposedNotes = [];
 
-  // For each note in the array arg, find it in our circle of
-  // fifths array.
   for (var i = 0; i < notes.length; i++) {
-    for (var j = 0; j < NOTES.length; j++) {
-      var ord = ordinal(notes[i]);
-      // Test Strings for equality.
-      if (NOTES[j] == notes[i]) {
-        // TODO: Simplify this!!!
-        // var ordinal = ordinal(notes[i]);
-        // We have found the note in the circle of fifths!
-        // Offset it and add it to the new array.
-        transposedNotes[transposedNotes.length] = NOTES[j + shift];
-        // transposedNotes[transposedNotes.length] = NOTES[ord + shift];
-
-        break;
-      }
-    }
+    transposedNotes[transposedNotes.length] = NOTES[ordinal(notes[i]) + shift];
   }
   return transposedNotes;
 }
@@ -139,10 +124,6 @@ function calcSpan(notes) {
   return span;
 }
 
-// The number of notes available for playback ranging from
-// C3 to B5.
-const NUM_NOTES = 35;
-
 /**
  * Sets an octave appropriate for the given span of notes at random.
  * Does so by appending a number to the end of each String.
@@ -155,23 +136,28 @@ const NUM_NOTES = 35;
  */
 function setOctave(notes) {
 
-  var C = 15;
-  var span = calcInterval(NOTES[C], notes[0]);
-  span += calcSpan(notes);
-  var numPlaces = 0;
+  // The note name of the lowest note available for playback
+  const LOW = 15;
 
-  if (span - 12  < 0) // This note collection fits under an octave
-    numPlaces = 3;
-  else if (span - 24 < 0) // Fits under two octaves
-    numPlaces = 2;
-  else if (span - 36 < 0) // Fits under three octaves
-    numPlaces = 1;
-  else {
+  // The note name fo the highest note available for playback
+  const HIGH = 20;
+
+  // The number of notes available for playback ranging from
+  // C3 to B5.
+  const NUM_NOTES = 35;
+
+  var span = calcInterval(NOTES[LOW], notes[0])+ calcSpan(notes)
+    + calcInterval(notes[notes.length - 1], NOTES[HIGH]);
+
+  // Calculate the number of places this sonority will fit.
+  var numPlaces = NUM_NOTES/span;
+
+  if (numPlaces < 1) {
     // This note collection will not fit.
-    console.log("Warning: This note collection either has too "
-      + "large a span, or the span is large with too high of"
-      + " a starting note. Please check your inputs!")
-    return null;
+      console.log("Warning: This note collection either has too "
+        + "large a span, or the span is large with too high of"
+        + " a starting note. Please check your inputs!")
+      return null;
   }
 
   /**
@@ -196,8 +182,15 @@ function setOctave(notes) {
    * @return {Integer} random number from [lowestOctave, numPlaces)
    */
   function genRandomNum(numPlaces) {
-    const lowestOctave = 3;
     // 3 is the lowest octave in which a note collection may begin.
+    var lowestOctave = 3;
+
+    // There is a different lowestOctave for notes enharmonically
+    // equivalent to our lowest note.
+    if (notes[0] == "Bx" || notes[0] == "Bxx") {
+      lowestOctave = 2;
+    }
+
     return Math.floor((Math.random() * (numPlaces)) + lowestOctave);
   }
 
