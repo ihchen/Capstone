@@ -6,13 +6,16 @@
  * @constructor
  * @param {String} type Type of the sonority
  * @param {String} quality Quality of the sonority
+ * @param {String} category Category of the sonority
  * @param {String Array} notes Array of notes
  */
-function MusicSnippet(type, quality, notes) {
+function MusicSnippet(type, quality, category, notes) {
 	/* Constants */
 	const CHORD = "chord";
 	const SCALE = "scale";
 	const INTERVAL = "interval";
+	const TWENTIETH = "20th century";
+	const JAZZ = "jazz";
 
 	const BPM = 80; 				//Beats per minute
 	var bps = BPM/60; 				//Beats per second
@@ -20,8 +23,9 @@ function MusicSnippet(type, quality, notes) {
 	/* Variables */
 	var baseNotes = notes;			//Store the base notes to transpose from
 	var type = type;				//Chord, scale, or interval
-	var quality = quality;				//Answer
-	var numNotes = notes.length;		//Number of notes
+	var quality = quality;			//Answer
+	var category = category;		//Category
+	var numNotes = notes.length;	//Number of notes
 
 	var tempSounds = [];			//Holds current sound
 	var numLoaded = 0;				//Number of loaded files
@@ -40,8 +44,13 @@ function MusicSnippet(type, quality, notes) {
 		clear();
 		//Play arpegiated and then play block
 		if(type == CHORD) {
-			playBroken();
-			timeouts.push(setTimeout(playBlock, (numNotes/bps)*1000 + (1/bps)*1000));
+			if(category == TWENTIETH || category == JAZZ) {
+				playBlock();
+			}
+			else {
+				playBroken();
+				timeouts.push(setTimeout(playBlock, (numNotes/bps)*1000 + (1/bps)*1000));
+			}
 		}
 		//Play broken
 		if(type == SCALE) {
