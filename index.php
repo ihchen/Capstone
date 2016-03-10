@@ -16,7 +16,8 @@
 	<script src="scripts/ParseCSV.js"></script>
 
 	<!-- Overall CSS -->
-	<link rel="stylesheet" type="text/css" href="scripts/style.css">
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+	<?php include_once("style/navbar.html"); ?>
 
 	<script>
 		/* Activate Collapsible list */
@@ -35,7 +36,7 @@
 				}
 			}
 		}
-	</script>	
+	</script>
 </head>
 
 <body>
@@ -43,7 +44,7 @@
 	<h1> UPS Ear Training </h1>
 </center>
 
-<form action="takeQuiz.php" method="post">
+<form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
 	<center>
 		<input type="submit" value="Start Training"><br/>
 	</center>
@@ -100,6 +101,19 @@
 			// add a checkbox input
 			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2interval' name='" + i + "' value='num'>" + data[i][1] + "<br>";
 		}
+	}
+
+	// if the form doesn't have at least one box checked, alert and stop submission
+	function validateForm() {
+		var form_fields = document.forms["selection"]; // get the form
+		for (var i = 0; form_fields[i.toString()] != undefined; i++) { // loop through everything in the form
+			if (form_fields[i.toString()].value == "num" && form_fields[i.toString()].checked == true) { // if it's a chord/scale/interval option and is set
+				return true; // submit the form
+			}
+		}
+		// else no boxes are checked
+		alert("Please select at least one scale, chord, or interval.");
+		return false; // don't submit the form
 	}
 </script>
 </body>

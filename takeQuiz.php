@@ -11,6 +11,7 @@
 	<script src="scripts/ParseCSV.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="scripts/style.css">
+	<?php include_once('style/navbar.html'); ?>
 
 	<script type="text/javascript">
 		// Make config object
