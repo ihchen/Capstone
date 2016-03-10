@@ -38,27 +38,30 @@ function MusicSnippet(type, quality, notes, category) {
 	 *  - Intervals are played broken
 	 *
 	 * @method play
+	 * @param {String} style How to play the notes. No argument means play it quiz style
 	 */
-	this.play = function() {
+	this.play = function(style) {
 		stop();
 		clear();
-		//Play arpegiated and then play block
-		if(type == CHORD) {
-			if(category == TWENTIETH || category == JAZZ) {
-				this.playBlock();
+		if(style == undefined) {
+			//Play arpegiated and then play block
+			if(type == CHORD) {
+				if(category == TWENTIETH || category == JAZZ) {
+					this.playBlock();
+				}
+				else {
+					playBroken();
+					timeouts.push(setTimeout(this.playBlock, (numNotes/bps)*1000 + (1/bps)*1000));
+				}
 			}
-			else {
+			//Play broken
+			if(type == SCALE) {
 				playBroken();
-				timeouts.push(setTimeout(this.playBlock, (numNotes/bps)*1000 + (1/bps)*1000));
 			}
-		}
-		//Play broken
-		if(type == SCALE) {
-			playBroken();
-		}
-		//Play broken
-		if(type == INTERVAL) {
-			playBroken();
+			//Play broken
+			if(type == INTERVAL) {
+				playBroken();
+			}
 		}
 	}
 
