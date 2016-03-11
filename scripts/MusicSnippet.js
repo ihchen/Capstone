@@ -47,11 +47,11 @@ function MusicSnippet(type, quality, notes, category) {
 			//Play arpegiated and then play block
 			if(type == CHORD) {
 				if(category == TWENTIETH || category == JAZZ) {
-					this.playBlock();
+					playBlock();
 				}
 				else {
 					playBroken();
-					timeouts.push(setTimeout(this.playBlock, (numNotes/bps)*1000 + (1/bps)*1000));
+					timeouts.push(setTimeout(playBlock(), (numNotes/bps)*1000 + (1/bps)*1000));
 				}
 			}
 			//Play broken
@@ -106,7 +106,7 @@ function MusicSnippet(type, quality, notes, category) {
 	function generateTransposition() {
 		var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
 		var tempNotes = setNotes(randKey);		//Array of transposed keys
-		tempNotes = setOctave(tempNotes);
+		tempNotes = setOctave(tempNotes);		//Set a random octave
 		return loadFiles(tempNotes);			//Load the corresponding files
 	}
 	
@@ -130,11 +130,12 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @private
 	 */
 	function playNote(i) {
+		tempSounds[i].play();
+
 		//Don't let notes bleed if playing a scale
 		if(type == SCALE) {
-			stop();
+			tempSounds[i].fadeOut(0.3, (1/bps)*1000);
 		}
-		tempSounds[i].play();
 	}
 
 	/**
@@ -235,7 +236,11 @@ function MusicSnippet(type, quality, notes, category) {
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
 				urls : [files[i]],
-				onload: function() {
+				onpause : function() {
+					sounds[i].stop();
+					soudns[i].volume(1.0);
+				},
+				onload : function() {
 					numLoaded++;
 					if(numLoaded == numNotes) {
 						document.getElementById("loading").style.display = "none";
