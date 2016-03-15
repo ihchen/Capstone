@@ -10,21 +10,21 @@
 	<script src="scripts/QuestionGenerator.js"></script>
 	<script src="scripts/ParseCSV.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="scripts/style.css">
+	<link rel="stylesheet" type="text/css" href="style/style.css">
 	<?php include_once('style/navbar.html'); ?>
 
 	<script type="text/javascript">
 		// Make config object
 		var config = {
-			scaleUP:false, 
-			scaleDOWN:false, 
-			
-			root:false, 
-			first:false, 
-			second:false, 
-			third:false, 
-			
-			intervalUP:false, 
+			scaleUP:false,
+			scaleDOWN:false,
+
+			root:false,
+			first:false,
+			second:false,
+			third:false,
+
+			intervalUP:false,
 			intervalDOWN:false
 		};
 

@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head></head>
-<h1>Testing octave errors with weird accidentals</h1>
-<body>
+<?php
+$thisPage = 'Test Octaves';
+?>
+
+<?php require_once('phpincludes/header.php'); ?>
+
+<!-- <h1>Testing octave errors with weird accidentals</h1> -->
+
+
   <script src = "scripts/MusicManip.js"> </script>
   <script>
-
-  
-
-  // for (var i = -14; i < 15; i++) {
-  //   notesarray = transpose(amin, i);
-  //   notesarray = setOctave(notesarray);
-  //   document.write("<br>" + notesarray);
-  // }
-  document.write(ordinal("C"));
 
   var cmaj = ["C", "D", "E", "F", "G", "A", "B", "C"];
 
@@ -32,5 +27,4 @@
   }
 
   </script>
-</body>
-</html>
+  <?php require_once('phpincludes/footer.php'); ?>

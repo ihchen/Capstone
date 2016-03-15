@@ -1,4 +1,11 @@
-<script type="text/javascript" src="scripts/Note.js"></script>
+<?php
+$thisPage = 'Test MusicManip';
+?>
+
+<?php require_once('phpincludes/header.php'); ?>
+<br></br>
+
+<script type="text/javascript" src="scripts/MusicManip.js"></script>
 <script type="text/javascript" src="scripts/makeMusicSnippet.js"></script>
 <script type="text/javascript" src="scripts/noteToFileNum.js"></script>
 <script type="text/javascript" src="scripts/MusicSnippet.js"></script>
@@ -22,7 +29,7 @@
 <form>
 	<select id="type">
 		<?php
-			foreach ($types as $type) { 
+			foreach ($types as $type) {
 				echo "<option value='$type'>$type</option>";
 			}
 		?>
@@ -57,3 +64,5 @@
 		samplePlayable.play();
 	}
 </script>
+
+<?php require_once('phpincludes/footer.php'); ?>

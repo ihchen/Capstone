@@ -1,51 +1,37 @@
-scale,major,C D E F G A B C,test1,diatonic
-scale,natural minor,A B C D E F G A,test1,diatonic
-scale,harmonic minor,A B C D E F Gx A,test1,altered
-scale,melodic minor,A B C D E Fx Gx A,test1,altered
-scale,locrian,B C D E F G A B,test1,diatonic
-scale,dorian,D E F G A B C D,test1,diatonic
-scale,phrygian,E F G A B C D E,test1,diatonic
-scale,lydian,F G A B C D E F,test1,diatonic
-scale,mixolydian,G A B C D E F G,test1,diatonic
-scale,anhemitonic pentatonic,C D E G A C D E,test1,pentatonic
-scale,Hirajoshi pentatonic,A B C E F A B C,test1,pentatonic
-scale,whole tone,C D E Fx Gx Ax C D,test1,non-diatonic
-scale,octatonic,C D Eb F Gb Ab A B,test2,non-diatonic
-scale,hexatonic,C Db E F Gx A C Db,final,non-diatonic
-scale,lydian-mixolydian,C D E Fx G A Bb C,final,altered
-scale,bebop major,C D E F G A Bb B,test2,altered
-scale,diminished-whole tone,B C D Eb F G A B,test2,non-diatonic
-scale,fifth mode melodic minor,G A B C D Eb F G,test2,altered
-scale,phrygian-dorian,D Eb F G A B C D,final,altered
-chord,major,C E G,test1,triads
-chord,minor,A C E,test1,triads
-chord,diminished,B D F,test1,triads
-chord,augmented,C E Gx,test1,triads
-chord,Rite of Spring,F A C F Gx B D E,final,20th century
-chord,Petrushka,F A B C Dx Fx,final,20th century
-chord,Mystic,F B Eb A D G,final,20th century
-chord,Farben,C Gx B E A,final,20th century
-chord,split-third,A C E A Cx E,final,20th century
-chord,major 6/9,C E G A D,test2,jazz
-chord,minor 6/9,A C E Fx B,test2,jazz
-chord,major 9 (#5),C E Gx B D,test2,jazz
-chord,minor-Major 9,C Eb G B D,test2,jazz
-chord,7 (sharp 9),C E G Bb Eb,test2,jazz
-chord,7 (flat 9),C E G Bb Db,test2,jazz
-chord,7 (sharp 9/flat 5),C E Gb Bb Dx,test2,jazz
-chord,7 (flat 9/sharp 5),C E Gx Bb Db,test2,jazz
-chord,MM7,C E G B,test1,7th
-chord,Mm7,G B D F,test1,7th
-chord,mm7,A C E G,test1,7th
-chord,dm7,B D F A,test1,7th
-chord,dd7,B D F Ab,test1,7th
-interval,m2,B C,,non-compound
-interval,M2,C D,,non-compound
-interval,m3,A C,,non-compound
-interval,M3,C E,,non-compound
-interval,p4,C F,,non-compound
-interval,p5,C G,,non-compound
-interval,m6,A F,,non-compound
-interval,M6,C A,,non-compound
-interval,m7,A G,,non-compound
-interval,M7,C B,,non-compound
+scale,Major,C D E F G A B C,Test 1,Diatonic
+scale,Natural Minor,A B C D E F G A,Test 1,Diatonic
+scale,Harmonic Minor,A B C D E F Gx A,Test 1,altered
+scale,Melodic Minor,A B C D E Fx Gx A,Test 1,altered
+scale,Locrian,B C D E F G A B,Test 1,diatonic
+scale,Dorian,D E F G A B C D,Test 1,diatonic
+scale,Phrygian,E F G A B C D E,Test 1,diatonic
+scale,Lydian,F G A B C D E F,Test 1,diatonic
+scale,Mixolydian,G A B C D E F G,Test 1,diatonic
+scale,Anhemitonic pentatonic,C D E G A C D E,Test 1,pentatonic
+scale,Hirajoshi pentatonic,A B C E F A B C,Test 1,pentatonic
+scale,Whole Tone,C D E Fx Gx Ax C D,Test 1,non-diatonic
+scale,Octatonic,C D Eb F Gb Ab A B,Test 2,non-diatonic
+scale,Hexatonic,C Db E F Gx A C Db,Final,non-diatonic
+scale,Lydian-Mixolydian,C D E Fx G A Bb C,Final,altered
+scale,Bebop Major,C D E F G A Bb B,Test 2,altered
+scale,Diminished-Whole Tone,B C D Eb F G A B,Test 2,non-diatonic
+scale,Fifth Mode Melodic Minor,G A B C D Eb F G,Test 2,altered
+scale,Phrygian-Dorian,D Eb F G A B C D,Final,altered
+chord,Rite of Spring,F A C F Gx B D E,Final,20th Century
+chord,Petrushka,F A B C Dx Fx,Final,20th Century
+chord,Mystic,F B Eb A D G,Final,20th Century
+chord,Farben,C Gx B E A,Final,20th Century
+chord,Split-Third,A C E A Cx E,Final,20th Century
+chord,Major 6/9,C E G A D,Test 2,Jazz
+chord,Minor 6/9,A C E Fx B,Test 2,Jazz
+chord,Major 9 (#5),C E Gx B D,Test 2,Jazz
+chord,Minor-Major 9,C Eb G B D,Test 2,Jazz
+chord,7 (sharp 9),C E G Bb Eb,Test 2,Jazz
+chord,7 (flat 9),C E G Bb Db,Test 2,Jazz
+chord,7 (sharp 9/flat 5),C E Gb Bb Dx,Test 2,Jazz
+chord,7 (flat 9/sharp 5),C E Gx Bb Db,Test 2,Jazz
+chord,MM7,C E G B,Test 1,7th
+chord,Mm7,G B D F,Test 1,7th
+chord,mm7,A C E G,Test 1,7th
+chord,dm7,B D F A,Test 1,7th
+chord,dd7,B D F Ab,Test 1,7th

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<?php
+$thisPage = 'Test MusicManip';
+?>
 
-<body>
+<?php require_once('phpincludes/header.php'); ?>
 
-<h1>Testing MusicManip.js</h1>
-
+<!-- <h1>Testing MusicManip.js</h1> -->
+<br></br>
 <script src = "scripts/MusicManip.js"> </script>
 <script>
 // a test script for the Note.js class
@@ -144,5 +144,4 @@ for (i = 0; i < crazyscale.length; i++) {
 
 </script>
 
-</body>
-</html>
+<?php require_once('phpincludes/footer.php'); ?>

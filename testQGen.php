@@ -1,8 +1,14 @@
-<!DOCTYPE html>
-<html>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<body>
-<h1>testing QuestionGenerator.js</h1>
+<?php
+$thisPage = 'Test MusicManip';
+?>
+
+<?php require_once('phpincludes/header.php'); ?>
+
+<link rel="stylesheet" type="text/css" href="style/style2.css">
+
+<?php require_once('phpincludes/navbar.php'); ?>
+<br></br>
+<br></br>
 
 <script src = "scripts/MusicManip.js"></script>
 <script src = "scripts/ParseCSV.js"></script>
@@ -22,5 +28,4 @@ document.write("<br>");
 document.write(musicSnippet.answer());
 </script>
 
-</body>
-</html>
+<?php require_once('phpincludes/footer.php'); ?>
