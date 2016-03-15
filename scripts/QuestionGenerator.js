@@ -10,6 +10,9 @@ function QuestionGenerator(list) {
   // The array of questions
   var musicSnippets = makeMusicSnippets(list);
 
+  // Integer representing the index of the last MusicSnippet
+  var lastIndex = null;
+
   /**
    * Builds an array of MusicSnippets
    * @method makeMusicSnippets
@@ -34,6 +37,16 @@ function QuestionGenerator(list) {
    */
   this.getNextQuestion = function() {
     currSnippet = Math.floor(Math.random() * musicSnippets.length);
+
+    // If there is more than one item in the test set
+    if (list.length > 1) {
+      while (currSnippet == lastIndex) {
+        // Guarantee we don't pick the same random snippet twice.
+        currSnippet = Math.floor(Math.random() * musicSnippets.length);
+      }
+      lastIndex = currSnippet;
+    }
+
     return musicSnippets[currSnippet];
   }
 }

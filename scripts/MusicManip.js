@@ -14,7 +14,7 @@ const NOTES = ["Fbb", "Cbb", "Gbb", "Dbb", "Abb", "Ebb", "Bbb", "Fb",
  * Returns the position of a note in the circle of fifths.
  * @method ordinal
  * @param {String} note
- * @return {Interger} ordinal
+ * @return {Integer} ordinal
  */
 function ordinal(note) {
   for (var i = 0; i < NOTES.length; i++) {
@@ -73,14 +73,7 @@ function setInversion(chord, inversion) {
   return chord;
 }
 
-/*
- * Reference array for the ascending distance to an interval.
- * Each number corresponds to the number of half steps between
- * the following intervals, respectively:
- * unison, p5, M2, M6, M3, M7, tritone, m2, m3, m7, p4
- * DO NOT CHANGE THE ORDER!
- */
-const INTERVALS = [0, 7, 2, 9, 4, 11, 6, 1, 8, 3, 10, 5];
+
 
 // The number of half steps in an octave.
 const OCTAVE = 12;
@@ -94,6 +87,15 @@ const OCTAVE = 12;
  * @return {Integer} interval in half steps
  */
 function calcInterval(note1, note2) {
+
+  /*
+   * Reference array for the ascending distance to an interval.
+   * Each number corresponds to the number of half steps between
+   * the following intervals, respectively:
+   * unison, p5, M2, M6, M3, M7, tritone, m2, m3, m7, p4
+   * DO NOT CHANGE THE ORDER!
+   */
+  const INTERVALS = [0, 7, 2, 9, 4, 11, 6, 1, 8, 3, 10, 5];
   // Subtract Note1's ordinal from Note2's ordinal
   var ordinalDiff = ordinal(note2) - ordinal(note1);
 
