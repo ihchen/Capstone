@@ -1,18 +1,11 @@
-<!-- <!DOCTYPE html>
-<html lang="en-US">
-<head> -->
+
 <?php
 $thisPage = 'Make My Own Practice Quiz';
 ?>
 
 <?php require_once('phpincludes/header.php'); ?>
 
-
 	<title> Ear Training Home </title>
-	<!-- <meta charset="UTF-8">
-	<meta name="authors" content="Wesley Stedman, Kaylene Barber, Imanuel Chen">
-	<meta name="description" content="Ear Training Program">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -23,8 +16,7 @@ $thisPage = 'Make My Own Practice Quiz';
 	<script src="scripts/ParseCSV.js"></script>
 
 	<!-- Overall CSS -->
-	<!-- <link rel="stylesheet" type="text/css" href="style/style.css"> -->
-	<!-- <?php include_once("style/navbar.html"); ?> -->
+	<link rel="stylesheet" type="text/css" href="style/style2.css">
 
 	<script>
 		/* Activate Collapsible list */
@@ -52,9 +44,7 @@ $thisPage = 'Make My Own Practice Quiz';
 </center> -->
 
 <form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
-	<center>
-		<input class = "button" type="submit" value="Start Training">
-	</center>
+
 	<div id="checkboxcontainer">
 		<div id="accordion" class="panel-group">
 			<!-- Type1 Checkboxes -->
@@ -86,6 +76,9 @@ $thisPage = 'Make My Own Practice Quiz';
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id = "button">
+		<input class = "button" type="submit" value="Start Training">
 	</div>
 </form>
 
@@ -122,6 +115,5 @@ $thisPage = 'Make My Own Practice Quiz';
 		return false; // don't submit the form
 	}
 </script>
-<!-- </body>
-</html> -->
+
 <?php require_once('phpincludes/footer.php'); ?>
