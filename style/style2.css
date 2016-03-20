@@ -10,6 +10,8 @@ body {
 	background-color: #ADD8E6;
 	font-size: 1em;
 	line-height: inherit;
+
+	/*Clear margins to prevent weird things from happening*/
 	margin-top: 0px;
   margin-right: 0px;
   margin-bottom: 0px;
@@ -85,8 +87,6 @@ a {
   text-align: center;
 }
 
-
-
 #nav {
 	position: fixed;
 	clear: left;
@@ -103,7 +103,7 @@ a {
 
 #nav > ul {
 	list-style: none;
-	/*margin: 0;*/
+	margin: 0;
 	padding: 0;
 	position: absolute;
 }
@@ -115,15 +115,14 @@ a {
 	padding: 1em 0em;
 }
 
+/*Hovering over a list item*/
 #nav li:hover {
 	color #333;
 	background: #00CED1;
 }
 
 #nav a {
-	/*color: #000000;*/
-	/*font-weight: bold;*/
-	/*padding: 10px 20px;*/
+	/*Override bootstrap's "underline while hovering" over a link*/
 	text-decoration: none;
 }
 
@@ -156,20 +155,13 @@ a {
 	#navicon {
 		margin-left: 2%;
 		margin-top: 2%;
-		/*position: fixed;*/
+		margin-bottom: 0;
 		color: #ADD8E6;
 		font-size: 3.4em;
 		text-align: center;
 		background-color: #008B8B;
-		/*border-color:*/
-		/*border-width: 1px;*/
-		border-left: 1px solid #008080;
-		border-right: 1px solid #008080;
-		border-top: 1px solid #008080;
-		border-bottom: 1px solid #008080;
-		/*margin-top: 5%;
-		margin-left: 5%;*/
-		margin-bottom: 0em;
+		border-width: 1px solid #008080;
+
 	  height: 1.5em;
 	  width: 1.5em;
 		padding: .01em .1em;
@@ -181,8 +173,8 @@ a {
 		/*text-decoration: none;*/
 
 	}
-  #nav {
 
+  #nav {
 		position: fixed;
       /*position: relative;*/
 			/*margin-left: 5%;*/
@@ -202,7 +194,6 @@ a {
 		margin-top: 0;
     height: auto;
     display: none;
-    /*position: fixed;*/
     left: 0;
     right: 0;
   }

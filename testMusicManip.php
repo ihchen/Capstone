@@ -4,6 +4,7 @@ $thisPage = 'Test MusicManip';
 
 <?php require_once('phpincludes/header.php'); ?>
 
+<body>
 <!-- <h1>Testing MusicManip.js</h1> -->
 <br></br>
 <script src = "scripts/MusicManip.js"> </script>
@@ -143,5 +144,5 @@ for (i = 0; i < crazyscale.length; i++) {
 }
 
 </script>
-
+</body>
 <?php require_once('phpincludes/footer.php'); ?>
