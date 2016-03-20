@@ -1,6 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
+<?php
+$thisPage = 'Take Quiz';
+?>
+
+<?php require_once('phpincludes/header.php'); ?>
+
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
 	<script src="howler/howler.js"></script>
@@ -10,8 +13,7 @@
 	<script src="scripts/QuestionGenerator.js"></script>
 	<script src="scripts/ParseCSV.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="style/style.css">
-	<?php include_once('style/navbar.html'); ?>
+	<link rel="stylesheet" type="text/css" href="style/style2.css">
 
 	<script type="text/javascript">
 		// Make config object
@@ -53,7 +55,6 @@
 	</script>
 </head>
 
-<body>
 <script>
 	var qg = new QuestionGenerator(chosen);
 	var snippet = qg.getNextQuestion();
@@ -97,5 +98,4 @@
 		document.getElementById("revealed").style.display = "none";
 	}
 </script>
-</body>
-</html>
+<?php require_once('phpincludes/footer.php'); ?>

@@ -5,7 +5,7 @@ $thisPage = 'Make My Own Practice Quiz';
 
 <?php require_once('phpincludes/header.php'); ?>
 
-	<title> Ear Training Home </title>
+	<title> <?php echo $thisPage ?> </title>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -38,10 +38,11 @@ $thisPage = 'Make My Own Practice Quiz';
 	</script>
 <!-- </head>
 
-<body>
+
 <center>
 	<h1> UPS Ear Training </h1>
 </center> -->
+<body>
 
 <form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
 
@@ -115,5 +116,6 @@ $thisPage = 'Make My Own Practice Quiz';
 		return false; // don't submit the form
 	}
 </script>
+</body>
 
 <?php require_once('phpincludes/footer.php'); ?>

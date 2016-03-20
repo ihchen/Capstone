@@ -8,9 +8,12 @@ html {
 body {
 	font-family: Verdana, Geneva, sans-serif;
 	background-color: #ADD8E6;
-	/*margin: 8px;*/
 	font-size: 1em;
 	line-height: inherit;
+	margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
 }
 
 center {
@@ -88,9 +91,6 @@ a {
 	position: fixed;
 	clear: left;
   width: 95%;
-  /*margin-left: -15px;*/
-  margin-right: auto;
-  /*margin-top: -8px;*/
 }
 
 #nav > a {
@@ -103,19 +103,15 @@ a {
 
 #nav > ul {
 	list-style: none;
-	margin: 0;
+	/*margin: 0;*/
 	padding: 0;
 	position: absolute;
 }
 
 #nav > ul > li {
-  /*width: 25%;
-  height: 100%;
-  float: left;*/
 	background: #008B8B;
 	border: 1px solid #008080;
 	float: left;
-	/*margin: 0;*/
 	padding: 1em 0em;
 }
 
@@ -138,13 +134,10 @@ a {
 
 }
 
-.menu-item :hover {
-	color: #000000;
+.menu-item:hover {
+	color: #333;
 }
 
-/*#nav a:hover {
-
-}*/
 #nav li#currentpage {
 	background: #00CED1;
 }
@@ -157,36 +150,39 @@ a {
 	border-right: none;*/
 }
 
-@media only screen and ( max-width: 45em )
+@media only screen and ( max-width: 886px )
 {
 
 	#navicon {
-			/*position: fixed;*/
-			color: #ADD8E6;
-			font-size: 3.4em;
-			text-align: center;
-			background-color: #008B8B;
-			/*border-color:*/
-			/*border-width: 1px;*/
-			border-left: 1px solid #008080;
-			border-right: 1px solid #008080;
-			border-top: 1px solid #008080;
-			border-bottom: 1px solid #008080;
-			/*margin-top: 5%;
-			margin-left: 5%;*/
-			margin-bottom: 0em;
-	    height: 1.5em;
-	    width: 1.5em;
-			padding: .01em .1em;
-			text-decoration: none;
+		margin-left: 2%;
+		margin-top: 2%;
+		/*position: fixed;*/
+		color: #ADD8E6;
+		font-size: 3.4em;
+		text-align: center;
+		background-color: #008B8B;
+		/*border-color:*/
+		/*border-width: 1px;*/
+		border-left: 1px solid #008080;
+		border-right: 1px solid #008080;
+		border-top: 1px solid #008080;
+		border-bottom: 1px solid #008080;
+		/*margin-top: 5%;
+		margin-left: 5%;*/
+		margin-bottom: 0em;
+	  height: 1.5em;
+	  width: 1.5em;
+		padding: .01em .1em;
+		text-decoration: none;
 	}
 
-	#navicon :hover {
+	#navicon:hover {
 		color: #00CED1;
 		/*text-decoration: none;*/
 
 	}
   #nav {
+
 		position: fixed;
       /*position: relative;*/
 			/*margin-left: 5%;*/
@@ -201,14 +197,14 @@ a {
     	display: block;
   }
 
-
   #nav > ul {
-		margin-left: 5%;
-      height: auto;
-      display: none;
-      position: fixed;
-      left: 0;
-      right: 0;
+		margin-left: 2%;
+		margin-top: 0;
+    height: auto;
+    display: none;
+    /*position: fixed;*/
+    left: 0;
+    right: 0;
   }
 
 	#nav:target > ul {
@@ -216,14 +212,13 @@ a {
   }
 
 	#nav > ul > li {
-			/*margin-left: 5%;*/
       width: 90%;
       float: none;
   }
 
 	#nav #currentpage > a {
 			background: #00CED1;
-			border-bottom: 3px solid #008080;
+			border-bottom: none;
 			border-left: none;
 			border-right: none;
 			color: #333;

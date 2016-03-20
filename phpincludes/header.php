@@ -14,11 +14,9 @@
       <img src="images/img.png" alt="Logo" />
     </div> -->
     <?php require_once('phpincludes/navbar.php'); ?>
-<br></br>
+    </div>
 </head>
-<body>
-
-  </div>
+  <br></br>
   <br></br>
   <br></br>
   <br></br>

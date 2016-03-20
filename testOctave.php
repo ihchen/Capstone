@@ -6,6 +6,7 @@ $thisPage = 'Test Octaves';
 
 <!-- <h1>Testing octave errors with weird accidentals</h1> -->
 
+<body>
 
   <script src = "scripts/MusicManip.js"> </script>
   <script>
@@ -27,4 +28,5 @@ $thisPage = 'Test Octaves';
   }
 
   </script>
-  <?php require_once('phpincludes/footer.php'); ?>
+</body>
+<?php require_once('phpincludes/footer.php'); ?>
