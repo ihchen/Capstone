@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id = "bootstrap-overrides">
+<html lang="en">
 <head>
   <title>Ear Trainer: <?= $thisPage; ?></title>
   <meta charset="utf-8">
@@ -19,3 +19,6 @@
 <body>
 
   </div>
+  <br></br>
+  <br></br>
+  <br></br>
