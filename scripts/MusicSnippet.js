@@ -143,8 +143,10 @@ function MusicSnippet(type, quality, notes, category) {
 		// }
 
 		if(type == SCALE) {
-			tempSounds[(i-1)%numNotes].stop();
-			tempSounds[(i-1)%numNotes].volume(1.0);
+			var prevNote = (i-1)%numNotes;
+			console.log(prevNote);
+			tempSounds[prevNote].stop();
+			tempSounds[prevNote].volume(1.0);
 		}
 
 		tempSounds[i].play();
