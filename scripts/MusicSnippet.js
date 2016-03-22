@@ -136,7 +136,7 @@ function MusicSnippet(type, quality, notes, category) {
 
 		//Don't let notes bleed if playing a scale
 		if(type == SCALE) {
-			tempSounds[i].fadeOut(0.3, (1/bps)*1000);
+			stop();
 		}
 	}
 
@@ -238,10 +238,6 @@ function MusicSnippet(type, quality, notes, category) {
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
 				urls : [files[i]],
-				onpause : function() {
-					sounds[i].stop();
-					sounds[i].volume(1.0);
-				},
 				onload : function() {
 					numLoaded++;
 					if(numLoaded == numNotes) {
