@@ -142,21 +142,7 @@ function MusicSnippet(type, quality, notes, category) {
 			// stop();
 		// }
 
-		if(type == SCALE) {
-			tempSounds[i].pos(0);
-			tempSounds[i].volume(1.0);
-		}
-
 		tempSounds[i].play();			
-
-		if(type == SCALE) {
-			if(i < numNotes-1) {
-				tempSounds[i].fadeOut(0.3, (1/bps)*1000);
-			}
-			else {
-				tempSounds[i].fadeOut(0.0, (1/bps)*1000);
-			}
-		}
 	}
 
 	/**
@@ -181,6 +167,7 @@ function MusicSnippet(type, quality, notes, category) {
 		//Play first note instantly
 		timeouts.push(setTimeout(function() {
 			playNote(0);
+			tempSounds[0].fadeOut(0.3, (1/bps)*1000);
 			playBrokenHelp(1);		//Play rest of notes
 		}, 0));
 	}
@@ -196,6 +183,7 @@ function MusicSnippet(type, quality, notes, category) {
 		if(note < numNotes) {
 			timeouts.push(setTimeout(function() {
 				playNote(note);
+				tempSounds[note].fadeOut(0.3, (1/bps)*1000);
 				playBrokenHelp(note+1);
 			}, (1/bps)*1000)); //How many seconds per note given the bpm
 		}
@@ -257,6 +245,7 @@ function MusicSnippet(type, quality, notes, category) {
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
 				urls : [files[i]],
+				onend : function() {console.log("END");},
 				onload : function() {
 					numLoaded++;
 					console.log("Loaded note "+numLoaded);
