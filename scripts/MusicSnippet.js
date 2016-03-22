@@ -151,14 +151,14 @@ function MusicSnippet(type, quality, notes, category) {
 
 		tempSounds[i].play();			
 
-		if(type == SCALE) {
-			if(i < numNotes-1) {
-				tempSounds[i].fadeOut(0.5, (1/bps)*1000);
-			}
-			else {
-				tempSounds[i].fadeOut(0.0, (1/bps)*1000);
-			}
-		}
+		// if(type == SCALE) {
+		// 	if(i < numNotes-1) {
+		// 		tempSounds[i].fadeOut(0.5, (1/bps)*1000);
+		// 	}
+		// 	else {
+		// 		tempSounds[i].fadeOut(0.0, (1/bps)*1000);
+		// 	}
+		// }
 	}
 
 	/**
