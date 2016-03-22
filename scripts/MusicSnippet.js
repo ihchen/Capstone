@@ -167,6 +167,7 @@ function MusicSnippet(type, quality, notes, category) {
 		//Play first note instantly
 		timeouts.push(setTimeout(function() {
 			playNote(0);
+			tempSounds[0].fadeOut(0.3, (1/bps)*1000);
 			playBrokenHelp(1);		//Play rest of notes
 		}, 0));
 	}
@@ -181,6 +182,7 @@ function MusicSnippet(type, quality, notes, category) {
 	function playBrokenHelp(note) {
 		if(note < numNotes) {
 			timeouts.push(setTimeout(function() {
+				tempSounds[note-1].stop();
 				playNote(note);
 				tempSounds[note].fadeOut(0.3, (1/bps)*1000);
 				playBrokenHelp(note+1);
@@ -244,6 +246,7 @@ function MusicSnippet(type, quality, notes, category) {
 		for(i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
 				urls : [files[i]],
+				onpause: function() {consolelog("PAUSE");},
 				onload : function() {
 					numLoaded++;
 					console.log("Loaded note "+numLoaded);
