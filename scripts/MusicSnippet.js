@@ -50,8 +50,8 @@ function MusicSnippet(type, quality, notes, category) {
 					playBlock();
 				}
 				else {
-					playBroken();
-					timeouts.push(setTimeout(function() {playBlock();}, (numNotes/bps)*1000 + (1/bps)*1000));
+					playBlock();
+					timeouts.push(setTimeout(function() {playBroken();}, (1/bps)*2000));
 				}
 			}
 			//Play broken
