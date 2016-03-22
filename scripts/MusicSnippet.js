@@ -240,6 +240,7 @@ function MusicSnippet(type, quality, notes, category) {
 				urls : [files[i]],
 				onload : function() {
 					numLoaded++;
+					console.log("Loaded note "+numLoaded);
 					if(numLoaded == numNotes) {
 						document.getElementById("loading").style.display = "none";
 						document.getElementById("allbuttons").style.display = "block";
