@@ -7,6 +7,7 @@
 
 <form>
 	<select id="type" onchange="updateQuality()">
+		<option value=""></option>
 		<option value="scale">Scale</option>
 		<option value="chord">Chord</option>
 	</select>
@@ -42,6 +43,11 @@
 	function updateQuality() {
 		var type = document.getElementById('type');
 		var quality = document.getElementById('quality');
+
+		// clear quality and key dropdowns
+		quality.innerHTML = "";
+		document.getElementById('key').innerHTML = "";
+		
 		if (type.value == "scale") {
 			// fill quality with possible scale qualities
 			for (var i = 0; i < scale_opt.length; i++) {
@@ -53,11 +59,6 @@
 			for (var i = 0; i < chord_opt.length; i++) {
 				quality.innerHTML = quality.innerHTML + "<option value='"+chord_opt[i]+"'>"+chord_opt[i]+"</option>";
 			}
-		}
-		else if (type.value == "") {
-			// deselected - clear other dropdowns
-			quality.innerHTML = "";
-			document.getElementById('key').innerHTML = "";
 		}
 	}
 
