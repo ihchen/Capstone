@@ -142,23 +142,7 @@ function MusicSnippet(type, quality, notes, category) {
 			// stop();
 		// }
 
-		if(type == SCALE) {
-			tempSounds[i].pos(0);
-			tempSounds[i].volume(1.0);
-		}
-
 		tempSounds[i].play();			
-
-		if(type == SCALE) {
-			if(i < numNotes-1) {
-				// tempSounds[i].fadeOut(0.3, (1/bps)*1000);
-				setTimeout(function() {tempSounds[i].volume(0.3);}, (1/bps)*999);
-				setTimeout(function() {tempSounds[i].stop();}, (1/bps)*1000);
-			}
-			else {
-				// tempSounds[i].fadeOut(0.0, (1/bps)*1000);
-			}
-		}
 	}
 
 	/**
@@ -198,6 +182,7 @@ function MusicSnippet(type, quality, notes, category) {
 		if(note < numNotes) {
 			timeouts.push(setTimeout(function() {
 				playNote(note);
+				tempSounds[note].fadeOut(0.3, (1/bps)*1000);
 				playBrokenHelp(note+1);
 			}, (1/bps)*1000)); //How many seconds per note given the bpm
 		}
