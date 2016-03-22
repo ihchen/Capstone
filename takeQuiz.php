@@ -3,9 +3,10 @@ $thisPage = 'Take Quiz';
 ?>
 
 <?php require_once('phpincludes/header.php'); ?>
-
+<header>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
+	<
 	<script src="howler/howler.js"></script>
 	<script src="scripts/MusicSnippet.js"></script>
 	<script src="scripts/noteToFileNum.js"></script>
@@ -33,8 +34,8 @@ $thisPage = 'Take Quiz';
 		// Make an integer array to hold selected types of things to be tested on
 		var chosen = [];
 	</script>
-
-	<?php
+</header>
+<?php
 	// convert post vars into javascript
 	foreach ($_POST as $key => $value) {
 		if ($value == "opt") {
@@ -47,13 +48,12 @@ $thisPage = 'Take Quiz';
 			echo "<script type='text/javascript'>console.log(\"POST Format Error: $key, $value\");</script>";
 		}
 	}
-	?>
+?>
 
 	<script type="text/javascript">
 		// console.log(config);
 		// console.log(chosen);
 	</script>
-</head>
 
 <script>
 	var qg = new QuestionGenerator(chosen);
