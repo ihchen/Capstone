@@ -144,6 +144,7 @@ function MusicSnippet(type, quality, notes, category) {
 
 		if(type == SCALE && i > 0) {
 			tempSounds[i-1].stop();
+			tempSounds[i-1].volume(1.0);
 		}
 
 		tempSounds[i].play();
