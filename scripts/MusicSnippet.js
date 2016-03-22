@@ -109,13 +109,12 @@ function MusicSnippet(type, quality, notes, category) {
 	 */
 	function generateTransposition() {
 		do {
-			// var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
-			var randKey = Math.floor(Math.random()*2);	//Get Random key between -7 and 7
+			var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
 			var tempNotes = setNotes(randKey);		//Array of transposed keys
-		} while(tempNotes[0] == lastKey);		//Don't generate the previously played key
+		} while(tempNotes[0] == lastKey);			//Don't generate the previously played key
 		lastKey = tempNotes[0];
-		tempNotes = setOctave(tempNotes);		//Set a random octave
-		return loadFiles(tempNotes);			//Load the corresponding files
+		tempNotes = setOctave(tempNotes);			//Set a random octave
+		return loadFiles(tempNotes);				//Load the corresponding files
 	}
 	
 	/**
@@ -139,11 +138,14 @@ function MusicSnippet(type, quality, notes, category) {
 	 */
 	function playNote(i) {
 		//Don't let notes bleed if playing a scale
-		if(type == SCALE) {
-			stop();
-		}
+		// if(type == SCALE) {
+		// 	stop();
+		// }
 
 		tempSounds[i].play();
+		if(type == SCALE && i != numNotes-1) {
+			tempSounds[i].fadeOut(0.3, (1/bps)*1000);
+		}
 	}
 
 	/**
