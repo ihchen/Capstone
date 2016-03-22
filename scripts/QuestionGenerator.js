@@ -4,6 +4,7 @@
  * over which the user would like to be tested.
  * @class QuestionGenerator
  * @constructor
+ * @param {Integer[]} list
  */
 function QuestionGenerator(list) {
 
