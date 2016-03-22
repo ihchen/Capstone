@@ -2,6 +2,7 @@
  * Validation rules for successive melodic intervals.
  * @method validateSMI
  * @param {String} notes
+ * @return {Boolean} true or false
  */
  function validateSMI(notes) {
 
@@ -12,6 +13,7 @@
    /**
     * Ensure that the melody does not exceed the span of an octave.
     * @method checkSpan
+    * @return {Boolean}
     */
    function checkSpan() {
 
@@ -20,6 +22,7 @@
    /**
     * Ensure that the intervals do not occur all in the same direction.
     * @method checkDirections
+    * @return {Boolean}
     */
    function checkDirections() {
 
@@ -27,7 +30,8 @@
 
    /**
     * Ensure that any interval is used no more than once.
-    * @method
+    * @method checkIntervals
+    * @return {Boolean}
     */
    function checkIntervals() {
 
@@ -35,7 +39,8 @@
 
    /**
     * Ensure that the melody does not outline a triad or 7th chord.
-    * @method
+    * @method checkForHarmony
+    * @return {Boolean}
     */
    function checkForHarmony() {
      // An array containing the intervals found between major and minor triads

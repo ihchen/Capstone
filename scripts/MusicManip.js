@@ -215,7 +215,7 @@ function setOctave(notes) {
 
 /**
  * Determines whether two notenames are enharmonically equivalent.
- * @method
+ * @method isEnharmonic
  * @param {String} note1
  * @param {String} note2
  * @return {Boolean} true or false
@@ -230,5 +230,4 @@ function isEnharmonic(note1, note2) {
   }
 
   return false;
-
 }
