@@ -55,11 +55,13 @@ function MusicSnippet(type, quality, notes, category) {
 				}
 			}
 			//Play broken
-			if(type == SCALE) {
+			else if(type == SCALE) {
 				playBroken();
 			}
-			//Play broken
-			if(type == INTERVAL) {
+			else if(type == INTERVAL) {
+				playBroken();
+			}
+			else {
 				playBroken();
 			}
 		}
