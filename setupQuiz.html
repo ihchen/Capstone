@@ -1,7 +1,7 @@
 <script type="text/javascript" src="scripts/ParseCSV.js"></script>
 
 
-<form action="takeQuiz.php" method="post">
+<form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
 	<fieldset>
 		<legend>Scales</legend>
 		<div id="scales"></div>
@@ -10,10 +10,10 @@
 		<legend>Chords</legend>
 		<div id="chords"></div>
 	</fieldset>
-	<fieldset>
+	<!--<fieldset>
 		<legend>Intervals</legend>
 		<div id="intervals"></div>
-	</fieldset>
+	</fieldset>-->
 	<br><br>
 	<input type="submit" value="Start Quiz">
 </form>
@@ -34,11 +34,11 @@
 			// add a checkbox input
 			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
 		}
-		else if (data[i][0] == "interval") { // if it's an interval
-			var div = document.getElementById("intervals");
-			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + "<br>";
-		}
+		// else if (data[i][0] == "interval") { // if it's an interval
+		// 	var div = document.getElementById("intervals");
+		// 	// add a checkbox input
+		// 	div.innerHTML = div.innerHTML + "<input type='checkbox' name='" + i + "' value='num'>" + data[i][1] + "<br>";
+		// }
 	}
 
 	// after that, add inversion/direction options
@@ -50,9 +50,21 @@
 		var div = document.getElementById("chords");
 		div.innerHTML = div.innerHTML + "<input type='checkbox' name='root' value='opt'>Root Position <input type='checkbox' name='first' value='opt'>First Inversions <input type='checkbox' name='second' value='opt'>Second Inversions <input type='checkbox' name='third' value='opt'>Third Inversions<br>";
 	}
-	{
-		var div = document.getElementById("intervals");
-		div.innerHTML = div.innerHTML + "<input type='checkbox' name='intervalUP' value='opt'>Ascending Intervals<input type='checkbox' name='intervalDOWN' value='opt'>Descending Intervals<br>";
-	}
+	// {
+	// 	var div = document.getElementById("intervals");
+	// 	div.innerHTML = div.innerHTML + "<input type='checkbox' name='intervalUP' value='opt'>Ascending Intervals<input type='checkbox' name='intervalDOWN' value='opt'>Descending Intervals<br>";
+	// }
 	
+	// if the form doesn't have at least one box checked, alert and stop submission
+	function validateForm() {
+		var form_fields = document.forms["selection"]; // get the form
+		for (var i = 0; form_fields[i.toString()] != undefined; i++) { // loop through everything in the form
+			if (form_fields[i.toString()].value == "num" && form_fields[i.toString()].checked == true) { // if it's a chord/scale/interval option and is set
+				return true; // submit the form
+			}
+		}
+		// else no boxes are checked
+		alert("Please select at least one scale or chord.");
+		return false; // don't submit the form
+	}
 </script>
