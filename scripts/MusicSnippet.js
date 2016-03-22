@@ -142,7 +142,7 @@ function MusicSnippet(type, quality, notes, category) {
 			// stop();
 		// }
 
-		if(type == SCALE) {
+		if(type == SCALE && i > 0) {
 			tempSounds[i-1].stop();
 		}
 
