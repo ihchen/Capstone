@@ -6,7 +6,6 @@ $thisPage = 'Take Quiz';
 <header>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
-	<
 	<script src="howler/howler.js"></script>
 	<script src="scripts/MusicSnippet.js"></script>
 	<script src="scripts/noteToFileNum.js"></script>

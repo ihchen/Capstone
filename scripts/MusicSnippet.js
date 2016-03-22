@@ -46,7 +46,7 @@ function MusicSnippet(type, quality, notes, category) {
 		if(style == undefined) {
 			//Play arpegiated and then play block
 			if(type == CHORD) {
-				if(category == TWENTIETH || category == JAZZ) {
+				if(category == TWENTIETH) {
 					playBlock();
 				}
 				else {
@@ -238,7 +238,7 @@ function MusicSnippet(type, quality, notes, category) {
 				urls : [files[i]],
 				onpause : function() {
 					sounds[i].stop();
-					soudns[i].volume(1.0);
+					sounds[i].volume(1.0);
 				},
 				onload : function() {
 					numLoaded++;
