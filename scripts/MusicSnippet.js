@@ -148,12 +148,8 @@ function MusicSnippet(type, quality, notes, category) {
 				prevNote = numNotes-1;
 			tempSounds[prevNote].stop();
 		}
-		if(type == SCALE) {
-			tempSounds[i].fadeIn(1.0, .0001);
-		}
-		else{
-			tempSounds[i].play();			
-		}
+
+		tempSounds[i].play();			
 
 		if(type == SCALE) {
 			if(i < numNotes-1) {
