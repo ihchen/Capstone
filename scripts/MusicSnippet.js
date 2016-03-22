@@ -14,7 +14,7 @@ function MusicSnippet(type, quality, notes, category) {
 	const CHORD = "chord";
 	const SCALE = "scale";
 	const INTERVAL = "interval";
-	const TWENTIETH = "20th century";
+	const TWENTIETH = "20th Century";
 	const JAZZ = "jazz";
 
 	const BPM = 80; 				//Beats per minute
