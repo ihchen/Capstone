@@ -132,12 +132,12 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @private
 	 */
 	function playNote(i) {
-		tempSounds[i].play();
-
 		//Don't let notes bleed if playing a scale
 		if(type == SCALE) {
 			stop();
 		}
+		
+		tempSounds[i].play();
 	}
 
 	/**
