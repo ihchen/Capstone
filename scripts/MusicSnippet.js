@@ -46,10 +46,13 @@ function MusicSnippet(type, quality, notes, category) {
 		if(style == undefined) {
 			//Play arpegiated and then play block
 			if(type == CHORD) {
+				console.log("IT'S A CHORD");
 				if(category == TWENTIETH) {
+					console.log("IT'S TWENTIETH");
 					playBlock();
 				}
 				else {
+					console.log("IT'S NOT TWENTIETH");
 					playBroken();
 					timeouts.push(setTimeout(playBlock(), (numNotes/bps)*1000 + (1/bps)*1000));
 				}
