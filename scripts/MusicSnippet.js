@@ -50,11 +50,8 @@ function MusicSnippet(type, quality, notes, category) {
 					playBlock();
 				}
 				else {
-					var delay = (numNotes/bps)*1000 + (1/bps)*1000;
-					console.log(delay);
-					console.log(numNotes);
 					playBroken();
-					timeouts.push(setTimeout(playBlock(), (numNotes/bps)*1000 + (1/bps)*1000));
+					timeouts.push(setTimeout(function() {playBlock();}, (numNotes/bps)*1000 + (1/bps)*1000));
 				}
 			}
 			//Play broken
