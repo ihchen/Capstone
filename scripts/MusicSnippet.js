@@ -1,3 +1,5 @@
+var lastKey = "I"; //Keep track of last key played so that you don't replay it
+
 /**
  * Determines how to play the given notes based on their type and quality, then loads
  * the corresponding audio files and plays them.
@@ -106,8 +108,12 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @private
 	 */
 	function generateTransposition() {
-		var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
-		var tempNotes = setNotes(randKey);		//Array of transposed keys
+		do {
+			// var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
+			var randKey = Math.floor(Math.random()*2);	//Get Random key between -7 and 7
+			var tempNotes = setNotes(randKey);		//Array of transposed keys
+		} while(tempNotes[0] == lastKey);		//Don't generate the previously played key
+		lastKey = tempNotes[0];
 		tempNotes = setOctave(tempNotes);		//Set a random octave
 		return loadFiles(tempNotes);			//Load the corresponding files
 	}
@@ -136,7 +142,7 @@ function MusicSnippet(type, quality, notes, category) {
 		if(type == SCALE) {
 			stop();
 		}
-		
+
 		tempSounds[i].play();
 	}
 
