@@ -65,26 +65,41 @@
 	}
 
 	function updateKey() {
-		// fill key dropdown with all keys w/ common enharmonics - for now
-		document.getElementById('key').innerHTML = 
-			"<option value=''>B#/C</option>" +
-			"<option value=''>C#/Db</option>" +
-			"<option value=''>D</option>" +
-			"<option value=''>D#/Eb</option>" +
-			"<option value=''>E/Fb</option>" +
+		var quality = document.getElementById('quality');
+		var key = document.getElementById('key');
 
-			"<option value=''>E#/F</option>" +
-			"<option value=''>F#/Gb</option>" +
-			"<option value=''>G</option>" +
-			"<option value=''>G#/Ab</option>" +
-			"<option value=''>A</option>" +
-			"<option value=''>A#/Bb</option>" +
-			"<option value=''>B/Cb</option>";
+		// if quality deselected, reset key
+		if (quality.value == "") {
+			key.innerHTML = "<option value=''>-----</option>";
+		}
+		else {
+			// fill key dropdown with all keys w/ common enharmonics - for now
+			key.innerHTML = 
+				"<option value='B#/C'>B#/C</option>" +
+				"<option value='C#/Db'>C#/Db</option>" +
+				"<option value='D'>D</option>" +
+				"<option value='D#/Eb'>D#/Eb</option>" +
+				"<option value='E/Fb'>E/Fb</option>" +
+
+				"<option value='E#/F'>E#/F</option>" +
+				"<option value='F#/Gb'>F#/Gb</option>" +
+				"<option value='G'>G</option>" +
+				"<option value='G#/Ab'>G#/Ab</option>" +
+				"<option value='A'>A</option>" +
+				"<option value='A#/Bb'>A#/Bb</option>" +
+				"<option value='B/Cb'>B/Cb</option>";
+		}
+		
+		
 	}
 
 
 	// plays selected thing
 	function playSelected() {
-		// body...
+		var type = document.getElementById('type');
+		var quality = document.getElementById('quality');
+		var key = document.getElementById('key');
+
+		alert("Playing a " + quality.value + " " + type.value + " in " + key.value);
 	}
 </script>
