@@ -147,7 +147,7 @@ function MusicSnippet(type, quality, notes, category) {
 				prevNote = numNotes -1;
 			}
 			tempSounds[prevNote].stop();
-			tempSOunds[prevNote].volume(1.0);
+			tempSounds[prevNote].volume(1.0);
 		}
 
 		tempSounds[i].play();
