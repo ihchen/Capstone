@@ -7,16 +7,18 @@
 
 <form>
 	<select id="type" onchange="updateQuality()">
-		<option value=""></option>
+		<option value="">-----</option>
 		<option value="scale">Scale</option>
 		<option value="chord">Chord</option>
 	</select>
 	<br>
 	<select id="quality" onchange="updateKey()">
+		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
 	<select id="key">
+		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
@@ -45,9 +47,9 @@
 		var quality = document.getElementById('quality');
 
 		// clear quality and key dropdowns
-		quality.innerHTML = "";
-		document.getElementById('key').innerHTML = "";
-		
+		quality.innerHTML = "<option value=''>-----</option>";
+		document.getElementById('key').innerHTML = "<option value=''>-----</option>";
+
 		if (type.value == "scale") {
 			// fill quality with possible scale qualities
 			for (var i = 0; i < scale_opt.length; i++) {
