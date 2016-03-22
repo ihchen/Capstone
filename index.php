@@ -5,7 +5,7 @@ $thisPage = 'Make My Own Practice Quiz';
 
 <?php require_once('phpincludes/header.php'); ?>
 
-	<title> <?php echo thisPage ?> </title>
+	<title> <?php echo "$thisPage" ?> </title>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
