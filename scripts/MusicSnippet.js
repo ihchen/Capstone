@@ -143,22 +143,20 @@ function MusicSnippet(type, quality, notes, category) {
 		// }
 
 		if(type == SCALE) {
-			var prevNote = i-1;
-			if(prevNote < 0)
-				prevNote = numNotes-1;
-			tempSounds[prevNote].stop();
+			tempSounds[i].pos(0);
+			tempSounds[i].volume(1.0);
 		}
 
 		tempSounds[i].play();			
 
-		// if(type == SCALE) {
-		// 	if(i < numNotes-1) {
-		// 		tempSounds[i].fadeOut(0.5, (1/bps)*1000);
-		// 	}
-		// 	else {
-		// 		tempSounds[i].fadeOut(0.0, (1/bps)*1000);
-		// 	}
-		// }
+		if(type == SCALE) {
+			if(i < numNotes-1) {
+				tempSounds[i].fadeOut(0.3, (1/bps)*1000);
+			}
+			else {
+				tempSounds[i].fadeOut(0.0, (1/bps)*1000);
+			}
+		}
 	}
 
 	/**
