@@ -155,7 +155,7 @@ function MusicSnippet(type, quality, notes, category) {
 
 		if(type == SCALE) {
 			if(i < numNotes -1) {
-				timeouts.push(setTimeout(function() {
+				timeouts.push(setTimeout(function() {r
 					tempSounds[i].fadeOut(0.3, (1/bps)*200);
 				}, (1/bps)*700));
 			}
