@@ -193,6 +193,10 @@ function setOctave(notes) {
       lowestOctave = 2;
     }
 
+    if (notes[0] == "Cb" || notes[0] == "Cbb" || notes[0] == "Dbb") {
+      lowestOctave = 4;
+    }
+
     return Math.floor((Math.random() * (numPlaces)) + lowestOctave);
   }
 
