@@ -114,6 +114,7 @@ function MusicSnippet(type, quality, notes, category) {
 		} while(tempNotes[0] == lastKey);			//Don't generate the previously played key
 		lastKey = tempNotes[0];
 		tempNotes = setOctave(tempNotes);			//Set a random octave
+		console.log(tempNotes);
 		return loadFiles(tempNotes);				//Load the corresponding files
 	}
 	
@@ -154,7 +155,9 @@ function MusicSnippet(type, quality, notes, category) {
 
 		if(type == SCALE) {
 			if(i < numNotes -1) {
-				tempSounds[i].fadeOut(0.3, (1/bps)*1000);
+				timeouts.push(setTimeout(function() {
+					tempSounds[i].fadeOut(0.3, (1/bps)*200);
+				}, (1/bps)*700));
 			}
 			else {
 				tempSounds[i].fadeOut(0.0, (1/bps)*1000);
