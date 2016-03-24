@@ -102,6 +102,7 @@
 
 	// plays selected thing
 	function playSelected() {
+		document.getElementById("loading").style.display = "block"; // display loading message
 		var type = document.getElementById('type').value;
 		var quality = document.getElementById('quality').value;
 		var key = document.getElementById('key').value;
@@ -120,12 +121,15 @@
 		var snippet = new MusicSnippet(type, quality, data[i][2], data[i][3]);
 		snippet.generate(); // TODO: figure out how to set key
 
+		// wait for files to load
+		while(document.getElementById("loading").style.display != "none");
+
 		// play snippet
-		snippet.play(); // TODO: requires "loading" and "allbuttons" elements
+		snippet.play(); // requires "loading" and "allbuttons" elements
 	}
 </script>
 
-<br id="loading">
+<div id="loading" style="display: none">Loading...</div>
 <br id="allbuttons">
 
 <?php require_once("phpincludes/footer.php"); ?>
