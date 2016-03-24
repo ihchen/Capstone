@@ -1,3 +1,9 @@
+<?php 
+	$thisPage = 'Review';
+	require_once("phpincludes/header.php");
+	echo "<title>$thisPage</title>";
+?>
+
 <script src="howler/howler.js"></script>
 <script src="scripts/MusicSnippet.js"></script>
 <script src="scripts/noteToFileNum.js"></script>
@@ -103,3 +109,5 @@
 		alert("Playing a " + quality.value + " " + type.value + " in " + key.value);
 	}
 </script>
+
+<?php require_once("phpincludes/footer.php"); ?>

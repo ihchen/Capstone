@@ -212,3 +212,22 @@ function setOctave(notes) {
 
   return octavizedNotes;
 }
+
+/**
+ * Determines whether two notenames are enharmonically equivalent.
+ * @method isEnharmonic
+ * @param {String} note1
+ * @param {String} note2
+ * @return {Boolean} true or false
+ */
+function isEnharmonic(note1, note2) {
+  var ord1 = ordinal(note1) % 12;
+  var ord2 = ordinal(note2);
+
+  while (ord1 < NOTES.length) {
+    if (ord1 == ord2) return true;
+    ord1 += 12;
+  }
+
+  return false;
+}

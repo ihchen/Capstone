@@ -11,6 +11,6 @@
     <li <?php if ($thisPage == 'Test MusicManip'){echo 'id = "currentpage"';} ?>>
       <a href = "testMusicManip.php" class = "menu-item">Test MusicManip</a></li> -->
     <li <?php if ($thisPage == 'Review'){echo 'id = "currentpage"';} ?>>
-      <a href = "selectSample.php" class = "menu-item">Review</a></li>
+      <a href = "review.php" class = "menu-item">Review</a></li>
   </ul>
 </nav>
