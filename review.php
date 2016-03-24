@@ -102,12 +102,30 @@
 
 	// plays selected thing
 	function playSelected() {
-		var type = document.getElementById('type');
-		var quality = document.getElementById('quality');
-		var key = document.getElementById('key');
+		var type = document.getElementById('type').value;
+		var quality = document.getElementById('quality').value;
+		var key = document.getElementById('key').value;
 
-		alert("Playing a " + quality.value + " " + type.value + " in " + key.value);
+		// console.log("Playing a " + quality + " " + type + " in " + key);
+
+		// find csv index of selected
+		var i;
+		for (i = 0; i < data.length; i++) {
+			if (data[i][0] == type && data[i][1] == quality) {
+				break;
+			}
+		}
+
+		// generate snippet with selected type, quality, and key
+		var snippet = new MusicSnippet(type, quality, data[i][2], data[i][3]);
+		snippet.generate(); // TODO: figure out how to set key
+
+		// play snippet
+		snippet.play(); // TODO: requires "loading" and "allbuttons" elements
 	}
 </script>
+
+<br id="loading">
+<br id="allbuttons">
 
 <?php require_once("phpincludes/footer.php"); ?>
