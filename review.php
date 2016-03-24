@@ -129,8 +129,8 @@
 	// ends the setInterval when files are loaded
 	function loadCheck(intervalID, snippet) {
 		if (document.getElementById("loading").style.display == "none") {
+			clearInterval(intervalID); // stop waiting/looping
 			snippet.play(); // requires "loading" and "allbuttons" elements
-			clearInterval(intervalID);
 		}
 	}
 </script>
