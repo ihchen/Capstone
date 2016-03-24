@@ -123,11 +123,14 @@
 
 		// wait for files to load, then play snippet
 		var intervalID;
+		console.log("playSelected.intervalID before set: " + intervalID);
 		intervalID = setInterval(loadCheck, 1000, intervalID, snippet);
+		console.log("playSelected.intervalID after set: " + intervalID);
 	}
 
 	// ends the setInterval when files are loaded
 	function loadCheck(intervalID, snippet) {
+		console.log("loadCheck.intervalID: " + intervalID);
 		if (document.getElementById("loading").style.display == "none") {
 			clearInterval(intervalID); // stop waiting/looping
 			snippet.play(); // requires "loading" and "allbuttons" elements
