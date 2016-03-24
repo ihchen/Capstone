@@ -121,17 +121,15 @@
 		var snippet = new MusicSnippet(type, quality, data[i][2], data[i][3]);
 		snippet.generate(); // TODO: figure out how to set key
 
-		// wait for files to load
+		// wait for files to load, then play snippet
 		var intervalID;
-		intervalID = setInterval(loadCheck, 1000, intervalID);
-
-		// play snippet
-		snippet.play(); // requires "loading" and "allbuttons" elements
+		intervalID = setInterval(loadCheck, 1000, intervalID, snippet);
 	}
 
 	// ends the setInterval when files are loaded
-	function loadCheck(intervalID) {
+	function loadCheck(intervalID, snippet) {
 		if (document.getElementById("loading").style.display == "none") {
+			snippet.play(); // requires "loading" and "allbuttons" elements
 			clearInterval(intervalID);
 		}
 	}
