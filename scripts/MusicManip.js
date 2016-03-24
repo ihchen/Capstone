@@ -163,19 +163,6 @@ function setOctave(notes) {
   }
 
   /**
-   * Go up one note name. G will loop back to A.
-   * @method increment
-   * @private
-   * @param {String} note name
-   * @return {String} one letter name higher
-   */
-  function increment(noteName) {
-    noteName = String.fromCharCode(noteName.charCodeAt(0) + 1);
-    if (noteName == "H") noteName = "A";
-    return noteName
-  }
-
-  /**
    * Generate a random number for the octave in which a note
    * collection may begin.
    * @method genRandomNum
@@ -215,6 +202,30 @@ function setOctave(notes) {
   }
 
   return octavizedNotes;
+}
+
+/**
+ * Go up one note name. G will loop back to A.
+ * @method increment
+ * @param {String} note name
+ * @return {String} one letter name higher
+ */
+function increment(noteName) {
+  noteName = String.fromCharCode(noteName.charCodeAt(0) + 1);
+  if (noteName == "H") noteName = "A";
+  return noteName;
+}
+
+/**
+ * Go down one note name. A will loop back to G.
+ * @method decrement
+ * @param {String} note name
+ * @return {String} one letter name lower
+ */
+function decrement(noteName) {
+  noteName = String.fromCharCode(noteName.charCodeAt(0) - 1);
+  if (noteName < "A") noteName = "G";
+  return noteName;
 }
 
 /**
