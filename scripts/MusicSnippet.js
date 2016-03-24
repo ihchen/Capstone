@@ -157,9 +157,9 @@ function MusicSnippet(type, quality, notes, category) {
 
 		if(type == SCALE) {
 			// if(i < numNotes -1) {
-			timeouts.push(setTimeout(function() {
-				tempSounds[i].fadeOut(0, (1/bps)*800);
-			}, (1/bps)*400));
+			// timeouts.push(setTimeout(function() {
+				tempSounds[i].fadeOut(0, (1/bps)*1000);
+			// }, (1/bps)*400));
 			// }
 			// else {
 			// 	timeouts.push(setTimeout(function() {
