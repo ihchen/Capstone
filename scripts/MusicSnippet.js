@@ -58,6 +58,9 @@ function MusicSnippet(type, quality, notes, category) {
 			}
 			//Play broken
 			else if(type == SCALE) {
+				for(var i = 0; i < numNotes; i++) {
+					tempSounds[i].volume(1);
+				}
 				playBroken();
 			}
 			else if(type == INTERVAL) {
@@ -148,19 +151,20 @@ function MusicSnippet(type, quality, notes, category) {
 				prevNote = numNotes -1;
 			}
 			tempSounds[prevNote].stop();
-			tempSounds[prevNote].volume(1.0);
 		}
 
 		tempSounds[i].play();
 
 		if(type == SCALE) {
 			if(i < numNotes -1) {
-				timeouts.push(setTimeout(function() {r
-					tempSounds[i].fadeOut(0.3, (1/bps)*200);
-				}, (1/bps)*700));
+				timeouts.push(setTimeout(function() {
+					tempSounds[i].fadeOut(0.3, (1/bps)*400);
+				}, (1/bps)*900));
 			}
 			else {
-				tempSounds[i].fadeOut(0.0, (1/bps)*1000);
+				timeouts.push(setTimeout(function() {
+					tempSounds[i].fadeOut(0.0, (1/bps)*400);
+				}, (1/bps)*900));
 			}
 		}		
 	}
@@ -272,7 +276,7 @@ function MusicSnippet(type, quality, notes, category) {
 						numLoaded = 0;
 					}
 				},
-				onloaderror : function() {console.log(quality+" "+type+" "+i+" loading error")}
+				onloaderror : function() {console.log(quality+" "+type+" loading error")}
 			}));
 		}
 		return sounds;
