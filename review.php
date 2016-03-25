@@ -28,7 +28,7 @@
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<input type="range" id="tempo" min="40" max="200" step="1" value="80" onchange="updateTempo()">80</input>
+	<input type="range" id="tempo" min="40" max="200" step="1" value="80" onchange="updateTempo()"><span id="tempoDisplay">80 BPM</span>
 	<br>
 	<button type="button" onclick="playSelected()">
 		Play Selected
@@ -100,8 +100,7 @@
 	}
 
 	function updateTempo() {
-		var tempo = document.getElementById("tempo");
-		tempo.innerHTML = tempo.value;
+		document.getElementById("tempoDisplay").innerHTML = document.getElementById("tempo").value + " BPM";
 	}
 
 	/**
