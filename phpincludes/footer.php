@@ -1,5 +1,5 @@
 <div id="footer">
-  <p>&copy; Univeristy of Puget Sound 2016</p>
+  <p>&copy; University of Puget Sound 2016</p>
 </div>
 </body>
 </html>

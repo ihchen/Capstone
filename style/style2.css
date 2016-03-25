@@ -18,6 +18,11 @@ body {
   margin-left: 0px;
 }
 
+#instructions {
+	margin: 2em;
+	text-align: center;
+}
+
 center {
 	background-color:#ADD8E6;
 }

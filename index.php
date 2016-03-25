@@ -44,6 +44,10 @@ $thisPage = 'Make My Own Practice Quiz';
 </center> -->
 <body>
 
+	<div id = "instructions">
+		Click on the words "Chords" or "Scales" to expand the dropdown list. Select items you would like to practice identifying. Click "Start Training" to begin your practice quiz.
+	<div>
+
 <form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
 
 	<div id="checkboxcontainer">
@@ -57,8 +61,8 @@ $thisPage = 'Make My Own Practice Quiz';
 				<input type="checkbox" id="type1scale" onclick="checkBoxes('type1scale','type2scale')">
 				<a href="#scales" data-toggle="collapse" data-parent="#accordion">Scales</a><br/>
 				<!-- Interval -->
-				<input type="checkbox" id="type1interval" onclick="checkBoxes('type1interval','type2interval')">
-				<a href="#intervals" data-toggle="collapse" data-parent="#accordion">Intervals</a><br/>
+				<!-- <input type="checkbox" id="type1interval" onclick="checkBoxes('type1interval','type2interval')"> -->
+				<!-- <a href="#intervals" data-toggle="collapse" data-parent="#accordion">Intervals</a><br/> -->
 			</div>
 
 			<!-- Type2 Checkboxes -->
