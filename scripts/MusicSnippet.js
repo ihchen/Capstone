@@ -86,6 +86,8 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @method generate
 	 */
 	this.generate = function() {
+		stop();
+		clear();
 		tempSounds = generateTransposition();
 	}
 
@@ -207,6 +209,7 @@ function MusicSnippet(type, quality, notes, category) {
 	 */
 	function stop() {
 		for(i = 0; i < tempSounds.length; i++) {
+			console.log("Stopping "+i);
 			tempSounds[i].stop();
 		}
 	}
