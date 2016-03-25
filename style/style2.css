@@ -82,7 +82,7 @@ a {
 	/*background-color: #ADD8E6;*/
 	bottom: 10%;
   left: 0;
-  position: fixed;
+  /*position: fixed;*/
   right: 0;
   text-align: center;
 }
@@ -228,7 +228,7 @@ a {
 	/*background-color: #ADD8E6;*/
 	bottom: 0;
   left: 0;
-  position: fixed;
+  /*position: fixed;*/
   right: 0;
   text-align: center;
 }
