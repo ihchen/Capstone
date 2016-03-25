@@ -126,11 +126,11 @@
 		snippet.generate(); // TODO: figure out how to set key
 
 		// wait for files to load, then play snippet
-		load_wait_intervalID = setInterval(loadCheck, 1000, intervalID, snippet);
+		load_wait_intervalID = setInterval(loadCheck, 1000, snippet);
 	}
 
 	// ends the setInterval when files are loaded
-	function loadCheck(intervalID, snippet) {
+	function loadCheck(snippet) {
 		if (document.getElementById("loading").style.display == "none") {
 			clearInterval(load_wait_intervalID); // stop waiting/looping
 			snippet.play(); // requires "loading" and "allbuttons" elements
