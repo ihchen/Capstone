@@ -44,6 +44,7 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @param {String} style How to play the notes. No argument means play it quiz style
 	 */
 	this.play = function(style) {
+		//Stop all sound
 		stop();
 		clear();
 
@@ -88,7 +89,7 @@ function MusicSnippet(type, quality, notes, category) {
 	this.generate = function() {
 		stop();
 		clear();
-		tempSounds = generateTransposition();
+		tempNotes = generateTransposition();
 	}
 
 	/**
@@ -128,7 +129,8 @@ function MusicSnippet(type, quality, notes, category) {
 		lastKey = tempNotes[0];
 		tempNotes = setOctave(tempNotes);			//Set a random octave
 		console.log(tempNotes);
-		return loadFiles(tempNotes);				//Load the corresponding files
+		// return loadFiles(tempNotes);				//Load the corresponding files
+		return tempNotes;
 	}
 	
 	/**
