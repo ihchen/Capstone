@@ -152,7 +152,7 @@ function MusicSnippet(type, quality, notes, category) {
 
 		//Fade out scale notes. Let it kind of bleed over.
 		if(type == SCALE) {
-			tempSounds[i].fadeOut(0, (1/bps)*1500);
+			tempSounds[i].fadeOut(0, (1/bps)*3000);
 		}		
 	}
 
