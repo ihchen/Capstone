@@ -99,6 +99,10 @@
 		
 	}
 
+	/**
+	 When we play the selected chord or scale, we want to wait for the files to load first.  If we use a busy wait, the browser will complain about an unresponsive script, and the user must allow the script to continue.  Javascript has no sleep capability, so we use setInterval instead to simulate the effect.  We want setInterval to stop once the files are loaded, but only the function called by setInterval knows when that is.  Javascript is entirely pass-by-value, so in order for loadCheck to know which interval to clear, the variable must be visible to both setInterval and the function it calls.
+	 */
+	var load_wait_intervalID;
 
 	// plays selected thing
 	function playSelected() {
@@ -122,17 +126,13 @@
 		snippet.generate(); // TODO: figure out how to set key
 
 		// wait for files to load, then play snippet
-		var intervalID;
-		console.log("playSelected.intervalID before set: " + intervalID);
-		intervalID = setInterval(loadCheck, 1000, intervalID, snippet);
-		console.log("playSelected.intervalID after set: " + intervalID);
+		load_wait_intervalID = setInterval(loadCheck, 1000, intervalID, snippet);
 	}
 
 	// ends the setInterval when files are loaded
 	function loadCheck(intervalID, snippet) {
-		console.log("loadCheck.intervalID: " + intervalID);
 		if (document.getElementById("loading").style.display == "none") {
-			clearInterval(intervalID); // stop waiting/looping
+			clearInterval(load_wait_intervalID); // stop waiting/looping
 			snippet.play(); // requires "loading" and "allbuttons" elements
 		}
 	}
