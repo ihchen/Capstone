@@ -44,8 +44,6 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @param {String} style How to play the notes. No argument means play it quiz style
 	 */
 	this.play = function(style) {
-		stop();
-		clear();
 		//Unload and reload
 		if(tempSounds.length > 0) {
 			for(var i = 0; i < numNotes; i++) {
@@ -53,6 +51,9 @@ function MusicSnippet(type, quality, notes, category) {
 			}
 		}
 		tempSounds = loadFiles(tempNotes);
+
+		stop();
+		clear();		
 
 		if(style == undefined) {
 			//Play arpegiated and then play block
@@ -152,7 +153,7 @@ function MusicSnippet(type, quality, notes, category) {
 
 		//Fade out scale notes. Let it kind of bleed over.
 		if(type == SCALE) {
-			tempSounds[i].fadeOut(0, (1/bps)*3000);
+			tempSounds[i].fadeOut(0, (1/bps)*2000);
 		}		
 	}
 
