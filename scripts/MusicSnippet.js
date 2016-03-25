@@ -44,6 +44,8 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @param {String} style How to play the notes. No argument means play it quiz style
 	 */
 	this.play = function(style) {
+
+
 		//Unload and reload
 		if(tempSounds.length > 0) {
 			for(var i = 0; i < numNotes; i++) {
@@ -150,7 +152,7 @@ function MusicSnippet(type, quality, notes, category) {
 
 		//Fade out scale notes. Let it kind of bleed over.
 		if(type == SCALE) {
-			tempSounds[i].fadeOut(0, (1/bps)*2000);
+			tempSounds[i].fadeOut(0, (1/bps)*1500);
 		}		
 	}
 
