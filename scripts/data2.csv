@@ -26,9 +26,9 @@ chord,Major 6/9,C E G A D,Test 2,Jazz
 chord,Minor 6/9,A C E Fx B,Test 2,Jazz
 chord,Major 9 (#5),C E Gx B D,Test 2,Jazz
 chord,Minor-Major 9,C Eb G B D,Test 2,Jazz
-chord,7 (sharp 9),C E Gx Bb Eb,Test 2,Jazz
+chord,7 (sharp 9),C E G Bb Eb,Test 2,Jazz
 chord,7 (flat 9),C E G Bb Db,Test 2,Jazz
-chord,7 (sharp 9/sharp 5),C E G Bb Dx ,Test 2,Jazz
+chord,7 (sharp 9/sharp 5),C E Gx Bb Dx ,Test 2,Jazz
 chord,7 (flat 9/sharp 5),C E Gx Bb Db,Test 2,Jazz
 chord,MM7,C E G B,Test 1,7th
 chord,Mm7,G B D F,Test 1,7th
