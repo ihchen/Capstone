@@ -44,7 +44,8 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @param {String} style How to play the notes. No argument means play it quiz style
 	 */
 	this.play = function(style) {
-
+		stop();
+		clear();
 
 		//Unload and reload
 		if(tempSounds.length > 0) {
@@ -153,7 +154,7 @@ function MusicSnippet(type, quality, notes, category) {
 		//Fade out scale notes. Let it kind of bleed over.
 		if(type == SCALE) {
 			tempSounds[i].fadeOut(0, (1/bps)*1500);
-		}		
+		}
 	}
 
 	/**
@@ -190,7 +191,6 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @private
 	 */
 	function playBrokenHelp(note) {
-		console.log("Playing note "+note);
 		if(note < numNotes) {
 			timeouts.push(setTimeout(function() {
 				playNote(note);
