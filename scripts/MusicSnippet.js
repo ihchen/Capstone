@@ -52,9 +52,6 @@ function MusicSnippet(type, quality, notes, category) {
 		}
 		tempSounds = loadFiles(tempNotes);
 
-		stop();
-		clear();		
-
 		if(style == undefined) {
 			//Play arpegiated and then play block
 			if(type == CHORD) {
