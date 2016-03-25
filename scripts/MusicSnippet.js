@@ -29,6 +29,7 @@ function MusicSnippet(type, quality, notes, category) {
 	var category = category;		//Category
 	var numNotes = notes.length;	//Number of notes
 
+	var tempNotes = [];				//Holds current notes
 	var tempSounds = [];			//Holds current sound
 	var numLoaded = 0;				//Number of loaded files
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
@@ -45,6 +46,14 @@ function MusicSnippet(type, quality, notes, category) {
 	this.play = function(style) {
 		stop();
 		clear();
+		//Unload and reload
+		if(tempSounds.length > 0) {
+			for(var i = 0; i < numNotes; i++) {
+				tempSounds[i].unload();
+			}
+		}
+		tempSounds = loadFiles(tempNotes);
+
 		if(style == undefined) {
 			//Play arpegiated and then play block
 			if(type == CHORD) {
@@ -58,9 +67,6 @@ function MusicSnippet(type, quality, notes, category) {
 			}
 			//Play broken
 			else if(type == SCALE) {
-				for(var i = 0; i < numNotes; i++) {
-					tempSounds[i].volume(1);
-				}
 				playBroken();
 			}
 			else if(type == INTERVAL) {
@@ -113,8 +119,9 @@ function MusicSnippet(type, quality, notes, category) {
 	function generateTransposition() {
 		do {
 			var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
-			var tempNotes = setNotes(randKey);		//Array of transposed keys
+			tempNotes = setNotes(randKey);			//Array of transposed keys
 		} while(tempNotes[0] == lastKey);			//Don't generate the previously played key
+		
 		lastKey = tempNotes[0];
 		tempNotes = setOctave(tempNotes);			//Set a random octave
 		console.log(tempNotes);
@@ -141,31 +148,11 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @private
 	 */
 	function playNote(i) {
-		//Don't let notes bleed if playing a scale
-		// if(type == SCALE) {
-			// stop();
-		// }
-		if(type == SCALE) {
-			var prevNote = i-1;
-			if(prevNote < 0) {
-				prevNote = numNotes -1;
-			}
-			tempSounds[prevNote].stop();
-		}
-
 		tempSounds[i].play();
 
+		//Fade out scale notes. Let it kind of bleed over.
 		if(type == SCALE) {
-			// if(i < numNotes -1) {
-			// timeouts.push(setTimeout(function() {
-				tempSounds[i].fadeOut(0, (1/bps)*1000);
-			// }, (1/bps)*400));
-			// }
-			// else {
-			// 	timeouts.push(setTimeout(function() {
-			// 		tempSounds[i].fadeOut(0.0, (1/bps)*1000);
-			// 	}, (1/bps)*400));
-			// }
+			tempSounds[i].fadeOut(0, (1/bps)*1500);
 		}		
 	}
 
@@ -192,7 +179,7 @@ function MusicSnippet(type, quality, notes, category) {
 		timeouts.push(setTimeout(function() {
 			playNote(0);
 			playBrokenHelp(1);		//Play rest of notes
-		}, 0));
+		}, (1/bps)*500));
 	}
 
 	/*
@@ -203,6 +190,7 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @private
 	 */
 	function playBrokenHelp(note) {
+		console.log("Playing note "+note);
 		if(note < numNotes) {
 			timeouts.push(setTimeout(function() {
 				playNote(note);
@@ -269,7 +257,9 @@ function MusicSnippet(type, quality, notes, category) {
 				urls : [files[i]],
 				onload : function() {
 					numLoaded++;
+					//Display loaded notes
 					console.log("Loaded note "+numLoaded);
+					//If all notes displayed, show buttons
 					if(numLoaded == numNotes) {
 						document.getElementById("loading").style.display = "none";
 						document.getElementById("allbuttons").style.display = "block";
