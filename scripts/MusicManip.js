@@ -191,7 +191,9 @@ function setOctave(notes) {
   var octavizedNotes = [];
   var notename = notes[0].charAt(0);
 
+
   for (var i = 0; i < notes.length; i++) {
+    console.log(notes[i]);
     while (notes[i].charAt(0) != notename) {
       // Creep up note-by-note
       notename = increment(notename);
