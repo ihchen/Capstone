@@ -59,19 +59,27 @@ function MusicSnippet(type, quality, notes, category) {
 			//Play arpegiated and then play block
 			if(type == CHORD) {
 				if(category == TWENTIETH) {
-					playBlock();
+					timeouts.push(setTimeout(function() {
+						playBlock();
+					}, (1/bps)*500));
 				}
 				else {
-					playBlock();
-					timeouts.push(setTimeout(function() {playBroken(1.5);}, (1/bps)*2000));
+					timeouts.push(setTimeout(function() {
+						playBlock();
+						timeouts.push(setTimeout(function() {playBroken(1.5);}, (1/bps)*2000));
+					}, (1/bps)*500));
 				}
 			}
 			//Play broken
 			else if(type == SCALE) {
-				playBroken(1.5);
+				timeouts.push(setTimeout(function() {
+					playBroken(1.5);
+				}, (1/bps)*500));
 			}
 			else {
-				playBroken(1.5);
+				timeouts.push(setTimeout(function() {
+					playBroken(1.5);
+				}, (1/bps)*500));
 			}
 		}
 	}
@@ -160,7 +168,7 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @method playBlock
 	 * @private
 	 */
-	function playBlock() {
+	function playBlock(fade) {
 		for(i = 0; i < numNotes; i++) {
 			tempSounds[i].play();
 		}
@@ -177,7 +185,7 @@ function MusicSnippet(type, quality, notes, category) {
 		//Play first note instantly
 		timeouts.push(setTimeout(function() {
 			playNote(0, fade);
-			playBrokenHelp(1);		//Play rest of notes
+			playBrokenHelp(1, fade);		//Play rest of notes
 		}, (1/bps)*500));
 	}
 
@@ -193,7 +201,7 @@ function MusicSnippet(type, quality, notes, category) {
 		if(note < numNotes) {
 			timeouts.push(setTimeout(function() {
 				playNote(note, fade);
-				playBrokenHelp(note+1);
+				playBrokenHelp(note+1, fade);
 			}, (1/bps)*1000)); //How many seconds per note given the bpm
 		}
 	}
@@ -206,7 +214,6 @@ function MusicSnippet(type, quality, notes, category) {
 	 */
 	function stop() {
 		for(i = 0; i < tempSounds.length; i++) {
-			console.log("Stopping "+i);
 			tempSounds[i].stop();
 		}
 	}
