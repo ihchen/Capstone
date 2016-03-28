@@ -62,7 +62,7 @@ $thisPage = 'Take Quiz';
 
 	<center>
 		<h2> Sound </h2>
-		<div id="loading"><!-- Needs to have id "loading" -->
+		<div id="loading" style="display:none;"><!-- Needs to have id "loading" -->
 			Loading...
 		</div>
 		<div id="allbuttons" style="display:block;"><!-- Needs to have id "allbuttons" -->
