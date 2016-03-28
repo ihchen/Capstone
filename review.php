@@ -28,6 +28,8 @@
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
+	<input type="range" id="tempo" min="40" max="200" step="1" value="80" onchange="updateTempo()"><span id="tempoDisplay">80 BPM</span>
+	<br>
 	<button type="button" onclick="playSelected()">
 		Play Selected
 	</button>
@@ -95,12 +97,16 @@
 				"<option value='A#/Bb'>A#/Bb</option>" +
 				"<option value='B/Cb'>B/Cb</option>";
 		}
-		
-		
+	}
+
+	function updateTempo() {
+		document.getElementById("tempoDisplay").innerHTML = document.getElementById("tempo").value + " BPM";
 	}
 
 	/**
 	 When we play the selected chord or scale, we want to wait for the files to load first.  If we use a busy wait, the browser will complain about an unresponsive script, and the user must allow the script to continue.  Javascript has no sleep capability, so we use setInterval instead to simulate the effect.  We want setInterval to stop once the files are loaded, but only the function called by setInterval knows when that is.  Javascript is entirely pass-by-value, so in order for loadCheck to know which interval to clear, the variable must be visible to both setInterval and the function it calls.
+
+	 Of course, we only need to do this if we load the sounds in generate(), not play()
 	 */
 	var load_wait_intervalID;
 
@@ -126,7 +132,10 @@
 		snippet.generate(); // TODO: figure out how to set key
 
 		// wait for files to load, then play snippet
-		load_wait_intervalID = setInterval(loadCheck, 1000, snippet);
+		// load_wait_intervalID = setInterval(loadCheck, 1000, snippet);
+
+		// if generate() doesn't load the sound files, we can play() immediately
+		snippet.play();
 	}
 
 	// ends the setInterval when files are loaded
