@@ -15,7 +15,6 @@ function MusicSnippet(type, quality, notes, category) {
 	/* Constants */
 	const CHORD = "chord";
 	const SCALE = "scale";
-	const INTERVAL = "interval";
 	const TWENTIETH = "20th Century";
 	const JAZZ = "jazz";
 
@@ -64,18 +63,15 @@ function MusicSnippet(type, quality, notes, category) {
 				}
 				else {
 					playBlock();
-					timeouts.push(setTimeout(function() {playBroken();}, (1/bps)*2000));
+					timeouts.push(setTimeout(function() {playBroken(1.5);}, (1/bps)*2000));
 				}
 			}
 			//Play broken
 			else if(type == SCALE) {
-				playBroken();
-			}
-			else if(type == INTERVAL) {
-				playBroken();
+				playBroken(1.5);
 			}
 			else {
-				playBroken();
+				playBroken(1.5);
 			}
 		}
 	}
@@ -150,15 +146,12 @@ function MusicSnippet(type, quality, notes, category) {
 	 * 
 	 * @method playNote
 	 * @param {Integer} i Index of the note to be played
+	 * @param {Float} fade Number of beats to fade over
 	 * @private
 	 */
-	function playNote(i) {
+	function playNote(i, fade) {
 		tempSounds[i].play();
-
-		//Fade out scale notes. Let it kind of bleed over.
-		if(type == SCALE) {
-			tempSounds[i].fadeOut(0, (1/bps)*1500);
-		}
+		tempSounds[i].fadeOut(0, (1/bps)*1000*fade);
 	}
 
 	/**
@@ -177,12 +170,13 @@ function MusicSnippet(type, quality, notes, category) {
 	 * Plays all notes in sequence with timing based on bpm
 	 *
 	 * @method playBroken
+	 * @param {Float} fade Number of beats to fade each note by
 	 * @private
 	 */
-	function playBroken() {
+	function playBroken(fade) {
 		//Play first note instantly
 		timeouts.push(setTimeout(function() {
-			playNote(0);
+			playNote(0, fade);
 			playBrokenHelp(1);		//Play rest of notes
 		}, (1/bps)*500));
 	}
@@ -192,12 +186,13 @@ function MusicSnippet(type, quality, notes, category) {
 	 *
 	 * @method playBrokenHelp
 	 * @param {Integer} note An index representing the note to be played
+	 * @param {Float} fade Number of beats to fade each note by
 	 * @private
 	 */
-	function playBrokenHelp(note) {
+	function playBrokenHelp(note, fade) {
 		if(note < numNotes) {
 			timeouts.push(setTimeout(function() {
-				playNote(note);
+				playNote(note, fade);
 				playBrokenHelp(note+1);
 			}, (1/bps)*1000)); //How many seconds per note given the bpm
 		}
