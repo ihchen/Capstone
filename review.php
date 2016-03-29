@@ -110,7 +110,7 @@
 
 	 Of course, we only need to do this if we load the sounds in generate(), not play()
 	 */
-	var load_wait_intervalID;
+	// var load_wait_intervalID;
 
 	// plays selected thing
 	function playSelected() {
@@ -132,6 +132,7 @@
 		// generate snippet with selected type, quality, and key
 		var snippet = new MusicSnippet(type, quality, data[i][2], data[i][3]);
 		snippet.generate(); // TODO: figure out how to set key
+		snippet.setBPM(document.getElementById("tempo").value);
 
 		// wait for files to load, then play snippet
 		// load_wait_intervalID = setInterval(loadCheck, 1000, snippet);
@@ -141,12 +142,12 @@
 	}
 
 	// ends the setInterval when files are loaded
-	function loadCheck(snippet) {
-		if (document.getElementById("loading").style.display == "none") {
-			clearInterval(load_wait_intervalID); // stop waiting/looping
-			snippet.play(); // requires "loading" and "allbuttons" elements
-		}
-	}
+	// function loadCheck(snippet) {
+		// if (document.getElementById("loading").style.display == "none") {
+			// clearInterval(load_wait_intervalID); // stop waiting/looping
+			// snippet.play(); // requires "loading" and "allbuttons" elements
+		// }
+	// }
 </script>
 
 <div id="loading" style="display: none">Loading...</div>
