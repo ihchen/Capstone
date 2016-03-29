@@ -221,11 +221,15 @@ a {
 	}
 }
 
+#wrapper {
+
+}
+
 #header {
 	background-color: #ADD8E6;
 	font-family: Verdana, Geneva, sans-serif;
 	/*font-size: 1.5em;*/
-	/*position: fixed;*/
+	position: fixed;
 }
 
 #footer {
@@ -233,7 +237,7 @@ a {
 	/*background-color: #ADD8E6;*/
 	bottom: 0;
   left: 0;
-  /*position: fixed;*/
+  position: fixed;
   right: 0;
   text-align: center;
 }

@@ -42,7 +42,7 @@ $thisPage = 'Make My Own Practice Quiz';
 <center>
 	<h1> UPS Ear Training </h1>
 </center> -->
-<body>
+<body id = "content">
 
 	<div id = "instructions">
 		Click on the words "Chords" or "Scales" to expand the dropdown list. Select items you would like to practice identifying. Click "Start Training" to begin your practice quiz.

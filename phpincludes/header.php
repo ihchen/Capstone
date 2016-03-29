@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- <div id = "wrapper"> -->
 <head>
   <title>Ear Trainer: <?php echo $thisPage; ?></title>
   <meta charset="utf-8">
@@ -14,9 +15,7 @@
       <img src="images/img.png" alt="Logo" />
     </div> -->
     <?php require_once('phpincludes/navbar.php'); ?>
-    </div>
+  </div>
 </head>
-  <br></br>
-  <br></br>
-  <br></br>
-  <br></br>
+<br></br>
+<br></br>

@@ -70,7 +70,7 @@ function Note(notename, octave) {
    * Reference array for converting the difference between two ordinal positions
    * in the circle of fifths to the arbitrary name of an interval.
    */
-  const intervals = {
+  const INTERVALS = {
     "-6" : "d5",
     "-5" : "m2",
     "-4" : "m6",
@@ -87,9 +87,9 @@ function Note(notename, octave) {
   }
 
   function getNumByInterval(interval) {
-    for (var num in intervals) {
-      if (intervals.hasOwnProperty(num)) {
-        if (intervals[num] == interval) {
+    for (var num in INTERVALS) {
+      if (INTERVALS.hasOwnProperty(num)) {
+        if (INTERVALS[num] == interval) {
           return parseInt(num);
         }
       }
@@ -111,7 +111,7 @@ function Note(notename, octave) {
     }
 
     var ordDiff = higher - lower;
-    var interval = intervals[ordDiff];
+    var interval = INTERVALS[ordDiff];
     return interval;
 
   }

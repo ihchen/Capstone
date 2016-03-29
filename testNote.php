@@ -42,6 +42,8 @@ document.write(g4.toString() + " u " + g4.getNextNote("unison", false) + "<br>")
 document.write(c4.toString() + " M7 " + c4.getNextNote("M7", false) + "<br>");
 document.write(c4.toString() + " p5 " + c4.getNextNote("p5", true) + "<br>");
 
+var palette = 
+
 
 
 
