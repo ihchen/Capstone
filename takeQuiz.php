@@ -67,7 +67,7 @@ $thisPage = 'Take Quiz';
 		</div>
 
 		<div id="allbuttons" style="display:none;">
-			<button onclick="play()">Play</button><br><br>
+			<button onclick="snippet.play()">Play</button><br><br>
 			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
 
 			<div id="revealed" style="display:none;">
@@ -79,11 +79,6 @@ $thisPage = 'Take Quiz';
 
 <script>
 	document.getElementById("answer").innerHTML = snippet.answer();
-
-	function play() {
-		document.getElementById("loading").style.display = "block";
-		snippet.play();
-	}
 
 	function nextQuestion() {
 		hide();
