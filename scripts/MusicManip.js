@@ -259,12 +259,3 @@ function isEnharmonic(note1, note2) {
 function findShift(note1, note2) {
   return ordinal(note2) - ordinal(note1);
 }
-
-/**
- * Seeded shuffle.
- * @
- */
-function shuffleNotes(notes, seed) {
-  Math.seedrandom(seed);
-  console.log(Math.random());
-}

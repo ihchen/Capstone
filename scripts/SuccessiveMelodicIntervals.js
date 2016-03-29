@@ -119,8 +119,32 @@ function SuccessiveMelodicIntervals() {
     return palette;
   }
 
+  /**
+   * Seeded shuffle.
+   * @param shuffleNotes
+   * @param {Note[]} notes to shuffle
+   * @param {Integer} seed
+   * @return {Note[]} shuffled notes
+   */
+  function shuffleNotes(notes, seed) {
+    Math.seedrandom(seed);
 
+    var shuffled = [];
+    var strikeList = [];
 
+    while (shuffled.length != notes.length) {
+      var rand = Math.floor((Math.random() + notes.length);
+      if (indexOf(rand) == -1) {
+        // We have not used this number yet! Add to shuffled list
+        shufled.push(notes[rand]);
+        // Strike out this number
+        strikeList.push(rand);
+      } else {
+        // We have already used this number. Keep going!
+      }
+    }
+    return shuffled;
+  }
 
 }
 
