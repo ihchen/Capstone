@@ -18,8 +18,9 @@ function MusicSnippet(type, quality, notes, category) {
 	const TWENTIETH = "20th Century";
 	const JAZZ = "jazz";
 
-	const BPM = 80; 				//Beats per minute
+	var bpm = 80;					//Beats per minute
 	var bps = BPM/60; 				//Beats per second
+	var delay = (1/bps)*500;		//Time to allow files to load
 
 	/* Variables */
 	var baseNotes = notes;			//Store the base notes to transpose from
@@ -109,10 +110,10 @@ function MusicSnippet(type, quality, notes, category) {
 	 *
 	 * @method stopSound
 	 */
-	this.stopSound = function() {
-		stop();
-		clear();
-	}
+	// this.stopSound = function() {
+	// 	stop();
+	// 	clear();
+	// }
 
 	/**
 	 * Fades all sound out
@@ -127,6 +128,15 @@ function MusicSnippet(type, quality, notes, category) {
 			}
 			clear();
 		}
+	}
+
+	/**
+	 * Sets the bpm
+	 *
+	 * @method setBPM
+	 */
+	this.setBPM = function(beats) {
+		bpm = beats;
 	}
 
 	/**
