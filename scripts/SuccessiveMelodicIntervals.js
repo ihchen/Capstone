@@ -5,10 +5,11 @@
  */
 function SuccessiveMelodicIntervals() {
   const LENGTH = 4;
-  var notes = generateMelody();
-  var answers = calculateAnswers();
   // Global random
   var g = Math.random();
+  var notes = generateMelody();
+  var answers = calculateAnswers();
+
 
   /**
    * @method getAnswers
@@ -73,6 +74,8 @@ function SuccessiveMelodicIntervals() {
 
         // Clean palette index array
         paletteIndices[i] = 0;
+
+        // Prepare index
         i--;
 
         // Remove the previous element because it does not lead us anywhere
@@ -95,6 +98,7 @@ function SuccessiveMelodicIntervals() {
     if (i == 0) {
       // There is no previous note.
       // Do something completely different.
+      return getStartingPalette();
     }
 
     var palette = [];
@@ -118,6 +122,13 @@ function SuccessiveMelodicIntervals() {
     }
     return palette;
   }
+
+  /**
+   * Create a palette of notes to try based on previous note.
+   * @method getStartingPalette
+   * @return {Note[]} palette
+   */
+  function getStartingPalette() {
 
   /**
    * Seeded shuffle.
