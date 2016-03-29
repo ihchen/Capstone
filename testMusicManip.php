@@ -9,6 +9,12 @@ $thisPage = 'Test MusicManip';
 <br></br>
 <script src = "scripts/MusicManip.js"> </script>
 <script>
+document.write(findShift("C", "G") + "<br>");
+document.write(findShift("C", "D") + "<br>");
+document.write(findShift("C", "Fx") + "<br>");
+document.write(findShift("Bb", "G") + "<br>");
+document.write(findShift("D", "G") + "<br>");
+
 // a test script for the Note.js class
 // start with a C major scale
 var notes1 = ["C", "D", "E", "F", "G", "A", "B", "C"];

@@ -35,7 +35,7 @@
     */
    function checkRepeats() {
      for (var i = 0; i < notes.length; i++) {
-       for (var j = 0; j < notes.length; j++) {
+       for (var j = 0; j < i; j++) {
          if (i == j) continue;
          if (notes[i].compareTo(notes[j]) == 0) return false;
        }
@@ -77,6 +77,18 @@
     * @return {Boolean}
     */
    function checkIntervals() {
+     var intervals = [];
+
+     for (var i = 0; i < notes.length - 1; i++) {
+       var compare = notes[i].compareTo(notes[i + 1]);
+       if (intervals.index(compare) == -1) {
+         intervals.push(compare);
+       } else {
+         // This interval has already been used!
+         return false;
+       }
+     }
+     return true;
 
    }
 

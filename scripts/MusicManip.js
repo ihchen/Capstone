@@ -248,3 +248,23 @@ function isEnharmonic(note1, note2) {
 
   return false;
 }
+
+/**
+ * Find the amount to shift to get to a particular note.
+ * @method findShift
+ * @param {String} starting noteName
+ * @param {String} goal noteName
+ * @return {Integer} shift
+ */
+function findShift(note1, note2) {
+  return ordinal(note2) - ordinal(note1);
+}
+
+/**
+ * Seeded shuffle.
+ * @
+ */
+function shuffleNotes(notes, seed) {
+  Math.seedrandom(seed);
+  console.log(Math.random());
+}
