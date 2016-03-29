@@ -111,7 +111,7 @@ function MusicSnippet(type, quality, notes, category) {
 	this.fadeOut = function() {
 		if(tempSounds.length > 0) {    
 			for(var i = 0; i < numNotes; i++) {
-				tempSounds[i].fadeOut(0.0, 1);
+				tempSounds[i].fadeOut(0.0, 100);
 			}
 			clear();
 		}
