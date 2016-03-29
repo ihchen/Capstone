@@ -17,11 +17,11 @@ function MusicSnippet(type, quality, notes, category) {
 	const SCALE = "scale";
 	const TWENTIETH = "20th Century";
 
+	/* Variables */
 	var BPM = 80;					//Beats per minute
 	var bps = BPM/60; 				//Beats per second
 	var delay = (1/bps)*500;		//Time to allow files to load
 
-	/* Variables */
 	var baseNotes = notes;			//Store the base notes to transpose from
 	var type = type;				//Chord, scale, or interval
 	var quality = quality;			//Answer
@@ -30,8 +30,8 @@ function MusicSnippet(type, quality, notes, category) {
 
 	var tempNotes = [];				//Holds current notes
 	var tempSounds = [];			//Holds current sound
-	var numLoaded = 0;				//Number of loaded files
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
+	var numLoaded = 0;				//Number of loaded files
 
 	/**
 	 * Unloads the previous files and loads the new files (this is because of the bug with
@@ -109,10 +109,9 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @method fadeOut
 	 */
 	this.fadeOut = function() {
-		console.log("fading");
-		if(tempSounds.length > 0) {
+		if(tempSounds.length > 0) {    
 			for(var i = 0; i < numNotes; i++) {
-				tempSounds[i].fadeOut(0.0, (1/bps)*500);
+				tempSounds[i].fadeOut(0.0, 1);
 			}
 			clear();
 		}
