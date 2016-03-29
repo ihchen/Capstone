@@ -85,7 +85,7 @@ $thisPage = 'Take Quiz';
 
 	function nextQuestion() {
 		hide();
-		snippet.stopSound();
+		snippet.fadeOut();
 		snippet = qg.getNextQuestion();
 		snippet.generate();
 		document.getElementById("answer").innerHTML = snippet.answer();
