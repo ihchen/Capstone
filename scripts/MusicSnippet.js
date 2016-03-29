@@ -16,9 +16,8 @@ function MusicSnippet(type, quality, notes, category) {
 	const CHORD = "chord";
 	const SCALE = "scale";
 	const TWENTIETH = "20th Century";
-	const JAZZ = "jazz";
 
-	var bpm = 80;					//Beats per minute
+	var BPM = 80;					//Beats per minute
 	var bps = BPM/60; 				//Beats per second
 	var delay = (1/bps)*500;		//Time to allow files to load
 
@@ -35,17 +34,13 @@ function MusicSnippet(type, quality, notes, category) {
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 
 	/**
-	 * Plays the loaded files:
-	 *  - Chords are played broken then blocked
-	 *  - Scales are played broken
-	 *  - Intervals are played broken
+	 * Unloads the previous files and loads the new files (this is because of the bug with
+	 * Howler's fadeOut function). Then plays the notes in a given/default style.
 	 *
 	 * @method play
 	 * @param {String} style How to play the notes. No argument means play it quiz style
 	 */
 	this.play = function(style) {
-		//Stop all sound
-		stop();
 		clear();
 
 		//Unload and reload
@@ -56,38 +51,41 @@ function MusicSnippet(type, quality, notes, category) {
 		}
 		tempSounds = loadFiles(tempNotes);
 
+		//If no defined style, play from these set of rules
 		if(style == undefined) {
-			//Play arpegiated and then play block
+			//Play Chord
 			if(type == CHORD) {
+				//If 20th century chord, just play blocked
 				if(category == TWENTIETH) {
 					timeouts.push(setTimeout(function() {
 						playBlock();
-					}, (1/bps)*500));
+					}, delay));
 				}
+				//Otherwise, play argpegiated, then blocked
 				else {
 					timeouts.push(setTimeout(function() {
 						playBlock();
 						timeouts.push(setTimeout(function() {playBroken(1.5);}, (1/bps)*2000));
-					}, (1/bps)*500));
+					}, delay));
 				}
 			}
-			//Play broken
+			//Play Scale broken
 			else if(type == SCALE) {
 				timeouts.push(setTimeout(function() {
 					playBroken(1.5);
-				}, (1/bps)*500));
+				}, delay));
 			}
+			//If something else, just play it broken
 			else {
 				timeouts.push(setTimeout(function() {
 					playBroken(1.5);
-				}, (1/bps)*500));
+				}, delay));
 			}
 		}
 	}
 
 	/**
 	 * Randomly transposes the notes given from the CSV file and gives them a random octave.
-	 * Then loads the corresponding audio files.
 	 * 
 	 * @method generate
 	 */
@@ -104,16 +102,6 @@ function MusicSnippet(type, quality, notes, category) {
 	this.answer = function() {
 		return quality+" "+type;
 	}
-
-	/**
-	 * Stops all sound
-	 *
-	 * @method stopSound
-	 */
-	// this.stopSound = function() {
-	// 	stop();
-	// 	clear();
-	// }
 
 	/**
 	 * Fades all sound out
@@ -134,17 +122,17 @@ function MusicSnippet(type, quality, notes, category) {
 	 * Sets the bpm
 	 *
 	 * @method setBPM
+	 * @param {Integer} bpm Desired beats per minute
 	 */
-	this.setBPM = function(beats) {
-		bpm = beats;
+	this.setBPM = function(bpm) {
+		BPM = bpm;
 	}
 
 	/**
-	 * Transposes and sets octave of the notes from the CSV file randomly, then loads the
-	 * corresponding files
+	 * Transposes and sets octave of the notes from the CSV file randomly.
 	 *
 	 * @method generateTransposition
-	 * @return {Howl Array} An array of Howl objects that have the loaded audio files
+	 * @return {String array} An array of the notes that can be loaded into Howl objects
 	 * @private
 	 */
 	function generateTransposition() {
@@ -153,10 +141,9 @@ function MusicSnippet(type, quality, notes, category) {
 			tempNotes = setNotes(randKey);			//Array of transposed keys
 		} while(tempNotes[0] == lastKey);			//Don't generate the previously played key
 		
-		lastKey = tempNotes[0];
+		lastKey = tempNotes[0];						//Save the new key
 		tempNotes = setOctave(tempNotes);			//Set a random octave
 		console.log(tempNotes);
-		// return loadFiles(tempNotes);				//Load the corresponding files
 		return tempNotes;
 	}
 	
@@ -173,7 +160,7 @@ function MusicSnippet(type, quality, notes, category) {
 	}
 
 	/**
-	 * Plays the note at the given index in the loaded files array
+	 * Plays the note at the given index in the loaded files array. Fades out the note.
 	 * 
 	 * @method playNote
 	 * @param {Integer} i Index of the note to be played
@@ -191,13 +178,13 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @method playBlock
 	 * @private
 	 */
-	function playBlock(fade) {
+	function playBlock() {
 		for(i = 0; i < numNotes; i++) {
 			tempSounds[i].play();
 		}
 	}
 
-	/*
+	/**
 	 * Plays all notes in sequence with timing based on bpm
 	 *
 	 * @method playBroken
@@ -205,14 +192,11 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @private
 	 */
 	function playBroken(fade) {
-		//Play first note instantly
-		timeouts.push(setTimeout(function() {
-			playNote(0, fade);
-			playBrokenHelp(1, fade);		//Play rest of notes
-		}, (1/bps)*500));
+		playNote(0, fade);
+		playBrokenHelp(1, fade);
 	}
 
-	/*
+	/**
 	 * Recursive helper for playBroken()
 	 *
 	 * @method playBrokenHelp
@@ -229,7 +213,7 @@ function MusicSnippet(type, quality, notes, category) {
 		}
 	}
 
-	/*
+	/**
 	 * Stops all sound immediately
 	 * 
 	 * @method stop
@@ -241,7 +225,7 @@ function MusicSnippet(type, quality, notes, category) {
 		}
 	}
 
-	/*
+	/**
 	 * Clears all timeouts (delayed sounds)
 	 * 
 	 * @method clear
@@ -292,7 +276,6 @@ function MusicSnippet(type, quality, notes, category) {
 					//If all notes displayed, show buttons
 					if(numLoaded == numNotes) {
 						document.getElementById("loading").style.display = "none";
-						document.getElementById("allbuttons").style.display = "block";
 						numLoaded = 0;
 					}
 				},

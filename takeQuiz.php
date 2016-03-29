@@ -65,13 +65,13 @@ $thisPage = 'Take Quiz';
 		<div id="loading" style="display:none;"><!-- Needs to have id "loading" -->
 			Loading...
 		</div>
-		<div id="allbuttons" style="display:block;"><!-- Needs to have id "allbuttons" -->
-			<button onclick="play()">Play</button><br><br>
-			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
-			<div id="revealed" style="display:none;">
-				<p id="answer"></p>
-				<button onclick="nextQuestion()">Next Question</button>
-			</div>
+
+		<button onclick="play()">Play</button><br><br>
+		<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
+		
+		<div id="revealed" style="display:none;">
+			<p id="answer"></p>
+			<button onclick="nextQuestion()">Next Question</button>
 		</div>
 	</center>
 
