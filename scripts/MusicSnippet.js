@@ -91,8 +91,6 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @method generate
 	 */
 	this.generate = function() {
-		stop();
-		clear();
 		tempNotes = generateTransposition();
 	}
 
@@ -114,6 +112,21 @@ function MusicSnippet(type, quality, notes, category) {
 	this.stopSound = function() {
 		stop();
 		clear();
+	}
+
+	/**
+	 * Fades all sound out
+	 *
+	 * @method fadeOut
+	 */
+	this.fadeOut = function() {
+		console.log("fading");
+		if(tempSounds.length > 0) {
+			for(var i = 0; i < numNotes; i++) {
+				tempSounds[i].fadeOut(0.0, (1/bps)*500);
+			}
+			clear();
+		}
 	}
 
 	/**
