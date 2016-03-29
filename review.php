@@ -30,6 +30,11 @@
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
+	<select id="opt">
+		<option value="">-----</option>
+		<!-- Fill with JavaScript -->
+	</select>
+	<br>
 	<input type="range" id="tempo" min="40" max="200" step="1" value="80" onchange="updateTempo()"><span id="tempoDisplay">80 BPM</span>
 	<br>
 	<button type="button" onclick="playSelected()">
@@ -55,6 +60,7 @@
 	function updateQuality() {
 		var type = document.getElementById('type');
 		var quality = document.getElementById('quality');
+		var opt = document.getElementById('opt');
 
 		// clear quality and key dropdowns
 		quality.innerHTML = "<option value=''>-----</option>";
@@ -65,12 +71,24 @@
 			for (var i = 0; i < scale_opt.length; i++) {
 				quality.innerHTML = quality.innerHTML + "<option value='"+scale_opt[i]+"'>"+scale_opt[i]+"</option>";
 			}
+			// fill opt with scale options
+			opt.innerHTML = 
+				"<option value=''>-----</option>\
+				<option value='asc'>Ascending</option>\
+				<option value='desc'>Descending</option>";
 		}
 		else if (type.value == "chord") {
 			// fill quality with possible chord qualities
 			for (var i = 0; i < chord_opt.length; i++) {
 				quality.innerHTML = quality.innerHTML + "<option value='"+chord_opt[i]+"'>"+chord_opt[i]+"</option>";
 			}
+			// fill opt with chord options
+			opt.innerHTML = 
+				"<option value=''>-----</option>\
+				<option value='root'>Root Position</option>\
+				<option value='first'>First Position</option>\
+				<option value='second'>Second Position</option>\
+				<option value='third'>Third Position (if applicable)</option>";
 		}
 	}
 
@@ -85,19 +103,18 @@
 		else {
 			// fill key dropdown with all keys w/ common enharmonics - for now
 			key.innerHTML = 
-				"<option value='B#/C'>B#/C</option>" +
-				"<option value='C#/Db'>C#/Db</option>" +
-				"<option value='D'>D</option>" +
-				"<option value='D#/Eb'>D#/Eb</option>" +
-				"<option value='E/Fb'>E/Fb</option>" +
-
-				"<option value='E#/F'>E#/F</option>" +
-				"<option value='F#/Gb'>F#/Gb</option>" +
-				"<option value='G'>G</option>" +
-				"<option value='G#/Ab'>G#/Ab</option>" +
-				"<option value='A'>A</option>" +
-				"<option value='A#/Bb'>A#/Bb</option>" +
-				"<option value='B/Cb'>B/Cb</option>";
+				"<option value='B#/C'>B#/C</option>\
+				<option value='C#/Db'>C#/Db</option>\
+				<option value='D'>D</option>\
+				<option value='D#/Eb'>D#/Eb</option>\
+				<option value='E/Fb'>E/Fb</option>\
+				<option value='E#/F'>E#/F</option>\
+				<option value='F#/Gb'>F#/Gb</option>\
+				<option value='G'>G</option>\
+				<option value='G#/Ab'>G#/Ab</option>\
+				<option value='A'>A</option>\
+				<option value='A#/Bb'>A#/Bb</option>\
+				<option value='B/Cb'>B/Cb</option>";
 		}
 	}
 
@@ -122,7 +139,7 @@
 		// console.log("Playing a " + quality + " " + type + " in " + key);
 		
 		// checking inputs
-		if (type == "" || quality == "") {
+		if (key == "") { // key is only not blank when everything else is selected
 			document.getElementById("loading").style.display = "none"; // clear the loading message
 			alert("Please select a scale or chord.");
 			return false;
