@@ -86,13 +86,14 @@
 			opt.innerHTML = 
 				"<option value=''>-----</option>\
 				<option value='root'>Root Position</option>\
-				<option value='first'>First Position</option>\
-				<option value='second'>Second Position</option>\
-				<option value='third'>Third Position (if applicable)</option>";
+				<option value='first'>First Inversion</option>\
+				<option value='second'>Second Inversion</option>\
+				<option value='third'>Third Inversion (if applicable)</option>";
 		}
 	}
 
 	function updateKey() {
+		var type = document.getElementById('type');
 		var quality = document.getElementById('quality');
 		var key = document.getElementById('key');
 
@@ -101,20 +102,32 @@
 			key.innerHTML = "<option value=''>-----</option>";
 		}
 		else {
-			// fill key dropdown with all keys w/ common enharmonics - for now
-			key.innerHTML = 
-				"<option value='B#/C'>B#/C</option>\
-				<option value='C#/Db'>C#/Db</option>\
-				<option value='D'>D</option>\
-				<option value='D#/Eb'>D#/Eb</option>\
-				<option value='E/Fb'>E/Fb</option>\
-				<option value='E#/F'>E#/F</option>\
-				<option value='F#/Gb'>F#/Gb</option>\
-				<option value='G'>G</option>\
-				<option value='G#/Ab'>G#/Ab</option>\
-				<option value='A'>A</option>\
-				<option value='A#/Bb'>A#/Bb</option>\
-				<option value='B/Cb'>B/Cb</option>";
+			// find first note of selected thing
+			var first;
+			for (var i = 0; i < data.length; i++) {
+				if (data[i][0] == type && data[i][1] == quality) {
+					first = data[i][2][0];
+					break;
+				}
+			}
+
+			// find index in NOTES
+			var first_ord = ordinal(first);
+
+			// put 6 notes before and after into list
+			var keys = [];
+			for (var i = -6; i < 6; i++) {
+				keys.push(NOTES[first_ord+i]);
+			}
+
+			// alphabetize list
+			keys.sort();
+
+			// convert list to option tags
+			key.innerHTML = "";
+			for (var i = 0; i < keys.length; i++) {
+				key.innerHTML = key.innerHTML + "<option value='" + keys[i] + "'>" + keys[i] + "</option>";
+			}
 		}
 	}
 
@@ -127,7 +140,7 @@
 
 	 Of course, we only need to do this if we load the sounds in generate(), not play()
 	 */
-	// var load_wait_intervalID;
+	var load_wait_intervalID;
 
 	// plays selected thing
 	function playSelected() {
@@ -135,6 +148,7 @@
 		var type = document.getElementById('type').value;
 		var quality = document.getElementById('quality').value;
 		var key = document.getElementById('key').value;
+		var opt = document.getElementById('opt').value;
 
 		// console.log("Playing a " + quality + " " + type + " in " + key);
 		
@@ -153,25 +167,36 @@
 			}
 		}
 
+		// reverseDirection or setInversion if necessary
+		var note_input = data[i][2];
+		if (opt == "Descending") 
+			note_input = reverseDirection(note_input);
+		else if (opt == "first")
+			note_input = setInversion(note_input, 1);
+		else if (opt == "second")
+			note_input = setInversion(note_input, 2);
+		else if (opt == "third")
+			note_input = setInversion(note_input, 3);
+
 		// generate snippet with selected type, quality, and key
-		var snippet = new MusicSnippet(type, quality, data[i][2], data[i][3]);
-		snippet.generate(); // TODO: figure out how to set key
+		var snippet = new MusicSnippet(type, quality, note_input, data[i][3]);
+		snippet.generate(key); // TODO: figure out how to set key
 		snippet.setBPM(document.getElementById("tempo").value);
 
 		// wait for files to load, then play snippet
-		// load_wait_intervalID = setInterval(loadCheck, 1000, snippet);
+		load_wait_intervalID = setInterval(loadCheck, 1000, snippet);
 
 		// if generate() doesn't load the sound files, we can play() immediately
 		snippet.play();
 	}
 
 	// ends the setInterval when files are loaded
-	// function loadCheck(snippet) {
-		// if (document.getElementById("loading").style.display == "none") {
-			// clearInterval(load_wait_intervalID); // stop waiting/looping
-			// snippet.play(); // requires "loading" and "allbuttons" elements
-		// }
-	// }
+	function loadCheck(snippet) {
+		if (document.getElementById("loading").style.display == "none") {
+			clearInterval(load_wait_intervalID); // stop waiting/looping
+			snippet.play(); // requires "loading" and "allbuttons" elements
+		}
+	}
 </script>
 
 <div id="loading" style="display: none">Loading...</div>
