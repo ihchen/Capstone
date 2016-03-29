@@ -62,16 +62,18 @@ $thisPage = 'Take Quiz';
 
 	<center>
 		<h2> Sound </h2>
-		<div id="loading" style="display:none;"><!-- Needs to have id "loading" -->
+		<div id="loading" style="display:block;"><!-- Needs to have id "loading" -->
 			Loading...
 		</div>
 
-		<button onclick="play()">Play</button><br><br>
-		<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
-		
-		<div id="revealed" style="display:none;">
-			<p id="answer"></p>
-			<button onclick="nextQuestion()">Next Question</button>
+		<div id="allbuttons" style="display:none;">
+			<button onclick="play()">Play</button><br><br>
+			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
+
+			<div id="revealed" style="display:none;">
+				<p id="answer"></p>
+				<button onclick="nextQuestion()">Next Question</button>
+			</div>
 		</div>
 	</center>
 
@@ -97,6 +99,7 @@ $thisPage = 'Take Quiz';
 	}
 
 	function hide() {
+		document.getElementById("loading").style.display = "block";		
 		document.getElementById("revealbutt").style.display = "block";
 		document.getElementById("revealed").style.display = "none";
 	}

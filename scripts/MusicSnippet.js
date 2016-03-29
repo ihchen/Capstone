@@ -16,6 +16,7 @@ function MusicSnippet(type, quality, notes, category) {
 	const CHORD = "chord";
 	const SCALE = "scale";
 	const TWENTIETH = "20th Century";
+	const CHORD_DELAY = 2;			//Number of beats between playing chord blocked then broken
 
 	/* Variables */
 	var BPM = 80;					//Beats per minute
@@ -41,15 +42,8 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @param {String} style How to play the notes. No argument means play it quiz style
 	 */
 	this.play = function(style) {
+		stop();
 		clear();
-
-		//Unload and reload
-		if(tempSounds.length > 0) {
-			for(var i = 0; i < numNotes; i++) {
-				tempSounds[i].unload();
-			}
-		}
-		tempSounds = loadFiles(tempNotes);
 
 		//If no defined style, play from these set of rules
 		if(style == undefined) {
@@ -57,40 +51,34 @@ function MusicSnippet(type, quality, notes, category) {
 			if(type == CHORD) {
 				//If 20th century chord, just play blocked
 				if(category == TWENTIETH) {
-					timeouts.push(setTimeout(function() {
-						playBlock();
-					}, delay));
+					playBlock(CHORD_DELAY);
 				}
 				//Otherwise, play argpegiated, then blocked
 				else {
-					timeouts.push(setTimeout(function() {
-						playBlock();
-						timeouts.push(setTimeout(function() {playBroken(1.5);}, (1/bps)*2000));
-					}, delay));
+					playBlock(CHORD_DELAY);
+					timeouts.push(setTimeout(function() {playBroken(1.5);}, (1/bps)*CHORD_DELAY));
 				}
 			}
 			//Play Scale broken
 			else if(type == SCALE) {
-				timeouts.push(setTimeout(function() {
-					playBroken(1.5);
-				}, delay));
+				playBroken(1.5);
 			}
 			//If something else, just play it broken
 			else {
-				timeouts.push(setTimeout(function() {
-					playBroken(1.5);
-				}, delay));
+				playBroken(1.5);
 			}
 		}
 	}
 
 	/**
 	 * Randomly transposes the notes given from the CSV file and gives them a random octave.
+	 * If key is given, then transposes to the given key. Loads the corresponding files.
 	 * 
 	 * @method generate
 	 */
-	this.generate = function() {
-		tempNotes = generateTransposition();
+	this.generate = function(key) {
+		tempNotes = generateTransposition(key);
+		tempSounds = loadFiles(tempNotes);
 	}
 
 	/**
@@ -134,15 +122,19 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @return {String array} An array of the notes that can be loaded into Howl objects
 	 * @private
 	 */
-	function generateTransposition() {
-		do {
-			var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
-			tempNotes = setNotes(randKey);			//Array of transposed keys
-		} while(tempNotes[0] == lastKey);			//Don't generate the previously played key
+	function generateTransposition(key) {
+		if(key == undefined) {
+			do {
+				var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
+				tempNotes = setNotes(randKey);			//Array of transposed keys
+			} while(tempNotes[0] == lastKey);			//Don't generate the previously played key
+		}
+		else {
+			tempNotes = setNotes(findShift(baseNotes[0], key));
+		}
 		
 		lastKey = tempNotes[0];						//Save the new key
 		tempNotes = setOctave(tempNotes);			//Set a random octave
-		console.log(tempNotes);
 		return tempNotes;
 	}
 	
@@ -168,18 +160,24 @@ function MusicSnippet(type, quality, notes, category) {
 	 */
 	function playNote(i, fade) {
 		tempSounds[i].play();
-		tempSounds[i].fadeOut(0, (1/bps)*1000*fade);
+		tempSounds[i].fadeOut(0, (1/bps)*1000*fade, 
+			function() {
+				tempSounds[i].stop();
+				tempSounds[i].volume(1.0);
+			}
+		);
 	}
 
 	/**
 	 * Plays all notes at the same time
 	 *
 	 * @method playBlock
+	 * @param {Integer} fade Number of beats to fade out in
 	 * @private
 	 */
-	function playBlock() {
+	function playBlock(fade) {
 		for(i = 0; i < numNotes; i++) {
-			tempSounds[i].play();
+			playNote(i, fade);
 		}
 	}
 
@@ -275,6 +273,7 @@ function MusicSnippet(type, quality, notes, category) {
 					//If all notes displayed, show buttons
 					if(numLoaded == numNotes) {
 						document.getElementById("loading").style.display = "none";
+						document.getElementById("allbuttons").style.display = "block";
 						numLoaded = 0;
 					}
 				},
