@@ -11,6 +11,8 @@
 <script src="scripts/QuestionGenerator.js"></script>
 <script src="scripts/ParseCSV.js"></script>
 
+<body>
+
 <form>
 	<select id="type" onchange="updateQuality()">
 		<option value="">-----</option>
@@ -149,5 +151,7 @@
 
 <div id="loading" style="display: none">Loading...</div>
 <br id="allbuttons">
+
+</body>
 
 <?php require_once("phpincludes/footer.php"); ?>
