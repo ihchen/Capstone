@@ -120,6 +120,13 @@
 		var key = document.getElementById('key').value;
 
 		// console.log("Playing a " + quality + " " + type + " in " + key);
+		
+		// checking inputs
+		if (type == "" || quality == "") {
+			document.getElementById("loading").style.display = "none"; // clear the loading message
+			alert("Please select a scale or chord.");
+			return false;
+		}
 
 		// find csv index of selected
 		var i;
