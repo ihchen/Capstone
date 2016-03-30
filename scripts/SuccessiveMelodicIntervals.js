@@ -8,7 +8,15 @@ function SuccessiveMelodicIntervals() {
   // Global random
   var g = Math.random();
   var notes = generateMelody();
-  var answers = calculateAnswers();
+  // var answers = calculateAnswers();
+
+  // var startnote = getStartingNote()
+  // document.write(startnote.toString() + "<br>");
+  //
+  // var notesp = getPalette(startnote, 1);
+  // document.write(notesp);
+  document.write(notes);
+
 
 
   /**
@@ -41,11 +49,20 @@ function SuccessiveMelodicIntervals() {
   function generateMelody() {
 
     var paletteIndices = [];
+    var melody = [];
 
     var i = 0;
 
-    while (notes[LENGTH - 1] == null) {
-      var palette = getPalette(i);
+    while (melody[LENGTH - 1] == null) {
+      var palette;
+      if (i == 0) {
+        melody.push(getStartingNote());
+        console.log("i = " + i);
+        console.log("melody.length = " + melody.length);
+        console.log(melody[i].toString());
+        i++;
+        continue;
+      } else palette = getPalette(melody[i-1], i);
 
       for (var j = paletteIndices[i]; j < palette.length; j++) {
         melody.push(palette[j]);
@@ -94,13 +111,7 @@ function SuccessiveMelodicIntervals() {
    * @param {Integer} melody current index
    * @return {Note[]} palette
    */
-  function getPalette(i) {
-    if (i == 0) {
-      // There is no previous note.
-      // Do something completely different.
-      return getStartingPalette();
-    }
-
+  function getPalette(previousNote, i) {
     var palette = [];
 
     var lowestnote = new Note("C", 3);
@@ -108,27 +119,38 @@ function SuccessiveMelodicIntervals() {
 
     var direction = true;
     for (var j = -6; j < 7; j++) {
-      var interval = intervals(j);
-      var notetoadd = melody[i - 1].getNextNote(interval, direction);
+      // var interval = intervals(j);
+      console.log(previousNote.toString());
+      var notetoadd = previousNote.getNextNote(j, direction);
 
-      if (lowestnote.compareTo(notetoadd) == 1 || highestnote.compareTo(notetoadd) == -1) {
-        // Do not add notes that are out of bounds
+      if (lowestnote.compareTo(notetoadd) == 1 || highestnote.compareTo(notetoadd) == -1
+        || notetoadd.getAccidental() == -2 || notetoadd.getAccidental() == 2) {
+        // Do not add notes that are out of bounds.
+        // Do not use double sharps and double flats.
         continue;
-      } else {
+      }
+      else {
         palette.push(notetoadd);
       }
       // Now add all notes in the descending direction.
-      if (i == 6 && direction) direction = false;
+      if (j == 6 && direction) direction = false;
     }
-    return palette;
+    return shuffleNotes(palette, g * i);
   }
 
   /**
-   * Create a palette of notes to try based on previous note.
+   * Picks a random starting note. Use notes 9 through 25 (Gb—A#)
    * @method getStartingPalette
-   * @return {Note[]} palette
+   * @return {Note} palette
    */
-  function getStartingPalette() {
+  function getStartingNote() {
+    var rand = Math.floor((Math.random() * 16) + 9);
+    var notename = NOTES[rand];
+    // var octave = Math.floor((Math.random() * 3) + 3);
+
+    return new Note(notename, 4);
+
+  }
 
   /**
    * Seeded shuffle.
@@ -143,11 +165,12 @@ function SuccessiveMelodicIntervals() {
     var shuffled = [];
     var strikeList = [];
 
-    while (shuffled.length != notes.length) {
-      var rand = Math.floor((Math.random() + notes.length);
-      if (indexOf(rand) == -1) {
+    while (shuffled.length < notes.length) {
+      var rand = Math.floor(Math.random() * notes.length);
+
+      if (strikeList.indexOf(rand) == -1) {
         // We have not used this number yet! Add to shuffled list
-        shufled.push(notes[rand]);
+        shuffled.push(notes[rand]);
         // Strike out this number
         strikeList.push(rand);
       } else {
@@ -158,7 +181,3 @@ function SuccessiveMelodicIntervals() {
   }
 
 }
-
-
-
- // Use notes 9 through 25 (Gb—A#)
