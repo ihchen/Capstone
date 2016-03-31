@@ -42,40 +42,12 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @param {String} style How to play the notes. No argument means play it quiz style
 	 */
 	this.play = function(style) {
-		//If no defined style, play from these set of rules
-		if(style == undefined) {
-			//Play Chord
-			if(type == CHORD) {
-				//If 20th century chord, just play blocked
-				if(category == TWENTIETH) {
-					// timeouts.push(setTimeout(function() {playBlock();}, 500));
-					playBlock();
-				}
-				//Otherwise, play argpegiated, then blocked
-				else {
-					playBlock(CHORD_DELAY);
-					timeouts.push(setTimeout(
-						function() {
-							playBroken(1.5);
-						},
-					(1/bps)*1000*CHORD_DELAY));
-				}
-			}
-			//Play Scale broken
-			else if(type == SCALE) {
-				playBroken(1.5);
-			}
-			//If something else, just play it broken
-			else {
-				playBroken(1.5);
-			}
-		}
-		else if(style == "desc") {
+		if(style == "desc") {
 			tempSounds.reverse();
-			playBroken(1.5);
 		}
 		else if(style == "first") {
 			tempSounds.push(tempSounds.shift());
+
 		}
 		else if(style == "second") {
 			tempSounds.push(tempSounds.shift());
@@ -85,6 +57,32 @@ function MusicSnippet(type, quality, notes, category) {
 			tempSounds.push(tempSounds.shift());
 			tempSounds.push(tempSounds.shift());
 			tempSounds.push(tempSounds.shift());
+		}
+		
+		//Play Chord
+		if(type == CHORD) {
+			//If 20th century chord, just play blocked
+			if(category == TWENTIETH) {
+				// timeouts.push(setTimeout(function() {playBlock();}, 500));
+				playBlock();
+			}
+			//Otherwise, play argpegiated, then blocked
+			else {
+				playBlock(CHORD_DELAY);
+				timeouts.push(setTimeout(
+					function() {
+						playBroken(1.5);
+					},
+				(1/bps)*1000*CHORD_DELAY));
+			}
+		}
+		//Play Scale broken
+		else if(type == SCALE) {
+			playBroken(1.5);
+		}
+		//If something else, just play it broken
+		else {
+			playBroken(1.5);
 		}
 	}
 
