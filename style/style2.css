@@ -227,6 +227,7 @@ a {
 	#nav > ul > li {
       width: 103%;
       float: none;
+			text-align: left;
   }
 
 	#nav #currentpage > a {
