@@ -70,6 +70,11 @@ function MusicSnippet(type, quality, notes, category) {
 				playBroken(1.5);
 			}
 		}
+		if(style == "desc") {
+			tempSounds.reverse();
+			playBroken(1.5);
+			tempSounds.reverse();
+		}
 	}
 
 	/**
