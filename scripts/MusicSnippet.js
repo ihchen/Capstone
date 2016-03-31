@@ -140,6 +140,8 @@ function MusicSnippet(type, quality, notes, category) {
 	 */
 	this.setBPM = function(bpm) {
 		BPM = bpm;
+		bps = BPM/60; 				//Beats per second
+		delay = (1/bps)*500;		//Time before playing
 	}
 
 	/**
