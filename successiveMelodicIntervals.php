@@ -28,7 +28,6 @@ Please enter the number of SMIs you would like to generate:
 </div>
 </body>
 
-<div id="footer">
 <script type="text/javascript">
 
   function generateSMIs(num) {

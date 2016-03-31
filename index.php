@@ -122,5 +122,4 @@ $thisPage = 'Make My Own Practice Quiz';
 	}
 </script>
 
-<div id="footer">
 <?php require_once('phpincludes/footer.php'); ?>
