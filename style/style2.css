@@ -232,6 +232,10 @@ a {
 	position: fixed;
 }
 
+#content {
+	text-align: center;
+}
+
 #footer {
 	font-size:0.5em;
 	/*background-color: #ADD8E6;*/

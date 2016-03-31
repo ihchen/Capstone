@@ -12,7 +12,7 @@ function SuccessiveMelodicIntervals() {
   var notes = generateMelody();
   // var answers = calculateAnswers();
 
-  document.write(notes);
+  // document.write(notes);
 
 
   SuccessiveMelodicIntervals.getLength = function() {
