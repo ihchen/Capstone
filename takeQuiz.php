@@ -69,14 +69,14 @@ $thisPage = 'Take Quiz';
 		<br></br>
 
 		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
-			<button id="playbtn" onclick="play()" style="display:block;">Play</button>
-			<button id="stopbtn" onclick="stop()" style="display:none;">Stop</button>
+			<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
+			<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
 			<br><br>
 			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
 
 			<div id="revealed" style="display:none;">
 				<p id="answer"></p>
-				<button onclick="nextQuestion()">Next Question</button>
+				<button class="button" onclick="nextQuestion()">Next Question</button>
 			</div>
 		</div>
 	</center>
