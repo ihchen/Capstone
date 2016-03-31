@@ -61,7 +61,6 @@ $thisPage = 'Take Quiz';
 </script>
 
 	<center>
-		<h2> Sound </h2>
 		<div id="loading" style="display:block;"><!-- Needs to have id "loading" -->
 			Loading...
 		</div>
