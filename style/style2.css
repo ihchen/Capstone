@@ -36,6 +36,11 @@ center {
 	text-align:left;
 }
 
+#asdf {
+	text-align: center;
+  white-space: nowrap;
+}
+
 #checkboxcontainer {
 	padding-left:10%;
 }
