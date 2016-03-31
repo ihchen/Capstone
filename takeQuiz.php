@@ -61,6 +61,7 @@ $thisPage = 'Take Quiz';
 </script>
 
 	<center>
+<<<<<<< HEAD
 		<h2> Sound </h2>
 		<div id="loading" style="display:block;"><!-- Needs to have id "loading" -->
 			Loading...
@@ -74,6 +75,23 @@ $thisPage = 'Take Quiz';
 				<p id="answer"></p>
 				<button onclick="nextQuestion()">Next Question</button>
 			</div>
+=======
+		<br></br>
+		<br></br>
+		<br></br>
+
+		<!-- <h2> Sound </h2> -->
+		<div id="loading" style="display:none;"><!-- Needs to have id "loading" -->
+			Loading...
+		</div>
+
+		<button class = "button" onclick="play()">Play</button><br><br>
+		<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
+
+		<div id="revealed" style="display:none;">
+			<p id="answer"></p>
+			<button class = "button" onclick="nextQuestion()">Next Question</button>
+>>>>>>> f25d64a5c48c59c8ca5a43ed1218d63da2a94a03
 		</div>
 	</center>
 

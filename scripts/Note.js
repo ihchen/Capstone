@@ -125,12 +125,22 @@ function Note(notename, octave) {
    */
   this.getNextNote = function(interval, direction) {
     var ord = ordinal(notename);
-    var shift = getNumByInterval(interval);
+    // var shift = getNumByInterval(interval);
+    var shift = interval;
+
+    // console.log("ord = " + ord);
+    // console.log("shift = " + shift);
+
     var index;
     if (direction) {
       index = ord + shift;
     } else {
       index = ord - shift;
+    }
+    // console.log("index = " + index);
+    if (index < 0 || index > NOTES.length-1) {
+
+
     }
     var newnote = NOTES[index];
 

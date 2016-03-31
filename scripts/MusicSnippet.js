@@ -21,7 +21,7 @@ function MusicSnippet(type, quality, notes, category) {
 	/* Variables */
 	var BPM = 80;					//Beats per minute
 	var bps = BPM/60; 				//Beats per second
-	var delay = (1/bps)*500;		//Time to allow files to load
+	var delay = (1/bps)*500;		//Time before playing
 
 	var baseNotes = notes;			//Store the base notes to transpose from
 	var type = type;				//Chord, scale, or interval
@@ -42,21 +42,23 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @param {String} style How to play the notes. No argument means play it quiz style
 	 */
 	this.play = function(style) {
-		stop();
-		clear();
-
 		//If no defined style, play from these set of rules
 		if(style == undefined) {
 			//Play Chord
 			if(type == CHORD) {
 				//If 20th century chord, just play blocked
 				if(category == TWENTIETH) {
-					playBlock(CHORD_DELAY);
+					// timeouts.push(setTimeout(function() {playBlock();}, 500));
+					playBlock();
 				}
 				//Otherwise, play argpegiated, then blocked
 				else {
 					playBlock(CHORD_DELAY);
-					timeouts.push(setTimeout(function() {playBroken(1.5);}, (1/bps)*CHORD_DELAY));
+					timeouts.push(setTimeout(
+						function() {
+							playBroken(1.5);
+						},
+					(1/bps)*1000*CHORD_DELAY));
 				}
 			}
 			//Play Scale broken
@@ -68,6 +70,17 @@ function MusicSnippet(type, quality, notes, category) {
 				playBroken(1.5);
 			}
 		}
+	}
+
+	/**
+	 * Stops all sound
+	 *
+	 * @method stop
+	 */
+	this.stop = function() {
+		stop();
+		clear();
+		setVolume(1.0);
 	}
 
 	/**
@@ -97,11 +110,24 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @method fadeOut
 	 */
 	this.fadeOut = function() {
-		if(tempSounds.length > 0) {    
-			for(var i = 0; i < numNotes; i++) {
-				tempSounds[i].fadeOut(0.0, 100);
-			}
-			clear();
+		fade(0);
+		clear();
+	}
+
+	/**
+	 * Recursive helper function for this.fadeOut
+	 *
+	 * @method fade
+	 * @param {Integer} note Which note to fade
+	 * @private
+	 */
+	function fade(note) {
+		if(note < numNotes) {
+			tempSounds[note].fadeOut(0.0, 100, function() {
+				tempSounds[note].stop();
+				tempSounds[note].volume(1.0);
+			});
+			fade(note+1);
 		}
 	}
 
@@ -151,7 +177,8 @@ function MusicSnippet(type, quality, notes, category) {
 	}
 
 	/**
-	 * Plays the note at the given index in the loaded files array. Fades out the note.
+	 * Plays the note at the given index in the loaded files array. Fades out the note if
+	 * given.
 	 * 
 	 * @method playNote
 	 * @param {Integer} i Index of the note to be played
@@ -160,12 +187,14 @@ function MusicSnippet(type, quality, notes, category) {
 	 */
 	function playNote(i, fade) {
 		tempSounds[i].play();
-		tempSounds[i].fadeOut(0, (1/bps)*1000*fade, 
-			function() {
-				tempSounds[i].stop();
-				tempSounds[i].volume(1.0);
-			}
-		);
+		if(fade != undefined) {
+			tempSounds[i].fadeOut(0, (1/bps)*1000*fade, 
+				function() {
+					tempSounds[i].stop();
+					tempSounds[i].volume(1.0);
+				}
+			);
+		}
 	}
 
 	/**
@@ -176,7 +205,7 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @private
 	 */
 	function playBlock(fade) {
-		for(i = 0; i < numNotes; i++) {
+		for(var i = 0; i < numNotes; i++) {
 			playNote(i, fade);
 		}
 	}
@@ -217,7 +246,7 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @private
 	 */
 	function stop() {
-		for(i = 0; i < tempSounds.length; i++) {
+		for(var i = 0; i < tempSounds.length; i++) {
 			tempSounds[i].stop();
 		}
 	}
@@ -230,9 +259,22 @@ function MusicSnippet(type, quality, notes, category) {
 	 */
 	function clear() {
 		var initLength = timeouts.length;
-		for(i = 0; i < initLength; i++) {
+		for(var i = 0; i < initLength; i++) {
 			clearTimeout(timeouts[timeouts.length-1]);
 			timeouts.pop();
+		}
+	}
+
+	/**
+	 * Sets the volume
+	 *
+	 * @method setVolume
+	 * @param {Float} vol Volume to set to (0.0 - 1.0)
+	 * @private
+	 */
+	function setVolume(vol) {
+		for(var i = 0; i < numNotes; i++) {
+			tempSounds[i].volume(vol);
 		}
 	}
 
@@ -251,7 +293,7 @@ function MusicSnippet(type, quality, notes, category) {
 		var sounds = [];	//Howl objects of files
 
 		//Get midi numbers of given notes
-		for(i = 0; i < numNotes; i++) {
+		for(var i = 0; i < numNotes; i++) {
 			midi.push(noteToFileNum[notes[i]]);
 			//Error checking
 			if(midi[i] == undefined) {
@@ -263,7 +305,7 @@ function MusicSnippet(type, quality, notes, category) {
 		files = convMidiToFile(midi);
 
 		//Load sound files
-		for(i = 0; i < numNotes; i++) {
+		for(var i = 0; i < numNotes; i++) {
 			sounds.push(new Howl({
 				urls : [files[i]],
 				onload : function() {
@@ -293,7 +335,7 @@ function MusicSnippet(type, quality, notes, category) {
  	 */
 	function convMidiToFile(midi) {
 		var files = [];
-		for(i = 0; i < numNotes; i++) {
+		for(var i = 0; i < numNotes; i++) {
 			files.push("audio/piano/piano"+midi[i]+".wav");
 		}
 		return files;
