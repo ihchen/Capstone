@@ -65,6 +65,9 @@ $thisPage = 'Take Quiz';
 			Loading...
 		</div>
 
+		<br></br>
+		<br></br>
+
 		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
 			<button id="playbtn" onclick="play()" style="display:block;">Play</button>
 			<button id="stopbtn" onclick="stop()" style="display:none;">Stop</button>
@@ -84,13 +87,13 @@ $thisPage = 'Take Quiz';
 	function play() {
 		snippet.play();
 		document.getElementById("playbtn").style.display = "none";
-		document.getElementById("stopbtn").style.display = "block";		
+		document.getElementById("stopbtn").style.display = "block";
 	}
 
 	function stop() {
 		snippet.fadeOut();
 		document.getElementById("playbtn").style.display = "block";
-		document.getElementById("stopbtn").style.display = "none";		
+		document.getElementById("stopbtn").style.display = "none";
 	}
 
 	function nextQuestion() {
@@ -107,7 +110,7 @@ $thisPage = 'Take Quiz';
 	}
 
 	function hide() {
-		document.getElementById("loading").style.display = "block";		
+		document.getElementById("loading").style.display = "block";
 		document.getElementById("revealbutt").style.display = "block";
 		document.getElementById("revealed").style.display = "none";
 	}
