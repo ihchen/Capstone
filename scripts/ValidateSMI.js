@@ -6,11 +6,7 @@
  */
  function validateSMI(notes) {
 
-  //  console.log("notes.length in validateSMI = " + notes.length);
-  //  console.log(notes);
-
    if (notes.length == 1) return true;
-  //  console.log("notes.length in validateSMI = " + notes.length);
    var sorted = sortNotes();
 
    if (checkRepeats() && checkSpan() && checkDirections() &&
@@ -30,7 +26,6 @@
    	while (swapping) {
    		swapping = false;
    		for (var i = 0; i < sortedNotes.length - 1; i++) {
-        // console.log(i);
 
    			if (sortedNotes[i].compareTo(sortedNotes[i + 1]) > 0) {
           var tmp = sortedNotes[i];
@@ -40,15 +35,6 @@
    			}
    		}
    	}
-   		// Loop will break if nothing changed for an entire pass.
-   		// Meaning, we're sorted!!
-      // document.write("from sort:<br>");
-      // document.write("unsorted: ");
-      // document.write(notes);
-      // document.write("<br>");
-      // document.write("sorted: ");
-      // document.write(sortedNotes);
-      // document.write("<br>");
 
    		return sortedNotes;
    }
@@ -87,7 +73,6 @@
     * @return {Boolean}
     */
    function checkDirections() {
-    //  return true;
      if (notes.length < 3) {
        // We cannot check this until the melody has reached terminal length.
        return true;
@@ -97,18 +82,12 @@
 
      for (var i = 0; i < notes.length - 1; i++) {
        if (i == 2) document.write("2");
-      //  document.write("i = " + i + "<br>");
-      //  document.write("note1 = " + notes[i] + ", note2 = " + notes[i+1] + "<br>");
-      //  document.write("compareTo = " + notes[i].compareTo(notes[i+1]) + "<br>");
-      //  document.write(notes[i].compareTo(notes[i+1]) + "<br>");
        if ((notes[i].compareTo(notes[i+1]) > 0 && precedent < 0) ||
           (notes[i].compareTo(notes[i+1]) < 0 && precedent > 0)) return true;
 
      }
 
     //  If we've made it here, they were all the same direction.
-    // console.log("return false");
-
     return false;
 
    }
@@ -119,7 +98,6 @@
     * @return {Boolean}
     */
    function checkIntervals() {
-    //  return true;
 
      var intervals = [];
 
@@ -149,16 +127,16 @@
      // with another rule.
      //  var badChords = [[4, 3, 7, 4], [3, 4, 7, 3], [3, 3, 6, 3]];
 
-     var badChords = [[4, 3], [3, 7], [7, 4], [3, 4], [4, 7], [7, 3], [3, 3], [3, 6], [6, 3], [4, 4]];
+     var badChords = [[4, 3], [3, 5], [5, 4], [3, 4], [4, 5], [5, 3], [3, 3], [3, 6], [6, 3], [4, 4]];
 
      for (var i = 0; i < sorted.length - 2; i++) {
        for (var j = i + 1; j < sorted.length - 1; j++) {
-         var interval = sorted[j].compareTo(sorted[i]);
+         var interval = Math.abs(sorted[j].compareTo(sorted[i]));
          for (var k = 0; k < badChords.length; k++) {
            if (interval == badChords[k][0]) {
              // We have found a potential problem!
             for (var l = j + 1; l < sorted.length; l++) {
-              var interval2 = sorted[l].compareTo(sorted[j]);
+              var interval2 = Math.abs(sorted[l].compareTo(sorted[j]));
               if (interval2 == badChords[k][1]) return false;
             }
            }
