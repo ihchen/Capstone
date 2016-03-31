@@ -73,7 +73,6 @@ function MusicSnippet(type, quality, notes, category) {
 		if(style == "desc") {
 			tempSounds.reverse();
 			playBroken(1.5);
-			tempSounds.reverse();
 		}
 	}
 
