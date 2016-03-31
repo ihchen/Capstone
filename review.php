@@ -65,6 +65,7 @@
 		// clear quality and key dropdowns
 		quality.innerHTML = "<option value=''>-----</option>";
 		document.getElementById('key').innerHTML = "<option value=''>-----</option>";
+		opt.innerHTML = "<option value=''>-----</option>";
 
 		if (type.value == "scale") {
 			// fill quality with possible scale qualities
@@ -73,8 +74,7 @@
 			}
 			// fill opt with scale options
 			opt.innerHTML = 
-				"<option value=''>-----</option>\
-				<option value='asc'>Ascending</option>\
+				"<option value='asc'>Ascending</option>\
 				<option value='desc'>Descending</option>";
 		}
 		else if (type.value == "chord") {
@@ -84,11 +84,10 @@
 			}
 			// fill opt with chord options
 			opt.innerHTML = 
-				"<option value=''>-----</option>\
-				<option value='root'>Root Position</option>\
+				"<option value='root'>Root Position</option>\
 				<option value='first'>First Inversion</option>\
 				<option value='second'>Second Inversion</option>\
-				<option value='third'>Third Inversion (if applicable)</option>";
+				<option value='third'>Third Inversion</option>";
 		}
 	}
 
@@ -105,7 +104,7 @@
 			// find first note of selected thing
 			var first;
 			for (var i = 0; i < data.length; i++) {
-				if (data[i][0] == type && data[i][1] == quality) {
+				if (data[i][0] == type.value && data[i][1] == quality.value) {
 					first = data[i][2][0];
 					break;
 				}
@@ -167,34 +166,36 @@
 			}
 		}
 
-		// reverseDirection or setInversion if necessary
-		var note_input = data[i][2];
-		if (opt == "Descending") 
-			note_input = reverseDirection(note_input);
-		else if (opt == "first")
-			note_input = setInversion(note_input, 1);
-		else if (opt == "second")
-			note_input = setInversion(note_input, 2);
-		else if (opt == "third")
-			note_input = setInversion(note_input, 3);
-
 		// generate snippet with selected type, quality, and key
-		var snippet = new MusicSnippet(type, quality, note_input, data[i][3]);
-		snippet.generate(key); // TODO: figure out how to set key
+		var snippet = new MusicSnippet(type, quality, data[i][2], data[i][3]);
+		// inversions
+		if (opt == "first") {
+			snippet.generate(key, 1);
+		}
+		else if (opt == "second") {
+			snippet.generate(key, 2);
+		}
+		else if (opt == "third") {
+			snippet.generate(key, 3);
+		}
+		else {
+			snippet.generate(key, 0);
+		}
+
 		snippet.setBPM(document.getElementById("tempo").value);
 
 		// wait for files to load, then play snippet
-		load_wait_intervalID = setInterval(loadCheck, 1000, snippet);
+		load_wait_intervalID = setInterval(loadCheck, 1000, snippet, opt);
 
 		// if generate() doesn't load the sound files, we can play() immediately
-		snippet.play();
+		// snippet.play();
 	}
 
 	// ends the setInterval when files are loaded
-	function loadCheck(snippet) {
+	function loadCheck(snippet, opt) {
 		if (document.getElementById("loading").style.display == "none") {
 			clearInterval(load_wait_intervalID); // stop waiting/looping
-			snippet.play(); // requires "loading" and "allbuttons" elements
+			snippet.play(opt);
 		}
 	}
 </script>
