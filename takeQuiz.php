@@ -65,9 +65,10 @@ $thisPage = 'Take Quiz';
 			Loading...
 		</div>
 
-		<div id="allbuttons" style="display:none;">
-			<button id="playbtn" onclick="snippet.play()">Play</button>
-			<button id="stopbtn" onclick="snippet.play()" style="display:none;">Stop</button><br><br>
+		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
+			<button id="playbtn" onclick="play()" style="display:block;">Play</button>
+			<button id="stopbtn" onclick="stop()" style="display:none;">Stop</button>
+			<br><br>
 			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
 
 			<div id="revealed" style="display:none;">
