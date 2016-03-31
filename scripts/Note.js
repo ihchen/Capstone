@@ -86,15 +86,15 @@ function Note(notename, octave) {
     "6" : "a4"
   }
 
-  function getNumByInterval(interval) {
-    for (var num in INTERVALS) {
-      if (INTERVALS.hasOwnProperty(num)) {
-        if (INTERVALS[num] == interval) {
-          return parseInt(num);
-        }
-      }
-    }
-  }
+  // function getNumByInterval(interval) {
+  //   for (var num in INTERVALS) {
+  //     if (INTERVALS.hasOwnProperty(num)) {
+  //       if (INTERVALS[num] == interval) {
+  //         return parseInt(num);
+  //       }
+  //     }
+  //   }
+  // }
 
   /**
    * Calculates the interval between two notes in standard notation.
@@ -139,8 +139,8 @@ function Note(notename, octave) {
     }
     // console.log("index = " + index);
     if (index < 0 || index > NOTES.length-1) {
-
-
+      // Input was bad.
+      return null;
     }
     var newnote = NOTES[index];
 

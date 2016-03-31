@@ -12,5 +12,7 @@
       <a href = "testMusicManip.php" class = "menu-item">Test MusicManip</a></li> -->
     <li <?php if ($thisPage == 'Review'){echo 'id = "currentpage"';} ?>>
       <a href = "review.php" class = "menu-item">Review</a></li>
+    <li <?php if ($thisPage == 'Successive Melodic Intervals'){echo 'id = "currentpage"';} ?>>
+      <a href = "successiveMelodicIntervals.php" class = "menu-item">Successive Melodic Intervals</a></li>
   </ul>
 </nav>
