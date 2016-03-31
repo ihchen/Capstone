@@ -13,7 +13,7 @@ $thisPage = 'Successive Melodic Intervals';
 <script src = "scripts/ValidateSMI.js"> </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
 
-<div id ="content">
+<div id ="smi">
 Please enter the number of SMIs you would like to generate:
 <form name="asdf">
   <input id="num" type="number" name="numtogenerate" value ="10" min="1" max="50" required>
@@ -26,8 +26,9 @@ Please enter the number of SMIs you would like to generate:
   <p id="stuff"></p>
 
 </div>
+</body>
 
-
+<div id="footer">
 <script type="text/javascript">
 
   function generateSMIs(num) {
@@ -46,5 +47,5 @@ Please enter the number of SMIs you would like to generate:
 
   }
 </script>
-</body>
+
 <?php require_once('phpincludes/footer.php'); ?>

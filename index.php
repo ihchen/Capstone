@@ -46,10 +46,11 @@ $thisPage = 'Make My Own Practice Quiz';
 
 	<div id = "instructions">
 		Click on the words "Chords" or "Scales" to expand the dropdown list. Select items you would like to practice identifying. Click "Start Training" to begin your practice quiz.
-	<div>
+	</div>
 
 <form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
-
+	<input class = "button" type="submit" value="Start Training">
+	<br></br>
 	<div id="checkboxcontainer">
 		<div id="accordion" class="panel-group">
 			<!-- Type1 Checkboxes -->
@@ -75,12 +76,16 @@ $thisPage = 'Make My Own Practice Quiz';
 		        <div id="scales" class="panel-collapse collapse">
 		        	<!-- Generated Checkboxes go here -->
 				</div>
+				<br></br>
+				<br></br>
+				<br></br>
 			</div>
 		</div>
 	</div>
-	<div id = "button">
-		<input class = "button" type="submit" value="Start Training">
-	</div>
+</body>
+
+
+	<!-- </div> -->
 </form>
 
 <script>
@@ -116,6 +121,6 @@ $thisPage = 'Make My Own Practice Quiz';
 		return false; // don't submit the form
 	}
 </script>
-</body>
 
+<div id="footer">
 <?php require_once('phpincludes/footer.php'); ?>

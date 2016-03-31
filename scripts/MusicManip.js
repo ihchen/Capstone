@@ -58,8 +58,7 @@ function reverseDirection(notes) {
 /**
  * Reorders the notes so that they are in the specified inversion.
  * To be used for major triads, minor triads, and 7th chords only!
- * NEVER to be used for scales, intervals, jazz chords, and 20th
- * century chords!!!
+ * NEVER to be used for scales, jazz chords, and 20th century chords!!!
  * @method setInversion
  * @param {String[]} notes in the chord
  * @param {Integer} number between the values 0 and notes.length-1, inclusive
@@ -74,10 +73,6 @@ function setInversion(chord, inversion) {
 }
 
 
-
-// The number of half steps in an octave.
-const OCTAVE = 12;
-
 /**
  * Calculate the interval between two notes.
  * Returns the interval as a number of half steps.
@@ -87,6 +82,9 @@ const OCTAVE = 12;
  * @return {Integer} interval in half steps
  */
 function calcInterval(note1, note2) {
+
+  // The number of half steps in an octave.
+  const OCTAVE = 12;
 
   /*
    * Reference array for the ascending distance to an interval.
