@@ -45,20 +45,7 @@ function MusicSnippet(type, quality, notes, category) {
 		if(style == "desc") {
 			tempSounds.reverse();
 		}
-		else if(style == "first") {
-			tempSounds.push(tempSounds.shift());
 
-		}
-		else if(style == "second") {
-			tempSounds.push(tempSounds.shift());
-			tempSounds.push(tempSounds.shift());
-		}
-		else if(style == "third") {
-			tempSounds.push(tempSounds.shift());
-			tempSounds.push(tempSounds.shift());
-			tempSounds.push(tempSounds.shift());
-		}
-		
 		//Play Chord
 		if(type == CHORD) {
 			//If 20th century chord, just play blocked
@@ -103,8 +90,8 @@ function MusicSnippet(type, quality, notes, category) {
 	 * 
 	 * @method generate
 	 */
-	this.generate = function(key) {
-		tempNotes = generateTransposition(key);
+	this.generate = function(key, inversion) {
+		tempNotes = generateTransposition(key, inversion);
 		tempSounds = loadFiles(tempNotes);
 	}
 
@@ -162,7 +149,7 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @return {String array} An array of the notes that can be loaded into Howl objects
 	 * @private
 	 */
-	function generateTransposition(key) {
+	function generateTransposition(key, inversion) {
 		if(key == undefined) {
 			do {
 				var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
@@ -171,6 +158,7 @@ function MusicSnippet(type, quality, notes, category) {
 		}
 		else {
 			tempNotes = setNotes(findShift(baseNotes[0], key));
+			tempNotes = setInversion(tempNotes, inversion);
 		}
 		
 		lastKey = tempNotes[0];						//Save the new key
