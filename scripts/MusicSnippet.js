@@ -70,9 +70,21 @@ function MusicSnippet(type, quality, notes, category) {
 				playBroken(1.5);
 			}
 		}
-		if(style == "desc") {
+		else if(style == "desc") {
 			tempSounds.reverse();
 			playBroken(1.5);
+		}
+		else if(style == "first") {
+			tempSounds.push(tempSounds.shift());
+		}
+		else if(style == "second") {
+			tempSounds.push(tempSounds.shift());
+			tempSounds.push(tempSounds.shift());
+		}
+		else if(style == "third") {
+			tempSounds.push(tempSounds.shift());
+			tempSounds.push(tempSounds.shift());
+			tempSounds.push(tempSounds.shift());
 		}
 	}
 
