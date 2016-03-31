@@ -12,11 +12,6 @@ function SuccessiveMelodicIntervals() {
   var notes = generateMelody();
   // var answers = calculateAnswers();
 
-  // var startnote = getStartingNote()
-  // document.write(startnote.toString() + "<br>");
-  //
-  // var notesp = getPalette(startnote, 1);
-  // document.write(notesp);
   document.write(notes);
 
 

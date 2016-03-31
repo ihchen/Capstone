@@ -167,6 +167,18 @@ function Note(notename, octave) {
    * @return {String} notename + octave
    */
    this.toString = function() {
+    //  var acc;
+    //  if (accidental == 1) {
+    //    acc == "#";
+    //  } else if (accidental == 2) {
+    //    acc == "x";
+    //  } else if (accidental == -1) {
+    //    acc = "b";
+    //  } else if (accidental == -2) {
+    //    acc = "bb";
+    //  } else {
+    //    acc = "";
+    //  }
      return notename + octave;
    }
  }
