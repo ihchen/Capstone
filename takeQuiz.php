@@ -110,6 +110,8 @@ $thisPage = 'Take Quiz';
 		document.getElementById("loading").style.display = "block";		
 		document.getElementById("revealbutt").style.display = "block";
 		document.getElementById("revealed").style.display = "none";
+		document.getElementById("playbtn").style.display = "block";
+		document.getElementById("stopbtn").style.display = "none";
 	}
 </script>
 <?php require_once('phpincludes/footer.php'); ?>

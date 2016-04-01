@@ -11,7 +11,7 @@ var lastKey = "I"; //Keep track of last key played so that you don't replay it
  * @param {String} category Category of the sonority
  * @param {String Array} notes Array of notes
  */
-function MusicSnippet(type, quality, notes, category) {
+function MusicSnippet(notes, type, quality, category) {
 	/* Constants */
 	const CHORD = "chord";
 	const SCALE = "scale";
@@ -33,6 +33,7 @@ function MusicSnippet(type, quality, notes, category) {
 	var tempSounds = [];			//Holds current sound
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 	var numLoaded = 0;				//Number of loaded files
+	var numEnded = 0;				//Number of files that finished playing
 
 	/**
 	 * Unloads the previous files and loads the new files (this is because of the bug with
@@ -69,7 +70,7 @@ function MusicSnippet(type, quality, notes, category) {
 		}
 		//If something else, just play it broken
 		else {
-			playBroken(1.5);
+			setTimeout(function() {playBroken(1.5);}, 500);
 		}
 	}
 
@@ -82,6 +83,7 @@ function MusicSnippet(type, quality, notes, category) {
 		stop();
 		clear();
 		setVolume(1.0);
+		numEnded = 0;
 	}
 
 	/**
@@ -91,8 +93,13 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @method generate
 	 */
 	this.generate = function(key, inversion) {
-		tempNotes = generateTransposition(key, inversion);
-		tempSounds = loadFiles(tempNotes);
+		if(type == undefined) {
+			tempSounds = loadFiles(baseNotes);
+		}
+		else {
+			tempNotes = generateTransposition(key, inversion);
+			tempSounds = loadFiles(tempNotes);
+		}
 	}
 
 	/**
@@ -111,8 +118,9 @@ function MusicSnippet(type, quality, notes, category) {
 	 * @method fadeOut
 	 */
 	this.fadeOut = function() {
-		fade(0);
 		clear();
+		fade(0);
+		numEnded = 0;
 	}
 
 	/**
@@ -323,7 +331,24 @@ function MusicSnippet(type, quality, notes, category) {
 						numLoaded = 0;
 					}
 				},
-				onloaderror : function() {console.log(quality+" "+type+" loading error")}
+				onloaderror : function() {console.log(quality+" "+type+" loading error")},
+				onend : function() {
+					numEnded++;
+					if(type == CHORD && category != TWENTIETH) {
+						if(numEnded == 2*numNotes) {
+							document.getElementById("stopbtn").style.display = "none";
+							document.getElementById("playbtn").style.display = "block";
+							numEnded = 0;
+						}
+					}
+					else {
+						if(numEnded == numNotes) {
+							document.getElementById("stopbtn").style.display = "none";
+							document.getElementById("playbtn").style.display = "block";
+							numEnded = 0;
+						}
+					}
+				}
 			}));
 		}
 		return sounds;
