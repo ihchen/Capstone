@@ -13,6 +13,9 @@
 
 <body>
 
+<!-- Spacing for mobile / small screen -->
+<br><br>
+
 <form>
 	<select id="type" onchange="updateQuality()">
 		<option value="">-----</option>

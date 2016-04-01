@@ -5,18 +5,9 @@
  */
 function SuccessiveMelodicIntervals() {
   const LENGTH = 4;
-  // Global random
   var g = Math.random();
   var notes = generateMelody();
   // var answers = calculateAnswers();
-
-  // var startnote = getStartingNote()
-  // document.write(startnote.toString() + "<br>");
-  //
-  // var notesp = getPalette(startnote, 1);
-  // document.write(notesp);
-  document.write(notes);
-
 
 
   /**
@@ -24,6 +15,10 @@ function SuccessiveMelodicIntervals() {
    * @return {String[]} intervals
    */
   this.getAnswers = function() {
+    var answers = []
+    for (var i = 0; i < notes.length - 1; i++) {
+      answers.push(notes[i].getInterval(notes[i+1]));
+    }
     return answers;
   }
 
@@ -49,6 +44,9 @@ function SuccessiveMelodicIntervals() {
   function generateMelody() {
 
     var paletteIndices = [];
+    for (var k = 0; k < LENGTH; k++) {
+      paletteIndices.push(0);
+    }
     var melody = [];
 
     var i = 0;
@@ -57,9 +55,8 @@ function SuccessiveMelodicIntervals() {
       var palette;
       if (i == 0) {
         melody.push(getStartingNote());
-        console.log("i = " + i);
-        console.log("melody.length = " + melody.length);
-        console.log(melody[i].toString());
+        // console.log(melody[i].toString());
+
         i++;
         continue;
       } else palette = getPalette(melody[i-1], i);
@@ -69,13 +66,18 @@ function SuccessiveMelodicIntervals() {
 
         // Check if valid
         if (validateSMI(melody)) {
+          // console.log(melody[i].toString());
+          //
+          // console.log("valid " + i);
           // It worked!
           // Update palette of indices in case we need to backtrack later.
           paletteIndices[i] = j + 1;
           break;
         } else {
+          // console.log("invalid " + i);
+
           // if didn't work
-          melody[i] = null;
+          melody.pop();
           // continue iterating until we find something that works
         }
       }
@@ -97,12 +99,13 @@ function SuccessiveMelodicIntervals() {
 
         // Remove the previous element because it does not lead us anywhere
         // Won't happen in this domain. Again, just writing safe code.
-        melody[i] = null;
+        melody.pop();
       } else {
         // Move on to the next note!
         i++;
       }
     }
+    return melody;
   }
 
   /**
@@ -113,28 +116,36 @@ function SuccessiveMelodicIntervals() {
    */
   function getPalette(previousNote, i) {
     var palette = [];
+    // document.write("<br>palette:<br>");
 
-    var lowestnote = new Note("C", 3);
-    var highestnote = new Note("B", 5);
+
+    var lowestnote = new Note("G", 3);
+    var highestnote = new Note("F", 5);
 
     var direction = true;
     for (var j = -6; j < 7; j++) {
-      // var interval = intervals(j);
-      console.log(previousNote.toString());
-      var notetoadd = previousNote.getNextNote(j, direction);
 
-      if (lowestnote.compareTo(notetoadd) == 1 || highestnote.compareTo(notetoadd) == -1
-        || notetoadd.getAccidental() == -2 || notetoadd.getAccidental() == 2) {
+      var notetoadd = previousNote.getNextNote(j, direction);
+      if (notetoadd == null) continue;
+
+      var lowcomp = lowestnote.compareTo(notetoadd);
+      var highcomp = highestnote.compareTo(notetoadd);
+      var ord = ordinal(notetoadd.getNotename());
+      if (isNaN(lowcomp) || isNaN(highcomp) || lowcomp >= 0 || highcomp <= 0
+        || ord < 9 || ord > 25) {
         // Do not add notes that are out of bounds.
-        // Do not use double sharps and double flats.
-        continue;
-      }
-      else {
+        // Do not use double sharps, double flats or weird spellings.
+      } else {
         palette.push(notetoadd);
       }
-      // Now add all notes in the descending direction.
-      if (j == 6 && direction) direction = false;
+
+      if (j == 6 && direction) {
+        // Now add all notes in the descending direction.
+        j = -7;
+        direction = false;
+      }
     }
+
     return shuffleNotes(palette, g * i);
   }
 
@@ -146,7 +157,6 @@ function SuccessiveMelodicIntervals() {
   function getStartingNote() {
     var rand = Math.floor((Math.random() * 16) + 9);
     var notename = NOTES[rand];
-    // var octave = Math.floor((Math.random() * 3) + 3);
 
     return new Note(notename, 4);
 
@@ -179,5 +189,4 @@ function SuccessiveMelodicIntervals() {
     }
     return shuffled;
   }
-
 }

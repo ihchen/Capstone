@@ -65,15 +65,18 @@ $thisPage = 'Take Quiz';
 			Loading...
 		</div>
 
+		<br></br>
+		<br></br>
+
 		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
-			<button id="playbtn" onclick="play()" style="display:block;">Play</button>
-			<button id="stopbtn" onclick="stop()" style="display:none;">Stop</button>
+			<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
+			<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
 			<br><br>
 			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
 
 			<div id="revealed" style="display:none;">
 				<p id="answer"></p>
-				<button onclick="nextQuestion()">Next Question</button>
+				<button class="button" onclick="nextQuestion()">Next Question</button>
 			</div>
 		</div>
 	</center>
@@ -84,13 +87,13 @@ $thisPage = 'Take Quiz';
 	function play() {
 		snippet.play();
 		document.getElementById("playbtn").style.display = "none";
-		document.getElementById("stopbtn").style.display = "block";		
+		document.getElementById("stopbtn").style.display = "block";
 	}
 
 	function stop() {
 		snippet.fadeOut();
 		document.getElementById("playbtn").style.display = "block";
-		document.getElementById("stopbtn").style.display = "none";		
+		document.getElementById("stopbtn").style.display = "none";
 	}
 
 	function nextQuestion() {
@@ -107,7 +110,7 @@ $thisPage = 'Take Quiz';
 	}
 
 	function hide() {
-		document.getElementById("loading").style.display = "block";		
+		document.getElementById("loading").style.display = "block";
 		document.getElementById("revealbutt").style.display = "block";
 		document.getElementById("revealed").style.display = "none";
 		document.getElementById("playbtn").style.display = "block";
