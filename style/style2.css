@@ -24,7 +24,7 @@ body {
 }
 
 #instructions {
-	margin: 2em;
+	margin: 1em;
 	text-align: center;
 }
 
@@ -44,6 +44,13 @@ center {
 #asdf {
 	text-align: center;
   white-space: nowrap;
+}
+
+#nextquestion {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 #checkboxcontainer {
@@ -76,12 +83,18 @@ a {
 #smi {
 	text-align: center;
 	padding: 1em;
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	/*display: block;*/
 }
+
+
 
 .button {
 	text-align: center;
+	white-space: nowrap;
 	background: #008B8B;
 	font-family: Verdana, Geneva, sans-serif;
 	font-size: .9em;
@@ -89,7 +102,11 @@ a {
 	border-right: none;
 	border-top: none;
 	border-bottom: none;
-	margin: 1em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin: 0 auto;
+	margin-bottom: 1em;
+
 	max-width: 125px;
 	width:90%;
 	height:2em;
@@ -183,7 +200,7 @@ a {
 		margin-top: 2%;
 		margin-bottom: 0;
 		color: #ADD8E6;
-		font-size: 3.4em;
+		font-size: 2.5em;
 		text-align: center;
 		background-color: #008B8B;
 		border-width: 1px solid #008080;

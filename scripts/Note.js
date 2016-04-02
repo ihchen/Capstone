@@ -71,19 +71,19 @@ function Note(notename, octave) {
    * in the circle of fifths to the arbitrary name of an interval.
    */
   const INTERVALS = {
-    "-6" : "d5",
+    "-6" : "tritone",
     "-5" : "m2",
     "-4" : "m6",
     "-3" : "m3",
     "-2" : "m7",
-    "-1" : "p4",
+    "-1" : "P4",
     "0" : "unison",
-    "1" : "p5",
+    "1" : "P5",
     "2" : "M2",
     "3" : "M6",
     "4" : "M3",
     "5" : "M7",
-    "6" : "a4"
+    "6" : "tritone"
   }
 
   // function getNumByInterval(interval) {
