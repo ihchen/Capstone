@@ -100,8 +100,10 @@ $thisPage = 'Take Quiz';
 		hide();
 		snippet.fadeOut();
 		snippet = qg.getNextQuestion();
-		snippet.generate();
-		document.getElementById("answer").innerHTML = snippet.answer();
+		setTimeout(function() {
+			snippet.generate();
+			document.getElementById("answer").innerHTML = snippet.answer();
+		}, 101);
 	}
 
 	function reveal() {

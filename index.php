@@ -23,15 +23,23 @@ $thisPage = 'Make My Own Practice Quiz';
 		$('.collapse').collapse();
 
 		/* Check type2 boxes when type1 boxes are checked */
-		function checkBoxes(type1class, type2class) {
-			var mainbox = document.getElementById(type1class);
-			var subboxes = document.getElementsByClassName(type2class);
+		function checkBoxes(checkbox_class) {
+			var mainbox;
+			var subboxes = document.getElementsByClassName(checkbox_class);
+			if(checkbox_class.substring(0,4) == "type") {
+				mainbox = document.getElementById("type1"+checkbox_class.substring(5,checkbox_class.length));
+			}
 			for(var i = 0; i < subboxes.length; i++) {
-				if(mainbox.checked) {
+				if(mainbox == undefined) {
 					subboxes[i].checked = true;
 				}
 				else {
-					subboxes[i].checked = false;
+					if(mainbox.checked) {
+						subboxes[i].checked = true;
+					}
+					else {
+						subboxes[i].checked = false;
+					}
 				}
 			}
 		}
@@ -50,16 +58,19 @@ $thisPage = 'Make My Own Practice Quiz';
 
 <form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
 	<input class = "button" type="submit" value="Start Training">
-	<br></br>
+	<br/>
+	<button onclick="checkBoxes('Test1')">Test 1</button>
+	<button onclick="checkBoxes('Test2')">Test 2</button>
+	<button onclick="checkBoxes('Final')">Final</button>
 	<div id="checkboxcontainer">
 		<div id="accordion" class="panel-group">
 			<!-- Type1 Checkboxes -->
 			<div id="type1">
 				<!-- Chord -->
-				<input type="checkbox" id="type1chord" onclick="checkBoxes('type1chord','type2chord')">
+				<input type="checkbox" id="type1chord" onclick="checkBoxes('type2chord')">
 				<a href="#chords" data-toggle="collapse" data-parent="#accordion">Chords</a><br/>
 				<!-- Scale -->
-				<input type="checkbox" id="type1scale" onclick="checkBoxes('type1scale','type2scale')">
+				<input type="checkbox" id="type1scale" onclick="checkBoxes('type2scale','type2scale')">
 				<a href="#scales" data-toggle="collapse" data-parent="#accordion">Scales</a><br/>
 				<!-- Interval -->
 				<!-- <input type="checkbox" id="type1interval" onclick="checkBoxes('type1interval','type2interval')"> -->
@@ -76,9 +87,9 @@ $thisPage = 'Make My Own Practice Quiz';
 		        <div id="scales" class="panel-collapse collapse">
 		        	<!-- Generated Checkboxes go here -->
 				</div>
-				<br></br>
-				<br></br>
-				<br></br>
+				<br/>
+				<br/>
+				<br/>
 			</div>
 		</div>
 	</div>
@@ -94,17 +105,17 @@ $thisPage = 'Make My Own Practice Quiz';
 		if (data[i][0] == "scale") { // if it's a scale
 			var div = document.getElementById("scales");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2scale' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2scale "+data[i][3]+"' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br/>";
 		}
 		else if (data[i][0] == "chord") { // if it's a chord
 			var div = document.getElementById("chords");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2chord' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2chord "+data[i][3]+"' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br/>";
 		}
 		else if (data[i][0] == "interval") { // if it's an interval
 			var div = document.getElementById("intervals");
 			// add a checkbox input
-			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2interval' name='" + i + "' value='num'>" + data[i][1] + "<br>";
+			div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2interval "+data[i][3]+"' name='" + i + "' value='num'>" + data[i][1] + "<br/>";
 		}
 	}
 
