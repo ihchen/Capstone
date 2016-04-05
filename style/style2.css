@@ -28,6 +28,36 @@ body {
 	text-align: center;
 }
 
+#answers {
+	font-size: 1em;
+	text-align: center;
+	/*margin: 0, auto;*/
+}
+
+#answers li {
+	text-align: center;
+	display: inline-block;
+	min-width: 66px;
+	/*padding-left: 1.5em;
+	padding-right: 1.5em;*/
+	/*margin: 1em, 1em, 1em, 1em;*/
+  /*position:inherit;*/
+}
+
+#answers > ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	/*position:sticky;*/
+}
+
+#answers > ul > li {
+	/*background: #008B8B;*/
+	/*border: 1px solid #008080;*/
+	float:none;
+	/*padding: 1em 0em;*/
+}
+
 center {
 	background-color:#ADD8E6;
 }
@@ -49,8 +79,16 @@ center {
 #nextquestion {
 	text-align: center;
 	margin: 0 auto;
+	/*margin-top: 1em;*/
+	margin-bottom: 1em;
+}
+
+#checkanswers {
+	text-align: center;
+	margin: 0 auto;
 	margin-top: 1em;
 	margin-bottom: 1em;
+
 }
 
 #checkboxcontainer {
