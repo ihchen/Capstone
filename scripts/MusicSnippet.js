@@ -37,7 +37,6 @@ function MusicSnippet(notes, type, quality, category) {
 	var type = type;				//Chord or scale
 	var quality = quality;			//Major, minor, etc
 	var category = category;		//20th century, jazz, etc
-	var inversion = "";				//Inversion of 7th chords
 	var numNotes = notes.length;	//Number of notes
 
 	var tempNotes = [];				//Holds current notes
@@ -233,14 +232,7 @@ function MusicSnippet(notes, type, quality, category) {
 		else if(category == SEVENTH) {
 			inv = Math.floor(Math.random()*numNotes);	//Get random inversion based on the number of notes
 			newNotes = setInversion(newNotes, inv);
-		}
-
-		//Set inversion variable
-		if(inv == undefined) {
-			inversion = "";
-		}
-		else {
-			inversion = inv+" inversion";
+			quality = invert7thQuality(quality, inv);
 		}
 
 		lastKey = newNotes[0];						//Save the new key
@@ -248,7 +240,42 @@ function MusicSnippet(notes, type, quality, category) {
 		return newNotes;
 	}
 
-	/*
+	/**
+	 * Returns a new string with the proper quality given the inversion. Only use on 
+	 * 7th chords.
+	 *
+	 * @method invert7thQuality 
+	 * @param {String} quality Original string
+	 * @param {Integer} inversion Inversion value
+	 * @return {String} Inverted String
+	 * @private
+	 */
+	function invert7thQuality(quality, inv) {
+		var baseQuality;
+		//Check what the current inversion value is
+		if(quality[quality.length-1] == '7') {
+			baseQuality = quality.substring(0, quality.length-1);
+		}
+		else {
+			baseQuality = quality.substring(0, quality.length-3);
+		}
+
+		//Apply inversion changes
+		if(inv == 3) {
+			return baseQuality+"4/2";
+		}
+		else if(inv == 2) {
+			return baseQuality+"4/3";
+		}
+		else if(inv == 1) {
+			return baseQuality+"6/5";
+		}
+		else {
+			return baseQuality+"7";
+		}
+	}
+
+	/**
 	 * Takes the notes and converts them into Howl objects with the appropriate
 	 * sound files.
 	 * 
@@ -416,7 +443,7 @@ function MusicSnippet(notes, type, quality, category) {
 	 * @return {String} quality + type
 	 */
 	this.answer = function() {
-		return quality+" "+type+" "+inversion;
+		return quality+" "+type;
 	}
 
 	/**

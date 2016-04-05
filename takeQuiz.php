@@ -6,6 +6,7 @@ $thisPage = 'Take Quiz';
 <header>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
+
 	<script src="howler/howler.js"></script>
 	<script src="scripts/MusicSnippet.js"></script>
 	<script src="scripts/noteToFileNum.js"></script>
@@ -54,6 +55,33 @@ $thisPage = 'Take Quiz';
 		// console.log(chosen);
 	</script>
 
+<style>
+.inversion {
+  display: inline-block;
+}
+.inversion .fraction {
+  display: inline-block;
+  position: relative;
+}
+.inversion .fraction > div {
+  position: relative;
+  text-align: center;
+  height: 0;
+}
+.inversion .baseline-fix {
+  display: inline-table;
+  table-layout: fixed;
+}
+.top {
+	font-size: .65em;
+	top: -.2em;
+}
+.bot {
+	font-size: .65em;
+	top: .8em;
+}
+</style>
+
 <script>
 	var qg = new QuestionGenerator(chosen);
 	var snippet = qg.getNextQuestion();
@@ -75,7 +103,7 @@ $thisPage = 'Take Quiz';
 			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
 
 			<div id="revealed" style="display:none;">
-				<p id="answer"></p>
+				<p id="answer" style="font-size: 2em"></p>
 				<button class="button" onclick="nextQuestion()">Next Question</button>
 			</div>
 		</div>
@@ -83,6 +111,7 @@ $thisPage = 'Take Quiz';
 
 <script>
 	document.getElementById("answer").innerHTML = snippet.answer();
+	applyInversion(document.getElementById("answer"));
 
 	function play() {
 		snippet.play();
@@ -108,6 +137,7 @@ $thisPage = 'Take Quiz';
 		setTimeout(function() {
 			snippet.generate();
 			document.getElementById("answer").innerHTML = snippet.answer();
+			applyInversion(document.getElementById("answer"));
 		}, 101);
 	}
 
@@ -123,5 +153,19 @@ $thisPage = 'Take Quiz';
 		document.getElementById("playbtn").style.display = "block";
 		document.getElementById("stopbtn").style.display = "none";
 	}
+
+	function applyInversion(answerElement) {
+	    var answerString = answerElement.innerHTML;
+	    var split = answerString.split("/");
+	    if(split.length == 2) {
+	    	var top = split[0][split[0].length-1];
+	    	var bot = split[1][0];
+	    	var begin = split[0].substring(0,split[0].length-1);
+	    	var end = split[1].substring(1,split[1].length);
+
+	    	answerElement.innerHTML = begin+
+	    		'<span class="inversion"><span class="fraction"><div class="top">'+top+'</div><div class="bot">'+bot+'</div><span class="baseline-fix"></span></span></span>'+end;
+	    }
+	};
 </script>
 <?php require_once('phpincludes/footer.php'); ?>
