@@ -43,7 +43,7 @@
 	<button type="button" class="button" id="playbtn" onclick="playSelected()">
 		Play
 	</button>
-	<button type="button" class="button" id="loading" disabled="true" style="display: none">
+	<button type="button" class="button" id="loadbtn" disabled="true" style="display: none">
 		Loading...
 	</button>
 	<button type="button" class="button" id="stopbtn" style="display: none" onclick="stop()">
@@ -153,7 +153,8 @@
 	// plays selected thing
 	function playSelected() {
 		document.getElementById("playbtn").style.display = "none"; // hide the play button
-		document.getElementById("loading").style.display = "block"; // display loading message
+		document.getElementById("loadbtn").style.display = "block"; // display loading message
+		document.getElementById("loading").style.display = "block";
 
 		var type = document.getElementById('type').value;
 		var quality = document.getElementById('quality').value;
@@ -164,7 +165,10 @@
 		
 		// checking inputs
 		if (key == "") { // key is only not blank when everything else is selected
-			document.getElementById("loading").style.display = "none"; // clear the loading message
+			// reset buttons
+			document.getElementById("loading").style.display = "none";
+			document.getElementById("loadbtn").style.display = "none";
+			document.getElementById("playbtn").style.display = "block";
 			alert("Please select a scale or chord.");
 			return false;
 		}
@@ -196,15 +200,16 @@
 		snippet.setBPM(document.getElementById("tempo").value);
 
 		// wait for files to load, then play snippet
-		load_wait_intervalID = setInterval(loadCheck, 1000, opt);
+		load_wait_intervalID = setInterval(loadCheck, 100, opt);
 	}
 
 	// ends the setInterval when files are loaded
 	function loadCheck(opt) {
 		if (document.getElementById("loading").style.display == "none") {
+			document.getElementById("loadbtn").style.display = "none";
+			document.getElementById("stopbtn").style.display = "block";
 			clearInterval(load_wait_intervalID); // stop waiting/looping
 			snippet.play(opt);
-			document.getElementById("stopbtn").style.display = "block";
 		}
 	}
 
@@ -220,6 +225,8 @@
 </script>
 
 <br id="allbuttons">
+<br id="loading">
+
 
 </body>
 
