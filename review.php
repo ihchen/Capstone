@@ -40,8 +40,14 @@
 	<br>
 	<input type="range" id="tempo" min="40" max="200" step="1" value="80" onchange="updateTempo()"><span id="tempoDisplay">80 BPM</span>
 	<br>
-	<button type="button" onclick="playSelected()">
-		Play Selected
+	<button type="button" class="button" id="playbtn" onclick="playSelected()">
+		Play
+	</button>
+	<button type="button" class="button" id="loading" disabled="true" style="display: none">
+		Loading...
+	</button>
+	<button type="button" class="button" id="stopbtn" style="display: none" onclick="stop()">
+		Stop
 	</button>
 </form>
 
@@ -139,14 +145,16 @@
 
 	/**
 	 When we play the selected chord or scale, we want to wait for the files to load first.  If we use a busy wait, the browser will complain about an unresponsive script, and the user must allow the script to continue.  Javascript has no sleep capability, so we use setInterval instead to simulate the effect.  We want setInterval to stop once the files are loaded, but only the function called by setInterval knows when that is.  Javascript is entirely pass-by-value, so in order for loadCheck to know which interval to clear, the variable must be visible to both setInterval and the function it calls.
-
-	 Of course, we only need to do this if we load the sounds in generate(), not play()
 	 */
 	var load_wait_intervalID;
 
+	var snippet; // this needs to be visible to playSelected(), loadCheck(), and stop()
+
 	// plays selected thing
 	function playSelected() {
+		document.getElementById("playbtn").style.display = "none"; // hide the play button
 		document.getElementById("loading").style.display = "block"; // display loading message
+
 		var type = document.getElementById('type').value;
 		var quality = document.getElementById('quality').value;
 		var key = document.getElementById('key').value;
@@ -170,7 +178,7 @@
 		}
 
 		// generate snippet with selected type, quality, and key
-		var snippet = new MusicSnippet(type, quality, data[i][2], data[i][3]);
+		var snippet = new MusicSnippet(data[i][2], type, quality, data[i][3]);
 		// inversions
 		if (opt == "first") {
 			snippet.generate(key, 1);
@@ -188,22 +196,29 @@
 		snippet.setBPM(document.getElementById("tempo").value);
 
 		// wait for files to load, then play snippet
-		load_wait_intervalID = setInterval(loadCheck, 1000, snippet, opt);
-
-		// if generate() doesn't load the sound files, we can play() immediately
-		// snippet.play();
+		load_wait_intervalID = setInterval(loadCheck, 1000, opt);
 	}
 
 	// ends the setInterval when files are loaded
-	function loadCheck(snippet, opt) {
+	function loadCheck(opt) {
 		if (document.getElementById("loading").style.display == "none") {
 			clearInterval(load_wait_intervalID); // stop waiting/looping
 			snippet.play(opt);
+			document.getElementById("stopbtn").style.display = "block";
 		}
+	}
+
+	function stop() {
+		snippet.fadeOut();
+		document.getElementById("stopbtn").disabled = true;
+		setTimeout(function() { // delay the return of the play button until sound has faded
+			document.getElementById("playbtn").style.display = "block";
+			document.getElementById("stopbtn").style.display = "none";
+			document.getElementById("stopbtn").disabled = false;
+		}, 101);
 	}
 </script>
 
-<div id="loading" style="display: none">Loading...</div>
 <br id="allbuttons">
 
 </body>

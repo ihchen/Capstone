@@ -13,188 +13,97 @@ var lastKey = "I"; //Keep track of last key played so that you don't replay it
  */
 function MusicSnippet(notes, type, quality, category) {
 	/* Constants */
+	//Types
 	const CHORD = "chord";
 	const SCALE = "scale";
+	//Categories
 	const TWENTIETH = "20th Century";
+	const SEVENTH = "7th";
+	//Play styles
+	const BLOCK = "block";			//Playing notes blocked
+	const ASCENDING = "asc";		//Playing notes broken and ascending
+	const DESCENDING = "desc";		//Playing notes broken and descending
+	//Numeric Values
+	const DEFAULT_BPM = 80;			//Default beats per minute
+	const DEFAULT_FADE = 1.5;		//Default number of beats to fade broken notes out
 	const CHORD_DELAY = 2;			//Number of beats between playing chord blocked then broken
+	const FADE_ALL_LENGTH = 100;	//Number of milliseconds to fade all notes out
 
 	/* Variables */
-	var BPM = 80;					//Beats per minute
-	var bps = BPM/60; 				//Beats per second
-	var delay = (1/bps)*500;		//Time before playing
+	var bpm = DEFAULT_BPM;			//Beats per minute
+	var bps = bpm/60;				//Beats per second
 
 	var baseNotes = notes;			//Store the base notes to transpose from
-	var type = type;				//Chord, scale, or interval
-	var quality = quality;			//Answer
-	var category = category;		//Category
+	var type = type;				//Chord or scale
+	var quality = quality;			//Major, minor, etc
+	var category = category;		//20th century, jazz, etc
+	var inversion = "";				//Inversion of 7th chords
 	var numNotes = notes.length;	//Number of notes
 
 	var tempNotes = [];				//Holds current notes
-	var tempSounds = [];			//Holds current sound
+	var tempSounds = [];			//Holds current Howl files
+	var fading = [];				//Notes that are currently fading out all the way
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 	var numLoaded = 0;				//Number of loaded files
 	var numEnded = 0;				//Number of files that finished playing
 
 	/**
-	 * Unloads the previous files and loads the new files (this is because of the bug with
-	 * Howler's fadeOut function). Then plays the notes in a given/default style.
+	 * Plays the loaded notes with the given style. If style not given, plays the notes quiz style:
+	 * all chords played blocked, then broken and ascending, except for 20th century chords which 
+	 * are played just blocked; all scales played broken and ascending.
 	 *
 	 * @method play
-	 * @param {String} style How to play the notes. No argument means play it quiz style
+	 * @param {String} style (Optional) How to play the notes. If left out, plays quiz style
 	 */
 	this.play = function(style) {
-		if(style == "desc") {
-			tempSounds.reverse();
+		//Play blocked
+		if(style == BLOCK) {
+			playBlock();
 		}
-
-		//Play Chord
-		if(type == CHORD) {
-			//If 20th century chord, just play blocked
-			if(category == TWENTIETH) {
-				// timeouts.push(setTimeout(function() {playBlock();}, 500));
-				playBlock();
+		//Play broken and ascending
+		else if(style == ASCENDING) {
+			playBroken(DEFAULT_FADE);
+		}
+		//Play broken and descending
+		else if(style == DESCENDING) {
+			playBroken(DEFAULT_FADE, DESCENDING);
+		}
+		//Play quiz style
+		else {
+			//Playing chords
+			if(type == CHORD) {
+				//If 20th century chord, just play blocked
+				if(category == TWENTIETH) {
+					playBlock();
+				}
+				//Otherwise, play blocked, then argpegiated
+				else {
+					playBlock(CHORD_DELAY);
+					timeouts.push(setTimeout(
+						function() {
+							playBroken(DEFAULT_FADE);
+						},
+						(1/bps)*1000*CHORD_DELAY)
+					);
+				}
 			}
-			//Otherwise, play argpegiated, then blocked
+			//Play scales broken and ascending
+			else if(type == SCALE) {
+				playBroken(DEFAULT_FADE);
+			}
+			//If something else, just play it broken
 			else {
-				playBlock(CHORD_DELAY);
-				timeouts.push(setTimeout(
-					function() {
-						playBroken(1.5);
-					},
-				(1/bps)*1000*CHORD_DELAY));
+				setTimeout(function() {playBroken(DEFAULT_FADE);}, 1000);
 			}
 		}
-		//Play Scale broken
-		else if(type == SCALE) {
-			playBroken(1.5);
-		}
-		//If something else, just play it broken
-		else {
-			setTimeout(function() {playBroken(1.5);}, 500);
-		}
 	}
 
 	/**
-	 * Stops all sound
-	 *
-	 * @method stop
-	 */
-	this.stop = function() {
-		stop();
-		clear();
-		setVolume(1.0);
-		numEnded = 0;
-	}
-
-	/**
-	 * Randomly transposes the notes given from the CSV file and gives them a random octave.
-	 * If key is given, then transposes to the given key. Loads the corresponding files.
-	 * 
-	 * @method generate
-	 */
-	this.generate = function(key, inversion) {
-		if(type == undefined) {
-			tempSounds = loadFiles(baseNotes);
-		}
-		else {
-			tempNotes = generateTransposition(key, inversion);
-			tempSounds = loadFiles(tempNotes);
-		}
-	}
-
-	/**
-	 * Returns the type and quality
-	 *
-	 * @method answer
-	 * @return {String} quality + type
-	 */
-	this.answer = function() {
-		return quality+" "+type;
-	}
-
-	/**
-	 * Fades all sound out
-	 *
-	 * @method fadeOut
-	 */
-	this.fadeOut = function() {
-		clear();
-		fade(0);
-		numEnded = 0;
-	}
-
-	/**
-	 * Recursive helper function for this.fadeOut
-	 *
-	 * @method fade
-	 * @param {Integer} note Which note to fade
-	 * @private
-	 */
-	function fade(note) {
-		if(note < numNotes) {
-			tempSounds[note].fadeOut(0.0, 100, function() {
-				tempSounds[note].stop();
-				tempSounds[note].volume(1.0);
-			});
-			fade(note+1);
-		}
-	}
-
-	/**
-	 * Sets the bpm
-	 *
-	 * @method setBPM
-	 * @param {Integer} bpm Desired beats per minute
-	 */
-	this.setBPM = function(bpm) {
-		BPM = bpm;
-		bps = BPM/60; 				//Beats per second
-		delay = (1/bps)*500;		//Time before playing
-	}
-
-	/**
-	 * Transposes and sets octave of the notes from the CSV file randomly.
-	 *
-	 * @method generateTransposition
-	 * @return {String array} An array of the notes that can be loaded into Howl objects
-	 * @private
-	 */
-	function generateTransposition(key, inversion) {
-		if(key == undefined) {
-			do {
-				var randKey = Math.floor(Math.random()*13)-6;	//Get Random key between -7 and 7
-				tempNotes = setNotes(randKey);			//Array of transposed keys
-			} while(tempNotes[0] == lastKey);			//Don't generate the previously played key
-		}
-		else {
-			tempNotes = setNotes(findShift(baseNotes[0], key));
-			tempNotes = setInversion(tempNotes, inversion);
-		}
-		
-		lastKey = tempNotes[0];						//Save the new key
-		tempNotes = setOctave(tempNotes);			//Set a random octave
-		return tempNotes;
-	}
-	
-	/**
-	 * Tranposes the notes from the CSV file a given number of sharps or flats
-	 * 
-	 * @method setNotes
-	 * @param {Integer} shift How much to transpose the notes by
-	 * @return {String Array} Array of the notes after transposition
-	 * @private
-	 */
-	function setNotes(shift) {
-		return transpose(baseNotes, shift);
-	}
-
-	/**
-	 * Plays the note at the given index in the loaded files array. Fades out the note if
-	 * given.
+	 * Plays the note at the given index in the tempSounds array.
 	 * 
 	 * @method playNote
 	 * @param {Integer} i Index of the note to be played
-	 * @param {Float} fade Number of beats to fade over
+	 * @param {Float} fade (Optional) Number of beats to fade out
 	 * @private
 	 */
 	function playNote(i, fade) {
@@ -210,10 +119,10 @@ function MusicSnippet(notes, type, quality, category) {
 	}
 
 	/**
-	 * Plays all notes at the same time
+	 * Plays all notes in tempSounds at the same time.
 	 *
 	 * @method playBlock
-	 * @param {Integer} fade Number of beats to fade out in
+	 * @param {Integer} fade (Optional) Number of beats to fade out
 	 * @private
 	 */
 	function playBlock(fade) {
@@ -223,71 +132,120 @@ function MusicSnippet(notes, type, quality, category) {
 	}
 
 	/**
-	 * Plays all notes in sequence with timing based on bpm
+	 * Plays all notes in sequence.
 	 *
 	 * @method playBroken
-	 * @param {Float} fade Number of beats to fade each note by
+	 * @param {Float} fade (Optional) Number of beats to fade each note by
+	 * @param {String} style (Optional) Play notes ascending (default) or descending
 	 * @private
 	 */
-	function playBroken(fade) {
-		playNote(0, fade);
-		playBrokenHelp(1, fade);
+	function playBroken(fade, style) {
+		//Play descending
+		if(style == DESCENDING) {
+			playNote(numNotes-1, fade);
+			playBrokenHelp(numNotes-2, fade, style);
+		}
+		//By default, play ascending
+		else {
+			playNote(0, fade);
+			playBrokenHelp(1, fade);
+		}
 	}
 
 	/**
 	 * Recursive helper for playBroken()
 	 *
 	 * @method playBrokenHelp
-	 * @param {Integer} note An index representing the note to be played
+	 * @param {Integer} note Index of the note to be played
 	 * @param {Float} fade Number of beats to fade each note by
+	 * @param {String} style Ascending (default) or descending
 	 * @private
 	 */
-	function playBrokenHelp(note, fade) {
-		if(note < numNotes) {
-			timeouts.push(setTimeout(function() {
-				playNote(note, fade);
-				playBrokenHelp(note+1, fade);
-			}, (1/bps)*1000)); //How many seconds per note given the bpm
+	function playBrokenHelp(note, fade, style) {
+		if(note < numNotes && note >= 0) {
+			timeouts.push(setTimeout(
+				function() {
+					playNote(note, fade);
+					if(style == DESCENDING) {
+						playBrokenHelp(note-1, fade, style);
+					}
+					else {
+						playBrokenHelp(note+1, fade);
+					}
+				}, 
+				(1/bps)*1000) //How many milliseconds per note given the bpm
+			);
 		}
 	}
 
 	/**
-	 * Stops all sound immediately
+	 * Generates the Howl files to be played.
 	 * 
-	 * @method stop
-	 * @private
+	 * @method generate
+	 * @param {String} key (Optional) The key to transpose to
+	 * @param {Integer} inversion (Optional) Which inversion to use
 	 */
-	function stop() {
-		for(var i = 0; i < tempSounds.length; i++) {
-			tempSounds[i].stop();
+	this.generate = function(key, inversion) {
+		//If given just the notes, assumes that the octave is given as well
+		if(type == undefined) {
+			tempSounds = loadFiles(baseNotes);
+		}
+		//Just given notes and no octaves. Apply necessary transformations
+		else {
+			tempNotes = transposeAndInvert(key, inversion);
+			tempSounds = loadFiles(tempNotes);
 		}
 	}
 
 	/**
-	 * Clears all timeouts (delayed sounds)
-	 * 
-	 * @method clear
-	 * @private
-	 */
-	function clear() {
-		var initLength = timeouts.length;
-		for(var i = 0; i < initLength; i++) {
-			clearTimeout(timeouts[timeouts.length-1]);
-			timeouts.pop();
-		}
-	}
-
-	/**
-	 * Sets the volume
+	 * Transposes notes to a given or random key and inverts the notes a given or random amount
 	 *
-	 * @method setVolume
-	 * @param {Float} vol Volume to set to (0.0 - 1.0)
-	 * @private
+	 * @method transposeAndInvert
+	 * @param {String} key (Optional) Which key to tranpose to
+	 * @param {Integer} inversion (Optional) Amount to invert by
+	 * @return {String[]} An array of the notes with octave numbers
+	 * @private 
 	 */
-	function setVolume(vol) {
-		for(var i = 0; i < numNotes; i++) {
-			tempSounds[i].volume(vol);
+	function transposeAndInvert(key, invert) {
+		var newNotes;		//New array of notes
+		var shift;			//Transposition value
+		var inv;			//Inversion value
+
+		//If given no arguments, generate random key and random inversion
+		if(key == undefined) {
+			do {
+				shift = Math.floor(Math.random()*13)-6;	//Get Random key between -6 and 6
+				newNotes = transpose(baseNotes, shift);				//Array of transposed keys
+			} while(newNotes[0] == lastKey);			//Don't generate the previously played key
 		}
+		//If given a key, transpose to the given key.
+		else {
+			shift = findShift(baseNotes[0], key);
+			newNotes = transpose(baseNotes, shift);
+		}
+
+		//If inversion is given, set it
+		if(invert != undefined) {
+			inv = invert;
+			newNotes = setInversion(newNotes, inv);
+		}
+		//If not, give a random inversion only for 7th chords
+		else if(category == SEVENTH) {
+			inv = Math.floor(Math.random()*numNotes);	//Get random inversion based on the number of notes
+			newNotes = setInversion(newNotes, inv);
+		}
+
+		//Set inversion variable
+		if(inv == undefined) {
+			inversion = "";
+		}
+		else {
+			inversion = inv+" inversion";
+		}
+
+		lastKey = newNotes[0];						//Save the new key
+		newNotes = setOctave(newNotes);				//Set a random octave
+		return newNotes;
 	}
 
 	/*
@@ -368,5 +326,107 @@ function MusicSnippet(notes, type, quality, category) {
 			files.push("audio/piano/piano"+midi[i]+".wav");
 		}
 		return files;
+	}
+
+	/**
+	 * Fades all sound out
+	 *
+	 * @method fadeOut
+	 */
+	this.fadeOut = function() {
+		clear();
+		fade(0);
+	}
+
+	/**
+	 * Recursive helper function for this.fadeOut. When sound finishes fading, resets the file.
+	 *
+	 * @method fade
+	 * @param {Integer} note Which note to fade
+	 * @private
+	 */
+	function fade(note) {
+		if(note < numNotes) {
+			tempSounds[note].fadeOut(0.0, FADE_ALL_LENGTH, 
+				function() {
+					tempSounds[note].stop();		//After fade, reset position to 0
+					tempSounds[note].volume(1.0);	//After fade, reset volume to max
+					numEnded = -1;
+				}
+			);
+			fade(note+1);
+		}
+	}
+
+	/**
+	 * Immediately stops all sound
+	 *
+	 * @method stop
+	 */
+	this.stop = function() {
+		stop();
+		clear();
+		setVolume(1.0);
+		numEnded = 0;
+	}
+
+	/**
+	 * Clears all timeouts (delayed sounds)
+	 * 
+	 * @method clear
+	 * @private
+	 */
+	function clear() {
+		var initLength = timeouts.length;
+		for(var i = 0; i < initLength; i++) {
+			clearTimeout(timeouts[timeouts.length-1]);
+			timeouts.pop();
+		}
+	}
+
+	/**
+	 * Stops all sound currently playing
+	 * 
+	 * @method stop
+	 * @private
+	 */
+	function stop() {
+		for(var i = 0; i < tempSounds.length; i++) {
+			tempSounds[i].stop();
+		}
+	}
+
+	/**
+	 * Sets the volume of all files
+	 *
+	 * @method setVolume
+	 * @param {Float} vol Volume to set to (0.0 - 1.0)
+	 * @private
+	 */
+	function setVolume(vol) {
+		for(var i = 0; i < numNotes; i++) {
+			tempSounds[i].volume(vol);
+		}
+	}
+
+	/**
+	 * Returns the type and quality
+	 *
+	 * @method answer
+	 * @return {String} quality + type
+	 */
+	this.answer = function() {
+		return quality+" "+type+" "+inversion;
+	}
+
+	/**
+	 * Sets the bpm
+	 *
+	 * @method setBPM
+	 * @param {Integer} bpm Desired beats per minute
+	 */
+	this.setBPM = function(newbpm) {
+		bpm = newbpm;
+		bps = bpm/60; 				//Beats per second
 	}
 }

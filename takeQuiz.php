@@ -92,16 +92,23 @@ $thisPage = 'Take Quiz';
 
 	function stop() {
 		snippet.fadeOut();
-		document.getElementById("playbtn").style.display = "block";
-		document.getElementById("stopbtn").style.display = "none";
+		document.getElementById("stopbtn").disabled = true;
+		setTimeout(function() { // delay the return of the play button until sound has faded
+			document.getElementById("playbtn").style.display = "block";
+			document.getElementById("stopbtn").style.display = "none";
+			document.getElementById("stopbtn").disabled = false;
+		}, 101);
+		
 	}
 
 	function nextQuestion() {
 		hide();
 		snippet.fadeOut();
 		snippet = qg.getNextQuestion();
-		snippet.generate();
-		document.getElementById("answer").innerHTML = snippet.answer();
+		setTimeout(function() {
+			snippet.generate();
+			document.getElementById("answer").innerHTML = snippet.answer();
+		}, 101);
 	}
 
 	function reveal() {
