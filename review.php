@@ -178,7 +178,7 @@
 		}
 
 		// generate snippet with selected type, quality, and key
-		var snippet = new MusicSnippet(data[i][2], type, quality, data[i][3]);
+		snippet = new MusicSnippet(data[i][2], type, quality, data[i][3]);
 		// inversions
 		if (opt == "first") {
 			snippet.generate(key, 1);
