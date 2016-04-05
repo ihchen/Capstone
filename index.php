@@ -22,7 +22,7 @@ $thisPage = 'Make My Own Practice Quiz';
 		/* Activate Collapsible list */
 		$('.collapse').collapse();
 
-		/* Check type2 boxes when type1 boxes are checked */
+		/* Checks the boxes of the given class */
 		function checkBoxes(checkbox_class) {
 			var mainbox;
 			var subboxes = document.getElementsByClassName(checkbox_class);
@@ -59,9 +59,9 @@ $thisPage = 'Make My Own Practice Quiz';
 <form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
 	<input class = "button" type="submit" value="Start Training">
 	<br/>
-	<button onclick="checkBoxes('Test1')">Test 1</button>
-	<button onclick="checkBoxes('Test2')">Test 2</button>
-	<button onclick="checkBoxes('Final')">Final</button>
+	<button onclick="checkBoxes('Test1')" type="button">Test 1</button>
+	<button onclick="checkBoxes('Test2')" type="button">Test 2</button>
+	<button onclick="checkBoxes('Final')" type="button">Final</button>
 	<div id="checkboxcontainer">
 		<div id="accordion" class="panel-group">
 			<!-- Type1 Checkboxes -->
