@@ -92,8 +92,13 @@ $thisPage = 'Take Quiz';
 
 	function stop() {
 		snippet.fadeOut();
-		document.getElementById("playbtn").style.display = "block";
-		document.getElementById("stopbtn").style.display = "none";
+		document.getElementById("stopbtn").disabled = true;
+		setTimeout(function() { // delay the return of the play button until sound has faded
+			document.getElementById("playbtn").style.display = "block";
+			document.getElementById("stopbtn").style.display = "none";
+			document.getElementById("stopbtn").disabled = false;
+		}, 1000);
+		
 	}
 
 	function nextQuestion() {
