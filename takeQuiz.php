@@ -97,7 +97,7 @@ $thisPage = 'Take Quiz';
 			document.getElementById("playbtn").style.display = "block";
 			document.getElementById("stopbtn").style.display = "none";
 			document.getElementById("stopbtn").disabled = false;
-		}, 1000);
+		}, 101);
 		
 	}
 
