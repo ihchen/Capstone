@@ -206,9 +206,9 @@
 	// ends the setInterval when files are loaded
 	function loadCheck(opt) {
 		if (document.getElementById("loading").style.display == "none") {
-			document.getElementById("loadbtn").style.display = "none";
-			document.getElementById("stopbtn").style.display = "block";
 			clearInterval(load_wait_intervalID); // stop waiting/looping
+			document.getElementById("loadbtn").style.display = "none"; // change buttons
+			document.getElementById("stopbtn").style.display = "block";
 			snippet.play(opt);
 		}
 	}
@@ -224,8 +224,8 @@
 	}
 </script>
 
-<br id="allbuttons">
-<br id="loading">
+<span id="allbuttons"></span>
+<span id="loading"></span>
 
 
 </body>
