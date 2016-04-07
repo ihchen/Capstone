@@ -88,7 +88,13 @@ function MusicSnippet(notes, type, quality, category) {
 			}
 			//Play scales broken and ascending
 			else if(type == SCALE) {
-				playBroken(DEFAULT_FADE);
+				var rand = Math.floor(Math.random()*2);
+				if(rand == 0) {
+					playBroken(DEFAULT_FADE);
+				}
+				else {
+					playBroken(DEFAULT_FADE, DESCENDING);
+				}
 			}
 			//If something else, just play it broken
 			else {

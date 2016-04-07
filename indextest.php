@@ -36,14 +36,85 @@ $thisPage = 'Make My Own Practice Quiz';
 					subboxes[i].checked = false;
 				}
 			}
+			checkCheckedChords();
+			checkCheckedScales();
 		}
 
-		function uncheckBoxes() {
-			var boxes = document.getElementsByTagName("input");
+		function checkTest2() {
+			var test2 = document.getElementById('test2box');
+			if(test2.checked) 
+				document.getElementById('test1box').checked = true;
+			else
+				document.getElementById('test1box').checked = false;
+			checkBoxes('Test2', 'test2box');
+			checkBoxes('Test1', 'test1box');
+		}
+
+		function checkFinal() {
+			var final = document.getElementById('finalbox');
+			if(final.checked)
+				document.getElementById('test2box').checked = true;
+			else
+				document.getElementById('test2box').checked = false;
+			checkTest2();			
+			checkBoxes('Final', 'finalbox');
+		}
+
+		function uncheckBoxes(type) {
+			var boxes;
+			if(type == 'chord') {
+				boxes = document.getElementsByClassName("type2chord");
+				document.getElementById("chordselect").style.display = "block";
+				document.getElementById("chorddeselect").style.display = "none";
+			}
+			else if(type == 'scale') {
+				boxes = document.getElementsByClassName("type2scale");
+				document.getElementById("scaleselect").style.display = "block";
+				document.getElementById("scaledeselect").style.display = "none";
+			}
+			else {
+				boxes = document.getElementsByTagName("input");
+				document.getElementById("chordselect").style.display = "block";
+				document.getElementById("chorddeselect").style.display = "none";
+				document.getElementById("scaleselect").style.display = "block";
+				document.getElementById("scaledeselect").style.display = "none";
+			}
 			for(var i = 0; i < boxes.length; i++) {
 				if(boxes[i].type == "checkbox") {
 					boxes[i].checked = false;
 				}
+			}
+		}
+
+		function checkCheckedChords() {
+			var hasChecked = false;
+			var boxes = document.getElementsByClassName("type2chord");
+			for(var i = 0; i < boxes.length; i++) {
+				if(boxes[i].checked == true) {
+					hasChecked = true;
+					document.getElementById("chordselect").style.display = "none";
+					document.getElementById("chorddeselect").style.display = "block";
+				}
+			}
+			if(!hasChecked) {
+				document.getElementById("chordselect").style.display = "block";
+				document.getElementById("chorddeselect").style.display = "none";
+			}
+		}
+
+		function checkCheckedScales() {
+			var hasChecked = false;
+			var boxes = document.getElementsByClassName("type2scale");
+			for(var i = 0; i < boxes.length; i++) {
+				if(boxes[i].checked == true) {
+					hasChecked = true;
+					document.getElementById("scaleselect").style.display = "none";
+					document.getElementById("scaledeselect").style.display = "block";
+				}
+			}
+			if(!hasChecked) {
+				document.getElementById("scaleselect").style.display = "block";
+				document.getElementById("scaledeselect").style.display = "none";
 			}
 		}
 	</script>
@@ -123,8 +194,8 @@ $thisPage = 'Make My Own Practice Quiz';
 
 <form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
 	<input type="checkbox" id="test1box" onclick="checkBoxes('Test1','test1box')"><div class="testnames"> Test 1 </div>
-	<input type="checkbox" id="test2box" onclick="checkBoxes('Test2','test2box')"><div class="testnames"> Test 2 </div>
-	<input type="checkbox" id="finalbox" onclick="checkBoxes('Final','finalbox')"><div class="testnames"> Final </div>
+	<input type="checkbox" id="test2box" onclick="checkTest2()"><div class="testnames"> Test 2 </div>
+	<input type="checkbox" id="finalbox" onclick="checkFinal()"><div class="testnames"> Final </div>
 	<br/>
 	<button type="button" class="button" onclick="uncheckBoxes()">Deselect All</button>
 	<br/>
@@ -134,7 +205,8 @@ $thisPage = 'Make My Own Practice Quiz';
 		<div class="maincolumn">
 			<div class="typehead">
 				Chords
-				<button type="button" class="selectbtn" onclick="checkBoxes('type2chord')">Select All</button>
+				<button id="chordselect" type="button" class="selectbtn" onclick="checkBoxes('type2chord')">Select All</button>
+				<button id="chorddeselect" type="button" class="selectbtn" onclick="uncheckBoxes('type2chord')">Deselect All</button>
 			</div>
 			<div class="type2list" id="chord">
 				<!-- <div class="category"> -->
@@ -149,7 +221,8 @@ $thisPage = 'Make My Own Practice Quiz';
 		<div class="maincolumn">
 			<div class="typehead">
 				Scales
-				<button type="button" class="selectbtn" onclick="checkBoxes('type2scale')">Select All</button>
+				<button id="scaleselect" type="button" class="selectbtn" onclick="checkBoxes('type2scale')">Select All</button>
+				<button id="scaledeselect" type="button" class="selectbtn" onclick="uncheckBoxes('type2scale')">Deselect All</button>
 			</div>
 			<div class="type2list" id="scale">
 				<!-- <div class="category"> -->
@@ -171,6 +244,8 @@ $thisPage = 'Make My Own Practice Quiz';
 </form>
 
 <script>
+checkCheckedChords();
+checkCheckedScales();
 	var categories = [];
 
 	for (var i = 0; i < data.length; i++) {
@@ -216,7 +291,13 @@ $thisPage = 'Make My Own Practice Quiz';
 
 	for (var i = 0; i < data.length; i++) {
 		var div = document.getElementById(data[i][4]);
-		div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2"+data[i][0]+" "+data[i][3]+"' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br/>";
+		if(data[i][0] == 'chord') {
+			var fn = "checkCheckedChords()";
+		}
+		else {
+			var fn = "checkCheckedScales()";
+		}
+		div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2"+data[i][0]+" "+data[i][3]+"' name='" + i + "' value='num' onclick="+fn+">" + data[i][1] + "<br/>";
 	}
 
 	// if the form doesn't have at least one box checked, alert and stop submission
