@@ -7,8 +7,8 @@ scale,Dorian,D E F G A B C D,Test1,Diatonic
 scale,Phrygian,E F G A B C D E,Test1,Diatonic
 scale,Lydian,F G A B C D E F,Test1,Diatonic
 scale,Mixolydian,G A B C D E F G,Test1,Diatonic
-scale,Anhemitonic pentatonic,C D E G A C D E,Test1,pentatonic
-scale,Hirajoshi pentatonic,A B C E F A B C,Test1,pentatonic
+scale,Anhemitonic pentatonic,C D E G A C D E,Test1,Pentatonic
+scale,Hirajoshi pentatonic,A B C E F A B C,Test1,Pentatonic
 scale,Whole Tone,C D E Fx Gx Ax C D,Test1,Non-diatonic
 scale,Octatonic,C D Eb F Gb Ab A B,Test2,Non-diatonic
 scale,Hexatonic,C Db E F Gx A C Db,Final,Non-diatonic
