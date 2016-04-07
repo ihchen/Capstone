@@ -1,22 +1,22 @@
-scale,Major,C D E F G A B C,Test1,diatonic
-scale,Natural Minor,A B C D E F G A,Test1,diatonic
-scale,Harmonic Minor,A B C D E F Gx A,Test1,altered
-scale,Melodic Minor,A B C D E Fx Gx A,Test1,altered
-scale,Locrian,B C D E F G A B,Test1,diatonic
-scale,Dorian,D E F G A B C D,Test1,diatonic
-scale,Phrygian,E F G A B C D E,Test1,diatonic
-scale,Lydian,F G A B C D E F,Test1,diatonic
-scale,Mixolydian,G A B C D E F G,Test1,diatonic
+scale,Major,C D E F G A B C,Test1,Diatonic
+scale,Natural Minor,A B C D E F G A,Test1,Diatonic
+scale,Harmonic Minor,A B C D E F Gx A,Test1,Altered
+scale,Melodic Minor,A B C D E Fx Gx A,Test1,Altered
+scale,Locrian,B C D E F G A B,Test1,Diatonic
+scale,Dorian,D E F G A B C D,Test1,Diatonic
+scale,Phrygian,E F G A B C D E,Test1,Diatonic
+scale,Lydian,F G A B C D E F,Test1,Diatonic
+scale,Mixolydian,G A B C D E F G,Test1,Diatonic
 scale,Anhemitonic pentatonic,C D E G A C D E,Test1,pentatonic
 scale,Hirajoshi pentatonic,A B C E F A B C,Test1,pentatonic
-scale,Whole Tone,C D E Fx Gx Ax C D,Test1,non-diatonic
-scale,Octatonic,C D Eb F Gb Ab A B,Test2,non-diatonic
-scale,Hexatonic,C Db E F Gx A C Db,Final,non-diatonic
-scale,Lydian-Mixolydian,C D E Fx G A Bb C,Final,altered
-scale,Bebop Major,C D E F G A Bb B,Test2,altered
-scale,Diminished-Whole Tone,B C D Eb F G A B,Test2,non-diatonic
-scale,Fifth Mode Melodic Minor,G A B C D Eb F G,Test2,altered
-scale,Phrygian-Dorian,D Eb F G A B C D,Final,altered
+scale,Whole Tone,C D E Fx Gx Ax C D,Test1,Non-diatonic
+scale,Octatonic,C D Eb F Gb Ab A B,Test2,Non-diatonic
+scale,Hexatonic,C Db E F Gx A C Db,Final,Non-diatonic
+scale,Lydian-Mixolydian,C D E Fx G A Bb C,Final,Altered
+scale,Bebop Major,C D E F G A Bb B,Test2,Altered
+scale,Diminished-Whole Tone,B C D Eb F G A B,Test2,Non-diatonic
+scale,Fifth Mode Melodic Minor,G A B C D Eb F G,Test2,Altered
+scale,Phrygian-Dorian,D Eb F G A B C D,Final,Altered
 chord,Rite of Spring,F A C F Gx B D E,Final,20th Century
 chord,Petrushka,F A B C Dx Fx,Final,20th Century
 chord,Mystic,F B Eb A D G,Final,20th Century
