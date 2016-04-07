@@ -1,5 +1,5 @@
-scale,Major,C D E F G A B C,Test1,Diatonic
-scale,Natural Minor,A B C D E F G A,Test1,Diatonic
+scale,Major,C D E F G A B C,Test1,diatonic
+scale,Natural Minor,A B C D E F G A,Test1,diatonic
 scale,Harmonic Minor,A B C D E F Gx A,Test1,altered
 scale,Melodic Minor,A B C D E Fx Gx A,Test1,altered
 scale,Locrian,B C D E F G A B,Test1,diatonic
