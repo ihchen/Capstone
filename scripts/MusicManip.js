@@ -207,8 +207,8 @@ function setOctave(notes) {
 /**
  * Go up one note name. G will loop back to A.
  * @method increment
- * @param {String} note name
- * @return {String} one letter name higher
+ * @param {Char} note name
+ * @return {Char} one letter name higher
  */
 function increment(noteName) {
   noteName = String.fromCharCode(noteName.charCodeAt(0) + 1);
@@ -219,8 +219,8 @@ function increment(noteName) {
 /**
  * Go down one note name. A will loop back to G.
  * @method decrement
- * @param {String} note name
- * @return {String} one letter name lower
+ * @param {Char} note name
+ * @return {Char} one letter name lower
  */
 function decrement(noteName) {
   noteName = String.fromCharCode(noteName.charCodeAt(0) - 1);

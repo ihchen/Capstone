@@ -1,5 +1,6 @@
 <?php
 $thisPage = 'Successive Melodic Intervals';
+// header("Location: successiveMelodicIntervals.php", true, 303);
 ?>
 
 <?php require_once('phpincludes/header.php'); ?>
@@ -18,7 +19,7 @@ $thisPage = 'Successive Melodic Intervals';
 <script>
   var smi = new SuccessiveMelodicIntervals();
   var answers = smi.getAnswers();
-  document.write(answers);
+  // document.write(answers);
   var snippet = new MusicSnippet(smi.getNotes());
   snippet.generate();
   var bpm = 80;
@@ -33,7 +34,7 @@ $thisPage = 'Successive Melodic Intervals';
 <button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
 <button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
 
-<form method="post" name="intervals" onSubmit="window.location.reload()">
+<div id="intervals" method="">
   <script>
   var intervals = ["--", "m2", "M2", "m3", "M3", "P4", "tritone", "P5", "m6", "M6", "m7", "M7"];
   for (var i = 0; i < answers.length; i++) {
@@ -48,11 +49,10 @@ $thisPage = 'Successive Melodic Intervals';
 
   <span id="answers"> </span>
   <br></br>
-  <button id="checkanswers" class="button" onclick = "return checkAnswers()">Check Answers</button>
-  <input type = "submit" id="nextquestion" value = "Next Question" class="button" style="display:none;" action=""></input>
+  <button id="checkanswers" class="button" onclick="return checkAnswers()">Check Answers</button>
+  <button id="nextquestion" class="button" style="display:none;" onclick="return nextQuestion()">Next Question</button>
 
-
-</form>
+</div>
 
 </div>
 </body>
@@ -60,15 +60,19 @@ $thisPage = 'Successive Melodic Intervals';
 <script type="text/javascript">
 
   function play() {
-    document.getElementById("playbtn").style.display = "none";
-    document.getElementById("stopbtn").style.display = "block";
     snippet.play();
+		document.getElementById("playbtn").style.display = "none";
+		document.getElementById("stopbtn").style.display = "block";
   }
 
   function stop() {
     snippet.fadeOut();
-    document.getElementById("playbtn").style.display = "block";
-    document.getElementById("stopbtn").style.display = "none";
+		document.getElementById("stopbtn").disabled = true;
+		setTimeout(function() { // delay the return of the play button until sound has faded
+			document.getElementById("playbtn").style.display = "block";
+			document.getElementById("stopbtn").style.display = "none";
+			document.getElementById("stopbtn").disabled = false;
+		}, 101);
   }
 
   function checkAnswers() {
@@ -121,6 +125,26 @@ $thisPage = 'Successive Melodic Intervals';
 
     return false;
 
+  }
+
+  function nextQuestion() {
+    document.getElementById("answers").innerHTML = "";
+    document.getElementById("checkanswers").style.display = "block";
+    document.getElementById("nextquestion").style.display = "none";
+
+    // reset drop down menus
+    for (var i = 0; i < answers.length; i++) {
+      document.getElementById(i).selectedIndex = 0;
+    }
+
+    var smi = new SuccessiveMelodicIntervals();
+    answers = smi.getAnswers();
+    // document.write(answers);
+    snippet = new MusicSnippet(smi.getNotes());
+    snippet.generate();
+    var bpm = 80;
+    snippet.setBPM(bpm);
+    return false;
   }
 
 </script>
