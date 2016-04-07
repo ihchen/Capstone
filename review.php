@@ -11,34 +11,34 @@
 <script src="scripts/QuestionGenerator.js"></script>
 <script src="scripts/ParseCSV.js"></script>
 
-<body>
+<body id="content">
 
 <!-- Spacing for mobile / small screen -->
 <br><br>
 
 <form>
-	<select id="type" onchange="updateQuality()">
+	<select id="type" class="dropdown" onchange="updateQuality()">
 		<option value="">-----</option>
 		<option value="scale">Scale</option>
 		<option value="chord">Chord</option>
 	</select>
 	<br>
-	<select id="quality" onchange="updateKey()">
+	<select id="quality" class="dropdown" onchange="updateKey()">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<select id="key">
+	<select id="key" class="dropdown">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<select id="opt">
+	<select id="opt" class="dropdown">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<input type="range" id="tempo" min="40" max="200" step="1" value="80" onchange="updateTempo()"><span id="tempoDisplay">80 BPM</span>
+	<input type="range" id="tempo" class="slider" min="40" max="200" step="1" value="80" onchange="updateTempo()"><span id="tempoDisplay">80 BPM</span>
 	<br>
 	<button type="button" class="button" id="playbtn" onclick="playSelected()">
 		Play

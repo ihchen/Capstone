@@ -119,17 +119,45 @@ $thisPage = 'Make My Own Practice Quiz';
 		}
 	}
 
+	// read cookie if it exists
+	{
+		console.log(document.cookie);
+		var select = document.cookie.split('=').pop().split(',');
+		console.log(select);
+		var form = document.forms["selection"];
+		for (var i = 0; select[i] != ""; i++) {
+			console.log(select[i]);
+			form[select[i]].checked = true;
+		}
+	}
+
+
 	// if the form doesn't have at least one box checked, alert and stop submission
 	function validateForm() {
 		var form_fields = document.forms["selection"]; // get the form
 		for (var i = 0; form_fields[i.toString()] != undefined; i++) { // loop through everything in the form
-			if (form_fields[i.toString()].value == "num" && form_fields[i.toString()].checked == true) { // if it's a chord/scale/interval option and is set
+			if (form_fields[i.toString()].value == "num" && form_fields[i.toString()].checked == true) { // if it's a chord/scale option and is set
+				makeCookie();
 				return true; // submit the form
 			}
 		}
 		// else no boxes are checked
-		alert("Please select at least one scale, chord, or interval.");
+		alert("Please select at least one chord or scale.");
 		return false; // don't submit the form
+	}
+
+	function makeCookie() {
+		var cookie_string = "selected=";
+		var form_fields = document.forms["selection"];
+		for (var i = 0; form_fields[i.toString()] != undefined; i++) {
+			if (form_fields[i.toString()].checked == true) {
+				cookie_string += i + ","; // add all selected scales/chords to the cookie
+			}
+		}
+		var exp = new Date();
+		exp.setTime(exp.getTime() + 604800000) // one week from now
+		cookie_string += "; expires=" + exp.toUTCString();
+		document.cookie = cookie_string;
 	}
 </script>
 
