@@ -49,10 +49,3 @@ a {
     display : inline;
     float: left;
 }
-
-button {
-	font-size:1em;
-	max-width: 200px;
-	width:90%;
-	height:50px;
-}
