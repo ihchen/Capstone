@@ -156,7 +156,7 @@ $thisPage = 'Take Quiz';
 
 	function applyInversion(answerElement) {
 	    var answerString = answerElement.innerHTML;
-	    var split = answerString.split("/");
+	    var split = answerString.split("|");
 	    if(split.length == 2) {
 	    	var top = split[0][split[0].length-1];
 	    	var bot = split[1][0];

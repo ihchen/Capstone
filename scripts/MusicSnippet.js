@@ -262,13 +262,13 @@ function MusicSnippet(notes, type, quality, category) {
 
 		//Apply inversion changes
 		if(inv == 3) {
-			return baseQuality+"4/2";
+			return baseQuality+"4|2";
 		}
 		else if(inv == 2) {
-			return baseQuality+"4/3";
+			return baseQuality+"4|3";
 		}
 		else if(inv == 1) {
-			return baseQuality+"6/5";
+			return baseQuality+"6|5";
 		}
 		else {
 			return baseQuality+"7";
