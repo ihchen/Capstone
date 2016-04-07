@@ -8,38 +8,41 @@ $thisPage = 'Make My Own Practice Quiz';
 	<title> <?php echo "$thisPage" ?> </title>
 
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+	<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
 	<!-- CSV Parsing script -->
 	<script src="scripts/ParseCSV.js"></script>
 
-	<!-- Overall CSS -->
-	<link rel="stylesheet" type="text/css" href="style/style2.css">
+	<link href="style/style2.css" type="text/css" rel="stylesheet">
 
 	<script>
 		/* Activate Collapsible list */
-		$('.collapse').collapse();
+		// $('.collapse').collapse();
 
 		/* Checks the boxes of the given class */
-		function checkBoxes(checkbox_class) {
+		function checkBoxes(checkbox_class, mainclass) {
 			var mainbox;
 			var subboxes = document.getElementsByClassName(checkbox_class);
-			if(checkbox_class.substring(0,4) == "type") {
-				mainbox = document.getElementById("type1"+checkbox_class.substring(5,checkbox_class.length));
+			if(mainclass != undefined) {
+				mainbox = document.getElementById(mainclass);
 			}
 			for(var i = 0; i < subboxes.length; i++) {
-				if(mainbox == undefined) {
+				if(mainbox == undefined || mainbox.checked) {
 					subboxes[i].checked = true;
 				}
 				else {
-					if(mainbox.checked) {
-						subboxes[i].checked = true;
-					}
-					else {
-						subboxes[i].checked = false;
-					}
+					subboxes[i].checked = false;
+				}
+			}
+		}
+
+		function uncheckBoxes() {
+			var boxes = document.getElementsByTagName("input");
+			for(var i = 0; i < boxes.length; i++) {
+				if(boxes[i].type == "checkbox") {
+					boxes[i].checked = false;
 				}
 			}
 		}
@@ -72,6 +75,7 @@ $thisPage = 'Make My Own Practice Quiz';
 	font-size: 1.2em;
 	font-weight: bold;
 	border-bottom: 2px solid #008B8B;
+	position:relative;
 }
 .type2list {
 	-webkit-column-count: 2;
@@ -88,6 +92,28 @@ $thisPage = 'Make My Own Practice Quiz';
 	font-size: 1.1em;
 	text-decoration: underline;
 }
+.testnames {
+	font-size: 1.3em;
+	display: inline-block;
+	padding-left: 5px;
+	padding-right: 20px;
+}
+.selectbtn {
+	text-align: center;
+	white-space: nowrap;
+	background: #008B8B;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: .7em;
+	border: none;
+	margin-bottom: 5px;
+	top: 5px;
+	position:absolute;
+	top: 0%;
+	right: 0%;
+}
+.selectbtn:hover {
+  background: #00CED1;
+}
 </style>
 <body id = "content">
 
@@ -96,11 +122,11 @@ $thisPage = 'Make My Own Practice Quiz';
 	</div>
 
 <form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
-	<input class = "button" type="submit" value="Start Training">
+	<input type="checkbox" id="test1box" onclick="checkBoxes('Test1','test1box')"><div class="testnames"> Test 1 </div>
+	<input type="checkbox" id="test2box" onclick="checkBoxes('Test2','test2box')"><div class="testnames"> Test 2 </div>
+	<input type="checkbox" id="finalbox" onclick="checkBoxes('Final','finalbox')"><div class="testnames"> Final </div>
 	<br/>
-	<button class = "button" onclick="checkBoxes('Test1')" type="button">Test 1</button>
-	<button class = "button" onclick="checkBoxes('Test2')" type="button">Test 2</button>
-	<button class = "button" onclick="checkBoxes('Final')" type="button">Final</button>
+	<button type="button" class="button" onclick="uncheckBoxes()">Deselect All</button>
 	<br/>
 	
 	<div class="rows">
@@ -108,6 +134,7 @@ $thisPage = 'Make My Own Practice Quiz';
 		<div class="maincolumn">
 			<div class="typehead">
 				Chords
+				<button type="button" class="selectbtn" onclick="checkBoxes('type2chord')">Select All</button>
 			</div>
 			<div class="type2list" id="chord">
 				<!-- <div class="category"> -->
@@ -122,6 +149,7 @@ $thisPage = 'Make My Own Practice Quiz';
 		<div class="maincolumn">
 			<div class="typehead">
 				Scales
+				<button type="button" class="selectbtn" onclick="checkBoxes('type2scale')">Select All</button>
 			</div>
 			<div class="type2list" id="scale">
 				<!-- <div class="category"> -->
@@ -135,10 +163,11 @@ $thisPage = 'Make My Own Practice Quiz';
 		</div>
 		<div class="colspace">&nbsp</div>
 	</div>
+	<br/>
+	<input class = "button" type="submit" value="Start Training">
 </body>
 
 
-	<!-- </div> -->
 </form>
 
 <script>
@@ -189,25 +218,6 @@ $thisPage = 'Make My Own Practice Quiz';
 		var div = document.getElementById(data[i][4]);
 		div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2"+data[i][0]+" "+data[i][3]+"' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br/>";
 	}
-
-	/* Parse CSV file to generate selections */
-	// for (var i = 0; i < data.length; i++) {
-	// 	if (data[i][0] == "scale") { // if it's a scale
-	// 		var div = document.getElementById("scales");
-	// 		// add a checkbox input
-	// 		div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2scale "+data[i][3]+"' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br/>";
-	// 	}
-	// 	else if (data[i][0] == "chord") { // if it's a chord
-	// 		var div = document.getElementById("chords");
-	// 		// add a checkbox input
-	// 		div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2chord "+data[i][3]+"' name='" + i + "' value='num'>" + data[i][1] + " " + data[i][0] + "<br/>";
-	// 	}
-	// 	else if (data[i][0] == "interval") { // if it's an interval
-	// 		var div = document.getElementById("intervals");
-	// 		// add a checkbox input
-	// 		div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2interval "+data[i][3]+"' name='" + i + "' value='num'>" + data[i][1] + "<br/>";
-	// 	}
-	// }
 
 	// if the form doesn't have at least one box checked, alert and stop submission
 	function validateForm() {
