@@ -300,6 +300,18 @@ checkCheckedScales();
 		div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2"+data[i][0]+" "+data[i][3]+"' name='" + i + "' value='num' onclick="+fn+">" + data[i][1] + "<br/>";
 	}
 
+	// read cookie if it exists
+	{
+		console.log(document.cookie);
+		var select = document.cookie.split('=').pop().split(',');
+		console.log(select);
+		var form = document.forms["selection"];
+		for (var i = 0; select[i] != ""; i++) {
+			console.log(select[i]);
+			form[select[i]].checked = true;
+		}
+	}
+
 	// if the form doesn't have at least one box checked, alert and stop submission
 	function validateForm() {
 		var form_fields = document.forms["selection"]; // get the form
