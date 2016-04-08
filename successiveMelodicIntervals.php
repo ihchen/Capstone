@@ -24,33 +24,39 @@ $thisPage = 'Successive Melodic Intervals';
   snippet.generate();
   var bpm = 80;
   snippet.setBPM(bpm);
+  var inst = "Indentify the interval between consecutive note. Select your answers from the drop down menus."
 
 </script>
 <div id ="smi">
   <div id="instructions" class="">
-    Indentify the interval between each note. Select your answers from the drop down menus.
+    <script>
+      document.write(inst);
+    </script>
   </div>
 
-<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
-<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
+  <button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
+  <button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
 
-<div id="intervals" method="">
-  <script>
-  var intervals = ["--", "m2", "M2", "m3", "M3", "P4", "tritone", "P5", "m6", "M6", "m7", "M7"];
-  for (var i = 0; i < answers.length; i++) {
-    document.write("<select id=\"" + i + "\">");
-    for (var j = 0; j < intervals.length; j++) {
-      document.write("<option value=\"" + intervals[j] + "\">" + intervals[j] + "</option>");
+  <div id="alert" class="">
+  </div>
+
+  <div id="intervals" method="">
+    <script>
+    var intervals = ["--", "m2", "M2", "m3", "M3", "P4", "tritone", "P5", "m6", "M6", "m7", "M7"];
+    for (var i = 0; i < answers.length; i++) {
+      document.write("<select id=\"" + i + "\">");
+      for (var j = 0; j < intervals.length; j++) {
+        document.write("<option value=\"" + intervals[j] + "\">" + intervals[j] + "</option>");
+      }
+      document.write("</select>");
     }
-    document.write("</select>");
-  }
-  </script>
-  <br></br>
+    </script>
+    <br></br>
 
-  <span id="answers"> </span>
-  <br></br>
-  <button id="checkanswers" class="button" onclick="return checkAnswers()">Check Answers</button>
-  <button id="nextquestion" class="button" style="display:none;" onclick="return nextQuestion()">Next Question</button>
+    <span id="answers"> </span>
+    <br></br>
+    <button id="checkanswers" class="button" onclick="return checkAnswers()">Check Answers</button>
+    <button id="nextquestion" class="button" style="display:none;" onclick="return nextQuestion()">Next Question</button>
 
 </div>
 
@@ -131,6 +137,8 @@ $thisPage = 'Successive Melodic Intervals';
     document.getElementById("answers").innerHTML = "";
     document.getElementById("checkanswers").style.display = "block";
     document.getElementById("nextquestion").style.display = "none";
+    document.getElementById("instructions").innerHTML = inst;
+
 
     // reset drop down menus
     for (var i = 0; i < answers.length; i++) {
