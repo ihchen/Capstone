@@ -24,7 +24,7 @@ $thisPage = 'Successive Melodic Intervals';
   snippet.generate();
   var bpm = 80;
   snippet.setBPM(bpm);
-  var inst = "Indentify the interval between consecutive note. Select your answers from the drop down menus."
+  var inst = "Indentify the interval between consecutive notes. Select your answers from the drop down menus."
 
 </script>
 <div id ="smi">
