@@ -79,7 +79,7 @@ center {
 #nextquestion {
 	text-align: center;
 	margin: 0 auto;
-	/*margin-top: 1em;*/
+	margin-top: 1em;
 	margin-bottom: 1em;
 }
 
@@ -88,6 +88,8 @@ center {
 	margin: 0 auto;
 	margin-top: 1em;
 	margin-bottom: 1em;
+	margin-left: auto;
+	margin-right: auto;
 
 }
 
@@ -125,6 +127,7 @@ a {
 	margin-right: 0;
 	margin-top: 0;
 	margin-bottom: 0;
+	height: 242px;
 	/*display: block;*/
 }
 
@@ -136,10 +139,9 @@ a {
 	background: #008B8B;
 	font-family: Verdana, Geneva, sans-serif;
 	font-size: .9em;
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	border-bottom: none;
+	/*border-style: solid;
+	border-width: thin;*/
+	border: 1px solid #008080;
 	margin-top: 1em;
 	margin-bottom: 1em;
 	margin: 0 auto;
@@ -153,6 +155,8 @@ a {
 .button:hover {
 	cursor: pointer; cursor: hand;
   background: #00CED1;
+	border: 1px solid #00CED1;
+
 }
 
 #bottompagebutton {
@@ -204,7 +208,6 @@ a {
 }
 
 #nav a {
-	/*Override bootstrap's "underline while hovering" over a link*/
 	text-decoration: none;
 }
 
@@ -313,6 +316,16 @@ a {
 	text-align: center;
 	float: none;
 	/*position: sticky;;*/
+}
+
+#alert {
+	margin: 0;
+	padding: .5em;
+	background-color: #ffb3b3;
+	border-style: solid;
+	border-width: thin;
+	border-color: #FF0000;
+	display: none;
 }
 
 .footertext {
