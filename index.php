@@ -1,6 +1,6 @@
 
 <?php
-$thisPage = 'Make My Own Practice Quiz';
+$thisPage = 'Design Quiz';
 ?>
 
 <?php require_once('phpincludes/header.php'); ?>
@@ -42,7 +42,7 @@ $thisPage = 'Make My Own Practice Quiz';
 
 		function checkTest2() {
 			var test2 = document.getElementById('test2box');
-			if(test2.checked) 
+			if(test2.checked)
 				document.getElementById('test1box').checked = true;
 			else
 				document.getElementById('test1box').checked = false;
@@ -56,7 +56,7 @@ $thisPage = 'Make My Own Practice Quiz';
 				document.getElementById('test2box').checked = true;
 			else
 				document.getElementById('test2box').checked = false;
-			checkTest2();			
+			checkTest2();
 			checkBoxes('Final', 'finalbox');
 		}
 
@@ -131,12 +131,12 @@ $thisPage = 'Make My Own Practice Quiz';
 .rows {
 	display: flex;
 }
-.colspace { 
-	width: 16.66%; 
+.colspace {
+	width: 16.66%;
 	float: left;
 }
-.maincolumn { 
-	width: 33.33%; 
+.maincolumn {
+	width: 33.33%;
 	float: left;
 	padding: 5px;
 	text-align: left;
@@ -199,7 +199,7 @@ $thisPage = 'Make My Own Practice Quiz';
 	<br/>
 	<button type="button" class="button" onclick="uncheckBoxes()">Deselect All</button>
 	<br/>
-	
+
 	<div class="rows">
 		<div class="colspace">&nbsp</div>
 		<div class="maincolumn">
@@ -213,7 +213,7 @@ $thisPage = 'Make My Own Practice Quiz';
 					<!-- <div class="categorytitle">[category]</div> -->
 					<!-- <div class="type2" id="[category]"> -->
 						<!-- Generated scales go here -->
-					<!-- </div> -->	
+					<!-- </div> -->
 				<!-- </div> -->
 				<!-- ... -->
 			</div>
@@ -229,7 +229,7 @@ $thisPage = 'Make My Own Practice Quiz';
 					<!-- <div class="categorytitle">[category]</div> -->
 					<!-- <div class="type2" id="[category]"> -->
 						<!-- Generated chords go here -->
-					<!-- </div> -->	
+					<!-- </div> -->
 				<!-- </div> -->
 				<!-- ... -->
 			</div>
@@ -278,9 +278,9 @@ checkCheckedScales();
 	        }
 	    } while (swapped);
 	}
-	
+
 	bubbleSort(categories);
-		
+
 	for (var i = 0; i < categories.length; i++) {
 		var div = document.getElementById(categories[i][2]);
 		div.innerHTML = div.innerHTML +

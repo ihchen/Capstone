@@ -3,9 +3,9 @@
   <a href = "#nav" id = "navicon" title = "Show Menu">&#9776;</a>
   <a href = "#" id = "navicon" title = "Hide Menu">&#9776;</a>
   <ul>
-    <li <?php if ($thisPage == 'Make My Own Practice Quiz'){echo 'id = "currentpage"';} ?>>
+    <li <?php if ($thisPage == 'Design Quiz'){echo 'id = "currentpage"';} ?>>
       <a href = "index.php" class = "menu-item" title = "Select from a list sonorities you would like to practice identifying.">
-        Make My Own Practice Quiz</a></li>
+        Design Quiz</a></li>
     <li <?php if ($thisPage == 'Review'){echo 'id = "currentpage"';} ?>>
       <a href = "review.php" class = "menu-item" title="Review chords and scales.">Review</a></li>
     <li <?php if ($thisPage == 'Successive Melodic Intervals'){echo 'id = "currentpage"';} ?>>
