@@ -24,7 +24,7 @@ $thisPage = 'Successive Melodic Intervals';
   snippet.generate();
   var bpm = 80;
   snippet.setBPM(bpm);
-  var inst = "Indentify the interval between consecutive notes. Select your answers from the drop down menus."
+  var inst = "Identify the interval between consecutive notes. Select your answers from the drop down menus."
 
 </script>
 <div id ="smi">
@@ -37,10 +37,8 @@ $thisPage = 'Successive Melodic Intervals';
   <button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
   <button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
 
-  <div id="alert" class="">
-  </div>
 
-  <div id="intervals" method="">
+  <div id="intervals">
     <script>
     var intervals = ["--", "m2", "M2", "m3", "M3", "P4", "tritone", "P5", "m6", "M6", "m7", "M7"];
     for (var i = 0; i < answers.length; i++) {
@@ -53,14 +51,18 @@ $thisPage = 'Successive Melodic Intervals';
     </script>
     <br></br>
 
+    <span id="alert" display="none">
+    </span>
+
     <span id="answers"> </span>
     <br></br>
-    <button id="checkanswers" class="button" onclick="return checkAnswers()">Check Answers</button>
+    </div>
+  </div>
+
+    <button id="checkanswers" class="button" style="display:block;" onclick="return checkAnswers()">Check Answers</button>
     <button id="nextquestion" class="button" style="display:none;" onclick="return nextQuestion()">Next Question</button>
 
-</div>
 
-</div>
 </body>
 
 <script type="text/javascript">
@@ -82,12 +84,17 @@ $thisPage = 'Successive Melodic Intervals';
   }
 
   function checkAnswers() {
+    document.getElementById("alert").innerHTML = "";
+    document.getElementById("alert").style.display = "none";
+
+
     var userAnswers = [];
     // Make sure the user has selected answers.
     for (var i = 0; i < answers.length; i++) {
       userAnswers.push(document.getElementById(i).value);
       if (userAnswers[i] == "--") {
-        document.getElementById("instructions").innerHTML = "Please select your answers from the drop down menus!";
+        document.getElementById("alert").style.display = "inline-block";
+        document.getElementById("alert").innerHTML = "Please select your answers from the drop down menus!";
         return false;
       }
     }
