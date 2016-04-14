@@ -3,8 +3,16 @@
  * @class SuccessiveMelodicIntervals
  * @constructor
  */
-function SuccessiveMelodicIntervals() {
-  const LENGTH = 4;
+function SuccessiveMelodicIntervals(numNotes) {
+  const DEFAULT_LENGTH = 4;
+  var length;
+
+  if (numNotes == null || numNotes < 2 || numNotes > 11) {
+    length = DEFAULT_LENGTH;
+  } else {
+    length = numNotes;
+  }
+
   var g = Math.random();
   var notes = generateMelody();
   // var answers = calculateAnswers();
@@ -44,14 +52,14 @@ function SuccessiveMelodicIntervals() {
   function generateMelody() {
 
     var paletteIndices = [];
-    for (var k = 0; k < LENGTH; k++) {
+    for (var k = 0; k < length; k++) {
       paletteIndices.push(0);
     }
     var melody = [];
 
     var i = 0;
 
-    while (melody[LENGTH - 1] == null) {
+    while (melody[length - 1] == null) {
       var palette;
       if (i == 0) {
         melody.push(getStartingNote());

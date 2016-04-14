@@ -17,14 +17,15 @@ $thisPage = 'Successive Melodic Intervals';
 <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
 
 <script>
-  var smi = new SuccessiveMelodicIntervals();
+  var n = 4;
+  var smi = new SuccessiveMelodicIntervals(n);
   var answers = smi.getAnswers();
   // document.write(answers);
   var snippet = new MusicSnippet(smi.getNotes());
   snippet.generate();
   var bpm = 80;
   snippet.setBPM(bpm);
-  var inst = "Identify the interval between consecutive notes. Select your answers from the drop down menus."
+  var inst = "Identify the interval between each pair of consecutive notes. " + n +" notes will be played. Select your answers from the drop down menus."
 
 </script>
 <div id ="smi">
