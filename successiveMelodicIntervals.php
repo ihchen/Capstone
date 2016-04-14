@@ -68,6 +68,9 @@ $thisPage = 'Successive Melodic Intervals';
 <script type="text/javascript">
 
   function play() {
+    document.getElementById("checkanswers").style.background= "#008B8B";
+    document.getElementById("checkanswers").style.border= "1px solid #008080";
+
     snippet.play();
 		document.getElementById("playbtn").style.display = "none";
 		document.getElementById("stopbtn").style.display = "block";
@@ -84,6 +87,8 @@ $thisPage = 'Successive Melodic Intervals';
   }
 
   function checkAnswers() {
+    document.getElementById("checkanswers").style.background= "#008B8B";
+    document.getElementById("checkanswers").style.border= "1px solid #008080";
     document.getElementById("alert").innerHTML = "";
     document.getElementById("alert").style.display = "none";
 
