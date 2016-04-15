@@ -16,29 +16,29 @@
 <!-- Spacing for mobile / small screen -->
 <br><br>
 
-<form>
-	<select id="type" class="dropdown" onchange="updateQuality()">
+<div>
+	Type: <select id="type" class="dropdown" onchange="updateQuality()">
 		<option value="">-----</option>
 		<option value="scale">Scale</option>
 		<option value="chord">Chord</option>
 	</select>
 	<br>
-	<select id="quality" class="dropdown" onchange="updateKey()">
+	Quality: <select id="quality" class="dropdown" onchange="updateKey()">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<select id="key" class="dropdown">
+	Key: <select id="key" class="dropdown">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<select id="opt" class="dropdown">
+	Direction / Inversion: <select id="opt" class="dropdown">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<input type="range" id="tempo" class="slider" min="40" max="200" step="1" value="80" onchange="updateTempo()"><span id="tempoDisplay">80 BPM</span>
+	Tempo: <input type="range" id="tempo" class="slider" min="40" max="200" step="1" value="80" oninput="updateTempoSlider()"><input type="text" id="tempoDisplay" min="40" max="200" step="1" value="80" maxlength="3" size="3" onchange="updateTempoDisplay()"> BPM <!-- min, max, and step have no effect when type=text, but will apply when type=number -->
 	<br>
 	<button type="button" class="button" id="playbtn" onclick="playSelected()">
 		Play
@@ -49,7 +49,7 @@
 	<button type="button" class="button" id="stopbtn" style="display: none" onclick="stop()">
 		Stop
 	</button>
-</form>
+</div>
 
 <script type="text/javascript">
 	// prep arrays for dropdowns
@@ -139,8 +139,14 @@
 		}
 	}
 
-	function updateTempo() {
-		document.getElementById("tempoDisplay").innerHTML = document.getElementById("tempo").value + " BPM";
+	// 3rd word is which one new input is from
+	function updateTempoSlider() {
+		document.getElementById("tempoDisplay").value = document.getElementById("tempo").value;
+	}
+	function updateTempoDisplay() {
+		var tempoDisplay = document.getElementById("tempoDisplay");
+		tempoDisplay.value = Math.max(40, Math.min(200, parseInt(tempoDisplay.value))); // limit range of values
+		document.getElementById("tempo").value = tempoDisplay.value;
 	}
 
 	/**
