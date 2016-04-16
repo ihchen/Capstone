@@ -161,7 +161,9 @@ $thisPage = 'Design Quiz';
 }
 .categorytitle {
 	font-size: 1.1em;
-	text-decoration: underline;
+}
+.type2 {
+	font-weight: 100;
 }
 .testnames {
 	font-size: 1.3em;

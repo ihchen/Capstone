@@ -56,6 +56,7 @@ $thisPage = 'Take Quiz';
 	</script>
 
 <style>
+/* Inversion Styling */
 .inversion {
   display: inline-block;
 }
@@ -80,6 +81,56 @@ $thisPage = 'Take Quiz';
 	font-size: .65em;
 	top: .8em;
 }
+/* Transition Styling */
+#revealbutt {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	font-size: 1.5em;
+	position: relative;
+	z-index: 1000;
+}
+#revealbutt:after {
+    content: "";
+    width:15px;
+    height:15px;
+    background: transparent;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+	-ms-transform:rotate(45deg); /* IE 9 */
+	-webkit-transform:rotate(45deg); /* Safari and Chrome */
+	transform:rotate(45deg);
+    position:absolute;
+    bottom:-12px; 
+    left: 50%;
+    margin-left: -12px;
+}
+.reveal {
+	-webkit-transition: opacity 1s, transform 1s ease;
+	-moz-transition: opacity 1s, transform 1s ease;
+	transition: opacity 1s, transform 1s ease;
+}
+#revealbutt:hover {
+	color: #008B8B;
+}
+#revealbutt:hover:after {
+	border-right: 1px solid #008B8B;
+	border-bottom: 1px solid #008B8B;
+}
+#revealbutt::-moz-focus-inner {
+	border: 0;
+}
+#loading {
+	position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 30%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -50px;
+    font-size: 1.5em;
+}
 </style>
 
 <script>
@@ -89,22 +140,21 @@ $thisPage = 'Take Quiz';
 </script>
 
 	<center>
-		<div id="loading" style="display:block;"><!-- Needs to have id "loading" -->
+		<p id="loading"><!-- Needs to have id "loading" -->
 			Loading...
-		</div>
+		</p>
 
-		<br></br>
-		<br></br>
+		<br/>
+		<br/>
 
 		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
 			<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
 			<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-			<br><br>
-			<button id="revealbutt" onclick="reveal()">Reveal Answer</button>
-
-			<div id="revealed" style="display:none;">
-				<p id="answer" style="font-size: 2em"></p>
-				<button class="button" onclick="nextQuestion()">Next Question</button>
+			<br/>
+			<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
+			<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
+				<p id="answer" style="font-size: 1.5em;"></p>
+				<button id="nxtq" class="button" onclick="nextQuestion()" disabled>Next Question</button>
 			</div>
 		</div>
 	</center>
@@ -142,16 +192,21 @@ $thisPage = 'Take Quiz';
 	}
 
 	function reveal() {
-		document.getElementById("revealbutt").style.display = "none";
-		document.getElementById("revealed").style.display = "block";
+		document.getElementById("revealbutt").style.opacity = "0";
+		document.getElementById("revealbutt").style.transform = "translate(0px, 100px)";
+		document.getElementById("revealed").style.opacity = "1";
+		document.getElementById("nxtq").disabled = false;
 	}
 
 	function hide() {
 		document.getElementById("loading").style.display = "block";
-		document.getElementById("revealbutt").style.display = "block";
-		document.getElementById("revealed").style.display = "none";
+		document.getElementById("allbuttons").style.display = "none";
+		document.getElementById("revealbutt").style.opacity = "1";
+		document.getElementById("revealbutt").style.transform = "translate(0px, 0px)";
+		document.getElementById("revealed").style.opacity = "0";
 		document.getElementById("playbtn").style.display = "block";
 		document.getElementById("stopbtn").style.display = "none";
+		document.getElementById("nxtq").disabled = true;
 	}
 
 	function applyInversion(answerElement) {
