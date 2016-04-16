@@ -50,11 +50,6 @@ $thisPage = 'Take Quiz';
 	}
 ?>
 
-	<script type="text/javascript">
-		// console.log(config);
-		// console.log(chosen);
-	</script>
-
 <style>
 /* Inversion Styling */
 .inversion {
@@ -81,6 +76,7 @@ $thisPage = 'Take Quiz';
 	font-size: .65em;
 	top: .8em;
 }
+
 /* Transition Styling */
 #revealbutt {
 	background: none;
@@ -91,7 +87,7 @@ $thisPage = 'Take Quiz';
 	position: relative;
 	z-index: 1000;
 }
-#revealbutt:after {
+#revealbutt:after {		
     content: "";
     width:15px;
     height:15px;
@@ -139,25 +135,24 @@ $thisPage = 'Take Quiz';
 	snippet.generate();
 </script>
 
-	<center>
-		<p id="loading"><!-- Needs to have id "loading" -->
-			Loading...
-		</p>
+<center>
+	<p id="loading"><!-- Needs to have id "loading" -->
+		Loading...
+	</p>
 
-		<br/>
-		<br/>
+	<br/><br/>
 
-		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
-			<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
-			<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-			<br/>
-			<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
-			<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
-				<p id="answer" style="font-size: 1.5em;"></p>
-				<button id="nxtq" class="button" onclick="nextQuestion()" disabled>Next Question</button>
-			</div>
+	<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
+		<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
+		<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
+		<br/>
+		<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
+		<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
+			<p id="answer" style="font-size: 1.5em;"></p>
+			<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
 		</div>
-	</center>
+	</div>
+</center>
 
 <script>
 	document.getElementById("answer").innerHTML = snippet.answer();
@@ -196,6 +191,7 @@ $thisPage = 'Take Quiz';
 		document.getElementById("revealbutt").style.transform = "translate(0px, 100px)";
 		document.getElementById("revealed").style.opacity = "1";
 		document.getElementById("nxtq").disabled = false;
+		document.getElementById("nxtq").style.cursor = "pointer";
 	}
 
 	function hide() {
@@ -207,6 +203,7 @@ $thisPage = 'Take Quiz';
 		document.getElementById("playbtn").style.display = "block";
 		document.getElementById("stopbtn").style.display = "none";
 		document.getElementById("nxtq").disabled = true;
+		document.getElementById("nxtq").style.cursor = "default";		
 	}
 
 	function applyInversion(answerElement) {

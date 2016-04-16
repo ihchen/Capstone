@@ -246,14 +246,14 @@ $thisPage = 'Design Quiz';
 </form>
 
 <script>
-checkCheckedChords();
-checkCheckedScales();
+	checkCheckedChords();
+	checkCheckedScales();
 	var categories = [];
 
 	for (var i = 0; i < data.length; i++) {
 		var found = false;
 		for (var j = 0; j < categories.length; j++) {
-			if (categories[j][0] == data[i][4]) {
+			if (categories[j][0] == data[i][4] && categories[j][2] == data[i][0]) {
 				found = true;
 				break;
 			}
@@ -288,11 +288,11 @@ checkCheckedScales();
 		div.innerHTML = div.innerHTML +
 			"<div class='category'>"+
 			"<div class='categorytitle'>"+categories[i][0]+"<br/></div>"+
-			"<div class='type2' id='"+categories[i][0]+"'></div></div>";
+			"<div class='type2' id='"+categories[i][0]+categories[i][2]+"'></div></div>";
 	}
 
 	for (var i = 0; i < data.length; i++) {
-		var div = document.getElementById(data[i][4]);
+		var div = document.getElementById(data[i][4]+data[i][0]);
 		if(data[i][0] == 'chord') {
 			var fn = "checkCheckedChords()";
 		}

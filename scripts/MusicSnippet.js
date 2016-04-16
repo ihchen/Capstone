@@ -191,6 +191,7 @@ function MusicSnippet(notes, type, quality, category) {
 	 * @param {Integer} inversion (Optional) Which inversion to use
 	 */
 	this.generate = function(key, inversion) {
+		console.log("Generating "+type+" "+quality);
 		//If given just the notes, assumes that the octave is given as well
 		if(type == undefined) {
 			tempSounds = loadFiles(baseNotes);
