@@ -167,10 +167,6 @@
 	width: 16.66%;
 	float: left;
 }
-#specialspace {
-	width: 0%;
-	float: left;
-}
 .maincolumn {				/* Column that contains information */
 	width: 33.33%;
 	float: left;
@@ -233,7 +229,6 @@
 		width: 41.66%;
 	}
 }
-
 @media screen and (max-width: 1135px) {
 	.colspace {
 		width: 1%;
@@ -242,7 +237,6 @@
 		width: 49%;
 	}
 }
-
 @media screen and (max-width: 954px) {
 	.colspace {
 		width: 16.66%;
@@ -256,7 +250,6 @@
 		column-count: 1;
 	}
 }
-
 @media screen and (max-width: 710px) {
 	.colspace {
 		width: 8.33%;
@@ -265,7 +258,6 @@
 		width: 41.66%;
 	}
 }
-
 @media screen and (max-width: 565px) {
 	.colspace {
 		width: 1%;
@@ -274,7 +266,6 @@
 		width: 49%;
 	}
 }
-
 @media screen and (max-width: 480px) {
 	.colspace {
 		width: 5%;
@@ -282,13 +273,11 @@
 	}
 	.maincolumn {
 		width: 90%;
+		clear: left;
+		margin-left: 5%;
 	}
 	.rows {
 		display: block;
-	}
-	#specialspace {
-		clear: left;
-		width: 5%;
 	}
 }
 </style>
@@ -328,8 +317,6 @@
 					<!-- ... -->
 				</div>
 			</div>
-
-			<div class="colspace" id="specialspace">&nbsp</div>
 
 			<!-- Scales column -->
 			<div class="maincolumn">
