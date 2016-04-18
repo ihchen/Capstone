@@ -130,9 +130,8 @@ $thisPage = 'Take Quiz';
 #chosenlist {
 	position: absolute;
 	left: 10%;
-	top: 25%;
+	top: 15%;
 	text-align: left;
-	border: 1px solid #008B8B;
 	padding: 5px;
 }
 .selectbtn {				/* Select/Deselect Buttons */
@@ -156,7 +155,7 @@ $thisPage = 'Take Quiz';
 <center>
 	<div id="chosenlist">
 		<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
-		<div id="listelements" style="display: none;">
+		<div id="listelements" style="visibility: hidden;">
 
 		</div>
 	</div>
@@ -252,15 +251,13 @@ $thisPage = 'Take Quiz';
 		list.innerHTML = list.innerHTML + data[chosen[i]][1] + " " + data[chosen[i]][0] + " <br/>";
 	}
 
-	var shown = false;
 	function showlist() {
-		if(shown) {
-			document.getElementById("listelements").style.display = "none";
-			shown = false;
+		var div = document.getElementById("listelements");
+		if(div.style.visibility == "hidden") {
+			div.style.visibility = "visible";
 		}
 		else {
-			document.getElementById("listelements").style.display = "block";
-			shown = true;
+			div.style.visibility = "hidden";
 		}
 	}
 </script>
