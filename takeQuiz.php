@@ -129,9 +129,8 @@ $thisPage = 'Take Quiz';
 }
 #chosenlist {
 	position: absolute;
-	left: 10%;
+	left: 5%;
 	top: 15%;
-	text-align: left;
 	padding: 5px;
 }
 .selectbtn {				/* Select/Deselect Buttons */
@@ -144,6 +143,23 @@ $thisPage = 'Take Quiz';
 .selectbtn:hover {
   background: #00CED1;
 }
+@media screen and (max-width: 900px) {
+	#chosenlist {
+		position: static;
+	}
+	#listelements{
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
+}
+@media screen and (max-width: 450px) {
+	#listelements {
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
+	}
+}
 </style>
 
 <script>
@@ -153,13 +169,6 @@ $thisPage = 'Take Quiz';
 </script>
 
 <center>
-	<div id="chosenlist">
-		<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
-		<div id="listelements" style="visibility: hidden;">
-
-		</div>
-	</div>
-
 	<div id="mainfunctions">
 		<p id="loading"><!-- Needs to have id "loading" -->
 			Loading...
@@ -176,6 +185,13 @@ $thisPage = 'Take Quiz';
 				<p id="answer" style="font-size: 1.5em;"></p>
 				<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
 			</div>
+		</div>
+	</div>
+
+	<div id="chosenlist">
+		<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
+		<div id="listelements" style="visibility: hidden;">
+			<!-- List elements go here -->
 		</div>
 	</div>
 </center>
