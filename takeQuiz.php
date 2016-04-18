@@ -127,6 +127,24 @@ $thisPage = 'Take Quiz';
     margin-left: -50px;
     font-size: 1.5em;
 }
+#chosenlist {
+	position: absolute;
+	left: 10%;
+	top: 25%;
+	text-align: left;
+	border: 1px solid #008B8B;
+	padding: 5px;
+}
+.selectbtn {				/* Select/Deselect Buttons */
+	text-align: center;
+	white-space: nowrap;
+	background: #008B8B;
+	border: none;
+	margin-bottom: 5px;
+}
+.selectbtn:hover {
+  background: #00CED1;
+}
 </style>
 
 <script>
@@ -136,20 +154,29 @@ $thisPage = 'Take Quiz';
 </script>
 
 <center>
-	<p id="loading"><!-- Needs to have id "loading" -->
-		Loading...
-	</p>
+	<div id="chosenlist">
+		<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
+		<div id="listelements" style="display: none;">
 
-	<br/><br/>
+		</div>
+	</div>
 
-	<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
-		<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
-		<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-		<br/>
-		<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
-		<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
-			<p id="answer" style="font-size: 1.5em;"></p>
-			<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
+	<div id="mainfunctions">
+		<p id="loading"><!-- Needs to have id "loading" -->
+			Loading...
+		</p>
+
+		<br/><br/>
+
+		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
+			<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
+			<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
+			<br/>
+			<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
+			<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
+				<p id="answer" style="font-size: 1.5em;"></p>
+				<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
+			</div>
 		</div>
 	</div>
 </center>
@@ -219,5 +246,22 @@ $thisPage = 'Take Quiz';
 	    		'<span class="inversion"><span class="fraction"><div class="top">'+top+'</div><div class="bot">'+bot+'</div><span class="baseline-fix"></span></span></span>'+end;
 	    }
 	};
+
+	var list = document.getElementById("listelements");
+	for(var i = 0; i < chosen.length; i++) {
+		list.innerHTML = list.innerHTML + data[chosen[i]][1] + " " + data[chosen[i]][0] + " <br/>";
+	}
+
+	var shown = false;
+	function showlist() {
+		if(shown) {
+			document.getElementById("listelements").style.display = "none";
+			shown = false;
+		}
+		else {
+			document.getElementById("listelements").style.display = "block";
+			shown = true;
+		}
+	}
 </script>
 <?php require_once('phpincludes/footer.php'); ?>
