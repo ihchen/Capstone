@@ -160,42 +160,65 @@
 * {
 	box-sizing: border-box;
 }
-.testboxes {
-	font-size: .8em;
+.testboxes {				/* Encompasses the Test Checkboxes */
+	font-size: 1em;
 	margin-bottom: 1em;
 }
-.rows {
-	display: flex;			/* Line bottoms of columns up */
+.testnames {				/* Test 1, Test 2, Final Names*/
+	display: inline-block;
+	padding-left: 5px;
+	padding-right: 20px;
 }
-.colspace {					/* Blank space (input &nbsp in divs with this class) */
+.rows {						/* Line bottoms of columns up */
+	display: flex;
+}
+.colspace {					/* Blank column space (input &nbsp in divs with this class) */
 	width: 16.66%;
 	float: left;
 }
-.maincolumn {				/* Column that contains information */
+.maincolumn {				/* Main information boxes (Chords and Scales) */
 	width: 33.33%;
 	float: left;
 	padding: 5px;
 	text-align: left;
 	border: 1px solid #008B8B;
 }
-.typehead {					/* Type title (chord/scale) */
+.typehead {					/* Type header (type title and select/deselect buttons) */
 	font-size: 1.2em;
 	font-weight: bold;
 	border-bottom: 2px solid #008B8B;
 	position:relative;
 	margin-bottom: .5em;
-}							/* List of chords/scales */
-.type2list {
+}	
+.selectdeselectbtns {		/* Select/Deselect Buttons */
+	top: 5px;
+	position:absolute;
+	top: 0%;
+	right: 0%;
+	font-size: .7em;
+}
+.selectbtn {				/* Styling for select/deselect buttons */
+	text-align: center;
+	white-space: nowrap;
+	background: #008B8B;
+	border: none;
+	margin-bottom: 5px;
+}
+.selectbtn:hover {
+  background: #00CED1;
+}
+.type2list {				/* All categories and their elements */
 	-webkit-column-count: 2;
 	-moz-column-count: 2;
 	column-count: 2;
 }
-.category {					/* Class for each category */
+.category {					/* Each category and its elements */
+    padding-bottom: 1em;
+	/* Prevent elements within same category from breaking columns */
 	-webkit-column-break-inside: avoid; /* Chrome, Safari */
     page-break-inside: avoid;           /* Theoretically FF 20+ */
     break-inside: avoid-column;         /* IE 11 */
     display:table;                      /* Actually FF 20+ */
-    padding-bottom: 1em;
 }
 .categorytitle {			/* Title of category */
 	font-size: 1.1em;
@@ -204,31 +227,9 @@
 .type2 {					/* Every element */
 	font-weight: 100;
 }
-.testnames {				/* Test 1, Test 2, Final */
-	font-size: 1.3em;
-	display: inline-block;
-	padding-left: 5px;
-	padding-right: 20px;
-}
-.selectbtn {				/* Select/Deselect Buttons */
-	text-align: center;
-	white-space: nowrap;
-	background: #008B8B;
-	font-family: Verdana, Geneva, sans-serif;
-	font-size: .7em;
-	border: none;
-	margin-bottom: 5px;
-	top: 5px;
-	position:absolute;
-	top: 0%;
-	right: 0%;
-}
-.selectbtn:hover {
-  background: #00CED1;
-}
 
 /* Resizing and Scalability */
-@media screen and (max-width: 1420px) {
+@media screen and (max-width: 1420px) {		/* Increase column width and decrease space at edges */
 	.colspace {
 		width: 8.33%;
 	}
@@ -236,7 +237,7 @@
 		width: 41.66%;
 	}
 }
-@media screen and (max-width: 1135px) {
+@media screen and (max-width: 1135px) {		/* Further increase column width and decrease space at edges */
 	.colspace {
 		width: 1%;
 	}
@@ -244,7 +245,7 @@
 		width: 49%;
 	}
 }
-@media screen and (max-width: 954px) {
+@media screen and (max-width: 954px) {		/* Collapse each type to one column */
 	.colspace {
 		width: 16.66%;
 	}
@@ -257,7 +258,7 @@
 		column-count: 1;
 	}
 }
-@media screen and (max-width: 710px) {
+@media screen and (max-width: 710px) {		/* Increase column width and decrease space at edges */
 	.colspace {
 		width: 8.33%;
 	}
@@ -265,7 +266,7 @@
 		width: 41.66%;
 	}
 }
-@media screen and (max-width: 565px) {
+@media screen and (max-width: 565px) {		/* Further increase column width and decrease space at edges */
 	.colspace {
 		width: 1%;
 	}
@@ -273,7 +274,7 @@
 		width: 49%;
 	}
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {		/* Put Scales box below Chords box */
 	.colspace {
 		width: 5%;
 		height: 200%;
@@ -295,9 +296,10 @@
 	</div>
 
 	<form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
-		<!-- Test checkboxes -->
+		<!-- Deselect all button -->
 		<button type="button" class="button" onclick="uncheckBoxes()">Deselect All</button>
 		<br/>
+		<!-- Test checkboxes -->
 		<div class="testboxes">
 			<input type="checkbox" id="test1box" onclick="checkTest1()"><div class="testnames"> Test 1 </div>
 			<input type="checkbox" id="test2box" onclick="checkTest2()"><div class="testnames"> Test 2 </div>
@@ -305,16 +307,21 @@
 		</div>		
 
 		<div class="rows">
+			<!-- Column Space -->
 			<div class="colspace">&nbsp</div>
 
 			<!-- Chords column -->
 			<div class="maincolumn">
+				<!-- Chords header -->
 				<div class="typehead">
 					Chords
 					<!-- Buttons -->
-					<button id="chordselect" type="button" class="selectbtn" onclick="checkBoxes('type2chord')">Select All</button>
-					<button id="chorddeselect" type="button" class="selectbtn" onclick="uncheckBoxes('type2chord')">Deselect All</button>
+					<div class="selectdeselectbtns">
+						<button id="chordselect" type="button" class="selectbtn" onclick="checkBoxes('type2chord')">Select All</button>
+						<button id="chorddeselect" type="button" class="selectbtn" onclick="uncheckBoxes('chord')">Deselect All</button>
+					</div>
 				</div>
+				<!-- Chords content -->
 				<div class="type2list" id="chord">
 					<!-- <div class="category"> -->
 						<!-- <div class="categorytitle">[category]</div> -->
@@ -328,12 +335,16 @@
 
 			<!-- Scales column -->
 			<div class="maincolumn">
+				<!-- Scales header -->
 				<div class="typehead">
 					Scales
 					<!-- Buttons -->
-					<button id="scaleselect" type="button" class="selectbtn" onclick="checkBoxes('type2scale')">Select All</button>
-					<button id="scaledeselect" type="button" class="selectbtn" onclick="uncheckBoxes('type2scale')">Deselect All</button>
+					<div class="selectdeselectbtns">
+						<button id="scaleselect" type="button" class="selectbtn" onclick="checkBoxes('type2scale')">Select All</button>
+						<button id="scaledeselect" type="button" class="selectbtn" onclick="uncheckBoxes('scale')">Deselect All</button>
+					</div>
 				</div>
+				<!-- Scales content -->
 				<div class="type2list" id="scale">
 					<!-- <div class="category"> -->
 						<!-- <div class="categorytitle">[category]</div> -->
@@ -345,33 +356,40 @@
 				</div>
 			</div>
 
+			<!-- Column Space -->
 			<div class="colspace">&nbsp</div>
 		</div>
 		<br/>
+		<!-- Submit button -->
 		<input class = "button" type="submit" value="Start Training">
 	</form>
 </body>
 
 <script>
-	// Find all categories and save a tuple containing (category, occurence, type)
+	/* Find all categories and save a tuple containing (category, occurence, type) */
 	var categories = [];
-
+	//Loop through all data in csv file
 	for (var i = 0; i < data.length; i++) {
 		var found = false;
+		//Loop through all categories currently found
 		for (var j = 0; j < categories.length; j++) {
+			//Check if we already have category
 			if (categories[j][0] == data[i][4] && categories[j][2] == data[i][0]) {
 				found = true;
 				break;
 			}
 		}
+		//If we already had it, increment its occurence
 		if(found) {
 			categories[j][1]++;
 		}
+		//If not, add it into our array
 		else {
 			categories.push([data[i][4], 1, data[i][0]]);
 		}
 	}
 
+	/* Sort all categories by occurence so we can display them nicely (shortest to longest) */
 	/**
 	 * http://www.stoimen.com/blog/2010/07/09/friday-algorithms-javascript-bubble-sort/
 	 * Didn't feel like coding bubblesort...
@@ -393,29 +411,35 @@
 	        }
 	    } while (swapped);
 	}
-
-	//Sort categories so that we can display shortest ones first (looks nicer on UI)
 	bubbleSort(categories);
 
-	//For all categories, create divs. Id to put elements in is '[category][type]'.
+	/* For all categories, create divs. ID to put elements in is '[category][type]'. */
+	//Loop through all categories
 	for (var i = 0; i < categories.length; i++) {
 		var div = document.getElementById(categories[i][2]);
+		//Add divs to contain categories and their elements
 		div.innerHTML = div.innerHTML +
-			"<div class='category'>"+
-			"<div class='categorytitle'>"+categories[i][0]+"<br/></div>"+
-			"<div class='type2' id='"+categories[i][0]+categories[i][2]+"'></div></div>";
+			"<div class='category'>"+														//Div to contain everything in category
+			"<div class='categorytitle'>"+categories[i][0]+"<br/></div>"+					//Div to contain the title of category
+			"<div class='type2' id='"+categories[i][0]+categories[i][2]+"'></div></div>";	//Div to contain the elements
 	}
 
-	//Put every element in csv file into the corresponding divs
+	/* Put every element in csv file into the corresponding divs */
+	//Loop through all elements in csv file
 	for (var i = 0; i < data.length; i++) {
+		//Get the div it's suppose to go in: ID = '[category][type]'
 		var div = document.getElementById(data[i][4]+data[i][0]);
+		//If it's a chord, use checkCheckedChords() for onclick
 		if(data[i][0] == 'chord') {
 			var fn = "checkCheckedChords()";
 		}
+		//If it's a chord, use checkCheckedScales() for onclick
 		else {
 			var fn = "checkCheckedScales()";
 		}
-		div.innerHTML = div.innerHTML + "<input type='checkbox' class='type2"+data[i][0]+" "+data[i][3]+"' name='" + i + "' value='num' onclick="+fn+">" + data[i][1] + "<br/>";
+		//Add a checkbox with class='type2[type] [test]' name='[index in csv file]'.
+		div.innerHTML = div.innerHTML + 
+			"<input type='checkbox' class='type2"+data[i][0]+" "+data[i][3]+"' name='" + i + "' value='num' onclick="+fn+">" + data[i][1] + "<br/>";
 	}
 
 	// read cookie if it exists
