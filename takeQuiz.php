@@ -193,8 +193,7 @@
 			document.getElementById("playbtn").style.display = "block";
 			document.getElementById("stopbtn").style.display = "none";
 			document.getElementById("stopbtn").disabled = false;
-		}, 101);
-		
+		}, FADE_ALL_LENGTH+1);		//FADE_ALL_LENGTH constant can be found in scripts/MusicSnippet.js	
 	}
 
 	/**
@@ -209,7 +208,7 @@
 			snippet.generate();
 			document.getElementById("answer").innerHTML = snippet.answer();
 			applyInversion(document.getElementById("answer"));
-		}, 101);
+		}, FADE_ALL_LENGTH+1);		//FADE_ALL_LENGTH constant can be found in scripts/MusicSnippet.js	
 	}
 
 	/**
