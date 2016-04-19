@@ -85,7 +85,7 @@ $thisPage = 'Take Quiz';
 	padding: 0;
 	font-size: 1.5em;
 	position: relative;
-	z-index: 1000;
+	z-index: 10;
 }
 #revealbutt:after {		
     content: "";
@@ -127,12 +127,6 @@ $thisPage = 'Take Quiz';
     margin-left: -50px;
     font-size: 1.5em;
 }
-#chosenlist {
-	position: absolute;
-	left: 5%;
-	top: 15%;
-	padding: 5px;
-}
 .selectbtn {				/* Select/Deselect Buttons */
 	text-align: center;
 	white-space: nowrap;
@@ -143,22 +137,13 @@ $thisPage = 'Take Quiz';
 .selectbtn:hover {
   background: #00CED1;
 }
-@media screen and (max-width: 900px) {
-	#chosenlist {
-		position: static;
-	}
-	#listelements{
-		-webkit-column-count: 2;
-		-moz-column-count: 2;
-		column-count: 2;
-	}
+#chosenlist {
+	position: relative;
+	top: 60%;
 }
-@media screen and (max-width: 450px) {
-	#listelements {
-		-webkit-column-count: 1;
-		-moz-column-count: 1;
-		column-count: 1;
-	}
+#element{
+	display: inline-block;
+	white-space: nowrap;
 }
 </style>
 
@@ -169,13 +154,13 @@ $thisPage = 'Take Quiz';
 </script>
 
 <center>
-	<div id="mainfunctions">
-		<p id="loading"><!-- Needs to have id "loading" -->
-			Loading...
-		</p>
+	<p id="loading"><!-- Needs to have id "loading" -->
+		Loading...
+	</p>
 
-		<br/><br/>
+	<br/><br/>
 
+	<div>
 		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
 			<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
 			<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
@@ -186,12 +171,12 @@ $thisPage = 'Take Quiz';
 				<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
 			</div>
 		</div>
-	</div>
 
-	<div id="chosenlist">
-		<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
-		<div id="listelements" style="visibility: hidden;">
-			<!-- List elements go here -->
+		<div id="chosenlist">
+			<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
+			<div id="listelements" style="visibility: hidden;">
+				<!-- List elements go here -->
+			</div>
 		</div>
 	</div>
 </center>
@@ -264,7 +249,12 @@ $thisPage = 'Take Quiz';
 
 	var list = document.getElementById("listelements");
 	for(var i = 0; i < chosen.length; i++) {
-		list.innerHTML = list.innerHTML + data[chosen[i]][1] + " " + data[chosen[i]][0] + " <br/>";
+		list.innerHTML = list.innerHTML + 
+			"<div id='element'>" + data[chosen[i]][1] + " " + data[chosen[i]][0] + 
+			"</div>";
+		if(i < chosen.length-1) {
+			list.innerHTML = list.innerHTML + "&nbsp|&nbsp";
+		}
 	}
 
 	function showlist() {

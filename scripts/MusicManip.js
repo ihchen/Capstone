@@ -205,6 +205,85 @@ function setOctave(notes) {
 }
 
 /**
+ * Returns an array of notes in which the gien note collection may begin.
+ * @method getOctaveLocations
+ * @param {String[]} notes
+ * @return {Integer[]} notes with octave numbers appended to each
+ */
+function getOctaveLocations(notes) {
+
+  // The note name of the lowest note available for playback, C
+  const LOW = 15;
+
+  // The note name fo the highest note available for playback, C
+  const HIGH = 20;
+
+  // The number of notes available for playback ranging from
+  // C3 to B5.
+  const NUM_NOTES = 35;
+
+  var span = calcInterval(NOTES[LOW], notes[0])+ calcSpan(notes)
+    + calcInterval(notes[notes.length - 1], NOTES[HIGH]);
+
+  // Calculate the number of places this sonority will fit.
+  var numPlaces = NUM_NOTES/span;
+
+  if (numPlaces == 0) {
+    // This note collection will not fit.
+      console.log("Warning: This note collection either has too "
+        + "large a span, or the span is large with too high of"
+        + " a starting note. Please check your inputs!")
+      return null;
+  }
+
+  var lowestOctave;
+
+  if (notes[0] == "Bx" || notes[0] == "Bxx") {
+    lowestOctave = 2;
+  } else if (notes[0] == "Cb" || notes[0] == "Cbb" || notes[0] == "Dbb") {
+    lowestOctave = 4;
+  } else {
+    lowestOctave = 3;
+  }
+
+  var length = lowestOctave + numPlaces;
+  var octaves = [];
+
+  for (var i = lowestOctave; i < length; i++) {
+    octaves.push(i);
+  }
+
+
+  return octaves;
+}
+
+
+/**
+ * Sets octave numbers in order, given a starting number. Octave number
+ * increments upon ascension from B to C.
+ * @method setOctaveNumbers
+ * @param {String[]]} notes with un-set Octaves
+ * @param {Integer} starting octave
+ * @return {String[]]} octavizedNotes
+ */
+function setOctaveNumbers(notes, octave) {
+
+  var octavizedNotes = [];
+  var notename = notes[0].charAt(0);
+
+  for (var i = 0; i < notes.length; i++) {
+    while (notes[i].charAt(0) != notename) {
+      // Creep up note-by-note
+      notename = increment(notename);
+      if (notename == "C") octave++;
+    }
+    // Concat octave onto the note name!
+    octavizedNotes.push(notes[i] + "" + octave);
+  }
+  return octavizedNotes;
+}
+
+/**
  * Go up one note name. G will loop back to A.
  * @method increment
  * @param {Char} note name

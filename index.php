@@ -322,6 +322,7 @@
 			<div class="maincolumn">
 				<div class="typehead">
 					Scales
+					<!-- Buttons -->
 					<button id="scaleselect" type="button" class="selectbtn" onclick="checkBoxes('type2scale')">Select All</button>
 					<button id="scaledeselect" type="button" class="selectbtn" onclick="uncheckBoxes('type2scale')">Deselect All</button>
 				</div>
@@ -340,7 +341,6 @@
 		</div>
 		<br/>
 		<input class = "button" type="submit" value="Start Training">
-		<br/><br/><br/>
 	</form>
 </body>
 

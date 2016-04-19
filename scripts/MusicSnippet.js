@@ -217,33 +217,36 @@ function MusicSnippet(notes, type, quality, category) {
 		var shift;			//Transposition value
 		var inv;			//Inversion value
 
-		//If given no arguments, generate random key and random inversion
-		if(key == undefined) {
-			do {
-				shift = Math.floor(Math.random()*13)-6;	//Get Random key between -6 and 6
-				newNotes = transpose(baseNotes, shift);				//Array of transposed keys
-			} while(newNotes[0] == lastKey);			//Don't generate the previously played key
-		}
-		//If given a key, transpose to the given key.
-		else {
-			shift = findShift(baseNotes[0], key);
-			newNotes = transpose(baseNotes, shift);
-		}
+		do {
+			//If given no arguments, generate random key and random inversion
+			if(key == undefined) {
+				do {
+					shift = Math.floor(Math.random()*13)-6;	//Get Random key between -6 and 6
+					newNotes = transpose(baseNotes, shift);				//Array of transposed keys
+				} while(newNotes[0] == lastKey);			//Don't generate the previously played key
+			}
+			//If given a key, transpose to the given key.
+			else {
+				shift = findShift(baseNotes[0], key);
+				newNotes = transpose(baseNotes, shift);
+			}
 
-		//If inversion is given, set it
-		if(invert != undefined) {
-			inv = invert;
-			newNotes = setInversion(newNotes, inv);
-		}
-		//If not, give a random inversion only for 7th chords
-		else if(category == SEVENTH) {
-			inv = Math.floor(Math.random()*numNotes);	//Get random inversion based on the number of notes
-			newNotes = setInversion(newNotes, inv);
-			quality = invert7thQuality(quality, inv);
-		}
+			//If inversion is given, set it
+			if(invert != undefined) {
+				inv = invert;
+				newNotes = setInversion(newNotes, inv);
+			}
+			//If not, give a random inversion only for 7th chords
+			else if(category == SEVENTH) {
+				inv = Math.floor(Math.random()*numNotes);	//Get random inversion based on the number of notes
+				newNotes = setInversion(newNotes, inv);
+				quality = invert7thQuality(quality, inv);
+			}
+
+			newNotes = setOctave(newNotes);				//Set a random octave
+		} while(newNotes == null);
 
 		lastKey = newNotes[0];						//Save the new key
-		newNotes = setOctave(newNotes);				//Set a random octave
 		return newNotes;
 	}
 

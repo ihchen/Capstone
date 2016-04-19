@@ -17,9 +17,9 @@ scale,Bebop Major,C D E F G A Bb B C,Test2,Jazz
 scale,Diminished-Whole Tone,B C D Eb F G A B,Test2,Synthetic
 scale,Fifth Mode Melodic Minor,G A B C D Eb F G,Test2,Advanced Modes
 scale,Phrygian-Dorian,D Eb F G A B C D,Final,Advanced Modes
-chord,Rite of Spring,F A C F Gx B D E,Final,20th Century
-chord,Petrushka,F A B C Dx Fx,Final,20th Century
-chord,Mystic,F B Eb A D G,Final,20th Century
+chord,Rite of Spring,C E G C Dx Fx A B,Final,20th Century
+chord,Petrushka,C E Fx G Ax Cx,Final,20th Century
+chord,Mystic,C Fx Bb E A D,Final,20th Century
 chord,Farben,C Gx B E A,Final,20th Century
 chord,Split-Third,A C E A Cx E,Final,20th Century
 chord,Major 6/9,C E G A D,Test2,Jazz
