@@ -190,9 +190,11 @@
     page-break-inside: avoid;           /* Theoretically FF 20+ */
     break-inside: avoid-column;         /* IE 11 */
     display:table;                      /* Actually FF 20+ */
+    padding-bottom: 1em;
 }
 .categorytitle {			/* Title of category */
 	font-size: 1.1em;
+	font-style: italic;
 }
 .type2 {					/* Every element */
 	font-weight: 100;
