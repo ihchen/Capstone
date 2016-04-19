@@ -1,12 +1,9 @@
 <?php
-$thisPage = 'Take Quiz';
+	$thisPage = 'Take Quiz';
+	require_once('phpincludes/header.php'); 
 ?>
-
-<?php require_once('phpincludes/header.php'); ?>
 <header>
-	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-	<meta content="utf-8" http-equiv="encoding">
-
+	<!-- Files to play audio -->
 	<script src="howler/howler.js"></script>
 	<script src="scripts/MusicSnippet.js"></script>
 	<script src="scripts/noteToFileNum.js"></script>
@@ -77,7 +74,7 @@ $thisPage = 'Take Quiz';
 	top: .8em;
 }
 
-/* Transition Styling */
+/* Button styling */
 #revealbutt {
 	background: none;
 	border: none;
@@ -85,9 +82,9 @@ $thisPage = 'Take Quiz';
 	padding: 0;
 	font-size: 1.5em;
 	position: relative;
-	z-index: 10;
+	z-index: 1;
 }
-#revealbutt:after {		
+#revealbutt:after { /* Down arrow */	
     content: "";
     width:15px;
     height:15px;
@@ -102,11 +99,6 @@ $thisPage = 'Take Quiz';
     left: 50%;
     margin-left: -12px;
 }
-.reveal {
-	-webkit-transition: opacity 1s, transform 1s ease;
-	-moz-transition: opacity 1s, transform 1s ease;
-	transition: opacity 1s, transform 1s ease;
-}
 #revealbutt:hover {
 	color: #008B8B;
 }
@@ -114,18 +106,18 @@ $thisPage = 'Take Quiz';
 	border-right: 1px solid #008B8B;
 	border-bottom: 1px solid #008B8B;
 }
-#revealbutt::-moz-focus-inner {
+#revealbutt::-moz-focus-inner {		/* (Mozilla) Prevent Dotted border after clicking */
 	border: 0;
 }
+#revealbutt:focus {					/* (Chrome) Prevent Dotted border after clicking */
+	outline: none;
+}
+.reveal {
+	-webkit-transition: opacity 1s, transform 1s ease;
+	-moz-transition: opacity 1s, transform 1s ease;
+	transition: opacity 1s, transform 1s ease;
+}
 #loading {
-	/*position: absolute;
-    width: 100px;
-    height: 50px;
-    top: 30%;
-    left: 50%;
-    margin-top: -25px;
-    margin-left: -50px;
-    font-size: 1.5em;*/
     font-size: 1.5em;
     margin-bottom: 163px;
 }
