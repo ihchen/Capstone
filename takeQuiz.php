@@ -132,7 +132,7 @@
 
 #loading {
     font-size: 1.5em;
-    margin-bottom: 160px;
+    margin-bottom: 155px;
 }
 #element{
 	display: inline-block;
