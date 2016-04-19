@@ -85,7 +85,7 @@ $thisPage = 'Take Quiz';
 	padding: 0;
 	font-size: 1.5em;
 	position: relative;
-	z-index: 1000;
+	z-index: 10;
 }
 #revealbutt:after {		
     content: "";
@@ -127,12 +127,6 @@ $thisPage = 'Take Quiz';
     margin-left: -50px;
     font-size: 1.5em;
 }
-#chosenlist {
-	position: absolute;
-	left: 5%;
-	top: 15%;
-	padding: 5px;
-}
 .selectbtn {				/* Select/Deselect Buttons */
 	text-align: center;
 	white-space: nowrap;
@@ -143,22 +137,9 @@ $thisPage = 'Take Quiz';
 .selectbtn:hover {
   background: #00CED1;
 }
-@media screen and (max-width: 900px) {
-	#chosenlist {
-		position: static;
-	}
-	#listelements{
-		-webkit-column-count: 2;
-		-moz-column-count: 2;
-		column-count: 2;
-	}
-}
-@media screen and (max-width: 450px) {
-	#listelements {
-		-webkit-column-count: 1;
-		-moz-column-count: 1;
-		column-count: 1;
-	}
+#element{
+	display: inline-block;
+	white-space: nowrap;
 }
 </style>
 
@@ -264,7 +245,12 @@ $thisPage = 'Take Quiz';
 
 	var list = document.getElementById("listelements");
 	for(var i = 0; i < chosen.length; i++) {
-		list.innerHTML = list.innerHTML + data[chosen[i]][1] + " " + data[chosen[i]][0] + " <br/>";
+		list.innerHTML = list.innerHTML + 
+			"<div id='element'>" + data[chosen[i]][1] + " " + data[chosen[i]][0] + 
+			"</div>";
+		if(i < chosen.length-1) {
+			list.innerHTML = list.innerHTML + "&nbsp|&nbsp";
+		}
 	}
 
 	function showlist() {
