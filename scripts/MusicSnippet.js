@@ -1,5 +1,9 @@
 var lastKey = "I"; //Keep track of last key played so that you don't replay it
 const FADE_ALL_LENGTH = 100;	//Number of milliseconds to fade all notes out
+//Play styles (pass into play())
+const BLOCK = "block";			//Playing notes blocked
+const ASCENDING = "asc";		//Playing notes broken and ascending
+const DESCENDING = "desc";		//Playing notes broken and descending
 
 /**
  * Determines how to play the given notes based on their type and quality, then loads
@@ -20,10 +24,6 @@ function MusicSnippet(notes, type, quality, category) {
 	//Categories
 	const TWENTIETH = "20th Century";
 	const SEVENTH = "7th";
-	//Play styles
-	const BLOCK = "block";			//Playing notes blocked
-	const ASCENDING = "asc";		//Playing notes broken and ascending
-	const DESCENDING = "desc";		//Playing notes broken and descending
 	//Numeric Values
 	const DEFAULT_BPM = 80;			//Default beats per minute
 	const DEFAULT_FADE = 1.5;		//Default number of beats to fade broken notes out
