@@ -179,6 +179,7 @@
 	font-weight: bold;
 	border-bottom: 2px solid #008B8B;
 	position:relative;
+	margin-bottom: .5em;
 }							/* List of chords/scales */
 .type2list {
 	-webkit-column-count: 2;
