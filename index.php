@@ -160,6 +160,10 @@
 * {
 	box-sizing: border-box;
 }
+.testboxes {
+	font-size: .8em;
+	margin-bottom: .1em;
+}
 .rows {
 	display: flex;			/* Line bottoms of columns up */
 }
@@ -292,9 +296,11 @@
 
 	<form name="selection" action="takeQuiz.php" onsubmit="return validateForm()" method="post">
 		<!-- Test checkboxes -->
-		<input type="checkbox" id="test1box" onclick="checkTest1()"><div class="testnames"> Test 1 </div>
-		<input type="checkbox" id="test2box" onclick="checkTest2()"><div class="testnames"> Test 2 </div>
-		<input type="checkbox" id="finalbox" onclick="checkFinal()"><div class="testnames"> Final </div>
+		<div class="testboxes">
+			<input type="checkbox" id="test1box" onclick="checkTest1()"><div class="testnames"> Test 1 </div>
+			<input type="checkbox" id="test2box" onclick="checkTest2()"><div class="testnames"> Test 2 </div>
+			<input type="checkbox" id="finalbox" onclick="checkFinal()"><div class="testnames"> Final </div>
+		</div>
 		<br/>
 		<button type="button" class="button" onclick="uncheckBoxes()">Deselect All</button>
 		<br/>
