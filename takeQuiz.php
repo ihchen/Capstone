@@ -138,7 +138,7 @@ $thisPage = 'Take Quiz';
   background: #00CED1;
 }
 #chosenlist {
-	position: absolute;
+	position: relative;
 	top: 60%;
 }
 #element{
@@ -160,21 +160,23 @@ $thisPage = 'Take Quiz';
 
 	<br/><br/>
 
-	<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
-		<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
-		<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-		<br/>
-		<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
-		<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
-			<p id="answer" style="font-size: 1.5em;"></p>
-			<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
+	<div>
+		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
+			<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
+			<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
+			<br/>
+			<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
+			<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
+				<p id="answer" style="font-size: 1.5em;"></p>
+				<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
+			</div>
 		</div>
-	</div>
 
-	<div id="chosenlist">
-		<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
-		<div id="listelements" style="visibility: hidden;">
-			<!-- List elements go here -->
+		<div id="chosenlist">
+			<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
+			<div id="listelements" style="visibility: hidden;">
+				<!-- List elements go here -->
+			</div>
 		</div>
 	</div>
 </center>
