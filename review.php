@@ -11,6 +11,12 @@
 <script src="scripts/QuestionGenerator.js"></script>
 <script src="scripts/ParseCSV.js"></script>
 
+<style type="text/css">
+	select.dropdown {
+		width: 200px;
+	}
+</style>
+
 <body id="content">
 
 <!-- Spacing for mobile / small screen -->
