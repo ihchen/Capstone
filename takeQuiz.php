@@ -131,8 +131,10 @@
 }
 
 #loading {
-    font-size: 1.5em;
-    margin-bottom: 157px;
+    /*font-size: 1.5em;*/
+    font-size: 25px;
+    /*margin-bottom: 157px;*/
+    margin-bottom: 161px;
 }
 #element{
 	display: inline-block;
