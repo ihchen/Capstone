@@ -137,6 +137,10 @@ $thisPage = 'Take Quiz';
 .selectbtn:hover {
   background: #00CED1;
 }
+#chosenlist {
+	position: absolute;
+	top: 60%;
+}
 #element{
 	display: inline-block;
 	white-space: nowrap;
@@ -150,22 +154,20 @@ $thisPage = 'Take Quiz';
 </script>
 
 <center>
-	<div id="mainfunctions">
-		<p id="loading"><!-- Needs to have id "loading" -->
-			Loading...
-		</p>
+	<p id="loading"><!-- Needs to have id "loading" -->
+		Loading...
+	</p>
 
-		<br/><br/>
+	<br/><br/>
 
-		<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
-			<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
-			<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-			<br/>
-			<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
-			<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
-				<p id="answer" style="font-size: 1.5em;"></p>
-				<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
-			</div>
+	<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
+		<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
+		<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
+		<br/>
+		<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
+		<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
+			<p id="answer" style="font-size: 1.5em;"></p>
+			<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
 		</div>
 	</div>
 
