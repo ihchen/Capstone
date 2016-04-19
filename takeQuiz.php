@@ -48,43 +48,49 @@
 ?>
 
 <style>
-/* Inversion Styling */
-.inversion {
-  display: inline-block;
+#loading {						/* Loading text */
+    font-size: 1.5em;
+    margin-bottom: 157px;		/* Makes the show list button stay in around the same place */
 }
-.inversion .fraction {
+#element{						/* Each list element */
+	display: inline-block;
+	white-space: nowrap;
+}
+
+/* Inversion Styling */
+.fraction {						/* Make inversion inline with text */		
   display: inline-block;
   position: relative;
 }
-.inversion .fraction > div {
+.fraction > div {				/* Styling the top and bottom elements of fraction */
   position: relative;
   text-align: center;
   height: 0;
 }
-.inversion .baseline-fix {
+.baseline-fix {					/* Adjusting fraction a little */
   display: inline-table;
   table-layout: fixed;
 }
-.top {
+.top {							/* Top element of fraction */
 	font-size: .65em;
 	top: -.2em;
 }
-.bot {
+.bot {							/* Bottom element of fraction */
 	font-size: .65em;
 	top: .8em;
 }
 
 /* Button styling */
-#revealbutt {
+#revealbutt {					/* Reveal Answer button */
 	background: none;
 	border: none;
 	margin: 0;
 	padding: 0;
 	font-size: 1.5em;
 	position: relative;
-	z-index: 1;
+	z-index: 1;					/* Make sure it's in front of the answer */
 }
-#revealbutt:after { /* Down arrow */	
+#revealbutt:after { 			/* Down arrow below reveal answer button (It's half of a rotated square) */	
     content: "";
     width:15px;
     height:15px;
@@ -112,7 +118,7 @@
 #revealbutt:focus {					/* (Chrome) Prevent Dotted border after clicking */
 	outline: none;
 }
-.selectbtn {		
+.selectbtn {						/* Button for show list */
 	text-align: center;
 	white-space: nowrap;
 	background: #008B8B;
@@ -129,20 +135,12 @@
 	-moz-transition: opacity 1s, transform 1s ease;
 	transition: opacity 1s, transform 1s ease;
 }
-#loading {
-    font-size: 1.5em;
-    margin-bottom: 157px;
-}
-#element{
-	display: inline-block;
-	white-space: nowrap;
-}
 </style>
 
 <script>
-	var qg = new QuestionGenerator(chosen);
-	var snippet = qg.getNextQuestion();
-	snippet.generate();
+	var qg = new QuestionGenerator(chosen);		//Create question generator
+	var snippet = qg.getNextQuestion();			//Get Next Question
+	snippet.generate();							//Generate audio
 </script>
 
 <center>
@@ -171,15 +169,23 @@
 </center>
 
 <script>
+	//Get the answer and display
 	document.getElementById("answer").innerHTML = snippet.answer();
 	applyInversion(document.getElementById("answer"));
 
+	/**
+	 * Plays the audio and changes play button to stop button
+	 */
 	function play() {
 		snippet.play();
 		document.getElementById("playbtn").style.display = "none";
 		document.getElementById("stopbtn").style.display = "block";
 	}
 
+	/**
+	 * Fades out audio quickly. Waits till after the fadeout to change the stop button back
+	 * to the play button
+	 */
 	function stop() {
 		snippet.fadeOut();
 		document.getElementById("stopbtn").disabled = true;
@@ -191,6 +197,10 @@
 		
 	}
 
+	/**
+	 * Gets the next question. Hides the buttons and displays the Loading text. Waits until the fade out
+	 * ends to generate the new audio and answer.
+	 */
 	function nextQuestion() {
 		hide();
 		snippet.fadeOut();
@@ -202,6 +212,9 @@
 		}, 101);
 	}
 
+	/**
+	 * Reveals the answer (with transition)
+	 */
 	function reveal() {
 		document.getElementById("revealbutt").style.opacity = "0";
 		document.getElementById("revealbutt").style.transform = "translate(0px, 100px)";
@@ -210,42 +223,63 @@
 		document.getElementById("nxtq").style.cursor = "pointer";
 	}
 
+	/**
+	 * Hides the quizzing functionality and displays the loading sign. Must eventually be followed by
+	 * snippet.generate(). 
+	 */
 	function hide() {
 		document.getElementById("loading").style.display = "block";
 		document.getElementById("allbuttons").style.display = "none";
+		//Reset everything
 		document.getElementById("revealbutt").style.opacity = "1";
 		document.getElementById("revealbutt").style.transform = "translate(0px, 0px)";
 		document.getElementById("revealed").style.opacity = "0";
 		document.getElementById("playbtn").style.display = "block";
 		document.getElementById("stopbtn").style.display = "none";
-		document.getElementById("nxtq").disabled = true;
-		document.getElementById("nxtq").style.cursor = "default";		
+		document.getElementById("nxtq").disabled = true;			//Disable next question button so you can't click on it until revealed
+		document.getElementById("nxtq").style.cursor = "default";	//Don't show hand pointer either
 	}
 
+	/**
+	 * For 7th chords only (MusicSnippet for 7th chords will have a '|' in their answer);
+	 */
 	function applyInversion(answerElement) {
 	    var answerString = answerElement.innerHTML;
-	    var split = answerString.split("|");
+	    var split = answerString.split("|");		//Split by pipe
+	    //If was a 7th chord
 	    if(split.length == 2) {
+	    	//Extract the top and bottom parts of the fraction
 	    	var top = split[0][split[0].length-1];
 	    	var bot = split[1][0];
-	    	var begin = split[0].substring(0,split[0].length-1);
-	    	var end = split[1].substring(1,split[1].length);
+	    	var begin = split[0].substring(0,split[0].length-1);	//Text before fraction
+	    	var end = split[1].substring(1,split[1].length);		//Text after fraction
 
+	    	//Update answer
 	    	answerElement.innerHTML = begin+
-	    		'<span class="inversion"><span class="fraction"><div class="top">'+top+'</div><div class="bot">'+bot+'</div><span class="baseline-fix"></span></span></span>'+end;
+    			'<span class="fraction">'+
+    				'<div class="top">'+top+'</div>'+
+    				'<div class="bot">'+bot+'</div>'+
+    				'<span class="baseline-fix"></span></span>'+end;
 	    }
 	};
 
+	/* Populate the list of user chosen elements */
 	var list = document.getElementById("listelements");
+	//Loop through all chosen elements
 	for(var i = 0; i < chosen.length; i++) {
+		//Add them into the list
 		list.innerHTML = list.innerHTML + 
 			"<div id='element'>" + data[chosen[i]][1] + " " + data[chosen[i]][0] + 
 			"</div>";
+		//Seperate each element by white space and a pipe (except the last one)
 		if(i < chosen.length-1) {
 			list.innerHTML = list.innerHTML + "&nbsp|&nbsp";
 		}
 	}
 
+	/**
+	 * Shows and unshows the list of chosen elements
+	 */
 	function showlist() {
 		var div = document.getElementById("listelements");
 		if(div.style.display == "none") {
