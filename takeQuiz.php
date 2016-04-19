@@ -278,13 +278,15 @@
 	}
 
 	/**
-	 * Shows and unshows the list of chosen elements
+	 * Shows and hides the list of chosen elements
 	 */
 	function showlist() {
 		var div = document.getElementById("listelements");
+		//If not currently displayed, display
 		if(div.style.display == "none") {
 			div.style.display = "block";
 		}
+		//If currently displayed, hide
 		else {
 			div.style.display = "none";
 		}
