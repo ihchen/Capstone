@@ -112,16 +112,7 @@
 #revealbutt:focus {					/* (Chrome) Prevent Dotted border after clicking */
 	outline: none;
 }
-.reveal {
-	-webkit-transition: opacity 1s, transform 1s ease;
-	-moz-transition: opacity 1s, transform 1s ease;
-	transition: opacity 1s, transform 1s ease;
-}
-#loading {
-    font-size: 1.5em;
-    margin-bottom: 163px;
-}
-.selectbtn {				/* Select/Deselect Buttons */
+.selectbtn {		
 	text-align: center;
 	white-space: nowrap;
 	background: #008B8B;
@@ -130,6 +121,18 @@
 }
 .selectbtn:hover {
   background: #00CED1;
+}
+
+/* Transitions */
+.reveal {
+	-webkit-transition: opacity 1s, transform 1s ease;
+	-moz-transition: opacity 1s, transform 1s ease;
+	transition: opacity 1s, transform 1s ease;
+}
+
+#loading {
+    font-size: 1.5em;
+    margin-bottom: 160px;
 }
 #element{
 	display: inline-block;
