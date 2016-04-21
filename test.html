@@ -17,6 +17,9 @@
   </div>
 
   <style>
+  #navbox {
+    display: none;
+  }
   .navbar {
     position: fixed;
     width: 100%;
@@ -44,7 +47,7 @@ li a {
 
 li a:hover:not(.active) {
     background-color: #00CED1;
-    /*color: #333;*/
+    color: #333;
 }
 
 .active {
@@ -101,13 +104,10 @@ li a:hover:not(.active) {
   label {
     cursor: pointer;
   }
-  #navbox {
+  .naverr {
     display: none;
   }
-  .nav {
-    display: none;
-  }
-  #navbox:checked + .nav {
+  #navbox:checked + .naverr {
     display: block;
   }
 
@@ -116,7 +116,7 @@ li a:hover:not(.active) {
 <!-- <a href = "#nav" id="navi" title = "Show Menu">&#9776;</a> -->
 <label for="navbox" id="navi">&#9776;</label>
 <input type="checkbox" id="navbox">
-<ul class="nav" id="nav">
+<ul class="naverr" id="naverr">
   <li class="active"><a href="index.php">Design Quiz</a></li>
   <li><a href="/test.html">Review</a></li>
   <li><a href="">Successive Melodic Intervals</a></li>
