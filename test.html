@@ -52,13 +52,13 @@ li a:hover:not(.active) {
     border-bottom: 1px solid #ADD8E6;
 }
 
-#navicon {
+#navi {
   display:none;
 }
 
 @media only screen and ( max-width: 710px )
 {
-  #navicon {
+  #navi {
     display:block;
     margin-left: 2%;
     margin-top: 2%;
@@ -75,7 +75,7 @@ li a:hover:not(.active) {
     text-decoration: none;
   }
 
-  #navicon:hover {
+  #navi:hover {
     color: #00CED1;
     /*text-decoration: none;*/
   }
@@ -98,17 +98,29 @@ li a:hover:not(.active) {
     width: 100%;
     text-align: left;
   }
+  label {
+    cursor: pointer;
+  }
+  #navbox {
+    display: none;
+  }
+  .nav {
+    display: none;
+  }
+  #navbox:checked + .nav {
+    display: block;
+  }
+
 </style>
-</head>
-<body>
 <nav class="navbar">
-<a href = "#nav" id = "navicon" title = "Show Menu">&#9776;</a>
-<!-- <a href = "#" id = "navicon" title = "Hide Menu">&#9776;</a> -->
-<ul>
-  <li class="active"><a href="">Design Quiz</a></li>
-  <li><a href="">Review</a></li>
+<!-- <a href = "#nav" id="navi" title = "Show Menu">&#9776;</a> -->
+<label for="navbox" id="navi">&#9776;</label>
+<input type="checkbox" id="navbox">
+<ul class="nav" id="nav">
+  <li class="active"><a href="index.php">Design Quiz</a></li>
+  <li><a href="/test.html">Review</a></li>
   <li><a href="">Successive Melodic Intervals</a></li>
-  <li id="right" style="float:right"><a href="">Login</a></li>
+  <li style="float:right"><a href="">Login</a></li>
 </ul>
 </nav>
 </head>
