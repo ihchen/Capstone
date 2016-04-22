@@ -46,6 +46,8 @@ function MusicSnippet(notes, type, quality, category) {
 	var numLoaded = 0;				//Number of loaded files
 	var numEnded = 0;				//Number of files that finished playing
 
+	var user_onload = function(){};	//User-supplied function to be invoked when the sound files are loaded
+
 	/**
 	 * Plays the loaded notes with the given style. If style not given, plays the notes quiz style:
 	 * all chords played blocked, then broken and ascending, except for 20th century chords which 
@@ -187,11 +189,18 @@ function MusicSnippet(notes, type, quality, category) {
 	 * Generates the Howl files to be played.
 	 * 
 	 * @method generate
+	 * @param {Function} user_function (Optional) Function to call when the files are loaded
 	 * @param {String} key (Optional) The key to transpose to
 	 * @param {Integer} inversion (Optional) Which inversion to use
 	 */
-	this.generate = function(key, inversion) {
+	this.generate = function(user_function, key, inversion) {
 		console.log("Generating "+quality+" "+type);
+		
+		// store/update the user's onload function
+		if (user_function != undefined) {
+			user_onload = user_function;
+		}
+
 		//If given just the notes, assumes that the octave is given as well
 		if(type == undefined) {
 			tempSounds = loadFiles(baseNotes);
@@ -319,10 +328,9 @@ function MusicSnippet(notes, type, quality, category) {
 					numLoaded++;
 					//Display loaded notes
 					console.log("Loaded note "+numLoaded);
-					//If all notes displayed, show buttons
+					//If all notes displayed, call user function
 					if(numLoaded == numNotes) {
-						document.getElementById("loading").style.display = "none";
-						document.getElementById("allbuttons").style.display = "block";
+						user_onload();
 						numLoaded = 0;
 					}
 				},

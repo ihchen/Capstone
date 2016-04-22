@@ -15,6 +15,10 @@
 	select.dropdown {
 		width: 200px;
 	}
+	span.label {
+		width: 200px;
+		text-align: right;
+	}
 </style>
 
 <body id="content">
@@ -23,23 +27,23 @@
 <br><br>
 
 <div>
-	Type: <select id="type" class="dropdown" onchange="updateQuality()">
+	<span class="label">Type: </span><select id="type" class="dropdown" onchange="updateQuality()">
 		<option value="">-----</option>
 		<option value="scale">Scale</option>
 		<option value="chord">Chord</option>
 	</select>
 	<br>
-	Quality: <select id="quality" class="dropdown" onchange="updateKey()">
+	<span class="label">Quality: </span><select id="quality" class="dropdown" onchange="updateKey()">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	Key: <select id="key" class="dropdown">
+	<span class="label">Key: </span><select id="key" class="dropdown">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	Direction / Inversion: <select id="opt" class="dropdown">
+	<span class="label">Direction / Inversion: </span><select id="opt" class="dropdown">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
@@ -158,7 +162,7 @@
 	/**
 	 When we play the selected chord or scale, we want to wait for the files to load first.  If we use a busy wait, the browser will complain about an unresponsive script, and the user must allow the script to continue.  Javascript has no sleep capability, so we use setInterval instead to simulate the effect.  We want setInterval to stop once the files are loaded, but only the function called by setInterval knows when that is.  Javascript is entirely pass-by-value, so in order for loadCheck to know which interval to clear, the variable must be visible to both setInterval and the function it calls.
 	 */
-	var load_wait_intervalID;
+	// var load_wait_intervalID;
 
 	var snippet; // this needs to be visible to playSelected(), loadCheck(), and stop()
 
@@ -166,7 +170,7 @@
 	function playSelected() {
 		document.getElementById("playbtn").style.display = "none"; // hide the play button
 		document.getElementById("loadbtn").style.display = "block"; // display loading message
-		document.getElementById("loading").style.display = "block";
+		// document.getElementById("loading").style.display = "block";
 
 		var type = document.getElementById('type').value;
 		var quality = document.getElementById('quality').value;
@@ -178,7 +182,7 @@
 		// checking inputs
 		if (key == "") { // key is only not blank when everything else is selected
 			// reset buttons
-			document.getElementById("loading").style.display = "none";
+			// document.getElementById("loading").style.display = "none";
 			document.getElementById("loadbtn").style.display = "none";
 			document.getElementById("playbtn").style.display = "block";
 			alert("Please select a scale or chord.");
@@ -195,35 +199,47 @@
 
 		// generate snippet with selected type, quality, and key
 		snippet = new MusicSnippet(data[i][2], type, quality, data[i][3]);
-		// inversions
-		if (opt == "first") {
-			snippet.generate(key, 1);
-		}
-		else if (opt == "second") {
-			snippet.generate(key, 2);
-		}
-		else if (opt == "third") {
-			snippet.generate(key, 3);
-		}
-		else {
-			snippet.generate(key, 0);
-		}
-
+		
+		// set snippet tempo
 		snippet.setBPM(document.getElementById("tempo").value);
 
-		// wait for files to load, then play snippet
-		load_wait_intervalID = setInterval(loadCheck, 100, opt);
-	}
-
-	// ends the setInterval when files are loaded
-	function loadCheck(opt) {
-		if (document.getElementById("loading").style.display == "none") {
-			clearInterval(load_wait_intervalID); // stop waiting/looping
+		// on-load function to pass to the generate function
+		var on_load = function() {
 			document.getElementById("loadbtn").style.display = "none"; // change buttons
 			document.getElementById("stopbtn").style.display = "block";
-			snippet.play(opt);
+			snippet.play(opt); // not sure if passing the arg like this works
 		}
+
+		// inversions
+		if (opt == "first") {
+			snippet.generate(on_load, key, 1);
+		}
+		else if (opt == "second") {
+			snippet.generate(on_load, key, 2);
+		}
+		else if (opt == "third") {
+			snippet.generate(on_load, key, 3);
+		}
+		else {
+			snippet.generate(on_load, key, 0);
+		}
+
+		
+
+		// wait for files to load, then play snippet
+		// load_wait_intervalID = setInterval(loadCheck, 100, opt);
 	}
+
+	/* Don't need to do this anymore! */
+	// ends the setInterval when files are loaded
+	// function loadCheck(opt) {
+	// 	if (document.getElementById("loading").style.display == "none") {
+	// 		clearInterval(load_wait_intervalID); // stop waiting/looping
+	// 		document.getElementById("loadbtn").style.display = "none"; // change buttons
+	// 		document.getElementById("stopbtn").style.display = "block";
+	// 		snippet.play(opt);
+	// 	}
+	// }
 
 	function stop() {
 		snippet.fadeOut();
@@ -232,12 +248,14 @@
 			document.getElementById("playbtn").style.display = "block";
 			document.getElementById("stopbtn").style.display = "none";
 			document.getElementById("stopbtn").disabled = false;
-		}, 101);
+		}, FADE_ALL_LENGTH+1);
 	}
 </script>
 
+<!--
 <span id="allbuttons"></span>
 <span id="loading"></span>
+-->
 
 
 </body>

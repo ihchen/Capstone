@@ -140,7 +140,10 @@
 <script>
 	var qg = new QuestionGenerator(chosen);		//Create question generator
 	var snippet = qg.getNextQuestion();			//Get Next Question
-	snippet.generate();							//Generate audio
+	snippet.generate(function() {				//Generate audio
+		document.getElementById("loading").style.display = "none";
+		document.getElementById("allbuttons").style.display = "block";
+	});
 </script>
 
 <center>

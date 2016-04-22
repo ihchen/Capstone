@@ -17,12 +17,17 @@ $thisPage = 'Successive Melodic Intervals';
 <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
 
 <script>
+  var on_load = function() {
+    document.getElementById("loadbtn").style.display = "none";
+    document.getElementById("playbtn").style.display = "block";
+  }
+
   var n = 4;
   var smi = new SuccessiveMelodicIntervals(n);
   var answers = smi.getAnswers();
   // document.write(answers);
   var snippet = new MusicSnippet(smi.getNotes());
-  snippet.generate();
+  snippet.generate(on_load);
   var bpm = 80;
   snippet.setBPM(bpm);
   var inst = "Identify the interval between each pair of consecutive notes. " + n +" notes will be played. Select your answers from the drop down menus."
@@ -35,8 +40,9 @@ $thisPage = 'Successive Melodic Intervals';
     </script>
   </div>
 
-  <button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
+  <button id="playbtn" class="button" onclick="play()" style="display:none;">Play</button>
   <button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
+  <button id="loadbtn" class="button" disabled="true"  style="display:block;">Loading...</button>
 
 
   <div id="intervals">
@@ -83,7 +89,7 @@ $thisPage = 'Successive Melodic Intervals';
 			document.getElementById("playbtn").style.display = "block";
 			document.getElementById("stopbtn").style.display = "none";
 			document.getElementById("stopbtn").disabled = false;
-		}, 101);
+		}, FADE_ALL_LENGTH+1);
   }
 
   function checkAnswers() {
@@ -146,6 +152,10 @@ $thisPage = 'Successive Melodic Intervals';
   }
 
   function nextQuestion() {
+    // display loading button
+    document.getElementById("loadbtn").style.display = "block";
+    document.getElementById("playbtn").style.display = "none";
+
     document.getElementById("answers").innerHTML = "";
     document.getElementById("checkanswers").style.display = "block";
     document.getElementById("nextquestion").style.display = "none";
@@ -161,7 +171,7 @@ $thisPage = 'Successive Melodic Intervals';
     answers = smi.getAnswers();
     // document.write(answers);
     snippet = new MusicSnippet(smi.getNotes());
-    snippet.generate();
+    snippet.generate(on_load);
     var bpm = 80;
     snippet.setBPM(bpm);
     return false;
