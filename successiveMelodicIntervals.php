@@ -42,7 +42,7 @@ $thisPage = 'Successive Melodic Intervals';
 
   <button id="playbtn" class="button" onclick="play()" style="display:none;">Play</button>
   <button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-  <button id="loadbtn" class="button" disabled="true"  style="display:block;">Loading...</button>
+  <button id="loadbtn" class="button loading" disabled="true"  style="display:block; color:black">Loading...</button>
 
 
   <div id="intervals">
