@@ -89,6 +89,24 @@ center {
 	color: black;
 }
 
+.button:-moz-focus-inner {
+	border: 0;
+}
+.button:focus {
+	outline: none;
+}
+
+.smallbtn {				/* Button where background wraps around text */
+	text-align: center;
+	white-space: nowrap;
+	background: #008B8B;
+	border: none;
+	margin-bottom: 5px;
+}
+.selectbtn:hover {
+  background: #00CED1;
+}
+
 #bottompagebutton {
 	position: fixed;
 }

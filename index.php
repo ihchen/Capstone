@@ -196,16 +196,6 @@
 	right: 0%;
 	font-size: .7em;
 }
-.selectbtn {				/* Styling for select/deselect buttons */
-	text-align: center;
-	white-space: nowrap;
-	background: #008B8B;
-	border: none;
-	margin-bottom: 5px;
-}
-.selectbtn:hover {
-  background: #00CED1;
-}
 .type2list {				/* All categories and their elements */
 	-webkit-column-count: 2;
 	-moz-column-count: 2;
@@ -316,8 +306,8 @@
 					Chords
 					<!-- Buttons -->
 					<div class="selectdeselectbtns">
-						<button id="chordselect" type="button" class="selectbtn" onclick="checkBoxes('type2chord')">Select All</button>
-						<button id="chorddeselect" type="button" class="selectbtn" onclick="uncheckBoxes('chord')">Deselect All</button>
+						<button id="chordselect" type="button" class="smallbtn" onclick="checkBoxes('type2chord')">Select All</button>
+						<button id="chorddeselect" type="button" class="smallbtn" onclick="uncheckBoxes('chord')">Deselect All</button>
 					</div>
 				</div>
 				<!-- Chords content -->
@@ -339,8 +329,8 @@
 					Scales
 					<!-- Buttons -->
 					<div class="selectdeselectbtns">
-						<button id="scaleselect" type="button" class="selectbtn" onclick="checkBoxes('type2scale')">Select All</button>
-						<button id="scaledeselect" type="button" class="selectbtn" onclick="uncheckBoxes('scale')">Deselect All</button>
+						<button id="scaleselect" type="button" class="smallbtn" onclick="checkBoxes('type2scale')">Select All</button>
+						<button id="scaledeselect" type="button" class="smallbtn" onclick="uncheckBoxes('scale')">Deselect All</button>
 					</div>
 				</div>
 				<!-- Scales content -->

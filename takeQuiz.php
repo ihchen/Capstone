@@ -112,16 +112,6 @@
 #revealbutt:focus {					/* (Chrome) Prevent Dotted border after clicking */
 	outline: none;
 }
-.selectbtn {						/* Button for show list */
-	text-align: center;
-	white-space: nowrap;
-	background: #008B8B;
-	border: none;
-	margin-bottom: 5px;
-}
-.selectbtn:hover {
-  background: #00CED1;
-}
 
 /* Transitions */
 .reveal {
@@ -154,7 +144,7 @@
 	</div>	
 
 	<div id="chosenlist">
-		<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
+		<button type="button" class="smallbtn" onclick="showlist()">Show List</button><br/>
 		<div id="listelements" style="display: none;">
 			<!-- List elements go here -->
 		</div>
@@ -182,6 +172,7 @@
 		snippet.play();
 		document.getElementById("playbtn").style.display = "none";
 		document.getElementById("stopbtn").style.display = "block";
+		document.getElementById("stopbtn").className = "button";
 	}
 
 	/**
@@ -191,6 +182,8 @@
 	function stop() {
 		snippet.fadeOut();
 		document.getElementById("stopbtn").disabled = true;
+		document.getElementById("stopbtn").className = "button inactive";
+
 		setTimeout(function() { // delay the return of the play button until sound has faded
 			document.getElementById("playbtn").style.display = "block";
 			document.getElementById("stopbtn").style.display = "none";
