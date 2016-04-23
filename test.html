@@ -35,7 +35,9 @@ ul {
 
 li {
     float: left;
-    border: 1px solid #008080;
+    border-top: 1px solid #008080;
+    border-left: 1px solid #008080;
+    border-right: 1px solid #008080;
 }
 
 li a {
@@ -45,14 +47,14 @@ li a {
     text-decoration: none;
 }
 
+li a.active {
+    background-color: #ADD8E6;
+    border-bottom: 1px solid #ADD8E6;
+}
+
 li a:hover:not(.active) {
     background-color: #00CED1;
     color: #333;
-}
-
-.active {
-    background-color: #ADD8E6;
-    border-bottom: 1px solid #ADD8E6;
 }
 
 #navi {
@@ -105,7 +107,7 @@ li a:hover:not(.active) {
     cursor: pointer;
   }
   .naverr {
-    display: none;
+    /*display: none;*/
   }
   #navbox:checked + .naverr {
     display: block;
@@ -114,69 +116,16 @@ li a:hover:not(.active) {
 </style>
 <nav class="navbar">
 <!-- <a href = "#nav" id="navi" title = "Show Menu">&#9776;</a> -->
-<label for="navbox" id="navi">&#9776;</label>
-<input type="checkbox" id="navbox">
-<ul class="naverr" id="naverr">
-  <li class="active"><a href="">Design Quiz</a></li>
-  <li><a href="">Review</a></li>
-  <li><a href="">Successive Melodic Intervals</a></li>
-  <li style="float:right"><a href="">Login</a></li>
-</ul>
+	<label for="navbox" id="navi">&#9776;</label>
+	<input type="checkbox" id="navbox">
+	<ul class="naverr" id="naverr">
+	  <li><a class="active" href="">Design Quiz</a></li>
+	  <li><a href="">Review</a></li>
+	  <li><a href="">Successive Melodic Intervals</a></li>
+	  <li style="float:right"><a href="">Login</a></li>
+	</ul>
 </nav>
 </head>
 <body>
-<div style="position: relative">
-Stuff
-</div>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-Stuff
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-Stuff
 </body>
 </html>

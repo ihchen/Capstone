@@ -1,0 +1,90 @@
+/* Encompassing HTML element for navbar */
+.navbar {
+	position: fixed;			/* Let it scroll with the screen */
+	width: 100%;				/* Span it across the entire top of screen */
+	z-index: 1;					/* Bring it in front of all other elements */
+}
+/* Mobile navigation icon */
+#navicon, #navbox{
+	display: none;				/* Hide the mobile icon when not in mobile parameters */
+}
+/* Encompassing HTML element for the links */
+.navlist {
+	list-style-type: none;		/* Don't use list decorations */
+	margin: 0;	
+	padding: 0;
+	overflow: hidden;			/* Hide things that overflow */
+	background-color: #008B8B;
+}
+/* Navbar elements */
+.navelement {
+	float: left;				/* Make elements side by side and inline */
+	border: 1px solid #008080;
+}
+/* Navbar elements and its links */
+.navelement .navlink {
+	display: block;
+	text-align: center;			/* Center text within each button */
+	padding: 14px 16px;
+	text-decoration: none;		/* No underline on links */
+}
+/* If element represents current page */
+#currentpage {
+	background-color: #ADD8E6;	/* Match page background */
+	border-bottom: 1px solid #ADD8E6; /* Match border with background too */
+}
+/* Hovering over navbar elements (when the element isn't the current page) */
+.navelement:hover:not(#currentpage) {
+	background-color: #00CED1;	/* Lighter blue color */
+	color: #333;
+}
+
+/* Scalability (for mobile devices) */
+@media only screen and (max-width: 565px) {
+	/* Mobile navigation icon which will contain hamburger menu */
+	#navicon {
+		display: block;			/* Display it */
+		margin-left: 2%;
+		margin-top: 2%;
+		margin-bottom: 0;
+		color: #ADD8E6;
+		font-size: 2.5em;		/* Size of hamburger menu */
+		text-align: center;		/* Horizontally align it in box */
+		background-color: #008B8B;
+		border-width: 1px solid #008080;
+		height: 1.155em;
+		width: 1.15em;
+		padding: .01em .1em;
+		text-decoration: none;
+		cursor: pointer;		/* Change cursor to pointer hand when hovering over the navicon */
+	}
+	/* Hovering over the navicon */
+	#navicon:hover {
+		color: #00CED1;
+	}
+	/* Make the current page have the same background color as hovering */
+	#currentpage {
+		background-color: #00CED1;
+		border-bottom: 1px solid #008080;
+	}
+	/* Make sure list lines up with navicon */
+	.navlist {
+		margin-left: 2%;
+		margin-right: 2%;
+		display: none;				/* Start off with the menu not displaying */
+	}
+	/* When the navicon is clicked, display menu */
+	#navbox:checked + .navlist {
+		display: block;
+	}
+	/* Make elements stack instead of inline */
+	.navelement {
+		clear: left;
+		width: 100%;				/* Fill screen */
+	}
+	/* Make text for links align left */
+	.navelement .navlink {
+		width: 100%;
+		text-align: left;
+	}
+}
