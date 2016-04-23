@@ -44,8 +44,8 @@ function MusicSnippet(notes, type, quality, category) {
 	var fading = [];				//Notes that are currently fading out all the way
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 	var numLoaded = 0;				//Number of loaded files
-	var numEnded = 0;				//Number of files that finished playing
 	var scaleStyle = ASCENDING;		//Default style to play broken notes is ascending
+	var finLastNote = false;		//If the last note finished playing
 
 	var user_onload = function(){};	//User-supplied function to be invoked when the sound files are loaded
 
@@ -113,8 +113,12 @@ function MusicSnippet(notes, type, quality, category) {
 		if(fade != undefined) {
 			tempSounds[i].fadeOut(0, (1/bps)*1000*fade, 
 				function() {
+					console.log("Faded note "+i);
 					tempSounds[i].stop();
 					tempSounds[i].volume(1.0);
+					if(i == numNotes-1) {
+						finLastNote = true;
+					}
 				}
 			);
 		}
@@ -340,20 +344,10 @@ function MusicSnippet(notes, type, quality, category) {
 				},
 				onloaderror : function() {console.log(quality+" "+type+" loading error")},
 				onend : function() {
-					numEnded++;
-					if(type == CHORD && category != TWENTIETH) {
-						if(numEnded == 2*numNotes) {
-							document.getElementById("stopbtn").style.display = "none";
-							document.getElementById("playbtn").style.display = "block";
-							numEnded = 0;
-						}
-					}
-					else {
-						if(numEnded == numNotes) {
-							document.getElementById("stopbtn").style.display = "none";
-							document.getElementById("playbtn").style.display = "block";
-							numEnded = 0;
-						}
+					if(finLastNote) {
+						document.getElementById("playbtn").style.display = "block";
+						document.getElementById("stopbtn").style.display = "none";
+						finLastNote = false;
 					}
 				}
 			}));
@@ -400,7 +394,6 @@ function MusicSnippet(notes, type, quality, category) {
 				function() {
 					tempSounds[note].stop();		//After fade, reset position to 0
 					tempSounds[note].volume(1.0);	//After fade, reset volume to max
-					numEnded = -1;
 				}
 			);
 			fade(note+1);
@@ -416,7 +409,6 @@ function MusicSnippet(notes, type, quality, category) {
 		stop();
 		clear();
 		setVolume(1.0);
-		numEnded = 0;
 	}
 
 	/**
