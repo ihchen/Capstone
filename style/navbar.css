@@ -8,6 +8,12 @@
 #navicon, #navbox{
 	display: none;				/* Hide the mobile icon when not in mobile parameters */
 }
+/* Hamburger menu image for navicon */
+#navimage {
+	height: 1.155em;
+	width: 1.15em;
+	background-color: #008B8B;
+}
 /* Encompassing HTML element for the links */
 .navlist {
 	list-style-type: none;		/* Don't use list decorations */
@@ -46,17 +52,16 @@
 	/* Mobile navigation icon which will contain hamburger menu */
 	#navicon {
 		display: block;			/* Display it */
+		z-index: 1;
 		margin-left: 2%;
 		margin-top: 2%;
 		margin-bottom: 0;
 		color: #ADD8E6;
 		font-size: 2.5em;		/* Size of hamburger menu */
 		text-align: center;		/* Horizontally align it in box */
-		background-color: #008B8B;
 		border-width: 1px solid #008080;
 		height: 1.155em;
 		width: 1.15em;
-		padding: .01em .1em;
 		text-decoration: none;
 		cursor: pointer;		/* Change cursor to pointer hand when hovering over the navicon */
 	}
