@@ -137,8 +137,6 @@ $thisPage = 'Successive Melodic Intervals';
   function play() {
     snippet.play();
 		document.getElementById("playbtn").style.display = "none";
-    document.getElementById("playbtn").style.background= "#008B8B";
-    document.getElementById("playbtn").style.border= "1px solid #008080";
 		document.getElementById("stopbtn").style.display = "block";
   }
 
