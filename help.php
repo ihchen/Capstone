@@ -3,7 +3,11 @@ $thisPage = 'HELP!!!';
 ?>
 
 <?php require_once('phpincludes/header.php'); ?>
-
+<style>
+.qa {
+	font-weight: bold;
+}
+</style>
 <body>
 <br></br>
 
