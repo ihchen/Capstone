@@ -11,8 +11,6 @@
 	<script src="scripts/QuestionGenerator.js"></script>
 	<script src="scripts/ParseCSV.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="style/style2.css">
-
 	<script type="text/javascript">
 		// Make config object
 		var config = {
@@ -209,7 +207,7 @@
 		snippet.fadeOut();
 		snippet = qg.getNextQuestion();
 		setTimeout(function() {
-			snippet.generate(loadFunc;
+			snippet.generate(loadFunc);
 		}, FADE_ALL_LENGTH+1);		//FADE_ALL_LENGTH constant can be found in scripts/MusicSnippet.js	
 	}
 
@@ -263,7 +261,7 @@
     				'<div class="bot">'+bot+'</div>'+
     				'<span class="baseline-fix"></span></span>'+end;
 	    }
-	};
+	}
 
 	/* Populate the list of user chosen elements */
 	var list = document.getElementById("listelements");
