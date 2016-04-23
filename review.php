@@ -159,18 +159,12 @@
 		document.getElementById("tempo").value = tempoDisplay.value;
 	}
 
-	/**
-	 When we play the selected chord or scale, we want to wait for the files to load first.  If we use a busy wait, the browser will complain about an unresponsive script, and the user must allow the script to continue.  Javascript has no sleep capability, so we use setInterval instead to simulate the effect.  We want setInterval to stop once the files are loaded, but only the function called by setInterval knows when that is.  Javascript is entirely pass-by-value, so in order for loadCheck to know which interval to clear, the variable must be visible to both setInterval and the function it calls.
-	 */
-	// var load_wait_intervalID;
-
-	var snippet; // this needs to be visible to playSelected(), loadCheck(), and stop()
+	var snippet; // this needs to be visible to playSelected() and stop()
 
 	// plays selected thing
 	function playSelected() {
 		document.getElementById("playbtn").style.display = "none"; // hide the play button
 		document.getElementById("loadbtn").style.display = "block"; // display loading message
-		// document.getElementById("loading").style.display = "block";
 
 		var type = document.getElementById('type').value;
 		var quality = document.getElementById('quality').value;
@@ -182,7 +176,6 @@
 		// checking inputs
 		if (key == "") { // key is only not blank when everything else is selected
 			// reset buttons
-			// document.getElementById("loading").style.display = "none";
 			document.getElementById("loadbtn").style.display = "none";
 			document.getElementById("playbtn").style.display = "block";
 			alert("Please select a scale or chord.");
@@ -207,7 +200,7 @@
 		var on_load = function() {
 			document.getElementById("loadbtn").style.display = "none"; // change buttons
 			document.getElementById("stopbtn").style.display = "block";
-			snippet.play(opt); // not sure if passing the arg like this works
+			snippet.play(opt);
 		}
 
 		// inversions
@@ -223,23 +216,7 @@
 		else {
 			snippet.generate(on_load, key, 0);
 		}
-
-
-
-		// wait for files to load, then play snippet
-		// load_wait_intervalID = setInterval(loadCheck, 100, opt);
 	}
-
-	/* Don't need to do this anymore! */
-	// ends the setInterval when files are loaded
-	// function loadCheck(opt) {
-	// 	if (document.getElementById("loading").style.display == "none") {
-	// 		clearInterval(load_wait_intervalID); // stop waiting/looping
-	// 		document.getElementById("loadbtn").style.display = "none"; // change buttons
-	// 		document.getElementById("stopbtn").style.display = "block";
-	// 		snippet.play(opt);
-	// 	}
-	// }
 
 	function stop() {
 		snippet.fadeOut();
@@ -251,12 +228,6 @@
 		}, FADE_ALL_LENGTH+1);
 	}
 </script>
-
-<!--
-<span id="allbuttons"></span>
-<span id="loading"></span>
--->
-
 
 </body>
 

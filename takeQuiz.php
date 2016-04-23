@@ -48,10 +48,6 @@
 ?>
 
 <style>
-#loading {						/* Loading text */
-    font-size: 1.5em;
-    margin-bottom: 157px;		/* Makes the show list button stay in around the same place */
-}
 #element{						/* Each list element */
 	display: inline-block;
 	white-space: nowrap;
@@ -135,15 +131,15 @@
 	-moz-transition: opacity 1s, transform 1s ease;
 	transition: opacity 1s, transform 1s ease;
 }
+.reveal.notrans {
+	-webkit-transition: opacity 0s, transform 0s ease;
+	-moz-transition: opacity 0s, transform 0s ease;
+	transition: opacity 0s, transform 0s ease;
+}
 </style>
 
 <script>
-	var qg = new QuestionGenerator(chosen);		//Create question generator
-	var snippet = qg.getNextQuestion();			//Get Next Question
-	snippet.generate(function() {				//Generate audio
-		document.getElementById("loadbtn").style.display = "block";
-		document.getElementById("playbtn").style.display = "none";		
-	});
+	
 </script>
 
 <center>
@@ -151,7 +147,7 @@
 
 	<button id="playbtn" class="button" onclick="play()" style="display:none;">Play</button>
 	<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-	<button id="loadbtn" class="button loading" onclick="stop()" style="display:block;">Stop</button>
+	<button id="loadbtn" class="button loading" onclick="stop()" style="display:block;">Loading...</button>
 	<br/>
 	<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
 	<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
@@ -168,9 +164,18 @@
 </center>
 
 <script>
-	//Get the answer and display
-	document.getElementById("answer").innerHTML = snippet.answer();
-	applyInversion(document.getElementById("answer"));
+	function loadFunc() {
+		document.getElementById("loadbtn").style.display = "none";
+		document.getElementById("playbtn").style.display = "block";	
+		document.getElementById("stopbtn").style.display = "none";
+		//Get the answer and display
+		document.getElementById("answer").innerHTML = snippet.answer();
+		applyInversion(document.getElementById("answer"));
+	}
+
+	var qg = new QuestionGenerator(chosen);		//Create question generator
+	var snippet = qg.getNextQuestion();			//Get Next Question
+	snippet.generate(loadFunc());
 
 	/**
 	 * Plays the audio and changes play button to stop button
@@ -204,9 +209,7 @@
 		snippet.fadeOut();
 		snippet = qg.getNextQuestion();
 		setTimeout(function() {
-			snippet.generate();
-			document.getElementById("answer").innerHTML = snippet.answer();
-			applyInversion(document.getElementById("answer"));
+			snippet.generate(loadFunc());
 		}, FADE_ALL_LENGTH+1);		//FADE_ALL_LENGTH constant can be found in scripts/MusicSnippet.js	
 	}
 
@@ -214,6 +217,7 @@
 	 * Reveals the answer (with transition)
 	 */
 	function reveal() {
+		document.getElementById("revealed").className = "reveal";
 		document.getElementById("revealbutt").style.opacity = "0";
 		document.getElementById("revealbutt").style.transform = "translate(0px, 100px)";
 		document.getElementById("revealed").style.opacity = "1";
@@ -226,14 +230,14 @@
 	 * snippet.generate(). 
 	 */
 	function hide() {
-		document.getElementById("loading").style.display = "block";
-		document.getElementById("allbuttons").style.display = "none";
+		document.getElementById("revealed").className += " notrans";
+		document.getElementById("loadbtn").style.display = "block";
+		document.getElementById("playbtn").style.display = "none";
+		document.getElementById("stopbtn").style.display = "none";
 		//Reset everything
 		document.getElementById("revealbutt").style.opacity = "1";
 		document.getElementById("revealbutt").style.transform = "translate(0px, 0px)";
 		document.getElementById("revealed").style.opacity = "0";
-		document.getElementById("playbtn").style.display = "block";
-		document.getElementById("stopbtn").style.display = "none";
 		document.getElementById("nxtq").disabled = true;			//Disable next question button so you can't click on it until revealed
 		document.getElementById("nxtq").style.cursor = "default";	//Don't show hand pointer either
 	}
