@@ -182,7 +182,6 @@ $thisPage = 'Successive Melodic Intervals';
       }
     }
 
-    // document.getElementById("asdf").disabled = true;
     var resultstring = "<ul list-style=none>";
     for (var i = 0; i < result.length; i++) {
       // resultstring += "<span style=\"color:#";
@@ -197,9 +196,7 @@ $thisPage = 'Successive Melodic Intervals';
         // resultstring += "FF0000\">&#10007";
         resultstring += "FF0000\">" + answers[i];
       }
-      // if (i > result.length-1) {
-      //   resultstring += "&nbsp";
-      // }
+
       resultstring += "</li>";
 
     }
