@@ -95,7 +95,7 @@ function MusicSnippet(notes, type, quality, category) {
 			}
 			//If something else, just play it broken
 			else {
-				setTimeout(function() {playBroken(DEFAULT_FADE);}, 1000);
+				playBroken(DEFAULT_FADE);
 			}
 		}
 	}
