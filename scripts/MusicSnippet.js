@@ -45,6 +45,7 @@ function MusicSnippet(notes, type, quality, category) {
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 	var numLoaded = 0;				//Number of loaded files
 	var numEnded = 0;				//Number of files that finished playing
+	var scaleStyle = ASCENDING;		//Default style to play broken notes is ascending
 
 	var user_onload = function(){};	//User-supplied function to be invoked when the sound files are loaded
 
@@ -90,13 +91,7 @@ function MusicSnippet(notes, type, quality, category) {
 			}
 			//Play scales broken and ascending
 			else if(type == SCALE) {
-				var rand = Math.floor(Math.random()*2);
-				if(rand == 0) {
-					playBroken(DEFAULT_FADE);
-				}
-				else {
-					playBroken(DEFAULT_FADE, DESCENDING);
-				}
+				playBroken(DEFAULT_FADE, scaleStyle);
 			}
 			//If something else, just play it broken
 			else {
@@ -208,6 +203,15 @@ function MusicSnippet(notes, type, quality, category) {
 		//Just given notes and no octaves. Apply necessary transformations
 		else {
 			tempNotes = transposeAndInvert(key, inversion);
+			if(type == SCALE) {
+				var rand = Math.floor(Math.random()*2);
+				if(rand == 0) {
+					scaleStyle = ASCENDING;
+				}
+				else {
+					scaleStyle = DESCENDING;
+				}
+			}
 			tempSounds = loadFiles(tempNotes);
 		}
 	}
