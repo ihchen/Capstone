@@ -27,6 +27,8 @@
 	text-align: center;			/* Center text within each button */
 	padding: 14px 16px;
 	text-decoration: none;		/* No underline on links */
+	font-weight: normal;
+	color: black;
 }
 /* If element represents current page */
 #currentpage {

@@ -141,26 +141,22 @@
 	var qg = new QuestionGenerator(chosen);		//Create question generator
 	var snippet = qg.getNextQuestion();			//Get Next Question
 	snippet.generate(function() {				//Generate audio
-		document.getElementById("loading").style.display = "none";
-		document.getElementById("allbuttons").style.display = "block";
+		document.getElementById("loadbtn").style.display = "block";
+		document.getElementById("playbtn").style.display = "none";		
 	});
 </script>
 
 <center>
 	<br/><br/>
-	<p id="loading"><!-- Needs to have id "loading" -->
-		Loading...
-	</p>
 
-	<div id="allbuttons" style="display:none;"><!-- Needs to have id "allbuttons" -->
-		<button id="playbtn" class="button" onclick="play()" style="display:block;">Play</button>
-		<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-		<br/>
-		<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
-		<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
-			<p id="answer" style="font-size: 1.5em;"></p>
-			<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
-		</div>
+	<button id="playbtn" class="button" onclick="play()" style="display:none;">Play</button>
+	<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
+	<button id="loadbtn" class="button loading" onclick="stop()" style="display:block;">Stop</button>
+	<br/>
+	<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
+	<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
+		<p id="answer" style="font-size: 1.5em;"></p>
+		<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
 	</div>
 
 	<div id="chosenlist">
