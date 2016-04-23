@@ -24,42 +24,9 @@ body {
 	text-align: center;
 }
 
-center {
-	background-color:#ADD8E6;
-}
-
 * {
 	box-sizing:border-box;
 }
-
-.panel-collapse {
-	padding-left:20px;
-	text-align:left;
-}
-
-
-#checkboxcontainer {
-	padding-left:10%;
-}
-
-@media screen and (min-width: 500px) {
-	#checkboxcontainer {
-		padding-left:45%;
-	}
-}
-
-#type1 {
-	background-color : transparent;
-	float: left;
-}
-
-#type2 {
-    background-color : transparent;
-    display : inline;
-    float: left;
-}
-
-
 
 .button {
 	text-align: center;
@@ -103,7 +70,7 @@ center {
 	border: none;
 	margin-bottom: 5px;
 }
-.selectbtn:hover {
+.smallbtn:hover {
   background: #00CED1;
 }
 
