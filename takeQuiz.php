@@ -147,7 +147,7 @@
 
 	<button id="playbtn" class="button" onclick="play()" style="display:none;">Play</button>
 	<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-	<button id="loadbtn" class="button loading" style="display:block;">Loading...</button>
+	<button id="loadbtn" class="button inactive" style="display:block;">Loading...</button>
 	<br/>
 	<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
 	<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
@@ -197,7 +197,7 @@
 			document.getElementById("playbtn").style.display = "block";
 			document.getElementById("stopbtn").style.display = "none";
 			document.getElementById("stopbtn").disabled = false;
-		}, FADE_ALL_LENGTH+900);		//FADE_ALL_LENGTH constant can be found in scripts/MusicSnippet.js	
+		}, FADE_ALL_LENGTH+400);		//FADE_ALL_LENGTH constant can be found in scripts/MusicSnippet.js	
 	}
 
 	/**
