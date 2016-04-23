@@ -153,7 +153,7 @@
 	<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
 		<p id="answer" style="font-size: 1.5em;"></p>
 		<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
-	</div>
+	</div>	
 
 	<div id="chosenlist">
 		<button type="button" class="selectbtn" onclick="showlist()">Show List</button><br/>
@@ -175,7 +175,7 @@
 
 	var qg = new QuestionGenerator(chosen);		//Create question generator
 	var snippet = qg.getNextQuestion();			//Get Next Question
-	snippet.generate(loadFunc());
+	snippet.generate(loadFunc);
 
 	/**
 	 * Plays the audio and changes play button to stop button
@@ -209,7 +209,7 @@
 		snippet.fadeOut();
 		snippet = qg.getNextQuestion();
 		setTimeout(function() {
-			snippet.generate(loadFunc());
+			snippet.generate(loadFunc;
 		}, FADE_ALL_LENGTH+1);		//FADE_ALL_LENGTH constant can be found in scripts/MusicSnippet.js	
 	}
 

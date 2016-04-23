@@ -113,7 +113,6 @@ function MusicSnippet(notes, type, quality, category) {
 		if(fade != undefined) {
 			tempSounds[i].fadeOut(0, (1/bps)*1000*fade, 
 				function() {
-					console.log("Faded note "+i);
 					tempSounds[i].stop();
 					tempSounds[i].volume(1.0);
 					if(i == numNotes-1) {
