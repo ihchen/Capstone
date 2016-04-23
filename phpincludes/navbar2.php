@@ -2,7 +2,7 @@
 
 <nav class="navbar">
 	<!-- For mobile, make navigation box with hamburger menu symbol -->
-	<label id="navicon" for="navbox">&#9776;</label>
+	<img src="images/navicon.png" alt="navicon" id="navicon">
 	<input type="checkbox" id="navbox">		<!-- Hidden checkbox that shows or hides the menu -->
 
 	<!-- Links on the menu -->
