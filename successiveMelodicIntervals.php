@@ -102,7 +102,7 @@ $thisPage = 'Successive Melodic Intervals';
 
   <button id="playbtn" class="button" onclick="play()" style="display:none;">Play</button>
   <button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
-  <button id="loadbtn" class="button loading" disabled="true"  style="display:block; color:black">Loading...</button>
+  <button id="loadbtn" class="button inactive" disabled="true"  style="display:block; color:black">Loading...</button>
 
 
   <div id="intervals">
@@ -147,7 +147,7 @@ $thisPage = 'Successive Melodic Intervals';
 			document.getElementById("playbtn").style.display = "block";
 			document.getElementById("stopbtn").style.display = "none";
 			document.getElementById("stopbtn").disabled = false;
-		}, FADE_ALL_LENGTH+1);
+		}, FADE_ALL_LENGTH+400);
   }
 
   function checkAnswers() {

@@ -9,12 +9,12 @@
   <meta name="description" content="Ear Trainer for University of Puget Sound Music Students">
   <meta name="author" content="Kaylene Barber, Imanuel Chen, Wesley Stedman">
   <!-- <link href="images/favicon.ico" type="images/jpg" rel="shortcut icon"> -->
-  <link href="style/style2.css" type="text/css" rel="stylesheet">
+  <link href="style/style.css" type="text/css" rel="stylesheet">
   <div id="header">
     <!-- <div class="logo">
       <img src="images/img.png" alt="Logo" />
     </div> -->
-    <?php require_once('phpincludes/navbar2.php'); ?>
+    <?php require_once('phpincludes/navbar.php'); ?>
   </div>
 </head>
 <br></br>
