@@ -138,11 +138,15 @@ $thisPage = 'Successive Melodic Intervals';
     snippet.play();
 		document.getElementById("playbtn").style.display = "none";
 		document.getElementById("stopbtn").style.display = "block";
+    document.getElementById("stopbtn").className = "button";
+
   }
 
   function stop() {
     snippet.fadeOut();
 		document.getElementById("stopbtn").disabled = true;
+    document.getElementById("stopbtn").className = "button inactive";
+
 		setTimeout(function() { // delay the return of the play button until sound has faded
 			document.getElementById("playbtn").style.display = "block";
 			document.getElementById("stopbtn").style.display = "none";

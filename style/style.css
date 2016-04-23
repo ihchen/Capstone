@@ -85,6 +85,10 @@ center {
 	border: 1px solid #00CED1;
 }
 
+.inactive {
+	color: black;
+}
+
 #bottompagebutton {
 	position: fixed;
 }
