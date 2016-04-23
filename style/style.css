@@ -79,7 +79,7 @@ center {
 	height:2em;
 }
 
-.button:hover:not(.loading) {
+.button:hover:not(.inactive) {
 	cursor: pointer; cursor: hand;
   background: #00CED1;
 	border: 1px solid #00CED1;
