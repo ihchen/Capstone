@@ -5,6 +5,66 @@ $thisPage = 'Successive Melodic Intervals';
 
 <?php require_once('phpincludes/header.php'); ?>
 
+<style>
+#smi {
+	text-align: center;
+	padding: 1em;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	height: 260px;
+}
+
+#nextquestion {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#checkanswers {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+#answers {
+	font-size: 1em;
+	text-align: center;
+	/*margin: 0, auto;*/
+}
+
+#answers li {
+	text-align: center;
+	display: inline-block;
+	min-width: 66px;
+	/*padding-left: 1.5em;
+	padding-right: 1.5em;*/
+	/*margin: 1em, 1em, 1em, 1em;*/
+  /*position:inherit;*/
+}
+
+#answers > ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	/*position:sticky;*/
+}
+
+#answers > ul > li {
+	/*background: #008B8B;*/
+	/*border: 1px solid #008080;*/
+	float:none;
+	/*padding: 1em 0em;*/
+}
+
+</style>
+
 <body>
 <br></br>
 <script src = "scripts/MusicManip.js"> </script>
