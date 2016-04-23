@@ -4,7 +4,6 @@
 ?>
 
 <script src="scripts/ParseCSV.js"></script>
-<link href="style/style2.css" type="text/css" rel="stylesheet">
 
 <script>
 	/** 
