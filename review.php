@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$thisPage = 'Review';
 	require_once("phpincludes/header.php");
 	echo "<title>$thisPage</title>";
@@ -53,7 +53,7 @@
 	<button type="button" class="button" id="playbtn" onclick="playSelected()">
 		Play
 	</button>
-	<button type="button" class="button" id="loadbtn" disabled="true" style="display: none">
+	<button type="button" class="button loading" id="loadbtn" disabled="true" style="display: none; color: black">
 		Loading...
 	</button>
 	<button type="button" class="button" id="stopbtn" style="display: none" onclick="stop()">
@@ -92,7 +92,7 @@
 				quality.innerHTML = quality.innerHTML + "<option value='"+scale_opt[i]+"'>"+scale_opt[i]+"</option>";
 			}
 			// fill opt with scale options
-			opt.innerHTML = 
+			opt.innerHTML =
 				"<option value='asc'>Ascending</option>\
 				<option value='desc'>Descending</option>";
 		}
@@ -102,7 +102,7 @@
 				quality.innerHTML = quality.innerHTML + "<option value='"+chord_opt[i]+"'>"+chord_opt[i]+"</option>";
 			}
 			// fill opt with chord options
-			opt.innerHTML = 
+			opt.innerHTML =
 				"<option value='root'>Root Position</option>\
 				<option value='first'>First Inversion</option>\
 				<option value='second'>Second Inversion</option>\
@@ -178,7 +178,7 @@
 		var opt = document.getElementById('opt').value;
 
 		// console.log("Playing a " + quality + " " + type + " in " + key);
-		
+
 		// checking inputs
 		if (key == "") { // key is only not blank when everything else is selected
 			// reset buttons
@@ -199,7 +199,7 @@
 
 		// generate snippet with selected type, quality, and key
 		snippet = new MusicSnippet(data[i][2], type, quality, data[i][3]);
-		
+
 		// set snippet tempo
 		snippet.setBPM(document.getElementById("tempo").value);
 
@@ -224,7 +224,7 @@
 			snippet.generate(on_load, key, 0);
 		}
 
-		
+
 
 		// wait for files to load, then play snippet
 		// load_wait_intervalID = setInterval(loadCheck, 100, opt);
