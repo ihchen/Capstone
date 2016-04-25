@@ -15,7 +15,8 @@
 	select.dropdown {
 		width: 200px;
 	}
-	span.label {
+	div.label {
+		display: inline-block;
 		width: 200px;
 		text-align: right;
 	}
@@ -27,23 +28,23 @@
 <br><br>
 
 <div>
-	<span class="label">Type: </span><select id="type" class="dropdown" onchange="updateQuality()">
+	<div class="label">Type: </div><select id="type" class="dropdown" onchange="updateQuality()">
 		<option value="">-----</option>
 		<option value="scale">Scale</option>
 		<option value="chord">Chord</option>
 	</select>
 	<br>
-	<span class="label">Quality: </span><select id="quality" class="dropdown" onchange="updateKey()">
+	<div class="label">Quality: </div><select id="quality" class="dropdown" onchange="updateKey()">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<span class="label">Key: </span><select id="key" class="dropdown">
+	<div class="label">Key: </div><select id="key" class="dropdown">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<span class="label">Direction / Inversion: </span><select id="opt" class="dropdown">
+	<div class="label">Direction / Inversion: </div><select id="opt" class="dropdown">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
