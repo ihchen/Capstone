@@ -151,12 +151,12 @@ $thisPage = 'Successive Melodic Intervals';
 			document.getElementById("playbtn").style.display = "block";
 			document.getElementById("stopbtn").style.display = "none";
 			document.getElementById("stopbtn").disabled = false;
-		}, FADE_ALL_LENGTH+400);
+		}, FADE_ALL_LENGTH+600);
   }
 
   function checkAnswers() {
-    document.getElementById("checkanswers").style.background= "#008B8B";
-    document.getElementById("checkanswers").style.border= "1px solid #008080";
+    // document.getElementById("checkanswers").style.background= "#008B8B";
+    // document.getElementById("checkanswers").style.border= "1px solid #008080";
     document.getElementById("alert").innerHTML = "";
     document.getElementById("alert").style.display = "none";
 
@@ -168,6 +168,9 @@ $thisPage = 'Successive Melodic Intervals';
       if (userAnswers[i] == "--") {
         document.getElementById("alert").style.display = "inline-block";
         document.getElementById("alert").innerHTML = "Please select your answers from the drop down menus!";
+        document.getElementById("alert").style.opacity = "0";
+        document.getElementById("alert").style.transform = "translate(0px, 100px)";
+        document.getElementById("alert").style.opacity = "1";
         return false;
       }
     }
