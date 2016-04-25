@@ -19,6 +19,7 @@
 		display: inline-block;
 		width: 200px;
 		text-align: right;
+		margin-right: 5px;
 	}
 </style>
 
@@ -49,7 +50,7 @@
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	Tempo: <input type="range" id="tempo" class="slider" min="40" max="200" step="1" value="80" oninput="updateTempoSlider()"><input type="text" id="tempoDisplay" min="40" max="200" step="1" value="80" maxlength="3" size="3" onchange="updateTempoDisplay()"> BPM <!-- min, max, and step have no effect when type=text, but will apply when type=number -->
+	<div class="label">Tempo: </div><input type="range" id="tempo" class="slider" min="40" max="200" step="1" value="80" oninput="updateTempoSlider()"><input type="text" id="tempoDisplay" min="40" max="200" step="1" value="80" maxlength="3" size="3" onchange="updateTempoDisplay()"> BPM <!-- min, max, and step have no effect when type=text, but will apply when type=number -->
 	<br>
 	<button type="button" class="button" id="playbtn" onclick="playSelected()">
 		Play
