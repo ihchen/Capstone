@@ -146,7 +146,7 @@
 			// convert list to option tags
 			key.innerHTML = "";
 			for (var i = 0; i < keys.length; i++) {
-				key.innerHTML = key.innerHTML + "<option value='" + keys[i] + "'>" + keys[i] + "</option>";
+				key.innerHTML = key.innerHTML + "<option value='" + keys[i] + "'>" + toDisplay(keys[i]) + "</option>";
 			}
 		}
 	}
@@ -228,6 +228,15 @@
 			document.getElementById("stopbtn").style.display = "none";
 			document.getElementById("stopbtn").disabled = false;
 		}, FADE_ALL_LENGTH+1);
+	}
+
+	// changes sharps and flats in a note name from internal representation to the actual unicode characters
+	function toDisplay(note) {
+		note = note.replace("bb","&#9837;&#9837;");
+		note = note.replace("b","&#9837;");
+		note = note.replace("xx","&#9839;&#9839;");
+		note = note.replace("x","&#9839;");
+		return note;
 	}
 </script>
 
