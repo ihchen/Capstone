@@ -3,8 +3,12 @@
 	require_once('phpincludes/header.php'); 
 ?>
 
+<!-- Import styling -->
+<link href="style/designQuiz.css" type="text/css" rel="stylesheet">
+<!-- Parse the CSV file for data -->
 <script src="scripts/ParseCSV.js"></script>
 
+<!-- Functions to be used on the page -->
 <script>
 	/** 
 	 * Checks the boxes of the given html class. If maincheck is given, all boxes are checked
@@ -153,131 +157,44 @@
 			document.getElementById("scaledeselect").style.display = "none";
 		}
 	}
+
+	/**
+	 * If the form doesn't have at least one box checked, alert and stop submission
+	 *
+	 * @method validateForm
+	 */
+	function validateForm() {
+		var form_fields = document.forms["selection"]; // get the form
+		for (var i = 0; form_fields[i.toString()] != undefined; i++) { // loop through everything in the form
+			if (form_fields[i.toString()].value == "num" && form_fields[i.toString()].checked == true) { // if it's a chord/scale option and is set
+				makeCookie();
+				return true; // submit the form
+			}
+		}
+		// else no boxes are checked
+		alert("Please select at least one chord or scale.");
+		return false; // don't submit the form
+	}
+
+	/**
+	 * Make cookies to remember what the user selected
+	 *
+	 * @method makeCookie
+	 */
+	function makeCookie() {
+		var cookie_string = "selected=";
+		var form_fields = document.forms["selection"];
+		for (var i = 0; form_fields[i.toString()] != undefined; i++) {
+			if (form_fields[i.toString()].checked == true) {
+				cookie_string += i + ","; // add all selected scales/chords to the cookie
+			}
+		}
+		var exp = new Date();
+		exp.setTime(exp.getTime() + 604800000) // one week from now
+		cookie_string += "; expires=" + exp.toUTCString();
+		document.cookie = cookie_string;
+	}
 </script>
-
-<style>
-* {
-	box-sizing: border-box;
-}
-.testboxes {				/* Encompasses the Test Checkboxes */
-	font-size: 1em;
-	margin-bottom: 1em;
-}
-.testnames {				/* Test 1, Test 2, Final Names*/
-	display: inline-block;
-	padding-left: 5px;
-	padding-right: 20px;
-}
-.rows {						/* Line bottoms of columns up */
-	display: flex;
-}
-.colspace {					/* Blank column space (input &nbsp in divs with this class) */
-	width: 16.66%;
-	float: left;
-}
-.maincolumn {				/* Main information boxes (Chords and Scales) */
-	width: 33.33%;
-	float: left;
-	padding: 5px;
-	text-align: left;
-	border: 1px solid #008B8B;
-}
-.typehead {					/* Type header (type title and select/deselect buttons) */
-	font-size: 1.2em;
-	font-weight: bold;
-	border-bottom: 2px solid #008B8B;
-	position:relative;
-	margin-bottom: .5em;
-}	
-.selectdeselectbtns {		/* Select/Deselect Buttons */
-	top: 5px;
-	position:absolute;
-	top: 0%;
-	right: 0%;
-	font-size: .7em;
-}
-.type2list {				/* All categories and their elements */
-	-webkit-column-count: 2;
-	-moz-column-count: 2;
-	column-count: 2;
-}
-.category {					/* Each category and its elements */
-    padding-bottom: 1em;
-	/* Prevent elements within same category from breaking columns */
-	-webkit-column-break-inside: avoid; /* Chrome, Safari */
-    page-break-inside: avoid;           /* Theoretically FF 20+ */
-    break-inside: avoid-column;         /* IE 11 */
-    display:table;                      /* Actually FF 20+ */
-}
-.categorytitle {			/* Title of category */
-	font-size: 1.1em;
-	font-style: italic;
-}
-.type2 {					/* Every element */
-	font-weight: 100;
-}
-
-/* Resizing and Scalability */
-@media screen and (max-width: 1420px) {		/* Increase column width and decrease space at edges */
-	.colspace {
-		width: 8.33%;
-	}
-	.maincolumn {
-		width: 41.66%;
-	}
-}
-@media screen and (max-width: 1135px) {		/* Further increase column width and decrease space at edges */
-	.colspace {
-		width: 1%;
-	}
-	.maincolumn {
-		width: 49%;
-	}
-}
-@media screen and (max-width: 954px) {		/* Collapse each type to one column */
-	.colspace {
-		width: 16.66%;
-	}
-	.maincolumn {
-		width: 33.33%;
-	}
-	.type2list {
-		-webkit-column-count: 1;
-		-moz-column-count: 1;
-		column-count: 1;
-	}
-}
-@media screen and (max-width: 710px) {		/* Increase column width and decrease space at edges */
-	.colspace {
-		width: 8.33%;
-	}
-	.maincolumn {
-		width: 41.66%;
-	}
-}
-@media screen and (max-width: 565px) {		/* Further increase column width and decrease space at edges */
-	.colspace {
-		width: 1%;
-	}
-	.maincolumn {
-		width: 49%;
-	}
-}
-@media screen and (max-width: 480px) {		/* Put Scales box below Chords box */
-	.colspace {
-		width: 5%;
-		height: 200%;
-	}
-	.maincolumn {
-		width: 90%;
-		clear: left;
-		margin-left: 5%;
-	}
-	.rows {
-		display: block;
-	}
-}
-</style>
 
 <body id = "content">
 	<div id = "instructions">
@@ -354,6 +271,7 @@
 	</form>
 </body>
 
+<!-- Javascript that runs immediately -->
 <script>
 	/* Find all categories and save a tuple containing (category, occurence, type) */
 	var categories = [];
@@ -441,43 +359,6 @@
 			console.log(select[i]);
 			form[select[i]].checked = true;
 		}
-	}
-
-	/**
-	 * If the form doesn't have at least one box checked, alert and stop submission
-	 *
-	 * @method validateForm
-	 */
-	function validateForm() {
-		var form_fields = document.forms["selection"]; // get the form
-		for (var i = 0; form_fields[i.toString()] != undefined; i++) { // loop through everything in the form
-			if (form_fields[i.toString()].value == "num" && form_fields[i.toString()].checked == true) { // if it's a chord/scale option and is set
-				makeCookie();
-				return true; // submit the form
-			}
-		}
-		// else no boxes are checked
-		alert("Please select at least one chord or scale.");
-		return false; // don't submit the form
-	}
-
-	/**
-	 * Make cookies to remember what the user selected
-	 *
-	 * @method makeCookie
-	 */
-	function makeCookie() {
-		var cookie_string = "selected=";
-		var form_fields = document.forms["selection"];
-		for (var i = 0; form_fields[i.toString()] != undefined; i++) {
-			if (form_fields[i.toString()].checked == true) {
-				cookie_string += i + ","; // add all selected scales/chords to the cookie
-			}
-		}
-		var exp = new Date();
-		exp.setTime(exp.getTime() + 604800000) // one week from now
-		cookie_string += "; expires=" + exp.toUTCString();
-		document.cookie = cookie_string;
 	}
 
 	//Check checked chords and scales in case cookies were saved or user hit refresh

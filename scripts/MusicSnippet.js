@@ -335,7 +335,7 @@ function MusicSnippet(notes, type, quality, category) {
 					numLoaded++;
 					//Display loaded notes
 					console.log("Loaded note "+numLoaded);
-					//If all notes displayed, call user function
+					//If all notes loaded, call user function
 					if(numLoaded == numNotes) {
 						user_onload();
 						numLoaded = 0;

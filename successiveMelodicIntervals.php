@@ -122,9 +122,9 @@ $thisPage = 'Successive Melodic Intervals';
     }
     </script>
     <br></br>
-    <span id="alert" display="none"></span>
+		<span id="answers" style="display:inline-block; visibility:hidden;">_</span>
+    <span id="alert" style="display:inline-block; visibility:hidden;">Please select your answers from the drop down menus!</span>
 
-    <span id="answers"> </span>
     <br></br>
     </div>
   </div>
@@ -159,17 +159,14 @@ $thisPage = 'Successive Melodic Intervals';
   }
 
   function checkAnswers() {
-    document.getElementById("alert").innerHTML = "";
-    document.getElementById("alert").style.display = "none";
-
+    document.getElementById("alert").style.visibility = "hidden";
 
     var userAnswers = [];
     // Make sure the user has selected answers.
     for (var i = 0; i < answers.length; i++) {
       userAnswers.push(document.getElementById(i).value);
       if (userAnswers[i] == "--") {
-        document.getElementById("alert").style.display = "inline-block";
-        document.getElementById("alert").innerHTML = "Please select your answers from the drop down menus!";
+				document.getElementById("alert").style.visibility = "visible";
         return false;
       }
     }
@@ -204,6 +201,7 @@ $thisPage = 'Successive Melodic Intervals';
     }
     resultstring += "</ul>";
     document.getElementById("answers").innerHTML = resultstring;
+		document.getElementById("answers").style.visibility = "visible";
     document.getElementById("checkanswers").style.display = "none";
     document.getElementById("nextquestion").style.display = "block";
 

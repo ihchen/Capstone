@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>QuestionGenerator</title>
+    <title>SuccessiveMelodicIntervals</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -79,12 +79,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>QuestionGenerator Class</h1>
+<h1>SuccessiveMelodicIntervals Class</h1>
 <div class="box meta">
 
 
         <div class="foundat">
-            Defined in: <a href="../files/scripts_QuestionGenerator.js.html#l1"><code>scripts&#x2F;QuestionGenerator.js:1</code></a>
+            Defined in: <a href="../files/scripts_SuccessiveMelodicIntervals.js.html#l1"><code>scripts&#x2F;SuccessiveMelodicIntervals.js:1</code></a>
         </div>
 
 
@@ -92,24 +92,16 @@
 
 
 <div class="box intro">
-    <p>Script that generates a random question. Parameter should
-be a list of integers that refer to indeces in the CSV file
-over which the user would like to be tested.</p>
+    <p>Generates a series of four random twelve-tone notes.</p>
 
 </div>
 
     <div class="constructor">
         <h2>Constructor</h2>
-<div id="method_QuestionGenerator" class="method item">
-    <h3 class="name"><code>QuestionGenerator</code></h3>
+<div id="method_SuccessiveMelodicIntervals" class="method item">
+    <h3 class="name"><code>SuccessiveMelodicIntervals</code></h3>
 
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>list</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
 
 
 
@@ -121,7 +113,7 @@ over which the user would like to be tested.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_QuestionGenerator.js.html#l1"><code>scripts&#x2F;QuestionGenerator.js:1</code></a>
+        <a href="../files/scripts_SuccessiveMelodicIntervals.js.html#l1"><code>scripts&#x2F;SuccessiveMelodicIntervals.js:1</code></a>
         </p>
 
 
@@ -132,22 +124,6 @@ over which the user would like to be tested.</p>
         
     </div>
 
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">list</code>
-                        <span class="type">Integer</span>
-
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                </li>
-            </ul>
-        </div>
 
 
 
@@ -159,7 +135,6 @@ over which the user would like to be tested.</p>
         <li class="api-class-tab index"><a href="#index">Index</a></li>
 
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
     </ul>
 
     <div>
@@ -171,26 +146,28 @@ over which the user would like to be tested.</p>
 
                     <ul class="index-list methods">
                             <li class="index-item method">
-                                <a href="#method_getNextQuestion">getNextQuestion</a>
+                                <a href="#method_generateMelody">generateMelody</a>
 
                             </li>
-                            <li class="index-item method private">
-                                <a href="#method_makeMusicSnippets">makeMusicSnippets</a>
+                            <li class="index-item method">
+                                <a href="#method_getAnswers">getAnswers</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getNotes">getNotes</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getPalette">getPalette</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getStartingPalette">getStartingPalette</a>
 
                             </li>
                     </ul>
                 </div>
 
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                            <li class="index-item property">
-                                <a href="#property_"></a>
-
-                            </li>
-                    </ul>
-                </div>
 
 
         </div>
@@ -198,13 +175,13 @@ over which the user would like to be tested.</p>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_getNextQuestion" class="method item">
-    <h3 class="name"><code>getNextQuestion</code></h3>
+<div id="method_generateMelody" class="method item">
+    <h3 class="name"><code>generateMelody</code></h3>
 
         <span class="paren">()</span>
 
         <span class="returns-inline">
-            <span class="type"><a href="../classes/MusicSnippet.html" class="crosslink">MusicSnippet</a></span>
+            <span class="type"><a href="../classes/Note.html" class="crosslink">Note[]</a></span>
         </span>
 
 
@@ -216,7 +193,7 @@ over which the user would like to be tested.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_QuestionGenerator.js.html#l34"><code>scripts&#x2F;QuestionGenerator.js:34</code></a>
+        <a href="../files/scripts_SuccessiveMelodicIntervals.js.html#l47"><code>scripts&#x2F;SuccessiveMelodicIntervals.js:47</code></a>
         </p>
 
 
@@ -224,7 +201,7 @@ over which the user would like to be tested.</p>
     </div>
 
     <div class="description">
-        <p>Picks a random MusicSnippet from the array.</p>
+        <p>Generates a 4-note 12-tone melody using backtracking.</p>
 
     </div>
 
@@ -233,31 +210,24 @@ over which the user would like to be tested.</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                        <span class="type"><a href="../classes/MusicSnippet.html" class="crosslink">MusicSnippet</a></span>:
-                    <p>random MusicSnippet</p>
+                        <span class="type"><a href="../classes/Note.html" class="crosslink">Note[]</a></span>:
+                    <p>notes</p>
 
             </div>
         </div>
 
 
 </div>
-<div id="method_makeMusicSnippets" class="method item private">
-    <h3 class="name"><code>makeMusicSnippets</code></h3>
+<div id="method_getAnswers" class="method item">
+    <h3 class="name"><code>getAnswers</code></h3>
 
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>indices</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
 
         <span class="returns-inline">
-            <span class="type"><a href="../classes/MusicSnippet.html" class="crosslink">MusicSnippet[]</a></span>
+            <span class="type">String</span>
         </span>
 
 
-        <span class="flag private">private</span>
 
 
 
@@ -266,7 +236,7 @@ over which the user would like to be tested.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_QuestionGenerator.js.html#l17"><code>scripts&#x2F;QuestionGenerator.js:17</code></a>
+        <a href="../files/scripts_SuccessiveMelodicIntervals.js.html#l21"><code>scripts&#x2F;SuccessiveMelodicIntervals.js:21</code></a>
         </p>
 
 
@@ -274,7 +244,98 @@ over which the user would like to be tested.</p>
     </div>
 
     <div class="description">
-        <p>Builds an array of MusicSnippets</p>
+        
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>intervals</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getNotes" class="method item">
+    <h3 class="name"><code>getNotes</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_SuccessiveMelodicIntervals.js.html#l33"><code>scripts&#x2F;SuccessiveMelodicIntervals.js:33</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the notes as Strings</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>notes</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getPalette" class="method item">
+    <h3 class="name"><code>getPalette</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>melody</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Note.html" class="crosslink">Note[]</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_SuccessiveMelodicIntervals.js.html#l119"><code>scripts&#x2F;SuccessiveMelodicIntervals.js:119</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Create a palette of notes to try based on previous note.</p>
 
     </div>
 
@@ -283,12 +344,13 @@ over which the user would like to be tested.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">indices</code>
+                        <code class="param-name">melody</code>
                         <span class="type">Integer</span>
 
 
                     <div class="param-description">
-                         
+                        <p>current index</p>
+
                     </div>
 
                 </li>
@@ -299,22 +361,24 @@ over which the user would like to be tested.</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                        <span class="type"><a href="../classes/MusicSnippet.html" class="crosslink">MusicSnippet[]</a></span>:
-                    <p>array of MusicSnippets</p>
+                        <span class="type"><a href="../classes/Note.html" class="crosslink">Note[]</a></span>:
+                    <p>palette</p>
 
             </div>
         </div>
 
 
 </div>
-            </div>
+<div id="method_getStartingPalette" class="method item">
+    <h3 class="name"><code>getStartingPalette</code></h3>
 
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
+        <span class="paren">()</span>
 
-<div id="property_" class="property item">
-    <h3 class="name"><code></code></h3>
-    <span class="type">Array</span>
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Note.html" class="crosslink">Note</a></span>
+        </span>
+
+
 
 
 
@@ -323,21 +387,33 @@ over which the user would like to be tested.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_ParseCSV.js.html#l6"><code>scripts&#x2F;ParseCSV.js:6</code></a>
+        <a href="../files/scripts_SuccessiveMelodicIntervals.js.html#l160"><code>scripts&#x2F;SuccessiveMelodicIntervals.js:160</code></a>
         </p>
+
 
 
     </div>
 
     <div class="description">
-        <p>A 2D array containing the contents of the csv file</p>
+        <p>Picks a random starting note. Use notes 9 through 25 (Gb—A#)</p>
 
     </div>
 
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/Note.html" class="crosslink">Note</a></span>:
+                    <p>palette</p>
+
+            </div>
+        </div>
+
 
 </div>
             </div>
+
 
 
     </div>

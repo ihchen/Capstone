@@ -10,6 +10,8 @@
 	<script src="scripts/MusicManip.js"></script>
 	<script src="scripts/QuestionGenerator.js"></script>
 	<script src="scripts/ParseCSV.js"></script>
+	<!-- Styling for this page -->
+	<link href="style/takeQuiz.css" type="text/css" rel="stylesheet">
 
 	<script type="text/javascript">
 		// Make config object
@@ -45,91 +47,6 @@
 	}
 ?>
 
-<style>
-#element{						/* Each list element */
-	display: inline-block;
-	white-space: nowrap;
-}
-
-/* Inversion Styling */
-.fraction {						/* Make inversion inline with text */		
-  display: inline-block;
-  position: relative;
-}
-.fraction > div {				/* Styling the top and bottom elements of fraction */
-  position: relative;
-  text-align: center;
-  height: 0;
-}
-.baseline-fix {					/* Adjusting fraction a little */
-  display: inline-table;
-  table-layout: fixed;
-}
-.top {							/* Top element of fraction */
-	font-size: .65em;
-	top: -.2em;
-}
-.bot {							/* Bottom element of fraction */
-	font-size: .65em;
-	top: .8em;
-}
-
-/* Button styling */
-#revealbutt {					/* Reveal Answer button */
-	background: none;
-	border: none;
-	margin: 0;
-	padding: 0;
-	font-size: 1.5em;
-	position: relative;
-	z-index: 1;					/* Make sure it's in front of the answer */
-}
-#revealbutt:after { 			/* Down arrow below reveal answer button (It's half of a rotated square) */	
-    content: "";
-    width:15px;
-    height:15px;
-    background: transparent;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-	-ms-transform:rotate(45deg); /* IE 9 */
-	-webkit-transform:rotate(45deg); /* Safari and Chrome */
-	transform:rotate(45deg);
-    position:absolute;
-    bottom:-12px; 
-    left: 50%;
-    margin-left: -12px;
-}
-#revealbutt:hover {
-	color: #008B8B;
-}
-#revealbutt:hover:after {
-	border-right: 1px solid #008B8B;
-	border-bottom: 1px solid #008B8B;
-}
-#revealbutt::-moz-focus-inner {		/* (Mozilla) Prevent Dotted border after clicking */
-	border: 0;
-}
-#revealbutt:focus {					/* (Chrome) Prevent Dotted border after clicking */
-	outline: none;
-}
-
-/* Transitions */
-.reveal {
-	-webkit-transition: opacity 1s, transform 1s ease;
-	-moz-transition: opacity 1s, transform 1s ease;
-	transition: opacity 1s, transform 1s ease;
-}
-.reveal.notrans {
-	-webkit-transition: opacity 0s, transform 0s ease;
-	-moz-transition: opacity 0s, transform 0s ease;
-	transition: opacity 0s, transform 0s ease;
-}
-</style>
-
-<script>
-	
-</script>
-
 <center>
 	<br/><br/>
 
@@ -152,6 +69,23 @@
 </center>
 
 <script>
+	/* Populate the list of user chosen elements */
+	var list = document.getElementById("listelements");
+	//Loop through all chosen elements
+	for(var i = 0; i < chosen.length; i++) {
+		//Add them into the list
+		list.innerHTML = list.innerHTML + 
+			"<div id='element'>" + data[chosen[i]][1] + " " + data[chosen[i]][0] + 
+			"</div>";
+		//Seperate each element by white space and a pipe (except the last one)
+		if(i < chosen.length-1) {
+			list.innerHTML = list.innerHTML + "&nbsp|&nbsp";
+		}
+	}
+
+	/**
+	 * What happens once the files finishes loading
+	 */
 	function loadFunc() {
 		document.getElementById("loadbtn").style.display = "none";
 		document.getElementById("playbtn").style.display = "block";	
@@ -161,6 +95,7 @@
 		applyInversion(document.getElementById("answer"));
 	}
 
+	/* Load first question */
 	var qg = new QuestionGenerator(chosen);		//Create question generator
 	var snippet = qg.getNextQuestion();			//Get Next Question
 	snippet.generate(loadFunc);
@@ -217,8 +152,8 @@
 	}
 
 	/**
-	 * Hides the quizzing functionality and displays the loading sign. Must eventually be followed by
-	 * snippet.generate(). 
+	 * Hides answer and resets buttons with no transition. and displays loading button. 
+	 * Must eventually be followed by snippet.generate(). 
 	 */
 	function hide() {
 		document.getElementById("revealed").className += " notrans";
@@ -254,20 +189,6 @@
     				'<div class="bot">'+bot+'</div>'+
     				'<span class="baseline-fix"></span></span>'+end;
 	    }
-	}
-
-	/* Populate the list of user chosen elements */
-	var list = document.getElementById("listelements");
-	//Loop through all chosen elements
-	for(var i = 0; i < chosen.length; i++) {
-		//Add them into the list
-		list.innerHTML = list.innerHTML + 
-			"<div id='element'>" + data[chosen[i]][1] + " " + data[chosen[i]][0] + 
-			"</div>";
-		//Seperate each element by white space and a pipe (except the last one)
-		if(i < chosen.length-1) {
-			list.innerHTML = list.innerHTML + "&nbsp|&nbsp";
-		}
 	}
 
 	/**
