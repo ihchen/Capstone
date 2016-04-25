@@ -13,7 +13,7 @@ $thisPage = 'Successive Melodic Intervals';
 	margin-right: 0;
 	margin-top: 0;
 	margin-bottom: 0;
-	height: 260px;
+	/*height: 260px;*/
 }
 
 #nextquestion {
@@ -21,6 +21,7 @@ $thisPage = 'Successive Melodic Intervals';
 	margin: 0 auto;
 	margin-top: 1em;
 	margin-bottom: 1em;
+  /*float: right;*/
 }
 
 #checkanswers {
@@ -61,6 +62,10 @@ $thisPage = 'Successive Melodic Intervals';
 	/*border: 1px solid #008080;*/
 	float:none;
 	/*padding: 1em 0em;*/
+}
+
+#alert {
+  text-align: center;
 }
 
 </style>
@@ -105,7 +110,7 @@ $thisPage = 'Successive Melodic Intervals';
   <button id="loadbtn" class="button inactive" disabled="true"  style="display:block; color:black">Loading...</button>
 
 
-  <div id="intervals">
+  <div>
     <script>
     var intervals = ["--", "m2", "M2", "m3", "M3", "P4", "tritone", "P5", "m6", "M6", "m7", "M7"];
     for (var i = 0; i < answers.length; i++) {
@@ -117,9 +122,7 @@ $thisPage = 'Successive Melodic Intervals';
     }
     </script>
     <br></br>
-
-    <span id="alert" display="none">
-    </span>
+    <span id="alert" display="none"></span>
 
     <span id="answers"> </span>
     <br></br>
@@ -128,6 +131,7 @@ $thisPage = 'Successive Melodic Intervals';
 
     <button id="checkanswers" class="button" style="display:block;" onclick="return checkAnswers()">Check Answers</button>
     <button id="nextquestion" class="button" style="display:none;" onclick="return nextQuestion()">Next Question</button>
+
 
 
 </body>
@@ -155,8 +159,6 @@ $thisPage = 'Successive Melodic Intervals';
   }
 
   function checkAnswers() {
-    // document.getElementById("checkanswers").style.background= "#008B8B";
-    // document.getElementById("checkanswers").style.border= "1px solid #008080";
     document.getElementById("alert").innerHTML = "";
     document.getElementById("alert").style.display = "none";
 
@@ -168,9 +170,6 @@ $thisPage = 'Successive Melodic Intervals';
       if (userAnswers[i] == "--") {
         document.getElementById("alert").style.display = "inline-block";
         document.getElementById("alert").innerHTML = "Please select your answers from the drop down menus!";
-        document.getElementById("alert").style.opacity = "0";
-        document.getElementById("alert").style.transform = "translate(0px, 100px)";
-        document.getElementById("alert").style.opacity = "1";
         return false;
       }
     }
