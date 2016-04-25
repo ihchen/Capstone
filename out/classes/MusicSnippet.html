@@ -39,7 +39,9 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/MusicSnippet.html">MusicSnippet</a></li>
+                                <li><a href="../classes/Note.html">Note</a></li>
                                 <li><a href="../classes/QuestionGenerator.html">QuestionGenerator</a></li>
+                                <li><a href="../classes/SuccessiveMelodicIntervals.html">SuccessiveMelodicIntervals</a></li>
                             </ul>
                 
                 
@@ -82,7 +84,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/scripts_MusicSnippet.js.html#l1"><code>scripts&#x2F;MusicSnippet.js:1</code></a>
+            Defined in: <a href="../files/scripts_MusicSnippet.js.html#l8"><code>scripts&#x2F;MusicSnippet.js:8</code></a>
         </div>
 
 
@@ -109,6 +111,9 @@ the corresponding audio files and plays them.</p>
                         <code>quality</code>
                 </li>
                 <li class="arg">
+                        <code>category</code>
+                </li>
+                <li class="arg">
                         <code>notes</code>
                 </li>
             </ul><span class="paren">)</span>
@@ -124,7 +129,7 @@ the corresponding audio files and plays them.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_MusicSnippet.js.html#l1"><code>scripts&#x2F;MusicSnippet.js:1</code></a>
+        <a href="../files/scripts_MusicSnippet.js.html#l8"><code>scripts&#x2F;MusicSnippet.js:8</code></a>
         </p>
 
 
@@ -157,6 +162,17 @@ the corresponding audio files and plays them.</p>
 
                     <div class="param-description">
                         <p>Quality of the sonority</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">category</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Category of the sonority</p>
 
                     </div>
 
@@ -200,11 +216,63 @@ the corresponding audio files and plays them.</p>
 
                             </li>
                             <li class="index-item method">
+                                <a href="#method_calcInterval">calcInterval</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_calcSpan">calcSpan</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_clear">clear</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_decrement">decrement</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_fade">fade</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_fadeOut">fadeOut</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_findShift">findShift</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_generate">generate</a>
 
                             </li>
                             <li class="index-item method private">
-                                <a href="#method_generateTransposition">generateTransposition</a>
+                                <a href="#method_genRandomNum">genRandomNum</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getOctaveLocations">getOctaveLocations</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_increment">increment</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_invert7thQuality">invert7thQuality</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_isEnharmonic">isEnharmonic</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_loadFiles">loadFiles</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_ordinal">ordinal</a>
 
                             </li>
                             <li class="index-item method">
@@ -216,15 +284,55 @@ the corresponding audio files and plays them.</p>
 
                             </li>
                             <li class="index-item method private">
-                                <a href="#method_playNote">playNote</a>
+                                <a href="#method_playBroken">playBroken</a>
 
                             </li>
                             <li class="index-item method private">
-                                <a href="#method_setNotes">setNotes</a>
+                                <a href="#method_playBrokenHelp">playBrokenHelp</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_playNote">playNote</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#method_stopSound">stopSound</a>
+                                <a href="#method_reverseDirection">reverseDirection</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setBPM">setBPM</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setInversion">setInversion</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setOctave">setOctave</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setOctaveNumbers">setOctaveNumbers</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_setVolume">setVolume</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_stop">stop</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_stop">stop</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_transpose">transpose</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method_transposeAndInvert">transposeAndInvert</a>
 
                             </li>
                     </ul>
@@ -255,7 +363,7 @@ the corresponding audio files and plays them.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_MusicSnippet.js.html#l66"><code>scripts&#x2F;MusicSnippet.js:66</code></a>
+        <a href="../files/scripts_MusicSnippet.js.html#l452"><code>scripts&#x2F;MusicSnippet.js:452</code></a>
         </p>
 
 
@@ -280,49 +388,25 @@ the corresponding audio files and plays them.</p>
 
 
 </div>
-<div id="method_generate" class="method item">
-    <h3 class="name"><code>generate</code></h3>
+<div id="method_calcInterval" class="method item">
+    <h3 class="name"><code>calcInterval</code></h3>
 
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/scripts_MusicSnippet.js.html#l56"><code>scripts&#x2F;MusicSnippet.js:56</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Randomly transposes the notes given from the CSV file and gives them a random octave.
-Then loads the corresponding audio files.</p>
-
-    </div>
-
-
-
-
-</div>
-<div id="method_generateTransposition" class="method item private">
-    <h3 class="name"><code>generateTransposition</code></h3>
-
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>note1</code>
+                </li>
+                <li class="arg">
+                        <code>note2</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
         <span class="returns-inline">
-            <span class="type">Howl Array</span>
+            <span class="type">Integer</span>
         </span>
 
 
-        <span class="flag private">private</span>
 
 
 
@@ -331,7 +415,7 @@ Then loads the corresponding audio files.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_MusicSnippet.js.html#l86"><code>scripts&#x2F;MusicSnippet.js:86</code></a>
+        <a href="../files/scripts_MusicManip.js.html#l76"><code>scripts&#x2F;MusicManip.js:76</code></a>
         </p>
 
 
@@ -339,29 +423,64 @@ Then loads the corresponding audio files.</p>
     </div>
 
     <div class="description">
-        <p>Transposes and sets octave of the notes from the CSV file randomly, then loads the
-corresponding files</p>
+        <p>Calculate the interval between two notes.
+Returns the interval as a number of half steps.</p>
 
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">note1</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">note2</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
 
         <div class="returns">
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                        <span class="type">Howl Array</span>:
-                    <p>An array of Howl objects that have the loaded audio files</p>
+                        <span class="type">Integer</span>:
+                    <p>interval in half steps</p>
 
             </div>
         </div>
 
 
 </div>
-<div id="method_play" class="method item">
-    <h3 class="name"><code>play</code></h3>
+<div id="method_calcSpan" class="method item">
+    <h3 class="name"><code>calcSpan</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>notes</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type">Integer</span>
+        </span>
 
 
 
@@ -372,7 +491,7 @@ corresponding files</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_MusicSnippet.js.html#l30"><code>scripts&#x2F;MusicSnippet.js:30</code></a>
+        <a href="../files/scripts_MusicManip.js.html#l111"><code>scripts&#x2F;MusicManip.js:111</code></a>
         </p>
 
 
@@ -380,21 +499,43 @@ corresponding files</p>
     </div>
 
     <div class="description">
-        <p>Plays the loaded files:</p>
-<ul>
-<li>Chords are played broken then blocked</li>
-<li>Scales are played broken</li>
-<li>Intervals are played broken</li>
-</ul>
+        <p>Calculates the span of a collection of notes. Returns an
+integer representing the number of half steps between the
+lowest note and highest note in the given note collection.</p>
 
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">notes</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Integer</span>:
+                    <p>span</p>
+
+            </div>
+        </div>
 
 
 </div>
-<div id="method_playBlock" class="method item private">
-    <h3 class="name"><code>playBlock</code></h3>
+<div id="method_clear" class="method item private">
+    <h3 class="name"><code>clear</code></h3>
 
         <span class="paren">()</span>
 
@@ -409,7 +550,7 @@ corresponding files</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_MusicSnippet.js.html#l128"><code>scripts&#x2F;MusicSnippet.js:128</code></a>
+        <a href="../files/scripts_MusicSnippet.js.html#l413"><code>scripts&#x2F;MusicSnippet.js:413</code></a>
         </p>
 
 
@@ -417,7 +558,7 @@ corresponding files</p>
     </div>
 
     <div class="description">
-        <p>Plays all notes at the same time</p>
+        <p>Clears all timeouts (delayed sounds)</p>
 
     </div>
 
@@ -425,13 +566,79 @@ corresponding files</p>
 
 
 </div>
-<div id="method_playNote" class="method item private">
-    <h3 class="name"><code>playNote</code></h3>
+<div id="method_decrement" class="method item">
+    <h3 class="name"><code>decrement</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>i</code>
+                        <code>note</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Char</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l298"><code>scripts&#x2F;MusicManip.js:298</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Go down one note name. A will loop back to G.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">note</code>
+                        <span class="type">Char</span>
+
+
+                    <div class="param-description">
+                        <p>name</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Char</span>:
+                    <p>one letter name lower</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_fade" class="method item private">
+    <h3 class="name"><code>fade</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>note</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -447,7 +654,7 @@ corresponding files</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_MusicSnippet.js.html#l113"><code>scripts&#x2F;MusicSnippet.js:113</code></a>
+        <a href="../files/scripts_MusicSnippet.js.html#l383"><code>scripts&#x2F;MusicSnippet.js:383</code></a>
         </p>
 
 
@@ -455,7 +662,1013 @@ corresponding files</p>
     </div>
 
     <div class="description">
-        <p>Plays the note at the given index in the loaded files array</p>
+        <p>Recursive helper function for this.fadeOut. When sound finishes fading, resets the file.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">note</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>Which note to fade</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_fadeOut" class="method item">
+    <h3 class="name"><code>fadeOut</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l373"><code>scripts&#x2F;MusicSnippet.js:373</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Fades all sound out</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_findShift" class="method item">
+    <h3 class="name"><code>findShift</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>starting</code>
+                </li>
+                <li class="arg">
+                        <code>goal</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Integer</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l329"><code>scripts&#x2F;MusicManip.js:329</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Find the amount to shift to get to a particular note.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">starting</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>noteName</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">goal</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>noteName</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Integer</span>:
+                    <p>shift</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_generate" class="method item">
+    <h3 class="name"><code>generate</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>user_function</code>
+                </li>
+                <li class="arg">
+                        <code>key</code>
+                </li>
+                <li class="arg">
+                        <code>inversion</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l186"><code>scripts&#x2F;MusicSnippet.js:186</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Generates the Howl files to be played.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">user_function</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) Function to call when the files are loaded</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">key</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) The key to transpose to</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">inversion</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) Which inversion to use</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_genRandomNum" class="method item private">
+    <h3 class="name"><code>genRandomNum</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>number</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Integer</span>
+        </span>
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l163"><code>scripts&#x2F;MusicManip.js:163</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Generate a random number for the octave in which a note
+collection may begin.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">number</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>of places in which the notes will fit</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Integer</span>:
+                    <p>random number from [lowestOctave, numPlaces)</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getOctaveLocations" class="method item">
+    <h3 class="name"><code>getOctaveLocations</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>notes</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Integer</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l207"><code>scripts&#x2F;MusicManip.js:207</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns an array of notes in which the gien note collection may begin.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">notes</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Integer</span>:
+                    <p>notes with octave numbers appended to each</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_increment" class="method item">
+    <h3 class="name"><code>increment</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>note</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Char</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l286"><code>scripts&#x2F;MusicManip.js:286</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Go up one note name. G will loop back to A.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">note</code>
+                        <span class="type">Char</span>
+
+
+                    <div class="param-description">
+                        <p>name</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Char</span>:
+                    <p>one letter name higher</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_invert7thQuality" class="method item private">
+    <h3 class="name"><code>invert7thQuality</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>quality</code>
+                </li>
+                <li class="arg">
+                        <code>inversion</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l269"><code>scripts&#x2F;MusicSnippet.js:269</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns a new string with the proper quality given the inversion. Only use on
+7th chords.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">quality</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Original string</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">inversion</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>Inversion value</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>Inverted String</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_isEnharmonic" class="method item">
+    <h3 class="name"><code>isEnharmonic</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>note1</code>
+                </li>
+                <li class="arg">
+                        <code>note2</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l310"><code>scripts&#x2F;MusicManip.js:310</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Determines whether two notenames are enharmonically equivalent.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">note1</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">note2</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>true or false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_loadFiles" class="method item private">
+    <h3 class="name"><code>loadFiles</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>notes</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Howl Array</span>
+        </span>
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l304"><code>scripts&#x2F;MusicSnippet.js:304</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Takes the notes and converts them into Howl objects with the appropriate
+sound files.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">notes</code>
+                        <span class="type">String Array</span>
+
+
+                    <div class="param-description">
+                        <p>Array of notes to be loaded</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Howl Array</span>:
+                    <p>Array of Howl objects containing the corresponding audio files</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_ordinal" class="method item">
+    <h3 class="name"><code>ordinal</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>note</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Integer</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l13"><code>scripts&#x2F;MusicManip.js:13</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the position of a note in the circle of fifths.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">note</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Integer</span>:
+                    <p>ordinal</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_play" class="method item">
+    <h3 class="name"><code>play</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>style</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l52"><code>scripts&#x2F;MusicSnippet.js:52</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Plays the loaded notes with the given style. If style not given, plays the notes quiz style:
+all chords played blocked, then broken and ascending, except for 20th century chords which
+are played just blocked; all scales played broken and ascending.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">style</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) How to play the notes. If left out, plays quiz style</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_playBlock" class="method item private">
+    <h3 class="name"><code>playBlock</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>fade</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l126"><code>scripts&#x2F;MusicSnippet.js:126</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Plays all notes in tempSounds at the same time.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">fade</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) Number of beats to fade out</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_playBroken" class="method item private">
+    <h3 class="name"><code>playBroken</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>fade</code>
+                </li>
+                <li class="arg">
+                        <code>style</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l139"><code>scripts&#x2F;MusicSnippet.js:139</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Plays all notes in sequence.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">fade</code>
+                        <span class="type">Float</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) Number of beats to fade each note by</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">style</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) Play notes ascending (default) or descending</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_playBrokenHelp" class="method item private">
+    <h3 class="name"><code>playBrokenHelp</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>note</code>
+                </li>
+                <li class="arg">
+                        <code>fade</code>
+                </li>
+                <li class="arg">
+                        <code>style</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l160"><code>scripts&#x2F;MusicSnippet.js:160</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Recursive helper for playBroken()</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">note</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>Index of the note to be played</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">fade</code>
+                        <span class="type">Float</span>
+
+
+                    <div class="param-description">
+                        <p>Number of beats to fade each note by</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">style</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Ascending (default) or descending</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_playNote" class="method item private">
+    <h3 class="name"><code>playNote</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>i</code>
+                </li>
+                <li class="arg">
+                        <code>fade</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l103"><code>scripts&#x2F;MusicSnippet.js:103</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Plays the note at the given index in the tempSounds array.</p>
 
     </div>
 
@@ -474,29 +1687,39 @@ corresponding files</p>
                     </div>
 
                 </li>
+                <li class="param">
+                        <code class="param-name">fade</code>
+                        <span class="type">Float</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) Number of beats to fade out</p>
+
+                    </div>
+
+                </li>
             </ul>
         </div>
 
 
 
 </div>
-<div id="method_setNotes" class="method item private">
-    <h3 class="name"><code>setNotes</code></h3>
+<div id="method_reverseDirection" class="method item">
+    <h3 class="name"><code>reverseDirection</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>shift</code>
+                        <code>notes</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
 
         <span class="returns-inline">
-            <span class="type">String Array</span>
+            <span class="type">String</span>
         </span>
 
 
-        <span class="flag private">private</span>
 
 
 
@@ -505,7 +1728,7 @@ corresponding files</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_MusicSnippet.js.html#l101"><code>scripts&#x2F;MusicSnippet.js:101</code></a>
+        <a href="../files/scripts_MusicManip.js.html#l46"><code>scripts&#x2F;MusicManip.js:46</code></a>
         </p>
 
 
@@ -513,7 +1736,9 @@ corresponding files</p>
     </div>
 
     <div class="description">
-        <p>Tranposes the notes from the CSV file a given number of sharps or flats</p>
+        <p>Reverses the direction of a collection of notes.
+To be used for scales and intervals, but NOT chords!
+Do this AFTER the octave is set!</p>
 
     </div>
 
@@ -522,12 +1747,147 @@ corresponding files</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">shift</code>
+                        <code class="param-name">notes</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>notes</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setBPM" class="method item">
+    <h3 class="name"><code>setBPM</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>bpm</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l462"><code>scripts&#x2F;MusicSnippet.js:462</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets the bpm</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">bpm</code>
                         <span class="type">Integer</span>
 
 
                     <div class="param-description">
-                        <p>How much to transpose the notes by</p>
+                        <p>Desired beats per minute</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_setInversion" class="method item">
+    <h3 class="name"><code>setInversion</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>notes</code>
+                </li>
+                <li class="arg">
+                        <code>number</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l58"><code>scripts&#x2F;MusicManip.js:58</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Reorders the notes so that they are in the specified inversion.
+To be used for major triads, minor triads, and 7th chords only!
+NEVER to be used for scales, jazz chords, and 20th century chords!!!</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">notes</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>in the chord</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">number</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>between the values 0 and notes.length-1, inclusive</p>
 
                     </div>
 
@@ -539,16 +1899,221 @@ corresponding files</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                        <span class="type">String Array</span>:
-                    <p>Array of the notes after transposition</p>
+                        <span class="type">String</span>:
+                    <p>inverted chord</p>
 
             </div>
         </div>
 
 
 </div>
-<div id="method_stopSound" class="method item">
-    <h3 class="name"><code>stopSound</code></h3>
+<div id="method_setOctave" class="method item">
+    <h3 class="name"><code>setOctave</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>notes</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l127"><code>scripts&#x2F;MusicManip.js:127</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets an octave appropriate for the given span of notes at random.
+Does so by appending a number to the end of each String.
+DO NOT USE ON A SCALE OR INTERVAL THAT HAS BEEN REVERSED.
+PLEASE REVERSE AFTER SETTING THE OCTAVE!!!
+Inverted chords are O.K.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">notes</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>notes with octave numbers appended to each</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setOctaveNumbers" class="method item">
+    <h3 class="name"><code>setOctaveNumbers</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>notes</code>
+                </li>
+                <li class="arg">
+                        <code>starting</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String]</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l261"><code>scripts&#x2F;MusicManip.js:261</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets octave numbers in order, given a starting number. Octave number
+increments upon ascension from B to C.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">notes</code>
+                        <span class="type">String]</span>
+
+
+                    <div class="param-description">
+                        <p>with un-set Octaves</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">starting</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>octave</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String]</span>:
+                    <p>octavizedNotes</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_setVolume" class="method item private">
+    <h3 class="name"><code>setVolume</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>vol</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l439"><code>scripts&#x2F;MusicSnippet.js:439</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets the volume of all files</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">vol</code>
+                        <span class="type">Float</span>
+
+
+                    <div class="param-description">
+                        <p>Volume to set to (0.0 - 1.0)</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_stop" class="method item">
+    <h3 class="name"><code>stop</code></h3>
 
         <span class="paren">()</span>
 
@@ -562,7 +2127,7 @@ corresponding files</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/scripts_MusicSnippet.js.html#l76"><code>scripts&#x2F;MusicSnippet.js:76</code></a>
+        <a href="../files/scripts_MusicSnippet.js.html#l402"><code>scripts&#x2F;MusicSnippet.js:402</code></a>
         </p>
 
 
@@ -570,11 +2135,206 @@ corresponding files</p>
     </div>
 
     <div class="description">
-        <p>Stops all sound</p>
+        <p>Immediately stops all sound</p>
 
     </div>
 
 
+
+
+</div>
+<div id="method_stop" class="method item private">
+    <h3 class="name"><code>stop</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l427"><code>scripts&#x2F;MusicSnippet.js:427</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Stops all sound currently playing</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_transpose" class="method item">
+    <h3 class="name"><code>transpose</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>notes</code>
+                </li>
+                <li class="arg">
+                        <code>shift</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicManip.js.html#l26"><code>scripts&#x2F;MusicManip.js:26</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Takes an array of notes and shifts them over by the specified
+amount in the circle of fifths. Take care with providing the
+amount to shift; you don't want to shift far enough to create
+an unused spelling. Since the shift argument must be in fifths,
+it is a range that can be easily determined.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">notes</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">shift</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>transposed notes</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_transposeAndInvert" class="method item private">
+    <h3 class="name"><code>transposeAndInvert</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>key</code>
+                </li>
+                <li class="arg">
+                        <code>inversion</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/scripts_MusicSnippet.js.html#l222"><code>scripts&#x2F;MusicSnippet.js:222</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Transposes notes to a given or random key and inverts the notes a given or random amount</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">key</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) Which key to tranpose to</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">inversion</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>(Optional) Amount to invert by</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>An array of the notes with octave numbers</p>
+
+            </div>
+        </div>
 
 
 </div>

@@ -39,7 +39,9 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/MusicSnippet.html">MusicSnippet</a></li>
+                                <li><a href="../classes/Note.html">Note</a></li>
                                 <li><a href="../classes/QuestionGenerator.html">QuestionGenerator</a></li>
+                                <li><a href="../classes/SuccessiveMelodicIntervals.html">SuccessiveMelodicIntervals</a></li>
                             </ul>
                 
                 
@@ -87,18 +89,29 @@
  * over which the user would like to be tested.
  * @class QuestionGenerator
  * @constructor
+ * @param {Integer[]} list
  */
 function QuestionGenerator(list) {
 
   // The array of questions
   var musicSnippets = makeMusicSnippets(list);
 
+  // Integer representing the index of the last MusicSnippet
+  var lastIndex = null;
+
+  /**
+   * Builds an array of MusicSnippets
+   * @method makeMusicSnippets
+   * @private
+   * @param {Integer[]} indices
+   * @return {MusicSnippet[]} array of MusicSnippets
+   */
   function makeMusicSnippets(array) {
     var ms = [];
     for (var i = 0; i &lt; array.length; i++) {
       // console.log(data[list[i]][0] + &quot; &quot; + data[list[i]][1]);
-      ms.push(new MusicSnippet(data[list[i]][0], data[list[i]][1],
-        data[list[i]][2]));
+      ms.push(new MusicSnippet(data[list[i]][2], data[list[i]][0], data[list[i]][1],
+        data[list[i]][4]));
     }
     return ms;
   }
@@ -110,6 +123,16 @@ function QuestionGenerator(list) {
    */
   this.getNextQuestion = function() {
     currSnippet = Math.floor(Math.random() * musicSnippets.length);
+
+    // If there is more than one item in the test set
+    if (list.length &gt; 1) {
+      while (currSnippet == lastIndex) {
+        // Guarantee we don&#x27;t pick the same random snippet twice.
+        currSnippet = Math.floor(Math.random() * musicSnippets.length);
+      }
+      lastIndex = currSnippet;
+    }
+
     return musicSnippets[currSnippet];
   }
 }

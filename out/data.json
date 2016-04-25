@@ -8,11 +8,27 @@
             "fors": {},
             "namespaces": {}
         },
+        "scripts/MusicManip.js": {
+            "name": "scripts/MusicManip.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "scripts/MusicSnippet.js": {
             "name": "scripts/MusicSnippet.js",
             "modules": {},
             "classes": {
                 "MusicSnippet": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/Note.js": {
+            "name": "scripts/Note.js",
+            "modules": {},
+            "classes": {
+                "Note": 1
             },
             "fors": {},
             "namespaces": {}
@@ -30,6 +46,22 @@
             "classes": {
                 "QuestionGenerator": 1
             },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/SuccessiveMelodicIntervals.js": {
+            "name": "scripts/SuccessiveMelodicIntervals.js",
+            "modules": {},
+            "classes": {
+                "SuccessiveMelodicIntervals": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scripts/ValidateSMI.js": {
+            "name": "scripts/ValidateSMI.js",
+            "modules": {},
+            "classes": {},
             "fors": {},
             "namespaces": {}
         },
@@ -52,7 +84,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "scripts/MusicSnippet.js",
-            "line": 1,
+            "line": 8,
             "description": "Determines how to play the given notes based on their type and quality, then loads\nthe corresponding audio files and plays them.",
             "is_constructor": 1,
             "params": [
@@ -67,9 +99,39 @@
                     "type": "String"
                 },
                 {
+                    "name": "category",
+                    "description": "Category of the sonority",
+                    "type": "String"
+                },
+                {
                     "name": "notes",
                     "description": "Array of notes",
                     "type": "String Array"
+                }
+            ]
+        },
+        "Note": {
+            "name": "Note",
+            "shortname": "Note",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "scripts/Note.js",
+            "line": 1,
+            "description": "Represents a musical note.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "notename",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "octave",
+                    "description": "",
+                    "type": "Integer"
                 }
             ]
         },
@@ -84,6 +146,26 @@
             "file": "scripts/QuestionGenerator.js",
             "line": 1,
             "description": "Script that generates a random question. Parameter should\nbe a list of integers that refer to indeces in the CSV file\nover which the user would like to be tested.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "list",
+                    "description": "",
+                    "type": "Integer[]"
+                }
+            ]
+        },
+        "SuccessiveMelodicIntervals": {
+            "name": "SuccessiveMelodicIntervals",
+            "shortname": "SuccessiveMelodicIntervals",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "scripts/SuccessiveMelodicIntervals.js",
+            "line": 1,
+            "description": "Generates a series of four random twelve-tone notes.",
             "is_constructor": 1
         }
     },
@@ -711,24 +793,577 @@
             "class": "MusicSnippet"
         },
         {
+            "file": "scripts/MusicManip.js",
+            "line": 13,
+            "description": "Returns the position of a note in the circle of fifths.",
+            "itemtype": "method",
+            "name": "ordinal",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "ordinal",
+                "type": "Integer"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 26,
+            "description": "Takes an array of notes and shifts them over by the specified\namount in the circle of fifths. Take care with providing the\namount to shift; you don't want to shift far enough to create\nan unused spelling. Since the shift argument must be in fifths,\nit is a range that can be easily determined.",
+            "itemtype": "method",
+            "name": "transpose",
+            "params": [
+                {
+                    "name": "notes",
+                    "description": "",
+                    "type": "String[]"
+                },
+                {
+                    "name": "shift",
+                    "description": "",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "transposed notes",
+                "type": "String[]"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 46,
+            "description": "Reverses the direction of a collection of notes.\nTo be used for scales and intervals, but NOT chords!\nDo this AFTER the octave is set!",
+            "itemtype": "method",
+            "name": "reverseDirection",
+            "params": [
+                {
+                    "name": "notes",
+                    "description": "",
+                    "type": "String[]"
+                }
+            ],
+            "return": {
+                "description": "notes",
+                "type": "String[]"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 58,
+            "description": "Reorders the notes so that they are in the specified inversion.\nTo be used for major triads, minor triads, and 7th chords only!\nNEVER to be used for scales, jazz chords, and 20th century chords!!!",
+            "itemtype": "method",
+            "name": "setInversion",
+            "params": [
+                {
+                    "name": "notes",
+                    "description": "in the chord",
+                    "type": "String[]"
+                },
+                {
+                    "name": "number",
+                    "description": "between the values 0 and notes.length-1, inclusive",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "inverted chord",
+                "type": "String[]"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 76,
+            "description": "Calculate the interval between two notes.\nReturns the interval as a number of half steps.",
+            "itemtype": "method",
+            "name": "calcInterval",
+            "params": [
+                {
+                    "name": "note1",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "note2",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "interval in half steps",
+                "type": "Integer"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 111,
+            "description": "Calculates the span of a collection of notes. Returns an\ninteger representing the number of half steps between the\nlowest note and highest note in the given note collection.",
+            "itemtype": "method",
+            "name": "calcSpan",
+            "params": [
+                {
+                    "name": "notes",
+                    "description": "",
+                    "type": "String[]"
+                }
+            ],
+            "return": {
+                "description": "span",
+                "type": "Integer"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 127,
+            "description": "Sets an octave appropriate for the given span of notes at random.\nDoes so by appending a number to the end of each String.\nDO NOT USE ON A SCALE OR INTERVAL THAT HAS BEEN REVERSED.\nPLEASE REVERSE AFTER SETTING THE OCTAVE!!!\nInverted chords are O.K.",
+            "itemtype": "method",
+            "name": "setOctave",
+            "params": [
+                {
+                    "name": "notes",
+                    "description": "",
+                    "type": "String[]"
+                }
+            ],
+            "return": {
+                "description": "notes with octave numbers appended to each",
+                "type": "String[]"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 163,
+            "description": "Generate a random number for the octave in which a note\ncollection may begin.",
+            "itemtype": "method",
+            "name": "genRandomNum",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "number",
+                    "description": "of places in which the notes will fit",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "random number from [lowestOctave, numPlaces)",
+                "type": "Integer"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 207,
+            "description": "Returns an array of notes in which the gien note collection may begin.",
+            "itemtype": "method",
+            "name": "getOctaveLocations",
+            "params": [
+                {
+                    "name": "notes",
+                    "description": "",
+                    "type": "String[]"
+                }
+            ],
+            "return": {
+                "description": "notes with octave numbers appended to each",
+                "type": "Integer[]"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 261,
+            "description": "Sets octave numbers in order, given a starting number. Octave number\nincrements upon ascension from B to C.",
+            "itemtype": "method",
+            "name": "setOctaveNumbers",
+            "params": [
+                {
+                    "name": "notes",
+                    "description": "with un-set Octaves",
+                    "type": "String[]]"
+                },
+                {
+                    "name": "starting",
+                    "description": "octave",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "octavizedNotes",
+                "type": "String[]]"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 286,
+            "description": "Go up one note name. G will loop back to A.",
+            "itemtype": "method",
+            "name": "increment",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "name",
+                    "type": "Char"
+                }
+            ],
+            "return": {
+                "description": "one letter name higher",
+                "type": "Char"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 298,
+            "description": "Go down one note name. A will loop back to G.",
+            "itemtype": "method",
+            "name": "decrement",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "name",
+                    "type": "Char"
+                }
+            ],
+            "return": {
+                "description": "one letter name lower",
+                "type": "Char"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 310,
+            "description": "Determines whether two notenames are enharmonically equivalent.",
+            "itemtype": "method",
+            "name": "isEnharmonic",
+            "params": [
+                {
+                    "name": "note1",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "note2",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "true or false",
+                "type": "Boolean"
+            },
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicManip.js",
+            "line": 329,
+            "description": "Find the amount to shift to get to a particular note.",
+            "itemtype": "method",
+            "name": "findShift",
+            "params": [
+                {
+                    "name": "starting",
+                    "description": "noteName",
+                    "type": "String"
+                },
+                {
+                    "name": "goal",
+                    "description": "noteName",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "shift",
+                "type": "Integer"
+            },
+            "class": "MusicSnippet"
+        },
+        {
             "file": "scripts/MusicSnippet.js",
-            "line": 30,
-            "description": "Plays the loaded files:\n - Chords are played broken then blocked\n - Scales are played broken\n - Intervals are played broken",
+            "line": 52,
+            "description": "Plays the loaded notes with the given style. If style not given, plays the notes quiz style:\nall chords played blocked, then broken and ascending, except for 20th century chords which \nare played just blocked; all scales played broken and ascending.",
             "itemtype": "method",
             "name": "play",
+            "params": [
+                {
+                    "name": "style",
+                    "description": "(Optional) How to play the notes. If left out, plays quiz style",
+                    "type": "String"
+                }
+            ],
             "class": "MusicSnippet"
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 56,
-            "description": "Randomly transposes the notes given from the CSV file and gives them a random octave.\nThen loads the corresponding audio files.",
+            "line": 103,
+            "description": "Plays the note at the given index in the tempSounds array.",
+            "itemtype": "method",
+            "name": "playNote",
+            "params": [
+                {
+                    "name": "i",
+                    "description": "Index of the note to be played",
+                    "type": "Integer"
+                },
+                {
+                    "name": "fade",
+                    "description": "(Optional) Number of beats to fade out",
+                    "type": "Float"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 126,
+            "description": "Plays all notes in tempSounds at the same time.",
+            "itemtype": "method",
+            "name": "playBlock",
+            "params": [
+                {
+                    "name": "fade",
+                    "description": "(Optional) Number of beats to fade out",
+                    "type": "Integer"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 139,
+            "description": "Plays all notes in sequence.",
+            "itemtype": "method",
+            "name": "playBroken",
+            "params": [
+                {
+                    "name": "fade",
+                    "description": "(Optional) Number of beats to fade each note by",
+                    "type": "Float"
+                },
+                {
+                    "name": "style",
+                    "description": "(Optional) Play notes ascending (default) or descending",
+                    "type": "String"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 160,
+            "description": "Recursive helper for playBroken()",
+            "itemtype": "method",
+            "name": "playBrokenHelp",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "Index of the note to be played",
+                    "type": "Integer"
+                },
+                {
+                    "name": "fade",
+                    "description": "Number of beats to fade each note by",
+                    "type": "Float"
+                },
+                {
+                    "name": "style",
+                    "description": "Ascending (default) or descending",
+                    "type": "String"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 186,
+            "description": "Generates the Howl files to be played.",
             "itemtype": "method",
             "name": "generate",
+            "params": [
+                {
+                    "name": "user_function",
+                    "description": "(Optional) Function to call when the files are loaded",
+                    "type": "Function"
+                },
+                {
+                    "name": "key",
+                    "description": "(Optional) The key to transpose to",
+                    "type": "String"
+                },
+                {
+                    "name": "inversion",
+                    "description": "(Optional) Which inversion to use",
+                    "type": "Integer"
+                }
+            ],
             "class": "MusicSnippet"
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 66,
+            "line": 222,
+            "description": "Transposes notes to a given or random key and inverts the notes a given or random amount",
+            "itemtype": "method",
+            "name": "transposeAndInvert",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "(Optional) Which key to tranpose to",
+                    "type": "String"
+                },
+                {
+                    "name": "inversion",
+                    "description": "(Optional) Amount to invert by",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "An array of the notes with octave numbers",
+                "type": "String[]"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 269,
+            "description": "Returns a new string with the proper quality given the inversion. Only use on \n7th chords.",
+            "itemtype": "method",
+            "name": "invert7thQuality",
+            "params": [
+                {
+                    "name": "quality",
+                    "description": "Original string",
+                    "type": "String"
+                },
+                {
+                    "name": "inversion",
+                    "description": "Inversion value",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "Inverted String",
+                "type": "String"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 304,
+            "description": "Takes the notes and converts them into Howl objects with the appropriate\nsound files.",
+            "itemtype": "method",
+            "name": "loadFiles",
+            "params": [
+                {
+                    "name": "notes",
+                    "description": "Array of notes to be loaded",
+                    "type": "String Array"
+                }
+            ],
+            "return": {
+                "description": "Array of Howl objects containing the corresponding audio files",
+                "type": "Howl Array"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 373,
+            "description": "Fades all sound out",
+            "itemtype": "method",
+            "name": "fadeOut",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 383,
+            "description": "Recursive helper function for this.fadeOut. When sound finishes fading, resets the file.",
+            "itemtype": "method",
+            "name": "fade",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "Which note to fade",
+                    "type": "Integer"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 402,
+            "description": "Immediately stops all sound",
+            "itemtype": "method",
+            "name": "stop",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 413,
+            "description": "Clears all timeouts (delayed sounds)",
+            "itemtype": "method",
+            "name": "clear",
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 427,
+            "description": "Stops all sound currently playing",
+            "itemtype": "method",
+            "name": "stop",
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 439,
+            "description": "Sets the volume of all files",
+            "itemtype": "method",
+            "name": "setVolume",
+            "params": [
+                {
+                    "name": "vol",
+                    "description": "Volume to set to (0.0 - 1.0)",
+                    "type": "Float"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "MusicSnippet"
+        },
+        {
+            "file": "scripts/MusicSnippet.js",
+            "line": 452,
             "description": "Returns the type and quality",
             "itemtype": "method",
             "name": "answer",
@@ -740,73 +1375,154 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 76,
-            "description": "Stops all sound",
+            "line": 462,
+            "description": "Sets the bpm",
             "itemtype": "method",
-            "name": "stopSound",
-            "class": "MusicSnippet"
-        },
-        {
-            "file": "scripts/MusicSnippet.js",
-            "line": 86,
-            "description": "Transposes and sets octave of the notes from the CSV file randomly, then loads the\ncorresponding files",
-            "itemtype": "method",
-            "name": "generateTransposition",
-            "return": {
-                "description": "An array of Howl objects that have the loaded audio files",
-                "type": "Howl Array"
-            },
-            "access": "private",
-            "tagname": "",
-            "class": "MusicSnippet"
-        },
-        {
-            "file": "scripts/MusicSnippet.js",
-            "line": 101,
-            "description": "Tranposes the notes from the CSV file a given number of sharps or flats",
-            "itemtype": "method",
-            "name": "setNotes",
+            "name": "setBPM",
             "params": [
                 {
-                    "name": "shift",
-                    "description": "How much to transpose the notes by",
+                    "name": "bpm",
+                    "description": "Desired beats per minute",
                     "type": "Integer"
                 }
             ],
-            "return": {
-                "description": "Array of the notes after transposition",
-                "type": "String Array"
-            },
-            "access": "private",
-            "tagname": "",
             "class": "MusicSnippet"
         },
         {
-            "file": "scripts/MusicSnippet.js",
-            "line": 113,
-            "description": "Plays the note at the given index in the loaded files array",
+            "file": "scripts/Note.js",
+            "line": 13,
+            "description": "Convert accidentals to numbers.",
             "itemtype": "method",
-            "name": "playNote",
+            "name": "toInt",
+            "return": {
+                "description": "accidental",
+                "type": "Integer"
+            },
+            "class": "Note"
+        },
+        {
+            "file": "scripts/Note.js",
+            "line": 25,
+            "itemtype": "method",
+            "name": "getLettername",
+            "return": {
+                "description": "lettername",
+                "type": "Char"
+            },
+            "class": "Note"
+        },
+        {
+            "file": "scripts/Note.js",
+            "line": 33,
+            "itemtype": "method",
+            "name": "getAccidental",
+            "return": {
+                "description": "accidental",
+                "type": "String"
+            },
+            "class": "Note"
+        },
+        {
+            "file": "scripts/Note.js",
+            "line": 41,
+            "itemtype": "method",
+            "name": "getNotename",
+            "return": {
+                "description": "notename",
+                "type": "String"
+            },
+            "class": "Note"
+        },
+        {
+            "file": "scripts/Note.js",
+            "line": 49,
+            "itemtype": "method",
+            "name": "getOctave",
+            "return": {
+                "description": "octave",
+                "type": "Integer"
+            },
+            "class": "Note"
+        },
+        {
+            "file": "scripts/Note.js",
+            "line": 57,
+            "description": "Compares two notes by pitch. Returns a positive integer if the first note is\nhigher than the second note, negative integer if the first note is lower\nthan the second note, and 0 if they are the same note.",
+            "itemtype": "method",
+            "name": "compareTo",
             "params": [
                 {
-                    "name": "i",
-                    "description": "Index of the note to be played",
-                    "type": "Integer"
+                    "name": "otherNote",
+                    "description": "",
+                    "type": "Note"
                 }
             ],
-            "access": "private",
-            "tagname": "",
-            "class": "MusicSnippet"
+            "return": {
+                "description": "interval in half steps",
+                "type": "Integer"
+            },
+            "class": "Note"
         },
         {
-            "file": "scripts/MusicSnippet.js",
-            "line": 128,
-            "description": "Plays all notes at the same time",
+            "file": "scripts/Note.js",
+            "line": 69,
+            "description": "Reference array for converting the difference between two ordinal positions\nin the circle of fifths to the arbitrary name of an interval.",
+            "class": "Note"
+        },
+        {
+            "file": "scripts/Note.js",
+            "line": 99,
+            "description": "Calculates the interval between two notes in standard notation.",
             "itemtype": "method",
-            "name": "playBlock",
-            "access": "private",
-            "tagname": "",
-            "class": "MusicSnippet"
+            "name": "getInterval",
+            "params": [
+                {
+                    "name": "otherNote",
+                    "description": "",
+                    "type": "Note"
+                }
+            ],
+            "return": {
+                "description": "interval",
+                "type": "Integer"
+            },
+            "class": "Note"
+        },
+        {
+            "file": "scripts/Note.js",
+            "line": 119,
+            "description": "Creates a note a particular interval away from this note.",
+            "itemtype": "method",
+            "name": "getNextNote",
+            "params": [
+                {
+                    "name": "interval",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "direction,",
+                    "description": "true ascending, false descending",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "note",
+                "type": "Note"
+            },
+            "class": "Note"
+        },
+        {
+            "file": "scripts/Note.js",
+            "line": 164,
+            "description": "String representation of a musical note.",
+            "itemtype": "method",
+            "name": "toString",
+            "return": {
+                "description": "notename + octave",
+                "type": "String"
+            },
+            "class": "Note"
         },
         {
             "file": "scripts/ParseCSV.js",
@@ -825,7 +1541,28 @@
         },
         {
             "file": "scripts/QuestionGenerator.js",
-            "line": 23,
+            "line": 17,
+            "description": "Builds an array of MusicSnippets",
+            "itemtype": "method",
+            "name": "makeMusicSnippets",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "indices",
+                    "description": "",
+                    "type": "Integer[]"
+                }
+            ],
+            "return": {
+                "description": "array of MusicSnippets",
+                "type": "MusicSnippet[]"
+            },
+            "class": "QuestionGenerator"
+        },
+        {
+            "file": "scripts/QuestionGenerator.js",
+            "line": 34,
             "description": "Picks a random MusicSnippet from the array.",
             "itemtype": "method",
             "name": "getNextQuestion",
@@ -834,6 +1571,189 @@
                 "type": "MusicSnippet"
             },
             "class": "QuestionGenerator"
+        },
+        {
+            "file": "scripts/SuccessiveMelodicIntervals.js",
+            "line": 21,
+            "itemtype": "method",
+            "name": "getAnswers",
+            "return": {
+                "description": "intervals",
+                "type": "String[]"
+            },
+            "class": "SuccessiveMelodicIntervals"
+        },
+        {
+            "file": "scripts/SuccessiveMelodicIntervals.js",
+            "line": 33,
+            "description": "Returns the notes as Strings",
+            "itemtype": "method",
+            "name": "getNotes",
+            "return": {
+                "description": "notes",
+                "type": "String[]"
+            },
+            "class": "SuccessiveMelodicIntervals"
+        },
+        {
+            "file": "scripts/SuccessiveMelodicIntervals.js",
+            "line": 47,
+            "description": "Generates a 4-note 12-tone melody using backtracking.",
+            "itemtype": "method",
+            "name": "generateMelody",
+            "return": {
+                "description": "notes",
+                "type": "Note[]"
+            },
+            "class": "SuccessiveMelodicIntervals"
+        },
+        {
+            "file": "scripts/SuccessiveMelodicIntervals.js",
+            "line": 119,
+            "description": "Create a palette of notes to try based on previous note.",
+            "itemtype": "method",
+            "name": "getPalette",
+            "params": [
+                {
+                    "name": "melody",
+                    "description": "current index",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "palette",
+                "type": "Note[]"
+            },
+            "class": "SuccessiveMelodicIntervals"
+        },
+        {
+            "file": "scripts/SuccessiveMelodicIntervals.js",
+            "line": 160,
+            "description": "Picks a random starting note. Use notes 9 through 25 (Gb—A#)",
+            "itemtype": "method",
+            "name": "getStartingPalette",
+            "return": {
+                "description": "palette",
+                "type": "Note"
+            },
+            "class": "SuccessiveMelodicIntervals"
+        },
+        {
+            "file": "scripts/SuccessiveMelodicIntervals.js",
+            "line": 173,
+            "description": "Seeded shuffle.",
+            "params": [
+                {
+                    "name": "shuffleNotes",
+                    "description": ""
+                },
+                {
+                    "name": "notes",
+                    "description": "to shuffle",
+                    "type": "Note[]"
+                },
+                {
+                    "name": "seed",
+                    "description": "",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "shuffled notes",
+                "type": "Note[]"
+            },
+            "class": "SuccessiveMelodicIntervals"
+        },
+        {
+            "file": "scripts/ValidateSMI.js",
+            "line": 1,
+            "description": "Validation rules for successive melodic intervals.",
+            "itemtype": "method",
+            "name": "validateSMI",
+            "params": [
+                {
+                    "name": "notes",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "true or false",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "scripts/ValidateSMI.js",
+            "line": 16,
+            "description": "Sort the notes in order from lowest to highest.",
+            "itemtype": "method",
+            "name": "sortNotes",
+            "return": {
+                "description": "sorted notes",
+                "type": "Note[]"
+            },
+            "class": ""
+        },
+        {
+            "file": "scripts/ValidateSMI.js",
+            "line": 42,
+            "description": "Make sure no two notes are repeated.",
+            "itemtype": "method",
+            "name": "checkRepeats",
+            "return": {
+                "description": "true if valid, false if not",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "scripts/ValidateSMI.js",
+            "line": 60,
+            "description": "Ensure that the melody does not exceed the span of an octave.",
+            "itemtype": "method",
+            "name": "checkSpan",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "scripts/ValidateSMI.js",
+            "line": 70,
+            "description": "Ensure that the intervals do not occur all in the same direction.",
+            "itemtype": "method",
+            "name": "checkDirections",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "scripts/ValidateSMI.js",
+            "line": 95,
+            "description": "Ensure that any interval is used no more than once.",
+            "itemtype": "method",
+            "name": "checkIntervals",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "scripts/ValidateSMI.js",
+            "line": 117,
+            "description": "Ensure that the melody does not outline a triad or 7th chord.",
+            "itemtype": "method",
+            "name": "checkForHarmony",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": ""
         },
         {
             "file": "scripts/noteToFileNum.js",
@@ -990,8 +1910,16 @@
             "line": " howler/howler.js:1337"
         },
         {
+            "message": "Missing item type\nReference array for converting the difference between two ordinal positions\nin the circle of fifths to the arbitrary name of an interval.",
+            "line": " scripts/Note.js:69"
+        },
+        {
             "message": "Missing item type\nThis script loads the content of data.csv into a global variable, 'data'.",
             "line": " scripts/ParseCSV.js:1"
+        },
+        {
+            "message": "Missing item type\nSeeded shuffle.",
+            "line": " scripts/SuccessiveMelodicIntervals.js:173"
         }
     ]
 }
