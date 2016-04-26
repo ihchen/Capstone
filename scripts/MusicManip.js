@@ -226,12 +226,7 @@ function getOctaveLocations(notes) {
     + calcInterval(notes[notes.length - 1], NOTES[HIGH]);
 
   // Calculate the number of places this sonority will fit.
-  document.write("span: " + span + "<br>");
-
-
   var numPlaces = NUM_NOTES/span;
-  document.write("numPlaces: " + numPlaces + "<br>");
-
 
   if (numPlaces == 0) {
     // This note collection will not fit.
