@@ -125,6 +125,7 @@ $thisPage = 'Successive Melodic Intervals';
     </script>
     <br></br>
 		<span id="answers" style="display:inline-block; visibility:hidden;">_</span>
+		<br></br>
     <span id="alert" style="display:inline-block; visibility:hidden;">Please select your answers from the drop down menus!</span>
 
     <br></br>
@@ -219,10 +220,10 @@ drawStave();
     document.getElementById("loadbtn").style.display = "block";
     document.getElementById("playbtn").style.display = "none";
 
-    document.getElementById("answers").innerHTML = "";
+    document.getElementById("answers").style.visibility = "hidden";
     document.getElementById("checkanswers").style.display = "block";
     document.getElementById("nextquestion").style.display = "none";
-    document.getElementById("instructions").innerHTML = inst;
+    document.getElementById("instructions").visibility = "visible";
 
 
     // reset drop down menus
