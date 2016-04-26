@@ -40,12 +40,17 @@
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<div class="label">Key: </div><select id="key" class="dropdown">
+	<div class="label">Key: </div><select id="key" class="dropdown" onchange="updateOctave()">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
 	<br>
-	<div class="label">Direction / Inversion: </div><select id="opt" class="dropdown">
+	<div class="label">Octave: </div><select id="octave" class="dropdown">
+		<option value="">-----</option>
+		<!-- Fill with JavaScript -->
+	</select>
+	<br>
+	<div class="label">Direction / Inversion: </div><select id="opt" class="dropdown" onchange="updateOctave()">
 		<option value="">-----</option>
 		<!-- Fill with JavaScript -->
 	</select>
@@ -85,8 +90,9 @@
 
 		// clear quality and key dropdowns
 		quality.innerHTML = "<option value=''>-----</option>";
-		document.getElementById('key').innerHTML = "<option value=''>-----</option>";
+		document.getElementById("key").innerHTML = "<option value=''>-----</option>";
 		opt.innerHTML = "<option value=''>-----</option>";
+		document.getElementById("octave").innerHTML = "<option value=''>-----</option>";
 
 		if (type.value == "scale") {
 			// fill quality with possible scale qualities
@@ -113,9 +119,12 @@
 	}
 
 	function updateKey() {
-		var type = document.getElementById('type');
-		var quality = document.getElementById('quality');
-		var key = document.getElementById('key');
+		var type = document.getElementById("type");
+		var quality = document.getElementById("quality");
+		var key = document.getElementById("key");
+
+		// always clear octave when we change available keys
+		resetOctave();
 
 		// if quality deselected, reset key
 		if (quality.value == "") {
@@ -144,11 +153,70 @@
 			keys.sort();
 
 			// convert list to option tags
-			key.innerHTML = "";
+			key.innerHTML = "<option value=''>-----</option>";
 			for (var i = 0; i < keys.length; i++) {
 				key.innerHTML = key.innerHTML + "<option value='" + keys[i] + "'>" + toDisplay(keys[i]) + "</option>";
 			}
 		}
+	}
+
+	function updateOctave() {
+		var type = document.getElementById("type");
+		var quality = document.getElementById("quality");
+		var key = document.getElementById("key");
+		var octave = document.getElementById("octave");
+		var opt = document.getElementById("opt");
+
+		// on key deselect, deselect octave
+		if (key.value == "") {
+			octave.innerHTML = "<option value=''>-----</option>";
+		}
+		else {
+			// get notes
+			var notes;
+			for (var i = 0; i < data.length; i++) {
+				if (data[i][0] == type.value && data[i][1] == quality.value) {
+					notes = data[i][2];
+					break;
+				}
+			}
+
+			// transpose notes
+			var newOrdinal = ordinal(key.value);
+			var origOrdinal = ordinal(notes[0]);
+			notes = transpose(notes, newOrdinal - origOrdinal);
+
+			// apply inversion
+			if (opt == "first") {
+				notes = setInversion(notes, 1);
+			}
+			else if (opt == "second") {
+				notes = setInversion(notes, 2);
+			}
+			else if (opt == "third") {
+				notes = setInversion(notes, 3);
+			}
+			
+
+			// get valid octaves
+			var octaves = getOctaveLocations(notes);
+
+			// display the octaves
+			if (octaves == null) {
+				alert("Please select a different key.");
+				return false;
+			}
+
+			octave.innerHTML = "";
+			for (var i = 0; i < octaves.length; i++) {
+				octave.innerHTML = octave.innerHTML + "<option value='" + octaves[i] + "'>" + octaves[i] + "</option>";
+			}
+		}
+	}
+
+	// clears octave when direction/inversion changes
+	function resetOctave() {
+		document.getElementById("octave").innerHTML = "<option value=''>-----</option>";
 	}
 
 	// 3rd word is which one new input is from
@@ -168,15 +236,16 @@
 		document.getElementById("playbtn").style.display = "none"; // hide the play button
 		document.getElementById("loadbtn").style.display = "block"; // display loading message
 
-		var type = document.getElementById('type').value;
-		var quality = document.getElementById('quality').value;
-		var key = document.getElementById('key').value;
-		var opt = document.getElementById('opt').value;
+		var type = document.getElementById("type").value;
+		var quality = document.getElementById("quality").value;
+		var key = document.getElementById("key").value;
+		var octave = document.getElementById("octave").value;
+		var opt = document.getElementById("opt").value;
 
 		// console.log("Playing a " + quality + " " + type + " in " + key);
 
 		// checking inputs
-		if (key == "") { // key is only not blank when everything else is selected
+		if (octave == "") { // octave is only not blank when everything else is selected
 			// reset buttons
 			document.getElementById("loadbtn").style.display = "none";
 			document.getElementById("playbtn").style.display = "block";
@@ -207,16 +276,16 @@
 
 		// inversions
 		if (opt == "first") {
-			snippet.generate(on_load, key, 1);
+			snippet.generate(on_load, key, 1, octave);
 		}
 		else if (opt == "second") {
-			snippet.generate(on_load, key, 2);
+			snippet.generate(on_load, key, 2, octave);
 		}
 		else if (opt == "third") {
-			snippet.generate(on_load, key, 3);
+			snippet.generate(on_load, key, 3, octave);
 		}
 		else {
-			snippet.generate(on_load, key, 0);
+			snippet.generate(on_load, key, 0, octave);
 		}
 	}
 
