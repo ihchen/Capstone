@@ -351,12 +351,12 @@
 
 	// read cookie if it exists
 	{
-		console.log(document.cookie);
+		// console.log(document.cookie);
 		var select = document.cookie.split('=').pop().split(',');
-		console.log(select);
+		// console.log(select);
 		var form = document.forms["selection"];
 		for (var i = 0; select[i] != ""; i++) {
-			console.log(select[i]);
+			// console.log(select[i]);
 			form[select[i]].checked = true;
 		}
 	}
