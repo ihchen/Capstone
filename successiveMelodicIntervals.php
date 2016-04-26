@@ -78,6 +78,8 @@ $thisPage = 'Successive Melodic Intervals';
 <script src = "scripts/Note.js"> </script>
 <script src = "scripts/noteToFileNum.js"> </script>
 <script src = "scripts/SuccessiveMelodicIntervals.js"> </script>
+<script src = "scripts/Notation.js"> </script>
+
 <script src = "scripts/ValidateSMI.js"> </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
 
@@ -132,7 +134,9 @@ $thisPage = 'Successive Melodic Intervals';
     <button id="checkanswers" class="button" style="display:block;" onclick="return checkAnswers()">Check Answers</button>
     <button id="nextquestion" class="button" style="display:none;" onclick="return nextQuestion()">Next Question</button>
 
-
+<script>
+drawStave();
+</script>
 
 </body>
 

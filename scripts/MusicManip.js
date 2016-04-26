@@ -226,7 +226,12 @@ function getOctaveLocations(notes) {
     + calcInterval(notes[notes.length - 1], NOTES[HIGH]);
 
   // Calculate the number of places this sonority will fit.
+  document.write("span: " + span + "<br>");
+
+
   var numPlaces = NUM_NOTES/span;
+  document.write("numPlaces: " + numPlaces + "<br>");
+
 
   if (numPlaces == 0) {
     // This note collection will not fit.
@@ -238,18 +243,28 @@ function getOctaveLocations(notes) {
 
   var lowestOctave;
 
+  // Special cases for edge notes.
   if (notes[0] == "Bx" || notes[0] == "Bxx") {
     lowestOctave = 2;
   } else if (notes[0] == "Cb" || notes[0] == "Cbb" || notes[0] == "Dbb") {
     lowestOctave = 4;
   } else {
+    // Inner note
     lowestOctave = 3;
   }
 
   var length = lowestOctave + numPlaces;
+
+  document.write("lowestOctave" + lowestOctave + "<br>");
+  document.write("numPlaces" + numPlaces + "<br>");
+
+
+  document.write("length" + length + "<br>");
   var octaves = [];
 
   for (var i = lowestOctave; i < length; i++) {
+    // niave solution
+    if (i > 5) break;
     octaves.push(i);
   }
 
