@@ -97,7 +97,7 @@
 		if (type.value == "scale") {
 			// fill quality with possible scale qualities
 			for (var i = 0; i < scale_opt.length; i++) {
-				quality.innerHTML = quality.innerHTML + "<option value='"+scale_opt[i]+"'>"+scale_opt[i]+"</option>";
+				quality.innerHTML = quality.innerHTML + "<option value='"+scale_opt[i]+"'>"+displayQuality(scale_opt[i])+"</option>";
 			}
 			// fill opt with scale options
 			opt.innerHTML =
@@ -107,7 +107,7 @@
 		else if (type.value == "chord") {
 			// fill quality with possible chord qualities
 			for (var i = 0; i < chord_opt.length; i++) {
-				quality.innerHTML = quality.innerHTML + "<option value='"+chord_opt[i]+"'>"+chord_opt[i]+"</option>";
+				quality.innerHTML = quality.innerHTML + "<option value='"+chord_opt[i]+"'>"+displayQuality(chord_opt[i])+"</option>";
 			}
 			// fill opt with chord options
 			opt.innerHTML =
@@ -155,7 +155,7 @@
 			// convert list to option tags
 			key.innerHTML = "<option value=''>-----</option>";
 			for (var i = 0; i < keys.length; i++) {
-				key.innerHTML = key.innerHTML + "<option value='" + keys[i] + "'>" + toDisplay(keys[i]) + "</option>";
+				key.innerHTML = key.innerHTML + "<option value='" + keys[i] + "'>" + displayNote(keys[i]) + "</option>";
 			}
 		}
 	}
@@ -187,13 +187,13 @@
 			notes = transpose(notes, newOrdinal - origOrdinal);
 
 			// apply inversion
-			if (opt == "first") {
+			if (opt.value == "first") {
 				notes = setInversion(notes, 1);
 			}
-			else if (opt == "second") {
+			else if (opt.value == "second") {
 				notes = setInversion(notes, 2);
 			}
-			else if (opt == "third") {
+			else if (opt.value == "third") {
 				notes = setInversion(notes, 3);
 			}
 			
@@ -300,12 +300,20 @@
 	}
 
 	// changes sharps and flats in a note name from internal representation to the actual unicode characters
-	function toDisplay(note) {
-		note = note.replace("bb","&#9837;&#9837;");
-		note = note.replace("b","&#9837;");
-		note = note.replace("xx","&#9839;&#9839;");
-		note = note.replace("x","&#9839;");
+	function displayNote(note) {
+		note = note.replace("bb", "&#9837;&#9837;");
+		note = note.replace("b", "&#9837;");
+		note = note.replace("xx", "&#9839;&#9839;");
+		note = note.replace("x", "&#9839;");
 		return note;
+	}
+
+	function displayQuality(quality) {
+		quality = quality.replace(/\(b/, "(&#9837;");
+		quality = quality.replace(/\/b/, "/&#9837;");
+		quality = quality.replace(/\(x/, "(&#9839;");
+		quality = quality.replace(/\/x/, "/&#9839;");
+		return quality;
 	}
 </script>
 

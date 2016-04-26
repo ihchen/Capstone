@@ -18,12 +18,12 @@ scale,Whole Tone,C D E Fx Gx Ax C D,Test1,Synthetic
 
 chord,Major 6/9,C E G A D,Test2,Jazz
 chord,Minor 6/9,A C E Fx B,Test2,Jazz
-chord,Major 9(&#9839;5),C E Gx B D,Test2,Jazz
+chord,Major 9(x5),C E Gx B D,Test2,Jazz
 chord,Minor-Major 9,A C E Gx B,Test2,Jazz
-chord,7(&#9839;9),C E G Bb Eb,Test2,Jazz
-chord,7(&#9837;9),C E G Bb Db,Test2,Jazz
-chord,7(&#9839;9/&#9839;5),C E Gx Bb Dx,Test2,Jazz
-chord,7(&#9837;9/&#9839;5),C E Gx Bb Db,Test2,Jazz
+chord,7(x9),C E G Bb Eb,Test2,Jazz
+chord,7(b9),C E G Bb Db,Test2,Jazz
+chord,7(x9/x5),C E Gx Bb Dx,Test2,Jazz
+chord,7(b9/x5),C E Gx Bb Db,Test2,Jazz
 scale,Bebop Major,C D E F G A Bb B C,Test2,Jazz
 scale,Octatonic,C D Eb F Gb Ab A B,Test2,Synthetic
 scale,Diminished-Whole Tone,B C D Eb F G A B,Test2,Synthetic
