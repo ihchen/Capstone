@@ -136,7 +136,7 @@ $thisPage = 'Successive Melodic Intervals';
     <button id="nextquestion" class="button" style="display:none;" onclick="return nextQuestion()">Next Question</button>
 
 <script>
-drawStave();
+drawNotes(smi.getNotes());
 </script>
 
 </body>
