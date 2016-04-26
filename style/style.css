@@ -14,9 +14,35 @@ body {
 
 	/*Clear margins to prevent weird things from happening*/
 	margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
+  	margin-right: 0px;
+  	margin-bottom: 0px;
+  	margin-left: 0px;
+}
+
+#header {
+	width: 100%;
+}
+
+#headlogo {
+	height: 4em;
+}
+
+#headtitle {
+	font-size: 2em; 
+	padding: 10px; 
+	text-align: left;
+}
+
+@media only screen and (max-width: 565px) {
+	#headtitle {
+		display: none;
+	}
+
+	#headlogo {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+	}
 }
 
 #instructions {

@@ -190,9 +190,10 @@ function MusicSnippet(notes, type, quality, category) {
 	 * @param {Function} user_function (Optional) Function to call when the files are loaded
 	 * @param {String} key (Optional) The key to transpose to
 	 * @param {Integer} inversion (Optional) Which inversion to use
+	 * @param {Integer} octave (Optional) Octave the first note starts in
 	 */
-	this.generate = function(user_function, key, inversion) {
-		console.log("Generating "+quality+" "+type);
+	this.generate = function(user_function, key, inversion, octave) {
+		// console.log("Generating "+quality+" "+type);
 		
 		// store/update the user's onload function
 		if (user_function != undefined) {
@@ -205,7 +206,7 @@ function MusicSnippet(notes, type, quality, category) {
 		}
 		//Just given notes and no octaves. Apply necessary transformations
 		else {
-			tempNotes = transposeAndInvert(key, inversion);
+			tempNotes = TOI(key, inversion, octave);
 			if(type == SCALE) {
 				var rand = Math.floor(Math.random()*2);
 				if(rand == 0) {
@@ -220,18 +221,21 @@ function MusicSnippet(notes, type, quality, category) {
 	}
 
 	/**
-	 * Transposes notes to a given or random key and inverts the notes a given or random amount
+	 * Transposes notes to a given or random key, gives notes a given or random octave,
+	 *  and inverts the notes a given or random amount.
 	 *
-	 * @method transposeAndInvert
+	 * @method TOI
 	 * @param {String} key (Optional) Which key to tranpose to
 	 * @param {Integer} inversion (Optional) Amount to invert by
+	 * @param {Integer} octave (Optional) Which octave to apply
 	 * @return {String[]} An array of the notes with octave numbers
 	 * @private 
 	 */
-	function transposeAndInvert(key, invert) {
+	function TOI(key, invert, octave) {
 		var newNotes;		//New array of notes
 		var shift;			//Transposition value
 		var inv;			//Inversion value
+		var octaves;		//Possible octave values
 
 		do {
 			//If given no arguments, generate random key and random inversion
@@ -259,7 +263,24 @@ function MusicSnippet(notes, type, quality, category) {
 				quality = invert7thQuality(quality, inv);
 			}
 
-			newNotes = setOctave(newNotes);				//Set a random octave
+			//If octave given, set it
+			if(octave != undefined) {
+				newNotes = setOctaveNumbers(newNotes, octave);
+			}
+			//If not, given it a random octave
+			else {
+				//Old way
+				// setOctave(newNotes);
+
+				//New way
+				octaves = getOctaveLocations(newNotes);
+				//If octaves is null, that means no viable octave was found
+				if(octaves == null)
+					continue;
+				var rand = Math.floor(Math.random()*octaves.length);
+				newNotes = setOctaveNumbers(newNotes, octaves[rand]);
+			}
+		//If setOctave returns null, probably issue with Mystic Chord. Just try again.
 		} while(newNotes == null);
 
 		lastKey = newNotes[0];						//Save the new key
@@ -320,7 +341,7 @@ function MusicSnippet(notes, type, quality, category) {
 			midi.push(noteToFileNum[notes[i]]);
 			//Error checking
 			if(midi[i] == undefined) {
-				console.log("Error: Check notation for "+quality+" "+type);
+				console.log("Error: Check notation/octave for "+quality+" "+type);
 			}
 		}
 
@@ -333,8 +354,7 @@ function MusicSnippet(notes, type, quality, category) {
 				urls : [files[i]],
 				onload : function() {
 					numLoaded++;
-					//Display loaded notes
-					console.log("Loaded note "+numLoaded);
+					// console.log("Loaded note "+numLoaded);
 					//If all notes loaded, call user function
 					if(numLoaded == numNotes) {
 						user_onload();

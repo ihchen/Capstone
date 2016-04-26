@@ -11,11 +11,18 @@
   <link href="images/favicon.ico" type="images/jpg" rel="shortcut icon">
   <link href="style/style.css" type="text/css" rel="stylesheet">
   <div id="header">
-    <!-- <div class="logo">
-      <img src="images/img.png" alt="Logo" />
-    </div> -->
+    <!-- Logo -->
+    <div class="logo">
+      <img src="images/favicon.ico" alt="Logo" align="left" id="headlogo"/>
+    </div>
+    <!-- Title -->
+    <div id="headtitle">
+      UPS Ear Training Program
+    </div>
+    <!-- Navbar -->
     <?php require_once('phpincludes/navbar.php'); ?>
   </div>
 </head>
+<br></br>
 <br></br>
 <br></br>

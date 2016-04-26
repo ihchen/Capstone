@@ -222,6 +222,8 @@ function getOctaveLocations(notes) {
   // C3 to B5.
   const NUM_NOTES = 35;
 
+  // calculate the span of the notes and adding padding from the nearest C to
+  // the lowest note, and the nearst B to the highest note.
   var span = calcInterval(NOTES[LOW], notes[0])+ calcSpan(notes)
     + calcInterval(notes[notes.length - 1], NOTES[HIGH]);
 

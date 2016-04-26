@@ -32,5 +32,12 @@
 		>
 			<a class="navlink" href="successiveMelodicIntervals.php">Successive Melodic Intervals</a>
 		</li>
+		<!-- <li class="navelement" title="Indentify melodic intervals in succession."
+			<?php 
+				if ($thisPage == 'Successive Melodic Intervals'){echo 'id = "currentpage"';} 
+			?>
+		>
+			<a class="navlink" href="successiveMelodicIntervals.php">A:OEIFJEOIGJS:ELKFJL:SEKJFL:SEKJFL:SEKJFL:SEKJF:LSKJFL:SKJEF:L</a>
+		</li> -->
 	</ul>
 </nav>
