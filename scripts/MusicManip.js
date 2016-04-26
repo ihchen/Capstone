@@ -255,11 +255,6 @@ function getOctaveLocations(notes) {
 
   var length = lowestOctave + numPlaces;
 
-  document.write("lowestOctave" + lowestOctave + "<br>");
-  document.write("numPlaces" + numPlaces + "<br>");
-
-
-  document.write("length" + length + "<br>");
   var octaves = [];
 
   for (var i = lowestOctave; i < length; i++) {
