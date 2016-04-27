@@ -385,7 +385,7 @@ function MusicSnippet(notes, type, quality, category) {
 	function convMidiToFile(midi) {
 		var files = [];
 		for(var i = 0; i < numNotes; i++) {
-			files.push("audio/piano/piano"+midi[i]+".wav");
+			files.push("audio/piano/piano"+midi[i]+".mp3");
 		}
 		return files;
 	}
