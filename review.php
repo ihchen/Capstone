@@ -69,6 +69,8 @@
 </div>
 
 <script type="text/javascript">
+	const NULL_OPTION = "<option value=''>-----</option>";
+
 	// prep arrays for dropdowns
 	var scale_opt = [];
 	var chord_opt = [];
@@ -89,10 +91,10 @@
 		var opt = document.getElementById('opt');
 
 		// clear quality and key dropdowns
-		quality.innerHTML = "<option value=''>-----</option>";
-		document.getElementById("key").innerHTML = "<option value=''>-----</option>";
-		opt.innerHTML = "<option value=''>-----</option>";
-		document.getElementById("octave").innerHTML = "<option value=''>-----</option>";
+		quality.innerHTML = NULL_OPTION;
+		document.getElementById("key").innerHTML = NULL_OPTION;
+		opt.innerHTML = NULL_OPTION;
+		document.getElementById("octave").innerHTML = NULL_OPTION;
 
 		if (type.value == "scale") {
 			// fill quality with possible scale qualities
@@ -124,11 +126,11 @@
 		var key = document.getElementById("key");
 
 		// always clear octave when we change available keys
-		resetOctave();
+		document.getElementById("octave").innerHTML = NULL_OPTION;
 
 		// if quality deselected, reset key
 		if (quality.value == "") {
-			key.innerHTML = "<option value=''>-----</option>";
+			key.innerHTML = NULL_OPTION;
 		}
 		else {
 			// find first note of selected thing
@@ -153,7 +155,7 @@
 			keys.sort();
 
 			// convert list to option tags
-			key.innerHTML = "<option value=''>-----</option>";
+			key.innerHTML = NULL_OPTION;
 			for (var i = 0; i < keys.length; i++) {
 				key.innerHTML = key.innerHTML + "<option value='" + keys[i] + "'>" + displayNote(keys[i]) + "</option>";
 			}
@@ -169,7 +171,7 @@
 
 		// on key deselect, deselect octave
 		if (key.value == "") {
-			octave.innerHTML = "<option value=''>-----</option>";
+			octave.innerHTML = NULL_OPTION;
 		}
 		else {
 			// get notes
@@ -212,11 +214,6 @@
 				octave.innerHTML = octave.innerHTML + "<option value='" + octaves[i] + "'>" + octaves[i] + "</option>";
 			}
 		}
-	}
-
-	// clears octave when direction/inversion changes
-	function resetOctave() {
-		document.getElementById("octave").innerHTML = "<option value=''>-----</option>";
 	}
 
 	// 3rd word is which one new input is from
