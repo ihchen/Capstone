@@ -134,11 +134,11 @@ $thisPage = 'Successive Melodic Intervals';
 
     <button id="checkanswers" class="button" style="display:block;" onclick="return checkAnswers()">Check Answers</button>
     <button id="nextquestion" class="button" style="display:none;" onclick="return nextQuestion()">Next Question</button>
-
+<canvas>
 <script>
-drawNotes(smi.getNotes());
+	drawNotes(smi.getNotes());
 </script>
-
+</canvas>
 </body>
 
 <script type="text/javascript">
