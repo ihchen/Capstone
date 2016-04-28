@@ -267,7 +267,7 @@
 		</div>
 		<br/>
 		<!-- Submit button -->
-		<input class = "button" type="submit" value="Start Training">
+		<button class = "button" type="submit" value="Start Training">Start Training</button>
 	</form>
 </body>
 
