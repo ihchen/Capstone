@@ -13,11 +13,11 @@
 
 <style type="text/css">
 	select.dropdown {
-		width: 200px;
+		width: 175px;
 	}
 	div.label {
 		display: inline-block;
-		width: 200px;
+		width: 175px;
 		text-align: right;
 		margin-right: 5px;
 	}
