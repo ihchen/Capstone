@@ -21,7 +21,11 @@ body {
 
 /* Contains all header contents */
 #header {
+	background-color: #ADD8E6;
+	font-family: Verdana, Geneva, sans-serif;
+	position: fixed;
 	width: 100%;
+	z-index: 1;
 }
 /* Contains the logo and the title */
 #logotitle {
@@ -32,7 +36,7 @@ body {
 /* The logo */
 #headlogo {
 	margin-top: 2px;
-	height: 3em;
+	height: 2.9em;
 }
 /* The title */
 #headtitle {
@@ -42,14 +46,19 @@ body {
 }
 
 @media only screen and (max-width: 565px) {
+	#header {
+		background-color: transparent;
+	}
+
 	#headtitle {
 		display: none;
 	}
 
 	#headlogo {
-		position: absolute;
-		top: 0px;
+		position: fixed;
 		right: 0px;
+		margin-top: 0;
+		top: 1%;
 	}
 }
 
@@ -109,12 +118,6 @@ body {
 }
 
 #bottompagebutton {
-	position: fixed;
-}
-
-#header {
-	background-color: #ADD8E6;
-	font-family: Verdana, Geneva, sans-serif;
 	position: fixed;
 }
 

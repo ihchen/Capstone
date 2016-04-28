@@ -71,7 +71,6 @@ $thisPage = 'Successive Melodic Intervals';
 </style>
 
 <body>
-<br></br>
 <script src = "scripts/MusicManip.js"> </script>
 <script src = "scripts/MusicSnippet.js"> </script>
 <script src = "howler/howler.js"> </script>
