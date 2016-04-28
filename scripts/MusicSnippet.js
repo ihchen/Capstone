@@ -45,7 +45,8 @@ function MusicSnippet(notes, type, quality, category) {
 	var timeouts = [];				//Timeout objects to keep track of when playing broken
 	var numLoaded = 0;				//Number of loaded files
 	var scaleStyle = ASCENDING;		//Default style to play broken notes is ascending
-	var finLastNote = false;		//If the last note finished playing
+	var numNotesPlayed = 0;			//Number of notes that have been played since play was called
+	var stoppedSound = false;		//Whether or not the fadeOut() was called since the last play()
 
 	var user_onload = function(){};	//User-supplied function to be invoked when the sound files are loaded
 
@@ -58,6 +59,10 @@ function MusicSnippet(notes, type, quality, category) {
 	 * @param {String} style (Optional) How to play the notes. If left out, plays quiz style
 	 */
 	this.play = function(style) {
+		//Reset variable
+		numNotesPlayed = 0;
+		stoppedSound = false;
+
 		//Play blocked
 		if(style == BLOCK) {
 			playBlock();
@@ -76,7 +81,7 @@ function MusicSnippet(notes, type, quality, category) {
 			if(type == CHORD) {
 				//If 20th century chord, just play blocked
 				if(category == TWENTIETH) {
-					playBlock();
+					playBlock(4);
 				}
 				//Otherwise, play blocked, then argpegiated
 				else {
@@ -115,9 +120,8 @@ function MusicSnippet(notes, type, quality, category) {
 				function() {
 					tempSounds[i].stop();
 					tempSounds[i].volume(1.0);
-					if(i == numNotes-1) {
-						finLastNote = true;
-					}
+					if(!stoppedSound)
+						numNotesPlayed++;
 				}
 			);
 		}
@@ -363,10 +367,13 @@ function MusicSnippet(notes, type, quality, category) {
 				},
 				onloaderror : function() {console.log(quality+" "+type+" loading error")},
 				onend : function() {
-					if(finLastNote) {
+					var requiredNumPlayed = numNotes;
+					if(type == CHORD && category != TWENTIETH)
+						requiredNumPlayed *= 2;
+					if(numNotesPlayed == requiredNumPlayed) {
 						document.getElementById("playbtn").style.display = "block";
 						document.getElementById("stopbtn").style.display = "none";
-						finLastNote = false;
+						numNotesPlayed = 0;
 					}
 				}
 			}));
@@ -396,6 +403,7 @@ function MusicSnippet(notes, type, quality, category) {
 	 * @method fadeOut
 	 */
 	this.fadeOut = function() {
+		stoppedSound = true;
 		clear();
 		fade(0);
 	}
