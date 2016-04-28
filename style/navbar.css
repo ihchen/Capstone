@@ -1,7 +1,6 @@
 /* Encompassing HTML element for navbar */
 .navbar {
 	width: 100%;				/* Span it across the entire top of screen */
-	z-index: 1;					/* Bring it in front of all other elements */
 }
 /* Mobile navigation icon */
 #navicon, #navbox{
@@ -51,7 +50,6 @@
 	/* Mobile navigation icon which will contain hamburger menu */
 	#navicon {
 		display: block;			/* Display it */
-		z-index: 1;
 		margin-left: 2%;
 		margin-top: 2%;
 		margin-bottom: 0;
