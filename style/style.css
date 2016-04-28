@@ -25,13 +25,13 @@ body {
 }
 /* Contains the logo and the title */
 #logotitle {
-	border: 1px solid black;
 	margin: auto;			/* Center */
 	width: 460px;
 	white-space: nowrap;	/* Don't wrap text */
 }
 /* The logo */
 #headlogo {
+	margin-top: 2px;
 	height: 3em;
 }
 /* The title */
