@@ -22,6 +22,8 @@ body {
 /* Contains all header contents */
 #header {
 	width: 100%;
+	position: fixed;
+	z-index: 1;
 }
 /* Contains the logo and the title */
 #logotitle {

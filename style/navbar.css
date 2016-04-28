@@ -1,6 +1,5 @@
 /* Encompassing HTML element for navbar */
 .navbar {
-	position: fixed;			/* Let it scroll with the screen */
 	width: 100%;				/* Span it across the entire top of screen */
 	z-index: 1;					/* Bring it in front of all other elements */
 }
