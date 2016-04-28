@@ -19,17 +19,25 @@ body {
   	margin-left: 0px;
 }
 
+/* Contains all header contents */
 #header {
 	width: 100%;
 }
-
-#headlogo {
-	height: 4em;
+/* Contains the logo and the title */
+#logotitle {
+	border: 1px solid black;
+	margin: auto;			/* Center */
+	width: 460px;
+	white-space: nowrap;	/* Don't wrap text */
 }
-
+/* The logo */
+#headlogo {
+	height: 3em;
+}
+/* The title */
 #headtitle {
-	font-size: 2em; 
-	padding: 10px; 
+	font-size: 2em;
+	padding: .25em;
 	text-align: left;
 }
 
