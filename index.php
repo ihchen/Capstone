@@ -18,28 +18,39 @@
 	 * @param {String} checkbox_class Class of checkboxes to be checked/unchecked
 	 * @param {String} maincheck (Optional) Checkbox ID to determine whether or not to check/uncheck the given checkboxes
 	 */
-	function checkBoxes(checkbox_class, maincheck) {
-		var mainbox;
-		var subboxes = document.getElementsByClassName(checkbox_class);
+	function checkBoxes(checkbox_class, mainclass) {
+		//If no arguments given, check all boxes
+		if(checkbox_class == undefined) {
+			//Loop through all elements with input tag
+			var allboxes = document.getElementsByTagName("input");
+			for(var i = 0; i < allboxes.length; i++) {
+				//Check all checkboxes
+				if(boxes[i].type == "checkbox") {
+					boxes[i].checked = true;
+				}
+			}
+		}
+		else {
+			var mainbox;
+			var subboxes = document.getElementsByClassName(checkbox_class);	//Get all elements of the given class
 
-		//If maincheck is given, grab the checkbox element
-		if(maincheck != undefined) {
-			mainbox = document.getElementById(maincheck);
-		}
-		//Loop through all checkboxes given and check accordingly
-		for(var i = 0; i < subboxes.length; i++) {
-			//Check by default or if mainbox is also checked
-			if(mainbox == undefined || mainbox.checked) {
-				subboxes[i].checked = true;
+			//If main class is given, grab it
+			if(mainclass != undefined) {
+				mainbox = document.getElementById(mainclass);
 			}
-			//Uncheck if mainbox is unchecked
-			else {
-				subboxes[i].checked = false;
+			//Loop through all checkboxes of given class
+			for(var i = 0; i < subboxes.length; i++) {
+				//Check boxes by default. If mainclass given, check/uncheck boxes based on if mainbox was checked
+				if(mainbox == undefined || mainbox.checked) {
+					subboxes[i].checked = true;
+				}
+				else {
+					subboxes[i].checked = false;
+				}
 			}
 		}
-		//When something is checked, check all chords and scales and update select all buttons
-		checkCheckedChords();
-		checkCheckedScales();
+		//Update all select/deselect all buttons
+		updateButtons();
 	}
 
 	/**
@@ -88,71 +99,87 @@
 	 * @method uncheckBoxes
 	 * @param {String} type (Optional) If type given, only uncheck boxes of given type
 	 */
-	function uncheckBoxes(type) {
-		var boxes;
-		if(type == 'chord') {
-			boxes = document.getElementsByClassName("type2chord");
-			document.getElementById("chordselect").style.display = "block";
-			document.getElementById("chorddeselect").style.display = "none";
-		}
-		else if(type == 'scale') {
-			boxes = document.getElementsByClassName("type2scale");
-			document.getElementById("scaleselect").style.display = "block";
-			document.getElementById("scaledeselect").style.display = "none";
+	function uncheckBoxes(checkbox_class) {
+		//If no parameter given, uncheck all boxes
+		if(checkbox_class == undefined) {
+			//Loop through all elements with input tag
+			var allboxes = document.getElementsByTagName("input");
+			for(var i = 0; i < allboxes.length; i++) {
+				//Uncheck all checkboxes
+				if(allboxes[i].type == "checkbox") {
+					allboxes[i].checked = false;
+				}
+			}
 		}
 		else {
-			boxes = document.getElementsByTagName("input");
-			document.getElementById("chordselect").style.display = "block";
-			document.getElementById("chorddeselect").style.display = "none";
-			document.getElementById("scaleselect").style.display = "block";
-			document.getElementById("scaledeselect").style.display = "none";
-		}
-		for(var i = 0; i < boxes.length; i++) {
-			if(boxes[i].type == "checkbox") {
+			//Get all elements of given class
+			var boxes = document.getElementsByClassName(checkbox_class);
+			//Uncheck them all
+			for(var i = 0; i < boxes.length; i++) {
 				boxes[i].checked = false;
 			}
 		}
+		//Update select/deselect buttons
+		updateButtons();
 	}
 
 	/**
-	 * Checks to see if there are any checked chords. If so, use deselect all button. Otherwise
-	 * use select all button
+	 * Checks all checkboxes to see which buttons need to be displayed
 	 *
-	 * @method checkCheckedChords
+	 * @method updateButtons
 	 */
-	function checkCheckedChords() {
-		var hasChecked = false;
-		var boxes = document.getElementsByClassName("type2chord");
-		for(var i = 0; i < boxes.length; i++) {
-			if(boxes[i].checked == true) {
-				hasChecked = true;
-				document.getElementById("chordselect").style.display = "none";
-				document.getElementById("chorddeselect").style.display = "block";
-				break;
+	function updateButtons() {
+		var checkedChord = false;	//Whether or not a chord was checked
+		var checkedScale = false;	//Whether or not a scale was checkd
+		var checkedCategory;		//Whether the current category had a check
+		var checkboxes;				//Checkboxes of current category
+		var className;				//Class name of current category
+
+		//Loop through all categories
+		for(var i = 0; i < categories.length; i++) {
+			checkedCategory = false;
+			className = categories[i][0]+categories[i][2]	//Class of elements in a category is [category][title]
+			checkboxes = document.getElementsByClassName(className);
+
+			//Loop through elements in category
+			for(var j = 0; j < checkboxes.length; j++) {
+				if(checkboxes[j].checked) {
+					//Mark if chord or scale
+					if(categories[i][2] == 'chord')
+						checkedChord = true;
+					else
+						checkedScale = true;
+					//Mark the category
+					checkedCategory = true;
+					break;
+				}
+			}
+			//If something in category was checked, display deselect all button
+			if(checkedCategory) {
+				document.getElementById(className+"select").style.display = "none";
+				document.getElementById(className+"deselect").style.display = "block";
+			}
+			//Otherwise display select all button
+			else {
+				document.getElementById(className+"select").style.display = "block";
+				document.getElementById(className+"deselect").style.display = "none";
 			}
 		}
-		if(!hasChecked) {
+		//If a chord was checked, display chord's deselect all button
+		if(checkedChord) {
+			document.getElementById("chordselect").style.display = "none";
+			document.getElementById("chorddeselect").style.display = "block";
+		}
+		else {
 			document.getElementById("chordselect").style.display = "block";
 			document.getElementById("chorddeselect").style.display = "none";
 		}
-	}
-
-	/**
-	 * Checks to see if there are any checked scales. If so, use deselect all button, Otherwise, 
-	 * use select all button.
-	 */
-	function checkCheckedScales() {
-		var hasChecked = false;
-		var boxes = document.getElementsByClassName("type2scale");
-		for(var i = 0; i < boxes.length; i++) {
-			if(boxes[i].checked == true) {
-				hasChecked = true;
-				document.getElementById("scaleselect").style.display = "none";
-				document.getElementById("scaledeselect").style.display = "block";
-				break;
-			}
+		//If a scale was checked, display scale's deselect all button
+		if(checkedScale) {
+			document.getElementById("scaleselect").style.display = "none";
+			document.getElementById("scaledeselect").style.display = "block";
 		}
-		if(!hasChecked) {
+		else {
 			document.getElementById("scaleselect").style.display = "block";
 			document.getElementById("scaledeselect").style.display = "none";
 		}
@@ -223,15 +250,20 @@
 					Chords
 					<!-- Buttons -->
 					<div class="selectdeselectbtns">
-						<button id="chordselect" type="button" class="smallbtn" onclick="checkBoxes('type2chord')">Select All</button>
+						<button id="chordselect" type="button" class="smallbtn" onclick="checkBoxes('chord')">Select All</button>
 						<button id="chorddeselect" type="button" class="smallbtn" onclick="uncheckBoxes('chord')">Deselect All</button>
 					</div>
 				</div>
 				<!-- Chords content -->
 				<div class="type2list" id="chord">
 					<!-- <div class="category"> -->
-						<!-- <div class="categorytitle">[category]</div> -->
-						<!-- <div class="type2" id="[category]"> -->
+						<!-- <div class="categorytitle">[category] -->
+							<!-- <div class="selectdeselectbtns"> -->
+								<!-- <button id="chordselect" type="button" class="smallbtn" onclick="checkBoxes('[category][type]')">Select All</button> -->
+								<!-- <button id="chorddeselect" type="button" class="smallbtn" onclick="uncheckBoxes('[category][type]')">Deselect All</button> -->
+							<!-- </div> -->
+						<!-- <br/></div> -->
+						<!-- <div class="type2" id="[category][type]"> -->
 							<!-- Generated scales go here -->
 						<!-- </div> -->
 					<!-- </div> -->
@@ -246,15 +278,20 @@
 					Scales
 					<!-- Buttons -->
 					<div class="selectdeselectbtns">
-						<button id="scaleselect" type="button" class="smallbtn" onclick="checkBoxes('type2scale')">Select All</button>
+						<button id="scaleselect" type="button" class="smallbtn" onclick="checkBoxes('scale')">Select All</button>
 						<button id="scaledeselect" type="button" class="smallbtn" onclick="uncheckBoxes('scale')">Deselect All</button>
 					</div>
 				</div>
 				<!-- Scales content -->
 				<div class="type2list" id="scale">
 					<!-- <div class="category"> -->
-						<!-- <div class="categorytitle">[category]</div> -->
-						<!-- <div class="type2" id="[category]"> -->
+						<!-- <div class="categorytitle">[category] -->
+							<!-- <div class="selectdeselectbtns"> -->
+								<!-- <button id="chordselect" type="button" class="smallbtn" onclick="checkBoxes('[category][type]')">Select All</button> -->
+								<!-- <button id="chorddeselect" type="button" class="smallbtn" onclick="uncheckBoxes('[category][type]')">Deselect All</button> -->
+							<!-- </div> -->
+						<!-- <br/></div> -->
+						<!-- <div class="type2" id="[category][type]"> -->
 							<!-- Generated chords go here -->
 						<!-- </div> -->
 					<!-- </div> -->
@@ -274,7 +311,7 @@
 <!-- Javascript that runs immediately -->
 <script>
 	/* Find all categories and save a tuple containing (category, occurence, type) */
-	var categories = [];
+	var categories = [];		//variable is also used in updateButton()
 	//Loop through all data in csv file
 	for (var i = 0; i < data.length; i++) {
 		var found = false;
@@ -324,11 +361,17 @@
 	//Loop through all categories
 	for (var i = 0; i < categories.length; i++) {
 		var div = document.getElementById(categories[i][2]);
+		var className = categories[i][0]+categories[i][2];
 		//Add divs to contain categories and their elements
 		div.innerHTML = div.innerHTML +
 			"<div class='category'>"+														//Div to contain everything in category
-			"<div class='categorytitle'>"+categories[i][0]+"<br/></div>"+					//Div to contain the title of category
-			"<div class='type2' id='"+categories[i][0]+categories[i][2]+"'></div></div>";	//Div to contain the elements
+			"<div class='categoryhead'>"+categories[i][0]+									//Category title
+				"<div class='selectdeselectbtns'>"+											//Select/deselect buttons
+					"<button id='"+className+"select' type='button' class='smallbtn' onclick='checkBoxes(\""+className+"\")'>Select All</button>"+
+					"<button id='"+className+"deselect' type='button' class='smallbtn' onclick='uncheckBoxes(\""+className+"\")'>Deselect All</button>"+
+				"</div>"+
+			"<br/></div>"+					//Div to contain the title of category
+			"<div class='type2' id='"+className+"'></div></div>";	//Div to contain the elements
 	}
 
 	/* Put every element in csv file into the corresponding divs */
@@ -344,9 +387,9 @@
 		else {
 			var fn = "checkCheckedScales()";
 		}
-		//Add a checkbox with class='type2[type] [test]' name='[index in csv file]'.
+		//Add a checkbox with class='[type] [test] [category][type]' name='[index in csv file]'.
 		div.innerHTML = div.innerHTML + 
-			"<input type='checkbox' class='type2"+data[i][0]+" "+data[i][3]+"' name='" + i + "' value='num' onclick="+fn+">" + data[i][1] + "<br/>";
+			"<input type='checkbox' class='"+data[i][0]+" "+data[i][3]+" "+data[i][4]+data[i][0]+"' name='" + i + "' value='num' onclick="+fn+">" + data[i][1] + "<br/>";
 	}
 
 	// read cookie if it exists
@@ -361,9 +404,8 @@
 		}
 	}
 
-	//Check checked chords and scales in case cookies were saved or user hit refresh
-	checkCheckedChords();
-	checkCheckedScales();
+	//Update select/deselect all buttons
+	updateButtons();
 </script>
 
 <?php require_once('phpincludes/footer.php'); ?>
