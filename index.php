@@ -389,7 +389,7 @@
 		}
 		//Add a checkbox with class='[type] [test] [category][type]' name='[index in csv file]'.
 		div.innerHTML = div.innerHTML + 
-			"<input type='checkbox' class='"+data[i][0]+" "+data[i][3]+" "+data[i][4]+data[i][0]+"' name='" + i + "' value='num' onclick="+fn+">" + data[i][1] + "<br/>";
+			"<input type='checkbox' class='"+data[i][0]+" "+data[i][3]+" "+data[i][4]+data[i][0]+"' name='" + i + "' value='num' onclick="+fn+">" + displayQuality(data[i][1]) + "<br/>";
 	}
 
 	// read cookie if it exists
@@ -402,6 +402,14 @@
 			// console.log(select[i]);
 			form[select[i]].checked = true;
 		}
+	}
+
+	function displayQuality(quality) {
+		quality = quality.replace(/\(b/, "(&#9837;");
+		quality = quality.replace(/\/b/, "/&#9837;");
+		quality = quality.replace(/\(x/, "(&#9839;");
+		quality = quality.replace(/\/x/, "/&#9839;");
+		return quality;
 	}
 
 	//Update select/deselect all buttons
