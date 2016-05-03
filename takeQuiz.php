@@ -49,40 +49,31 @@
 
 <center>
 	<br/><br/>
-
+	<!-- Buttons -->
 	<button id="playbtn" class="button" onclick="play()" style="display:none;">Play</button>
 	<button id="stopbtn" class="button" onclick="stop()" style="display:none;">Stop</button>
 	<button id="loadbtn" class="button inactive" style="display:block;">Loading...</button>
 	<br/>
+	<!-- Button for revealing answer -->
 	<button class="reveal" id="revealbutt" onclick="reveal()">Reveal Answer</button>
-	<div class="reveal" id="revealed" style="opacity: 0; position:relative; top: -50px;">
-		<p id="answer" style="font-size: 1.5em;"></p>
-		<button id="nxtq" class="button" onclick="nextQuestion()" disabled style="cursor: default;">Next Question</button>
-	</div>	
+	<!-- Contents that display after Reveal Answer is clicked (initially hidden)-->
+	<div class="reveal" id="revealed">
+		<!-- Answer goes in here -->
+		<p id="answer"></p>
+		<!-- Next question button (disabled by default so you can't click pre-reveal) -->
+		<button id="nxtq" class="button" onclick="nextQuestion()" disabled>Next Question</button>
+	</div>
 
+	<!-- List of musical elements chosen by user to quiz on -->
 	<div id="chosenlist">
 		<button type="button" class="smallbtn" onclick="showlist()">Show List</button><br/>
-		<div id="listelements" style="display: none;">
+		<div id="listelements">
 			<!-- List elements go here -->
 		</div>
 	</div>
 </center>
 
 <script>
-	/* Populate the list of user chosen elements */
-	var list = document.getElementById("listelements");
-	//Loop through all chosen elements
-	for(var i = 0; i < chosen.length; i++) {
-		//Add them into the list
-		list.innerHTML = list.innerHTML + 
-			"<div id='element'>" + data[chosen[i]][1] + " " + data[chosen[i]][0] + 
-			"</div>";
-		//Seperate each element by white space and a pipe (except the last one)
-		if(i < chosen.length-1) {
-			list.innerHTML = list.innerHTML + "&nbsp|&nbsp";
-		}
-	}
-
 	/**
 	 * What happens once the files finishes loading
 	 */
@@ -100,6 +91,20 @@
 	var snippet = qg.getNextQuestion();			//Get Next Question
 	snippet.generate(loadFunc);
 
+	/* Populate the list of user chosen elements */
+	var list = document.getElementById("listelements");
+	//Loop through all chosen elements
+	for(var i = 0; i < chosen.length; i++) {
+		//Add them into the list
+		list.innerHTML = list.innerHTML + 
+			"<div id='element'>" + data[chosen[i]][1] + " " + data[chosen[i]][0] + 
+			"</div>";
+		//Seperate each element by white space and a pipe (except the last one)
+		if(i < chosen.length-1) {
+			list.innerHTML = list.innerHTML + "&nbsp|&nbsp";
+		}
+	}
+
 	/**
 	 * Plays the audio and changes play button to stop button
 	 */
@@ -107,6 +112,7 @@
 		snippet.play();
 		document.getElementById("playbtn").style.display = "none";
 		document.getElementById("stopbtn").style.display = "block";
+		// Change class of stopbtn so hovering works
 		document.getElementById("stopbtn").className = "button";
 	}
 
@@ -116,6 +122,7 @@
 	 */
 	function stop() {
 		snippet.fadeOut();
+		//Disable button and make it un-hoverable (inactive class)
 		document.getElementById("stopbtn").disabled = true;
 		document.getElementById("stopbtn").className = "button inactive";
 
@@ -127,13 +134,13 @@
 	}
 
 	/**
-	 * Gets the next question. Hides the buttons and displays the Loading text. Waits until the fade out
-	 * ends to generate the new audio and answer.
+	 * Hides the answer contents and displays the loading button. Gets the next question
+	 * and generates the corresponding audio (after fading finishes).
 	 */
 	function nextQuestion() {
 		hide();
-		snippet.fadeOut();
-		snippet = qg.getNextQuestion();
+		snippet.fadeOut();				//Stop current sound
+		snippet = qg.getNextQuestion();	//Get the next MusicSnippet object
 		setTimeout(function() {
 			snippet.generate(loadFunc);
 		}, FADE_ALL_LENGTH+1);		//FADE_ALL_LENGTH constant can be found in scripts/MusicSnippet.js	
@@ -143,11 +150,11 @@
 	 * Reveals the answer (with transition)
 	 */
 	function reveal() {
-		document.getElementById("revealed").className = "reveal";
-		document.getElementById("revealbutt").style.opacity = "0";
-		document.getElementById("revealbutt").style.transform = "translate(0px, 100px)";
-		document.getElementById("revealed").style.opacity = "1";
-		document.getElementById("nxtq").disabled = false;
+		document.getElementById("revealbutt").style.opacity = "0";	//Hide button
+		document.getElementById("revealbutt").style.transform = "translate(0px, 100px)";	//Move button down
+		document.getElementById("revealed").className = "reveal";	//Reveal class does transitions
+		document.getElementById("revealed").style.opacity = "1";	//Reveal answer
+		document.getElementById("nxtq").disabled = false;			//Enable next question button
 		document.getElementById("nxtq").style.cursor = "pointer";
 	}
 
@@ -156,14 +163,15 @@
 	 * Must eventually be followed by snippet.generate(). 
 	 */
 	function hide() {
-		document.getElementById("revealed").className += " notrans";
+		//Do button stuff
 		document.getElementById("loadbtn").style.display = "block";
 		document.getElementById("playbtn").style.display = "none";
 		document.getElementById("stopbtn").style.display = "none";
 		//Reset everything
-		document.getElementById("revealbutt").style.opacity = "1";
-		document.getElementById("revealbutt").style.transform = "translate(0px, 0px)";
-		document.getElementById("revealed").style.opacity = "0";
+		document.getElementById("revealbutt").style.opacity = "1";	//Reveal button
+		document.getElementById("revealbutt").style.transform = "translate(0px, 0px)";	//Move it back up
+		document.getElementById("revealed").className += " notrans";//notrans class does no transitions
+		document.getElementById("revealed").style.opacity = "0";	//Hide answer content
 		document.getElementById("nxtq").disabled = true;			//Disable next question button so you can't click on it until revealed
 		document.getElementById("nxtq").style.cursor = "default";	//Don't show hand pointer either
 	}

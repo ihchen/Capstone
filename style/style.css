@@ -19,6 +19,10 @@ body {
   	margin-left: 0px;
 }
 
+* {
+	box-sizing:border-box;
+}
+
 /* Contains all header contents */
 #header {
 	background-color: #ADD8E6;
@@ -30,7 +34,7 @@ body {
 /* Contains the logo and the title */
 #logotitle {
 	margin: auto;			/* Center */
-	width: 460px;
+	width: 460px;			/* Need this to make 'margin: auto' work */
 	white-space: nowrap;	/* Don't wrap text */
 }
 /* The logo */
@@ -45,15 +49,17 @@ body {
 	text-align: left;
 }
 
+/* Mobile compatibility (match with navbar's max-width) */
 @media only screen and (max-width: 565px) {
+	/* Allows text to not be blocked by header's background */
 	#header {
 		background-color: transparent;
 	}
-
+	/* Hide the title */
 	#headtitle {
 		display: none;
 	}
-
+	/* Move the logo to the top right */
 	#headlogo {
 		position: fixed;
 		right: 0px;
@@ -67,10 +73,7 @@ body {
 	text-align: center;
 }
 
-* {
-	box-sizing:border-box;
-}
-
+/* Fixed size button for important functions */
 .button {
 	text-align: center;
 	white-space: nowrap;
@@ -88,25 +91,27 @@ body {
 	width:90%;
 	height:2em;
 }
-
+/* Hovering over the button when it isn't inactive */
 .button:hover:not(.inactive) {
 	cursor: pointer; cursor: hand;
-  background: #00CED1;
+	background: #00CED1;
 	border: 1px solid #00CED1;
 }
-
+/* Do nothing when inactive */
 .inactive {
 	color: black;
 }
-
+/* Prevent Mozilla border when clicking */
 .button:-moz-focus-inner {
 	border: 0;
 }
+/* Prevent outlines when clicking */
 .button:focus {
 	outline: none;
 }
 
-.smallbtn {				/* Button where background wraps around text */
+/* Button where background wraps around text for less important buttons */
+.smallbtn {
 	text-align: center;
 	white-space: nowrap;
 	background: #008B8B;
@@ -156,9 +161,9 @@ body {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-  left: 0;
-  right: 0;
-  text-align: center;
+  	left: 0;
+  	right: 0;
+  	text-align: center;
 	padding: 1em;
 	background-color: #008B8B;
 	border-top: 1px solid #008080;

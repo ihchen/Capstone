@@ -15,7 +15,7 @@
 	 * to how maincheck is checked. If not, then all boxes are just checked.
 	 *
 	 * @method checkBoxes
-	 * @param {String} checkbox_class Class of checkboxes to be checked/unchecked
+	 * @param {String} checkbox_class (Optional) Class of checkboxes to be checked/unchecked
 	 * @param {String} maincheck (Optional) Checkbox ID to determine whether or not to check/uncheck the given checkboxes
 	 */
 	function checkBoxes(checkbox_class, mainclass) {
@@ -93,11 +93,10 @@
 	}
 
 	/**
-	 * Uncheck the given boxes. If type not given, uncheck all boxes. Update select/deselect all
-	 * buttons
+	 * Uncheck the given boxes. If class not given, uncheck all boxes.
 	 *
 	 * @method uncheckBoxes
-	 * @param {String} type (Optional) If type given, only uncheck boxes of given type
+	 * @param {String} checkbox_class (Optional) If given, only uncheck boxes of given class
 	 */
 	function uncheckBoxes(checkbox_class) {
 		//If no parameter given, uncheck all boxes
@@ -143,13 +142,14 @@
 
 			//Loop through elements in category
 			for(var j = 0; j < checkboxes.length; j++) {
+				//If checked
 				if(checkboxes[j].checked) {
 					//Mark if chord or scale
 					if(categories[i][2] == 'chord')
 						checkedChord = true;
 					else
 						checkedScale = true;
-					//Mark the category
+					//Indicate that category had a check
 					checkedCategory = true;
 					break;
 				}
@@ -221,6 +221,21 @@
 		cookie_string += "; expires=" + exp.toUTCString();
 		document.cookie = cookie_string;
 	}
+
+	/**
+	 * Changes flats and sharps to their actual symbols. Assumes flats and sharps 
+	 * are always preceded by a slash or parentheses.
+	 *
+	 * @method displayQuality
+	 * @param {String} quality String to update
+	 */
+	function displayQuality(quality) {
+		quality = quality.replace(/\(b/, "(&#9837;");
+		quality = quality.replace(/\/b/, "/&#9837;");
+		quality = quality.replace(/\(x/, "(&#9839;");
+		quality = quality.replace(/\/x/, "/&#9839;");
+		return quality;
+	}
 </script>
 
 <body id = "content">
@@ -240,7 +255,7 @@
 		</div>		
 
 		<div class="rows">
-			<!-- Column Space -->
+			<!-- Column of Space -->
 			<div class="colspace">&nbsp</div>
 
 			<!-- Chords column -->
@@ -287,8 +302,8 @@
 					<!-- <div class="category"> -->
 						<!-- <div class="categorytitle">[category] -->
 							<!-- <div class="selectdeselectbtns"> -->
-								<!-- <button id="chordselect" type="button" class="smallbtn" onclick="checkBoxes('[category][type]')">Select All</button> -->
-								<!-- <button id="chorddeselect" type="button" class="smallbtn" onclick="uncheckBoxes('[category][type]')">Deselect All</button> -->
+								<!-- <button id="scaleselect" type="button" class="smallbtn" onclick="checkBoxes('[category][type]')">Select All</button> -->
+								<!-- <button id="scaledeselect" type="button" class="smallbtn" onclick="uncheckBoxes('[category][type]')">Deselect All</button> -->
 							<!-- </div> -->
 						<!-- <br/></div> -->
 						<!-- <div class="type2" id="[category][type]"> -->
@@ -299,7 +314,7 @@
 				</div>
 			</div>
 
-			<!-- Column Space -->
+			<!-- Column of Space -->
 			<div class="colspace">&nbsp</div>
 		</div>
 		<br/>
@@ -357,21 +372,21 @@
 	}
 	bubbleSort(categories);
 
-	/* For all categories, create divs. ID to put elements in is '[category][type]'. */
+	/* For all categories, create divs. Unique identifier for elements in category is '[category][type]'. */
 	//Loop through all categories
 	for (var i = 0; i < categories.length; i++) {
-		var div = document.getElementById(categories[i][2]);
-		var className = categories[i][0]+categories[i][2];
+		var div = document.getElementById(categories[i][2]);	//Get chord/scale div
+		var className = categories[i][0]+categories[i][2];		//[category][type]
 		//Add divs to contain categories and their elements
 		div.innerHTML = div.innerHTML +
-			"<div class='category'>"+														//Div to contain everything in category
-			"<div class='categoryhead'>"+categories[i][0]+									//Category title
-				"<div class='selectdeselectbtns'>"+											//Select/deselect buttons
-					"<button id='"+className+"select' type='button' class='smallbtn' onclick='checkBoxes(\""+className+"\")'>Select All</button>"+
-					"<button id='"+className+"deselect' type='button' class='smallbtn' onclick='uncheckBoxes(\""+className+"\")'>Deselect All</button>"+
-				"</div>"+
-			"<br/></div>"+					//Div to contain the title of category
-			"<div class='type2' id='"+className+"'></div></div>";	//Div to contain the elements
+			"<div class='category'>"+									//Div to contain everything in category
+				"<div class='categoryhead'>"+categories[i][0]+			//Category title
+					"<div class='selectdeselectbtns'>"+					//Select/deselect buttons
+						"<button id='"+className+"select' type='button' class='smallbtn' onclick='checkBoxes(\""+className+"\")'>Select All</button>"+
+						"<button id='"+className+"deselect' type='button' class='smallbtn' onclick='uncheckBoxes(\""+className+"\")'>Deselect All</button>"+
+					"</div>"+
+				"<br/></div>"+	
+				"<div class='type2' id='"+className+"'></div></div>";	//Div to contain the elements
 	}
 
 	/* Put every element in csv file into the corresponding divs */
@@ -379,17 +394,9 @@
 	for (var i = 0; i < data.length; i++) {
 		//Get the div it's suppose to go in: ID = '[category][type]'
 		var div = document.getElementById(data[i][4]+data[i][0]);
-		//If it's a chord, use checkCheckedChords() for onclick
-		if(data[i][0] == 'chord') {
-			var fn = "checkCheckedChords()";
-		}
-		//If it's a chord, use checkCheckedScales() for onclick
-		else {
-			var fn = "checkCheckedScales()";
-		}
 		//Add a checkbox with class='[type] [test] [category][type]' name='[index in csv file]'.
 		div.innerHTML = div.innerHTML + 
-			"<input type='checkbox' class='"+data[i][0]+" "+data[i][3]+" "+data[i][4]+data[i][0]+"' name='" + i + "' value='num' onclick="+fn+">" + displayQuality(data[i][1]) + "<br/>";
+			"<input type='checkbox' class='"+data[i][0]+" "+data[i][3]+" "+data[i][4]+data[i][0]+"' name='" + i + "' value='num' onclick='updateButtons()'>" + displayQuality(data[i][1]) + "<br/>";
 	}
 
 	// read cookie if it exists
@@ -402,14 +409,6 @@
 			// console.log(select[i]);
 			form[select[i]].checked = true;
 		}
-	}
-
-	function displayQuality(quality) {
-		quality = quality.replace(/\(b/, "(&#9837;");
-		quality = quality.replace(/\/b/, "/&#9837;");
-		quality = quality.replace(/\(x/, "(&#9839;");
-		quality = quality.replace(/\/x/, "/&#9839;");
-		return quality;
 	}
 
 	//Update select/deselect all buttons

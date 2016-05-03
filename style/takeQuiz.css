@@ -1,6 +1,74 @@
-#element{						/* Each list element */
+/* Reveal Answer Button styling */
+#revealbutt {					/* Reveal Answer button */
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	font-size: 1.5em;
+	position: relative;
+	z-index: 1;					/* Make sure it's in front of the answer */
+}
+#revealbutt:after { 			/* Down arrow below reveal answer button (It's half of a rotated square) */	
+    content: "";
+    width:15px;
+    height:15px;
+    background: transparent;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+	-ms-transform:rotate(45deg); 		/* IE 9 */
+	-webkit-transform:rotate(45deg); 	/* Safari and Chrome */
+	transform:rotate(45deg);
+    position:absolute;
+    bottom:-12px; 
+    left: 50%;
+    margin-left: -12px;
+}
+#revealbutt:hover {
+	color: #008B8B;
+}
+#revealbutt:hover:after {
+	border-right: 1px solid #008B8B;
+	border-bottom: 1px solid #008B8B;
+}
+#revealbutt::-moz-focus-inner {		/* (Mozilla) Prevent Dotted border after clicking */
+	border: 0;
+}
+#revealbutt:focus {					/* (Chrome) Prevent border after clicking */
+	outline: none;
+}
+
+/* Answer contents */
+#revealed {					/* Answer and next question button */
+	opacity: 0;				/* Hide initially */
+	position: relative;
+	top: -50px;				/* Adjust position */
+}
+#answer {					/* Answer */
+	font-size: 1.5em;
+}
+#nxtq {						/* Next question button */
+	cursor: default;		/* Initially prevent cursor from changing (while hidden) */
+}
+
+/* User chosen list */
+#listelements {
+	display: none;			/* Hide initially */
+}
+#element{					/* Each list element */
 	display: inline-block;
 	white-space: nowrap;
+}
+
+/* Transitions */
+.reveal {
+	-webkit-transition: opacity 1s, transform 1s ease;
+	-moz-transition: opacity 1s, transform 1s ease;
+	transition: opacity 1s, transform 1s ease;
+}
+.reveal.notrans {		/* Don't transition if has 'notrans' class */
+	-webkit-transition: opacity 0s, transform 0s ease;
+	-moz-transition: opacity 0s, transform 0s ease;
+	transition: opacity 0s, transform 0s ease;
 }
 
 /* Inversion Styling */
@@ -24,55 +92,4 @@
 .bot {							/* Bottom element of fraction */
 	font-size: .65em;
 	top: .8em;
-}
-
-/* Button styling */
-#revealbutt {					/* Reveal Answer button */
-	background: none;
-	border: none;
-	margin: 0;
-	padding: 0;
-	font-size: 1.5em;
-	position: relative;
-	z-index: 1;					/* Make sure it's in front of the answer */
-}
-#revealbutt:after { 			/* Down arrow below reveal answer button (It's half of a rotated square) */	
-    content: "";
-    width:15px;
-    height:15px;
-    background: transparent;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-	-ms-transform:rotate(45deg); /* IE 9 */
-	-webkit-transform:rotate(45deg); /* Safari and Chrome */
-	transform:rotate(45deg);
-    position:absolute;
-    bottom:-12px; 
-    left: 50%;
-    margin-left: -12px;
-}
-#revealbutt:hover {
-	color: #008B8B;
-}
-#revealbutt:hover:after {
-	border-right: 1px solid #008B8B;
-	border-bottom: 1px solid #008B8B;
-}
-#revealbutt::-moz-focus-inner {		/* (Mozilla) Prevent Dotted border after clicking */
-	border: 0;
-}
-#revealbutt:focus {					/* (Chrome) Prevent Dotted border after clicking */
-	outline: none;
-}
-
-/* Transitions */
-.reveal {
-	-webkit-transition: opacity 1s, transform 1s ease;
-	-moz-transition: opacity 1s, transform 1s ease;
-	transition: opacity 1s, transform 1s ease;
-}
-.reveal.notrans {		/* Don't transition if has 'notrans' class */
-	-webkit-transition: opacity 0s, transform 0s ease;
-	-moz-transition: opacity 0s, transform 0s ease;
-	transition: opacity 0s, transform 0s ease;
 }

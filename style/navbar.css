@@ -17,7 +17,7 @@
 	list-style-type: none;		/* Don't use list decorations */
 	margin: 0;	
 	padding: 0;
-	overflow: hidden;			/* Hide things that overflow */
+	overflow: hidden;			/* Removing this prevents background color from showing? */
 	background-color: #008B8B;
 }
 /* Navbar elements */
@@ -34,10 +34,10 @@
 	font-weight: normal;
 	color: black;
 }
-/* If element represents current page */
+/* Element that represents current page */
 #currentpage {
-	background-color: #ADD8E6;	/* Match page background */
-	border-bottom: 1px solid #ADD8E6; /* Match border with background too */
+	background-color: #ADD8E6;			/* Match page background */
+	border-bottom: 1px solid #ADD8E6; 	/* Match border with background too so it connects */
 }
 /* Hovering over navbar elements (when the element isn't the current page) */
 .navelement:hover:not(#currentpage) {
@@ -53,19 +53,15 @@
 		margin-left: 2%;
 		margin-top: 2%;
 		margin-bottom: 0;
-		color: #ADD8E6;
 		font-size: 2.5em;		/* Size of hamburger menu */
-		text-align: center;		/* Horizontally align it in box */
-		border-width: 1px solid #008080;
 		height: 1.155em;
 		width: 1.15em;
-		text-decoration: none;
 		cursor: pointer;		/* Change cursor to pointer hand when hovering over the navicon */
 	}
 	/* Hovering over the navicon */
-	#navicon:hover {
-		color: #00CED1;
-	}
+	/* #navimage:hover {
+		background-color: #00CED1;
+	} /*
 	/* Make the current page have the same background color as hovering */
 	#currentpage {
 		background-color: #00CED1;
