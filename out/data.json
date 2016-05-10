@@ -85,9 +85,14 @@
             "extension_for": [],
             "file": "scripts/MusicSnippet.js",
             "line": 8,
-            "description": "Determines how to play the given notes based on their type and quality, then loads\nthe corresponding audio files and plays them.",
+            "description": "Converts the given notes into Howl objects that can be played.\nCan do transformations such as transposition and inversion.\nPlays the transformed notes in a given/preset style.",
             "is_constructor": 1,
             "params": [
+                {
+                    "name": "notes",
+                    "description": "Array of notes that define the sonority",
+                    "type": "String[]"
+                },
                 {
                     "name": "type",
                     "description": "Type of the sonority",
@@ -102,11 +107,6 @@
                     "name": "category",
                     "description": "Category of the sonority",
                     "type": "String"
-                },
-                {
-                    "name": "notes",
-                    "description": "Array of notes",
-                    "type": "String Array"
                 }
             ]
         },
@@ -982,7 +982,7 @@
         },
         {
             "file": "scripts/MusicManip.js",
-            "line": 261,
+            "line": 268,
             "description": "Sets octave numbers in order, given a starting number. Octave number\nincrements upon ascension from B to C.",
             "itemtype": "method",
             "name": "setOctaveNumbers",
@@ -1006,7 +1006,7 @@
         },
         {
             "file": "scripts/MusicManip.js",
-            "line": 286,
+            "line": 293,
             "description": "Go up one note name. G will loop back to A.",
             "itemtype": "method",
             "name": "increment",
@@ -1025,7 +1025,7 @@
         },
         {
             "file": "scripts/MusicManip.js",
-            "line": 298,
+            "line": 305,
             "description": "Go down one note name. A will loop back to G.",
             "itemtype": "method",
             "name": "decrement",
@@ -1044,7 +1044,7 @@
         },
         {
             "file": "scripts/MusicManip.js",
-            "line": 310,
+            "line": 317,
             "description": "Determines whether two notenames are enharmonically equivalent.",
             "itemtype": "method",
             "name": "isEnharmonic",
@@ -1068,7 +1068,7 @@
         },
         {
             "file": "scripts/MusicManip.js",
-            "line": 329,
+            "line": 336,
             "description": "Find the amount to shift to get to a particular note.",
             "itemtype": "method",
             "name": "findShift",
@@ -1092,14 +1092,14 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 52,
-            "description": "Plays the loaded notes with the given style. If style not given, plays the notes quiz style:\nall chords played blocked, then broken and ascending, except for 20th century chords which \nare played just blocked; all scales played broken and ascending.",
+            "line": 53,
+            "description": "Plays the loaded notes with the given style. If style not given, plays the notes quiz style.",
             "itemtype": "method",
             "name": "play",
             "params": [
                 {
                     "name": "style",
-                    "description": "(Optional) How to play the notes. If left out, plays quiz style",
+                    "description": "(Optional) How to play the notes",
                     "type": "String"
                 }
             ],
@@ -1107,7 +1107,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 103,
+            "line": 106,
             "description": "Plays the note at the given index in the tempSounds array.",
             "itemtype": "method",
             "name": "playNote",
@@ -1129,7 +1129,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 126,
+            "line": 130,
             "description": "Plays all notes in tempSounds at the same time.",
             "itemtype": "method",
             "name": "playBlock",
@@ -1146,7 +1146,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 139,
+            "line": 143,
             "description": "Plays all notes in sequence.",
             "itemtype": "method",
             "name": "playBroken",
@@ -1168,7 +1168,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 160,
+            "line": 164,
             "description": "Recursive helper for playBroken()",
             "itemtype": "method",
             "name": "playBrokenHelp",
@@ -1195,7 +1195,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 186,
+            "line": 191,
             "description": "Generates the Howl files to be played.",
             "itemtype": "method",
             "name": "generate",
@@ -1214,16 +1214,21 @@
                     "name": "inversion",
                     "description": "(Optional) Which inversion to use",
                     "type": "Integer"
+                },
+                {
+                    "name": "octave",
+                    "description": "(Optional) Octave the first note starts in",
+                    "type": "Integer"
                 }
             ],
             "class": "MusicSnippet"
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 222,
-            "description": "Transposes notes to a given or random key and inverts the notes a given or random amount",
+            "line": 228,
+            "description": "Transposes notes to a given or random key, gives notes a given or random octave,\n and inverts the notes a given or random amount.",
             "itemtype": "method",
-            "name": "transposeAndInvert",
+            "name": "TOI",
             "params": [
                 {
                     "name": "key",
@@ -1233,6 +1238,11 @@
                 {
                     "name": "inversion",
                     "description": "(Optional) Amount to invert by",
+                    "type": "Integer"
+                },
+                {
+                    "name": "octave",
+                    "description": "(Optional) Which octave to apply",
                     "type": "Integer"
                 }
             ],
@@ -1246,7 +1256,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 269,
+            "line": 295,
             "description": "Returns a new string with the proper quality given the inversion. Only use on \n7th chords.",
             "itemtype": "method",
             "name": "invert7thQuality",
@@ -1272,8 +1282,8 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 304,
-            "description": "Takes the notes and converts them into Howl objects with the appropriate\nsound files.",
+            "line": 330,
+            "description": "Takes the given notes and converts them into Howl objects with the appropriate\nsound files.",
             "itemtype": "method",
             "name": "loadFiles",
             "params": [
@@ -1293,7 +1303,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 373,
+            "line": 388,
             "description": "Fades all sound out",
             "itemtype": "method",
             "name": "fadeOut",
@@ -1301,8 +1311,8 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 383,
-            "description": "Recursive helper function for this.fadeOut. When sound finishes fading, resets the file.",
+            "line": 399,
+            "description": "Recursive helper function for this.fadeOut.\nHave to do this recursively in order to use Howl's fadeOut()'s \nthird parameter.",
             "itemtype": "method",
             "name": "fade",
             "params": [
@@ -1318,15 +1328,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 402,
-            "description": "Immediately stops all sound",
-            "itemtype": "method",
-            "name": "stop",
-            "class": "MusicSnippet"
-        },
-        {
-            "file": "scripts/MusicSnippet.js",
-            "line": 413,
+            "line": 420,
             "description": "Clears all timeouts (delayed sounds)",
             "itemtype": "method",
             "name": "clear",
@@ -1336,17 +1338,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 427,
-            "description": "Stops all sound currently playing",
-            "itemtype": "method",
-            "name": "stop",
-            "access": "private",
-            "tagname": "",
-            "class": "MusicSnippet"
-        },
-        {
-            "file": "scripts/MusicSnippet.js",
-            "line": 439,
+            "line": 434,
             "description": "Sets the volume of all files",
             "itemtype": "method",
             "name": "setVolume",
@@ -1363,7 +1355,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 452,
+            "line": 447,
             "description": "Returns the type and quality",
             "itemtype": "method",
             "name": "answer",
@@ -1375,7 +1367,7 @@
         },
         {
             "file": "scripts/MusicSnippet.js",
-            "line": 462,
+            "line": 457,
             "description": "Sets the bpm",
             "itemtype": "method",
             "name": "setBPM",

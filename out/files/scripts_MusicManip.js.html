@@ -307,6 +307,8 @@ function getOctaveLocations(notes) {
   // C3 to B5.
   const NUM_NOTES = 35;
 
+  // calculate the span of the notes and adding padding from the nearest C to
+  // the lowest note, and the nearst B to the highest note.
   var span = calcInterval(NOTES[LOW], notes[0])+ calcSpan(notes)
     + calcInterval(notes[notes.length - 1], NOTES[HIGH]);
 
@@ -323,18 +325,23 @@ function getOctaveLocations(notes) {
 
   var lowestOctave;
 
+  // Special cases for edge notes.
   if (notes[0] == &quot;Bx&quot; || notes[0] == &quot;Bxx&quot;) {
     lowestOctave = 2;
   } else if (notes[0] == &quot;Cb&quot; || notes[0] == &quot;Cbb&quot; || notes[0] == &quot;Dbb&quot;) {
     lowestOctave = 4;
   } else {
+    // Inner note
     lowestOctave = 3;
   }
 
   var length = lowestOctave + numPlaces;
+
   var octaves = [];
 
   for (var i = lowestOctave; i &lt; length; i++) {
+    // niave solution
+    if (i &gt; 5) break;
     octaves.push(i);
   }
 
