@@ -262,7 +262,7 @@ function MusicSnippet(notes, type, quality, category) {
 				newNotes = setInversion(newNotes, inv);
 			}
 			//If not, give a random inversion only for 7th chords
-			else if(category == SEVENTH) {
+			else if(category == SEVENTH && quality != "dd7") {
 				inv = Math.floor(Math.random()*numNotes);	//Get random inversion based on the number of notes
 				newNotes = setInversion(newNotes, inv);		//Update notes with the new inversion
 				quality = invert7thQuality(quality, inv);	//Update the answer
