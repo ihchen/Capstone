@@ -34,7 +34,7 @@ body {
 /* Contains the logo and the title */
 #logotitle {
 	margin: auto;			/* Center */
-	width: 460px;			/* Need this to make 'margin: auto' work */
+	width: 240px;			/* Need this to make 'margin: auto' work */
 	white-space: nowrap;	/* Don't wrap text */
 }
 /* The logo */

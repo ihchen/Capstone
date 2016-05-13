@@ -2,7 +2,7 @@
 <html lang="en">
 <!-- <div id = "wrapper"> -->
 <head>
-  <title>Ear Trainer: <?php echo $thisPage; ?></title>
+  <title>Soundulate: <?php echo $thisPage; ?></title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
       </div>
       <!-- Title -->
       <div id="headtitle">
-        UPS Ear Training Program
+        Soundulate
       </div>
     </div>
     <!-- Navbar -->
